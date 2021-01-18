@@ -1,0 +1,237 @@
+.loginContainer{
+    width: 100%;
+    min-height: 100vh;
+    background:linear-gradient(154deg, rgba(6, 44, 57,0.7) 0%, rgba(26, 93, 116,0.7) 100%),  url(../public/images/back2.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arch{
+    position: absolute;
+    height: calc(100vh + 100px);
+    width:50%;
+    background: #fff;
+    border-radius: 50%;
+    top:-40px;
+    right: -400px;
+    overflow: hidden ;
+}
+.loginRow{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 10;
+}
+.loginContainer .loginMainBase {
+    width: 484px;
+    padding-top:32px;
+    padding-bottom:32px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.loginContainer .loginMainBase .baseTitle{
+    font-family: var(--primary-font);
+    font-size: 26px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: normal;
+    text-align: center;
+    color: #302f45;
+}
+.loginContainer .loginMainBase form{
+    width: 90%;
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.loginContainer .loginMainBase form .baseInput{
+    width: 100%;
+    margin-top: 28px;
+}
+.baseInput .MuiOutlinedInput-root{
+    border-radius: 12px ;
+}
+
+.loginContainer .loginMainBase form .basePossibleActions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top:25px
+
+}
+.loginContainer .loginMainBase form .basePossibleActions .rememberMe{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.loginContainer .loginMainBase form .basePossibleActions .forgetPassword{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: left;
+    color: #afb0c0;
+}
+.loginContainer .loginMainBase form .loginFormSubmit{
+    height: 54px;
+    margin: 30.4px 0.1px 32.6px 0;
+    padding: 11px 129.2px 12px 126.8px;
+    border-radius: 12px;
+    background-color: var(--button-1);
+}
+.loginContainer .loginMainBase form .loginFormSubmit span{
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.24;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+.loginContainer .loginMainBase form .oauth .suggestOauth{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+.hDivider{
+    width: 54px;
+    height: 1px;
+    margin: 14.4px 7.1px 35px 0;
+    background-color: #eaeaf5;
+}
+.loginContainer .loginMainBase form .oauth .suggestOauthSpan{
+    height: 27px;
+    margin: 0 6.9px 23.4px 7.1px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.loginContainer .loginMainBase form .oauth .oauthLink{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    list-style: none;
+}
+
+.loginContainer .loginMainBase form .oauth .oauthLink li{
+    width: 40px;
+    height: 40px;
+    margin: 0 12px 0 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loginContainer .loginMainBase form .oauth .oauthLink li.facebook{
+    background-color: #3763d2;    
+}
+.loginContainer .loginMainBase form .oauth .oauthLink li.youtube{
+    background-color: #fd434f;    
+}
+.loginContainer .loginMainBase form .oauth .oauthLink li.twitter{
+    background-color: #1abcff;    
+}
+.loginContainer .loginMainBase form .oauth .oauthLink li.twitch{
+    background-color: #7b5dfa;    
+}
+
+.loginContainer .loginMainBase form .goRegistration{
+    margin: 24px 123.1px 0 123px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.loginContainer  .loginPresentation{
+    width: 414px;
+    height: 99px;
+    margin: 13px 0 0;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.loginContainer  .loginPresentation h2{
+    margin-top:23px;
+    margin-bottom: 23px;
+    font-family: var(--primary-font);
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+.loginContainer  .loginPresentation h1{
+    font-family: var(--primary-font);
+    margin-bottom: 13px;
+    font-size: 39px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.loginContainer  .loginPresentation p{
+    width: 414px;
+    height: 99px;
+    margin: 13px 0 0;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}

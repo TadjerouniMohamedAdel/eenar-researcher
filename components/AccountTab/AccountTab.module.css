@@ -1,0 +1,33 @@
+ .accountTabs{
+    margin-top:32px;
+    padding-top: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06) !important;
+    background-color: #ffffff !;
+}
+ .accountTabs .tabDivider{
+    width: 1px;
+    height: 20px;
+    margin-top: 28px;
+    background-color: #eaeaf5;
+}
+ .accountTabs span.tabLabel{
+    height: 22px;
+    margin: 8px 0 0;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #afb0c0;
+}
+ .accountTabs .MuiTab-textColorSecondary.Mui-selected{
+    color: var(--active-color);
+}
+ .accountTabs span[class*="PrivateTabIndicator-colorSecondary"]{
+    background-color: var(--active-color) !important;
+    height: 3.5px !important;
+}
