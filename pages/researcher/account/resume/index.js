@@ -14,6 +14,7 @@ import classes from '../../../../styles/Resume.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import AboutMe from '../../../../components/AboutMe/AboutMe';
 
 const aboutme = {
     description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.",
@@ -324,28 +325,7 @@ export default function index() {
           <div className={classes.resumeContainer}>
             <div className={classes.sideSection}>
                 {/* about me resume */}
-                <div className={classes.resumeAboutMe}>
-                    <h2>
-                        نبذة عني 
-                        <IconButton>
-                            <MoreHorizOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <p className={classes.resumeAboutMeDescription}>
-                        {aboutme.description}
-                    </p>
-                    <ul className={classes.resumeAboutMeInfo}>
-                        <li><span className={classes.infoLabel}>الإنضمام</span><span className={classes.infoValue}>{aboutme.date}</span></li>
-                        <li><span className={classes.infoLabel}>المدينة</span><span className={classes.infoValue}>{aboutme.city}</span></li>
-                        <li><span className={classes.infoLabel}>المؤسسة</span><span className={classes.infoValue}>{aboutme.company}</span></li>
-                        <li><span className={classes.infoLabel}>الوظيفة</span><span className={classes.infoValue}>{aboutme.job}</span></li>
-                        <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={aboutme.webSite} target="_blank">{aboutme.webSite}</a></span></li>
-                    </ul>
-                    <Button className={classes.downloadResume}>
-                        <span>حمل السيرة الذاتية</span>
-                        <GetAppIcon />
-                    </Button>
-                </div>
+                <AboutMe aboutme={aboutme}/>
                 {/* badges */}
                 <div className={classes.resumeBadges}>
                     <h2>
