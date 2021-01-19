@@ -596,6 +596,16 @@
     text-align: right;
     color: #118ab2;
 }
+.resumeContainer .successSection .successSectionNotExpanded{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    font-size: 12px;
+    margin-bottom: 16px;
+    margin-right: 28px;
+    font-family: var(--primary-font);
+}
 .resumeContainer .successSection .successSectionItems{
     display: flex;
     flex-direction: column;
@@ -636,7 +646,7 @@
     height: 39px;
     /* mas 16px 0 16px 87px; */
     font-family: var(--primary-font);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
