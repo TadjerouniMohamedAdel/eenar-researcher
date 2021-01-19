@@ -12,6 +12,8 @@ import SchoolOutlinedIcon from '@material-ui/icons/SchoolOutlined';
 import CardMembershipOutlinedIcon from '@material-ui/icons/CardMembershipOutlined';
 import classes from '../../../../styles/Resume.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 const aboutme = {
     description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.",
@@ -553,7 +555,12 @@ export default function index() {
                         </IconButton>
                     </h2>
                     <div className={classes.successSection}>
-                            <h3>المشاريع</h3>
+                            <h3>
+                                المشاريع
+                                <IconButton>
+                                    <ExpandLessIcon style={{fontSize:28,color:"#dfdfe6"}} />
+                                </IconButton>
+                            </h3>
                             <div className={classes.successSectionItems}>
                                 {
                                     projects.map((project,index)=>(
@@ -571,7 +578,12 @@ export default function index() {
                             <div className={classes.seccessSectionDevider}></div>
                     </div>
                     <div className={classes.successSection}>
-                            <h3>اللغات</h3>
+                            <h3>
+                                اللغات
+                                <IconButton>
+                                    <ExpandLessIcon style={{fontSize:28,backgroundColor:""}} />
+                                </IconButton>
+                            </h3>
                             <div className={classes.successSectionItems}>
                                 {
                                     languages.map((language,index)=>(
@@ -588,7 +600,12 @@ export default function index() {
                             <div className={classes.seccessSectionDevider}></div>
                     </div>
                     <div className={classes.successSection}>
-                            <h3>النشاطات والفعاليات</h3>
+                            <h3>
+                                النشاطات والفعاليات
+                                <IconButton>
+                                    <ExpandLessIcon style={{fontSize:28,backgroundColor:""}} />
+                                </IconButton>
+                            </h3>
                             <div className={classes.successSectionItems}>
                                 {
                                     activities.map((activity,index)=>(
@@ -608,7 +625,12 @@ export default function index() {
                             <div className={classes.seccessSectionDevider}></div>
                     </div>
                     <div className={classes.successSection}>
-                            <h3>براءات الاختراع</h3>
+                            <h3>
+                                براءات الاختراع
+                                <IconButton>
+                                    <ExpandLessIcon style={{fontSize:28,backgroundColor:""}} />
+                                </IconButton>
+                            </h3>
                             <div className={classes.successSectionItems}>
                                 {
                                     patents.map((patent,index)=>(
@@ -629,7 +651,12 @@ export default function index() {
                             <div className={classes.seccessSectionDevider}></div>
                     </div>
                     <div className={classes.successSection}>
-                            <h3>التكريمات</h3>
+                            <h3>
+                                التكريمات
+                                <IconButton>
+                                    <ExpandLessIcon style={{fontSize:28,backgroundColor:""}} />
+                                </IconButton>
+                            </h3>
                             <div className={classes.successSectionItems}>
                                 {
                                     honors.map((honor,index)=>(

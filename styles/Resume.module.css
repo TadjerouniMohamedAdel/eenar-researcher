@@ -579,12 +579,16 @@
     flex-direction: column;
 }
 .resumeContainer .successSection h3{
-    width: 169px;
+    /* width: 169px; */
     height: 21px;
     margin: 16px 28px 8px 418px;
     font-family: var(--primary-font);
     font-size: 12px;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.5;

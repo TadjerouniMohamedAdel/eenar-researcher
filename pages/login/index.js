@@ -3,6 +3,7 @@ import { Button, Checkbox, Paper, TextField } from '@material-ui/core'
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube,faFacebookSquare,faTwitter,faTwitch } from '@fortawesome/free-brands-svg-icons'
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import classes from '../../styles/Login.module.css'
 import LoginLayout from '../../layouts/Login/LoginLayout'
 
@@ -58,7 +59,7 @@ export default function Login() {
                         <Checkbox 
                             checked={rememberMe}
                             name="remember_me"
-                            checkedIcon={<i className="fas fa-window-close" style={{color:"#06d6a0"}}></i>}
+                            checkedIcon={<FontAwesomeIcon icon={faWindowClose} style={{color:"#06d6a0"}} />}
                             onChange={(e)=>setRememberMe(!rememberMe)}
                         />
                         <span>تذكرني</span>

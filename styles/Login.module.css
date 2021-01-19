@@ -1,9 +1,12 @@
 .loginContainer{
     width: 100%;
     min-height: 100vh;
+    position: absolute;
+    height: 100vh;
     background:linear-gradient(154deg, rgba(6, 44, 57,0.7) 0%, rgba(26, 93, 116,0.7) 100%),  url(../public/images/back2.jpg);
     background-size: cover;
     background-position: center;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
