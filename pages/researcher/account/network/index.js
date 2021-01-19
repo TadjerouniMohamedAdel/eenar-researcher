@@ -4,7 +4,7 @@ import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress
 export default function index() {
     return (
         <ResearcherAccountLayout>
-            <WorkInProgress menu="الحائط"/>
+            <WorkInProgress menu="شبكتي"/>
         </ResearcherAccountLayout>
     )
 }

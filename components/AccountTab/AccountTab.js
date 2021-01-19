@@ -12,24 +12,9 @@ import {useRouter} from 'next/router'
 import classes from './AccountTab.module.css'
 const tabs = [
     {
-        name:"شبكتي",
-        icon:()=>(<PublicOutlinedIcon />),
-        to:"/"
-    },
-    {
-        name:"مشاريعي",
-        icon:()=>(<CardTravelOutlinedIcon />),
-        to:"projects"
-    },
-    {
-        name:"منشوراتي",
-        icon:()=>(<AssignmentOutlinedIcon />),
-        to:"posts"
-    },
-    {
-        name:"السيرة الذاتية",
-        icon:()=>(<AccountBoxOutlinedIcon />),
-        to:"resume"
+        name:"الحائط",
+        icon:()=>(<HomeOutlinedIcon />),
+        to:"wall"
     },
     {
         name:"الرصيد",
@@ -37,11 +22,26 @@ const tabs = [
         to:"score"
     },
     {
-        name:"الحائط",
-        icon:()=>(<HomeOutlinedIcon />),
-        to:"wall"
+        name:"السيرة الذاتية",
+        icon:()=>(<AccountBoxOutlinedIcon />),
+        to:"resume"
     },
     
+    {
+        name:"منشوراتي",
+        icon:()=>(<AssignmentOutlinedIcon />),
+        to:"posts"
+    },
+    {
+        name:"مشاريعي",
+        icon:()=>(<CardTravelOutlinedIcon />),
+        to:"projects"
+    },
+    {
+        name:"شبكتي",
+        icon:()=>(<PublicOutlinedIcon />),
+        to:"network"
+    },
 ]
 export default function AccountTab() {
     const router = useRouter()

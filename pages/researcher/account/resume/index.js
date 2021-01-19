@@ -194,6 +194,119 @@ const groups = [
     }
 ]
 
+const projects = [
+    {
+      name:"المشروع الفلاني الأول",  
+      startDate:"سبتمبر 2012",
+      endDate:null,
+      description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
+    },
+    {
+        name:"المشروع الفلاني الثاني",  
+        startDate:"سبتمبر 2009",
+        endDate:"ديسمبر 2010",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
+      },
+      {
+        name:"المشروع الفلاني الثالث",  
+        startDate:"سبتمبر 2002",
+        endDate:"سبتمبر 2005",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
+      },
+]
+
+const languages = [
+    {
+        name:"العربية",
+        level:"اللغة الأم أومستوى احترافي"
+    },
+    {
+        name:"الإنجليزية",
+        level:"مستوى احترافي"
+    },
+    {
+        name:"الفرنسية",
+        level:"مستوى متوسط"
+    }]
+
+const activities = [
+    {
+        name:"النشاط الفلاني الأول",
+        startDate:"20/9/2020",
+        endDate:"25/9/2020",
+        center:"مؤسسة الرؤيا للأبحاث الفلكية",
+        role:"محاضر",
+        location:"مصر"
+    },
+    {
+        name:"النشاط الفلاني الأول",
+        startDate:"20/9/2020",
+        endDate:"25/9/2020",
+        center:"مؤسسة الرؤيا للأبحاث الفلكية",
+        role:"محاضر",
+        location:"مصر"
+    },
+    {
+        name:"النشاط الفلاني الأول",
+        startDate:"20/9/2020",
+        endDate:"25/9/2020",
+        center:"مؤسسة الرؤيا للأبحاث الفلكية",
+        role:"محاضر",
+        location:"مصر"
+    },
+]
+
+const patents=[
+    {
+        name:"براءة الاختراع الأولى",
+        startDate:"سبتمبر 2012",
+        endDate:"ديسمبر 2015",
+        status:"تم الاصدار",
+        center:"المكتب الفلاني للإختراعات",
+        code:"ED1059",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين "
+    },
+    {
+        name:"براءة الاختراع الأولى",
+        startDate:"سبتمبر 2012",
+        endDate:"ديسمبر 2015",
+        status:"تم الاصدار",
+        center:"المكتب الفلاني للإختراعات",
+        code:"ED1059",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين "
+    },
+    {
+        name:"براءة الاختراع الأولى",
+        startDate:"سبتمبر 2012",
+        endDate:"ديسمبر 2015",
+        status:"تم الاصدار",
+        center:"المكتب الفلاني للإختراعات",
+        code:"ED1059",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين "
+    },
+]
+
+const honors = [
+    {
+        name:"التكريم الفلاني الأول",
+        date:"ديسمبر 2012",
+        honoredBy:"مركز الرؤيا للأبحاث الفلكية",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين "
+    },
+    {
+        name:"التكريم الفلاني الأول",
+        date:"ديسمبر 2012",
+        honoredBy:"مركز الرؤيا للأبحاث الفلكية",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين "
+    },
+    {
+        name:"التكريم الفلاني الأول",
+        date:"ديسمبر 2015",
+        honoredBy:"مركز الرؤيا للأبحاث الفلكية",
+        description:"خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين "
+    },
+]
+
 export default function index() {
     const [value,setValue]  = useState(0)
     const handleChange = (e,value)=>{
@@ -439,9 +552,102 @@ export default function index() {
                             <BorderColorOutlinedIcon className={classes.actionSectionIcon}/>
                         </IconButton>
                     </h2>
-                    <div className={classes.collectionItems}>
-                        
+                    <div className={classes.successSection}>
+                            <h3>المشاريع</h3>
+                            <div className={classes.successSectionItems}>
+                                {
+                                    projects.map((project,index)=>(
+                                        <div key={`project-${index}`} className={classes.successSectionItem}>
+                                            <h3>{project.name}</h3>
+                                            <h4>
+                                                {project.startDate} - {project.endDate!==null?project.endDate :"مستمر"}
+                                            </h4>
+                                            <span>{project.description}</span>
+                                        </div>
+
+                                    ))
+                                }
+                            </div>
+                            <div className={classes.seccessSectionDevider}></div>
                     </div>
+                    <div className={classes.successSection}>
+                            <h3>اللغات</h3>
+                            <div className={classes.successSectionItems}>
+                                {
+                                    languages.map((language,index)=>(
+                                        <div key={`language-${index}`} className={classes.successSectionItem}>
+                                            <h3>{language.name}</h3>
+                                            <h4>
+                                                {language.level}
+                                            </h4>
+                                        </div>
+
+                                    ))
+                                }
+                            </div>
+                            <div className={classes.seccessSectionDevider}></div>
+                    </div>
+                    <div className={classes.successSection}>
+                            <h3>النشاطات والفعاليات</h3>
+                            <div className={classes.successSectionItems}>
+                                {
+                                    activities.map((activity,index)=>(
+                                        <div key={`activity-${index}`} className={classes.successSectionItem}>
+                                            <h3>{activity.name}</h3>
+                                            <h4>
+                                                {activity.startDate} - {activity.endDate!==null?activity.endDate :"مستمر"} - {activity.role}
+                                            </h4>
+                                            <h4>
+                                                {activity.center} - {activity.location}
+                                            </h4>
+                                        </div>
+
+                                    ))
+                                }
+                            </div>
+                            <div className={classes.seccessSectionDevider}></div>
+                    </div>
+                    <div className={classes.successSection}>
+                            <h3>براءات الاختراع</h3>
+                            <div className={classes.successSectionItems}>
+                                {
+                                    patents.map((patent,index)=>(
+                                        <div key={`patent-${index}`} className={classes.successSectionItem}>
+                                            <h3>{patent.name}</h3>
+                                            <h4>
+                                                {patent.startDate} - {patent.endDate!==null?patent.endDate :"مستمر"} - {patent.status}
+                                            </h4>
+                                            <h4>
+                                                {patent.center} - {patent.code}
+                                            </h4>
+                                            <span>{patent.description}</span>
+                                        </div>
+
+                                    ))
+                                }
+                            </div>
+                            <div className={classes.seccessSectionDevider}></div>
+                    </div>
+                    <div className={classes.successSection}>
+                            <h3>التكريمات</h3>
+                            <div className={classes.successSectionItems}>
+                                {
+                                    honors.map((honor,index)=>(
+                                        <div key={`honor-${index}`} className={classes.successSectionItem}>
+                                            <h3>{honor.name}</h3>
+                                            <h4>
+                                                {honor.date}
+                                            </h4>
+                                            <h4>
+                                                {honor.honoredBy} 
+                                            </h4>
+                                            <span>{honor.description}</span>
+                                        </div>
+
+                                    ))
+                                }
+                            </div>
+                    </div>                   
                </div>
 
             </div>

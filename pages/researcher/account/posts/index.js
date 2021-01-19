@@ -1,10 +1,10 @@
 import React from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
-
+import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 export default function index() {
     return (
         <ResearcherAccountLayout>
-            <h1>Posts</h1>
+            <WorkInProgress menu="منشوراتي"/>
         </ResearcherAccountLayout>
     )
 }
