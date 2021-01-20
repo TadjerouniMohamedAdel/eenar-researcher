@@ -2,9 +2,6 @@ import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout
 import React,{useState} from 'react'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import { Button, IconButton, Tab,Tabs } from '@material-ui/core';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import WorkOutlineOutlinedIcon from '@material-ui/icons/WorkOutlineOutlined';
@@ -15,6 +12,11 @@ import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import AboutMe from '../../../../components/AboutMe/AboutMe';
+import BadgesCard from '../../../../components/BadgesCard/BadgesCard';
+import MyNetwork from '../../../../components/MyNetwork/MyNetwork';
+import LearnNow from '../../../../components/LearnNow/LearnNow';
+import LastArticles from '../../../../components/LastArticles/LastArticles';
+import MyGroups from '../../../../components/MyGroups/MyGroups';
 
 const aboutme = {
     description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.",
@@ -24,6 +26,59 @@ const aboutme = {
     city:"باب الزوار، الجزائر",
     webSite:"www.mouadh.com"
 }
+const badges = [
+    {
+        imageSrc:"/images/01.png"
+    },
+    {
+        imageSrc:"/images/02.png"
+    },
+    {
+        imageSrc:"/images/03.png"
+    },
+    {
+        imageSrc:"/images/04.png"
+    },
+    {
+        imageSrc:"/images/01.png"
+    },
+    {
+        imageSrc:"/images/02.png"
+    },
+    {
+        imageSrc:"/images/03.png"
+    },
+    {
+        imageSrc:"/images/04.png"
+    },
+    {
+        imageSrc:"/images/01.png"
+    },
+    {
+        imageSrc:"/images/02.png"
+    },
+    {
+        imageSrc:"/images/03.png"
+    },
+    {
+        imageSrc:"/images/04.png"
+    },
+    {
+        imageSrc:"/images/01.png"
+    },
+    {
+        imageSrc:"/images/02.png"
+    },
+    {
+        imageSrc:"/images/03.png"
+    },
+    {
+        imageSrc:"/images/04.png"
+    },
+    {
+        imageSrc:"/images/04.png"
+    },
+]
 
 const users = [
     {
@@ -311,84 +366,20 @@ const honors = [
 ]
 
 export default function index() {
-    const [value,setValue]  = useState(0)
+
     const [projectsExpanded,setProjectsExpanded] = useState(false)
     const [languagesExpanded,setLanguagesExpanded] = useState(false)
     const [activitiesExpanded,setActivitiesExpanded] = useState(false)
     const [patentsExpanded,setPatentsExpanded] = useState(false)
     const [honorsExpanded,setHonorsExpanded] = useState(false)
-    const handleChange = (e,value)=>{
-        setValue(value)
-    }
+    
     return (
        <ResearcherAccountLayout>
           <div className={classes.resumeContainer}>
             <div className={classes.sideSection}>
-                {/* about me resume */}
                 <AboutMe aboutme={aboutme}/>
-                {/* badges */}
-                <div className={classes.resumeBadges}>
-                    <h2>
-                        الأوسمة                            
-                        <IconButton>
-                            <MoreHorizOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <div className={classes.resumeBagesImages}>
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-                        <img alt="" src={"/images/04.png"} />
-
-                    </div>
-                </div>
-                {/* شبكتي البحثية */}
-                <div className={classes.myNetwork}>
-                    <h2>
-                        شبكتي البحثية                               
-                        <IconButton>
-                            <MoreHorizOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    {
-                        users.map((user,ui)=>(
-                            <div className={classes.suggestUser} key={ui}>
-                                <div className={classes.suggestUserRectangle}></div>
-                                <div className={classes.suggestUserContent}>
-                                    <h3>{user.fullName}</h3>
-                                    <h5>صديق مشترك {user.commonFrinedsNumber}</h5>
-                                </div>
-                             
-                                    <Button 
-                                        className={`${classes.suggestUserAction} ${classes[user.invitationStatus]}`}
-                                    >
-                                        {
-                                            user.invitationStatus =="accepted"?(
-                                                <RemoveIcon className={classes.actionIcon}/>
-                                            )
-                                            :(
-                                                <AddIcon className={classes.actionIcon}/>
-                                            )
-                                        }
-                                    </Button>
-                                </div>
-                        ))
-                    }
-                    <Button className={classes.allFriends}>
-                        <span>
-                            جميع الأصدقاء
-                        </span>
-                    </Button>   
-                </div>
+                <BadgesCard badges={badges} />
+                <MyNetwork users={users} />
             </div>
             <div className={classes.mainSection}>
                <div className={classes.collectionContainer}>
@@ -737,76 +728,9 @@ export default function index() {
 
             </div>
             <div className={classes.sideSection}>
-                <div className={classes.learnNow}>
-                    <div className={classes.learnNowTitle}>
-                        <h1>سيّر عمليّة التخرج بفعاليّة أكبر</h1>
-                    </div>
-                    <Button
-                        className={classes.learnNowButton}
-                    >
-                        تعلّم الآن
-                    </Button>
-                </div>
-                <div className={classes.articles}>
-                    <h2>
-                        مقالات
-                        <IconButton>
-                            <MoreHorizOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <div className={classes.articlesItems}>
-                        {
-                            articles.map((article,index)=>(
-                                <div className={classes.articlesItem} key={`articles-item-${index}`}>
-                                    <div className={classes.collectionRectangle}></div>
-                                    <div className={classes.articlesContent}>
-                                        <h2>{article.title}</h2>
-                                        <span>{article.publishedDate}</span>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-                <div className={classes.myGroups}>
-                    <h2>
-                            مجموعاتي البحثية
-                        <IconButton>
-                            <MoreHorizOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <Tabs
-                        value={value}
-                        className={classes.myGroupsTabs}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        onChange={handleChange}
-                        aria-label="disabled tabs example"
-                    >
-                    <Tab label="الأشهر" className={classes.groupTabItem} />
-                    <Tab label="الأكثر نشاطا" className={classes.groupTabItem} />
-                    <Tab label="الأحدث" className={classes.groupTabItem} />
-                </Tabs>
-                <div className={classes.groupList}>
-                    {
-                        groups.map((group,index)=>(
-                            <div key={`group-${index}`} className={classes.groupItem}>
-                                <div className={classes.collectionRectangle}></div>
-                                <div className={classes.groupDescription}>
-                                    <h4>{group.name}</h4>
-                                    <span>
-                                         
-                                        {`عضو ${group.members}`}
-                                    </span>
-                                </div>
-                                <Button className={classes.groupButton}>
-                                    <GroupAddOutlinedIcon />
-                                </Button>
-                            </div>
-                        ))
-                    }
-                </div>
-                </div>
+                <LearnNow />
+                <LastArticles articles={articles} />
+                <MyGroups groups={groups}/>
             </div>
         </div>
        </ResearcherAccountLayout>

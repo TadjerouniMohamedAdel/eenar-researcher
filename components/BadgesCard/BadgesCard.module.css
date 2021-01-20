@@ -1,0 +1,39 @@
+.resumeBadges{
+    /* width: 250px; */
+    height: auto;
+    margin: 16px 0;
+    padding: 24px 28px 32px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+.resumeBadges h2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #3e3f5e;
+}
+.actionSectionIcon{
+    font-size: 18px;
+    color: #dfdfe6;
+}
+
+.resumeBadges .resumeBagesImages{
+    display: flex;
+    flex-direction: row;;
+    flex-wrap: wrap;
+}
+.resumeBadges .resumeBagesImages img{
+    width: 32px;
+    height: 35px;
+    margin: 10px 0px 0 13px;   
+}

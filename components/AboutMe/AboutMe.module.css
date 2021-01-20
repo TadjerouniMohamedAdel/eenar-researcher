@@ -73,6 +73,11 @@
     color: var(--active-color);
 
 }
+.actionSectionIcon{
+    font-size: 18px;
+    color: #dfdfe6;
+}
+  
 .downloadResume {
     /* width: 196px; */
     width: 224px;
