@@ -65,7 +65,7 @@
     color: #3e3f5e;
 }
 .successSection .successSectionItems .successSectionItem span{
-    width: 529px;
+    width: 90%;
     display: block;
     height: 39px;
     /* mas 16px 0 16px 87px; */
@@ -73,6 +73,7 @@
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
+    margin-bottom: 20px;
     font-style: normal;
     line-height: 1.8;
     letter-spacing: normal;

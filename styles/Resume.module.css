@@ -2,18 +2,26 @@
     display: flex;
     margin-top: 32px;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 .resumeContainer .mainSection{
-    flex: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .resumeContainer .sideSection{
-    flex:1;
     display: flex;
     flex-direction: column;
+}
+.resumeContainer .mainSection > div{
+    width: 730px;
+}
+.resumeContainer .sideSection > div{
+    width: 300px;
+}
+.resumeContainer .sideSection:nth-child(3) > div{
+    width: 350px;
 }
 
 .moreCollectionIcon{
@@ -108,4 +116,37 @@
     opacity: 0.4;
     border: solid 1px #9192a6;
     margin-bottom: 16px;
+}
+@media(max-width:1770px){
+    .resumeContainer .mainSection > div{
+        width: 630px;
+    }
+}
+@media(max-width:1670px){
+    .resumeContainer .mainSection > div{
+        width: 540px;
+    }
+}   
+@media(max-width:1570px){
+    .resumeContainer .mainSection > div{
+        width: 500px;
+    }
+    .resumeContainer .sideSection > div{
+        width: 300px;
+    }
+    .resumeContainer .sideSection:nth-child(3) > div{
+        width: 320px;
+    }
+   
+}
+@media(max-width:1500px){
+    .resumeContainer .mainSection > div{
+        width: 500px;
+    }
+    .resumeContainer .sideSection > div{
+        width: 250px;
+    }
+    .resumeContainer .sideSection:nth-child(3) > div{
+        width: 300px;
+    }    
 }

@@ -1,5 +1,4 @@
 .collectionContainer{
-    width: 664px;
     height: auto;
     margin: 0 0 13px;
     padding: 24px 28px 32px 1px;
@@ -37,11 +36,13 @@
     display: flex;
     flex-direction: column;
     margin-top: 10px;
+    width: 100%;
 }
 .collectionContainer .collectionItems .collectionItem{
     display: flex;
     flex-direction: row;
     margin-bottom: 5px;
+    width: 100%;
 }
 .collectionRectangle{
     width: 44px;
@@ -53,6 +54,7 @@
 .collectionContainer .collectionItems .collectionItem .collectionContent{
     display: flex;
     flex-direction: column;
+    width: calc(100% - 50px);
 }
 .collectionContainer .collectionItems .collectionItem .collectionContent h2{
     font-family: var(--primary-font);
@@ -79,10 +81,10 @@
     color: #afb0c0;
     font-family: var(--primary-font);
     font-size: 12px;
-    width: 560px;
+    width: 90%;
 }
 .collectionContainer .collectionItems .collectionItem .collectionContent .line{
-    width: 560px;
+    width: 90%;
     height: 0;
     margin: 8px 0px 0 0;
     opacity: 0.4;
