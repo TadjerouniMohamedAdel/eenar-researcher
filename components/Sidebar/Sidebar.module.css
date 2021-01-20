@@ -1,0 +1,181 @@
+.sidebar {
+    width: 300px;
+    min-height: 100vh;
+    height: auto;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar .bondeau {
+    width: 300px;
+    height: 77px;
+    background-color: #073b4c;
+}
+.Rectangle5 {
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+.Rectangle4{
+    width: 112px;
+    height: 112px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #118ab2;
+}
+.Rectangle3{
+    width: 104px;
+    height: 104px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #ffffff;
+} 
+.Rectangle2{
+    width: 96px;
+    height: 96px;
+    border-radius: 3px;
+    background-color: #118ab2;
+}
+.sidebar .profile{
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:-50px
+}
+.sidebar .profile .profileTitle{
+        margin: 0 0 8.1px;
+        font-family: var(--primary-font);
+        font-size: 17.9px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        text-align: center;
+        color: #3e3f5e;
+}
+.sidebar .profile .profileJob {
+    font-family: var(--primary-font);
+    font-size: 10.9px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.72;
+    letter-spacing: normal;
+    text-align: center;
+    color: #afb0c0;
+}
+.sidebar .profileBadges{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top:25px;
+}
+.sidebar .profileBadges .profileBadgesItem{
+    margin:5px;
+} 
+
+.sidebar .profileOverviews{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+.sidebar .profileOverviews .profileOverviewsItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:20px;
+}
+.sidebar .profileOverviews .profileOverviewsItem .profileOverviewsItemValue{
+    font-family: var(--primary-font);
+    font-size: 13.9px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.sidebar .profileOverviews .profileOverviewsItem .profileOverviewsItemName{
+    font-family: var(--primary-font);
+    font-size: 10.9px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.72;
+    letter-spacing: normal;
+    text-align: center;
+    color: #afb0c0;
+}
+.sidebar .sidebarLinks{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+    margin-top: 20px;
+}
+.sidebar .sidebarLinks .sidebarLinksItem{
+    width: 90%;
+    display: flex;
+    text-decoration: none;
+    height: 48px;
+    margin-top: 16px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sidebar .sidebarLinks .sidebarLinksItem .linkIcon {
+    font-size: 25px;
+    margin-right: 20px;
+    color: #afb0c0;
+    transition: 0.5s;
+}
+.sidebar .sidebarLinks .sidebarLinksItem .linkName{
+    
+    height: 18px;
+    margin-right: 20px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: right;
+    transition: 0.5s;
+    color: #afb0c0;
+}
+.sidebar .sidebarLinks .sidebarLinksItem.active {
+    box-shadow: 3px 5.2px 20px 0 rgba(62, 255, 205, 0.3);
+    background-color: #06d6a0;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+.sidebar .sidebarLinks .sidebarLinksItem.active .linkName{
+        font-family: var(--primary-font);
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: right;
+        color: #fefeff;  
+}
+.sidebar .sidebarLinks .sidebarLinksItem.active  .linkIcon{
+    color: #fff;
+}

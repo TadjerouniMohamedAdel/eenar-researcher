@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1264" height="160" viewBox="0 0 1264 160">
+    <defs>
+        <clipPath id="clip-path">
+            <path id="imageMask" fill="none" d="M0 0H1264V160H0z"/>
+        </clipPath>
+        <clipPath id="clip-path-2">
+            <path id="Shield_Outter" d="M138.669 97.076c0 26.048-22.671 46.463-44.685 49.468 6.806 49.291 28.785 121.941 98.174 148.446v.015l.019-.008.02.008v-.015c69.406-26.505 91.595-99.155 98.4-148.446-22.018-3.005-44.685-23.42-44.685-49.468 0-.174-7.845.137-7.843-.037l-45.874.153h-.039l-45.646-.153c4.941.174-7.841-.139-7.841.037z" class="cls-2" transform="translate(-93.984 -97.021)"/>
+        </clipPath>
+        <clipPath id="clip-path-3">
+            <path id="Shield_Center" fill="#5a56ca" stroke="#343559" stroke-width="6px" d="M147.415 115.062c0 21.312-18.482 38.015-36.428 40.474 5.549 40.329 23.466 99.77 80.033 121.456V277l.016-.007.016.007v-.013c56.581-21.686 74.67-81.127 80.219-121.456-17.95-2.459-36.428-19.162-36.428-40.474 0-.142-6.4.112-6.394-.03l-37.4.125h-.032l-37.212-.125c4.03.147-6.39-.107-6.39.035z" transform="translate(-110.987 -115.017)"/>
+        </clipPath>
+        <linearGradient id="linear-gradient" x2="1" y1=".5" y2=".5" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#06d6a0"/>
+            <stop offset="1" stop-color="#118ab2"/>
+        </linearGradient>
+        <style>
+            .cls-2{fill:#cddeed}.cls-8{font-family:GeezaPro,Geeza Pro}.cls-12{fill:#073b4c}
+        </style>
+    </defs>
+    <g id="Account_Hub_Section_Banner" transform="translate(0 -12.001)">
+        <rect id="Main_Base" width="1264" height="160" fill="url(#linear-gradient)" rx="8" transform="translate(0 12.001)"/>
+        <g id="Title_and_Description" fill="#fff" transform="translate(709.508 48.862)">
+            <text id="مركز_الحساب" font-family="GeezaPro, Geeza Pro" font-size="34px" transform="translate(354.492 39)">
+                <tspan x="-158.173" y="0">الحساب</tspan><tspan y="0" font-family="Helvetica"> </tspan><tspan y="0">مركز</tspan>
+            </text>
+            <text id="معلومات_الحساب_رسائل_إشعارات_والكثير.." font-family="Helvetica" font-size="14px" transform="translate(337 68)">
+                <tspan x="-213.553" y="0">..</tspan><tspan y="0" class="cls-8">والكثير</tspan><tspan y="0"> </tspan><tspan y="0" class="cls-8">إشعارات</tspan><tspan y="0"> </tspan><tspan y="0" class="cls-8">رسائل،</tspan><tspan y="0"> </tspan><tspan y="0" class="cls-8">الحساب،</tspan><tspan y="0"> </tspan><tspan y="0" class="cls-8">معلومات</tspan>
+            </text>
+        </g>
+        <g id="Account_Shield_Illustration" clip-path="url(#clip-path)" transform="translate(0 12.001)">
+            <g id="Account_Shield_Illustration-2" transform="translate(1087.635 -14.979)">
+                <g id="Shield">
+                    <g id="Shield_Outter-2">
+                        <path id="Shield_Outter-3" d="M138.669 97.076c0 26.048-22.671 46.463-44.685 49.468 6.806 49.291 28.785 121.941 98.174 148.446v.015l.019-.008.02.008v-.015c69.406-26.505 91.595-99.155 98.4-148.446-22.018-3.005-44.685-23.42-44.685-49.468 0-.174-7.845.137-7.843-.037l-45.874.153h-.039l-45.646-.153c4.941.174-7.841-.139-7.841.037z" class="cls-2" transform="translate(-93.984 -97.021)"/>
+                        <g id="Clip" clip-path="url(#clip-path-2)">
+                            <path id="Light" fill="#f1f8ff" d="M30.237 59.5l230.64 126.162 37.214-59.5L67.45 0zM0 107.851l230.641 126.162 18.607-29.752L18.607 78.1z" transform="rotate(180 130.886 108.489)"/>
+                        </g>
+                    </g>
+                    <g id="Outter_Details" transform="translate(8.571 4.986)">
+                        <path id="Outter_Detail" d="M162.539 106l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-38.622 -102.007)"/>
+                        <path id="Outter_Detail-2" d="M190.539 106l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-96.537 -102.007)"/>
+                        <path id="Outter_Detail-3" d="M218.539 106l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-154.451 -102.007)"/>
+                        <path id="Outter_Detail-4" d="M248.539 135l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-216.503 -102.007)"/>
+                        <path id="Outter_Detail-5" d="M134.539 135l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(19.293 -102.007)"/>
+                        <path id="Outter_Detail-6" d="M270.539 174l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-262.007 -102.007)"/>
+                        <path id="Outter_Detail-7" d="M259.539 208l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-239.255 -102.007)"/>
+                        <path id="Outter_Detail-8" d="M243.539 241l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-206.161 -102.007)"/>
+                        <path id="Outter_Detail-9" d="M219.539 268l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-156.52 -102.007)"/>
+                        <path id="Outter_Detail-10" d="M190.539 285l-4.266-3.993-4.266 3.993 4.266 3.993z" class="cls-12" transform="translate(-96.537 -102.007)"/>
+                        <path id="Outter_Detail-11" d="M102.007 174l4.266-3.993 4.266 3.993-4.266 3.993z" class="cls-12" transform="translate(68.933 -102.007)"/>
+                        <path id="Outter_Detail-12" d="M113.007 208l4.266-3.993 4.266 3.993-4.266 3.993z" class="cls-12" transform="translate(46.181 -102.007)"/>
+                        <path id="Outter_Detail-13" d="M129.007 241l4.266-3.993 4.266 3.993-4.266 3.993z" class="cls-12" transform="translate(13.087 -102.007)"/>
+                        <path id="Outter_Detail-14" d="M153.007 268l4.266-3.993 4.266 3.993-4.266 3.993z" class="cls-12" transform="translate(-36.554 -102.007)"/>
+                    </g>
+                    <g id="Shield_Center-2" transform="translate(18.166 17.996)">
+                        <g id="Shield_Center-3" fill="#118ab2" stroke="none">
+                            <path d="M191.056 273.771l-.05-.02-.02.008c-6.26-2.48-12.244-5.533-17.802-9.086-5.556-3.55-10.833-7.691-15.684-12.309-4.563-4.342-8.867-9.217-12.792-14.49-3.67-4.928-7.101-10.327-10.198-16.047-5.517-10.188-10.143-21.689-13.75-34.181-2.702-9.361-4.849-19.327-6.392-29.664 8.656-1.875 17.166-6.703 23.727-13.535 3.802-3.96 6.797-8.405 8.9-13.213 1.864-4.26 2.973-8.69 3.31-13.208.858.008 1.776.02 2.523.03.811.012 1.452.02 1.753.02h.181c.06-.002.114-.004.167-.008.093-.006.185-.017.275-.031l35.806.12h.052l37.104-.124c.174.022.32.028.421.032.19.008.428.012.747.012.636 0 1.514-.016 2.363-.03l.257-.005c.339 4.513 1.447 8.938 3.308 13.192 2.103 4.808 5.098 9.254 8.9 13.213 6.56 6.832 15.07 11.66 23.727 13.535-1.541 10.317-3.697 20.282-6.418 29.66-3.622 12.485-8.268 23.986-13.809 34.181-3.108 5.72-6.55 11.119-10.23 16.049-3.937 5.272-8.25 10.147-12.822 14.49-4.861 4.618-10.146 8.76-15.708 12.31-5.574 3.56-11.572 6.617-17.846 9.1z" transform="translate(-110.987 -115.017)"/>
+                            <path fill="#343559" d="M226.22 121.04l-35.22.117-30.523-.103-.001.023h-5.895l-1.582-.018c-2.754 19.692-18.767 34.43-35.251 39.158 6.49 40.64 24.632 90.455 73.274 110.335 48.81-19.913 66.998-69.715 73.488-110.335-16.48-4.727-32.487-19.458-35.249-39.141l-3.04-.036m-77.412-6.023c1.87 0 5.043.06 5.772.06.32 0 .17-.012-.772-.045l37.211.125h.032l37.397-.125c0 .033.35.045.885.045 1.22 0 3.402-.06 4.622-.06.536 0 .887.012.887.045 0 21.312 18.478 38.015 36.428 40.474-5.55 40.33-23.638 99.77-80.219 121.456v.013l-.016-.007-.016.007v-.013c-56.567-21.686-74.484-81.126-80.033-121.456 17.946-2.459 36.428-19.162 36.428-40.474 0-.033.571-.045 1.394-.045z" transform="translate(-110.987 -115.017)"/>
+                        </g>
+                        <g id="Clip-2" clip-path="url(#clip-path-3)">
+                            <path id="Detail" d="M0 0H112V168H0z" class="cls-12" transform="translate(80.199 -.017)"/>
+                        </g>
+                    </g>
+                </g>
+                <g id="Check_Sign" transform="translate(15.365 119.979)">
+                    <ellipse id="Base" cx="22.5" cy="20" fill="#ffd166" rx="22.5" ry="20"/>
+                    <path id="Check" fill="#fff" d="M6.877 14.511L.526 8.667a1.563 1.563 0 0 1 0-2.338L1.8 5.16a1.907 1.907 0 0 1 2.54 0l3.81 3.506L17.038.484a1.909 1.909 0 0 1 2.54 0l1.27 1.169a1.561 1.561 0 0 1 0 2.338L9.417 14.511a1.909 1.909 0 0 1-2.54 0z" transform="translate(10.295 12.989)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

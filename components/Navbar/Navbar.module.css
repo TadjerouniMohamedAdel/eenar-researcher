@@ -1,0 +1,89 @@
+.navbar{
+    width: 100%;
+    height: 80px;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .navbarLogo{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.navbar .navbarLogo h1{
+    width: 117px;
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: right;
+    color: #ffffff;
+}
+.navbar .aboutUs{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+}
+.navbar .aboutUs li a{
+  height: 22px;
+  margin-left: 31px;
+  font-family: var(--primary-font);
+  font-size: 12px;
+  font-weight: bold;
+  font-stretch: normal;
+  text-decoration: none;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;
+}
+.navbar .searchBarSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar .searchBarSection .searchInput{
+    width: 416px;
+    background-color: #fff;
+    border-radius: 8px;
+    border-color: transparent ;
+}
+.navbar .searchBarSection .MuiInputBase-root{
+    border-radius: 8px;
+    border-color: transparent;
+}
+.navbar .searchBarSection .searchIconNavbar{
+    color: var(--primary-color);
+    transform: rotateY(-180deg);
+}
+.navbar .searchBarSection .Mui-focused fieldset{
+    border-color: transparent !important;
+}
+.navbar .searchBarSection:hover fieldset{
+    border-color: transparent !important;
+}
+.navbar .searchBarSection .MuiFormLabel-root{
+    color: #757575 ;
+}
+.navbar .navbarActions{
+    display: flex;
+    align-items: center;
+}
+.navbar  .navbarDivider{
+    width: 1px;
+    height: 32px;
+    background-color: #227c9d;
+    margin: 0 26px 0 28px;
+}
+.navbar .navbarActions .actionIcon{
+    font-size: 24px;
+    padding: 2px;
+    color: rgba(255, 255, 255, 0.9);
+}

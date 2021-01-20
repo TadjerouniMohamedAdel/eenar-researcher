@@ -1,0 +1,35 @@
+@import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
+*{
+    margin: 0;
+    padding: 0;
+}
+.MuiFormLabel-root{
+    font-family: var(--primary-font) !important;
+}
+input{
+    font-family: var(--primary-font) !important;
+}
+
+:root {
+    /* colors */
+    --primary-color: #118ab2; 
+    --secondary-color:#073b4c;
+    --active-color:#06d6a0;
+
+    /* buttons */
+    --button-1:var(--primary-color);
+    --button-2:var(--active-color);
+    --button-3:var(--secondary-color);
+
+    /* fonts */
+    --primary-font: 'Noto Kufi Arabic'
+  }
+.MuiTab-textColorSecondary.Mui-selected{
+    color: var(--active-color) !important;
+}
+.Mui-selected{
+    color: var(--active-color) !important;
+}
+.MuiTabs-indicator{
+    background-color: var(--active-color) !important;
+}

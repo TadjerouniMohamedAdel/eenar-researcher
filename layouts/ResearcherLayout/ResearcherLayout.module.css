@@ -1,0 +1,15 @@
+.mainLayoutContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8fb;
+}
+.mainLayoutContainer .mainLayoutBaseContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.mainContent{
+    width: 100vw;
+    padding: 32px;
+}

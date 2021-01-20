@@ -1,0 +1,203 @@
+.accountBanner {
+    height: 424px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+  .accountBanner .bondeau{
+    height: 304px;
+    background-color: #073b4c;
+}
+.accountBanner .accountBannerContent{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+   height: calc(100% - 304px);
+}
+.accountBanner .accountBannerOverview{
+    display: flex;
+    flex-direction: row;
+}
+.accountBanner .accountBannerOverview .overviewItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.accountBanner .accountBannerOverview .overviewItem .overviewValue{
+    width: 38px;
+    height: 30px;
+    font-family: var(--primary-font);
+    font-size: 22px;
+    font-weight: bold;
+    font-stretch: normal;
+    margin: 0 27.3px 3.1px 25.7px;
+    font-style: normal;
+    line-height: 1.09;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.accountBanner .accountBannerOverview .overviewItem .overviewName{
+    width: 62px;
+    height: 22px;
+    margin: 3.1px 19.5px 0 0;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #afb0c0;
+}
+.accountBanner .accountBannerOverview .dividerOverview{
+    width: 1px;
+    height: 20px;
+    background-color: #eaeaf5;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 18px;
+}
+
+.accountBanner .Rectangle12 {
+    width: 112px;
+    height: 111px;
+    border-radius: 5px;
+    
+    background-color: #118ab2;
+}
+.accountBanner .Rectangle11 {
+    width: 120px;
+    height: 119px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+.accountBanner .Path2980 {
+    width: 128px;
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 4px 4px;
+    border-radius: 6px;
+    background-color: #118ab2;
+}
+.accountBanner .Rectangle9 {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+.accountBanner .bannerProfile{
+    position: relative;
+    top:-80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.accountBanner .bannerProfile .profileName{
+    font-family: var(--primary-font);
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    /* margin-top: 5px; */
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.accountBanner .bannerProfile .profileJob{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    margin-top: 2px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.42;
+    letter-spacing: normal;
+    text-align: center;
+    color: #afb0c0;
+}
+.accountBanner  .bannerSocialNetworks{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+}
+.accountBanner .bannerLinks{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    top:-35px;
+}
+.accountBanner .bannerLinks .linkEditAccount{
+    width: 180px;
+    height: 48px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-left:  12px;
+    box-shadow: 3px 5.2px 10px 0 rgba(62, 255, 205, 0.3);
+    background-color: var(--active-color);
+}
+.accountBanner .bannerLinks .linkEditAccount span{
+  font-family: var(--primary-font);
+  font-size: 13.9px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+.accountBanner .bannerLinks .bannerSocialNetworks .iconItem{
+    width: 40px;
+    height: 40px;
+    margin: 0 0 0 12px;
+    border-radius: 8px;
+    background-color: #7289da;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.accountBanner  .bannerSocialNetworks .iconItem i{
+    color: #fff;
+}
+.accountBanner  .bannerSocialNetworks .iconItem.facebook{
+    background-color: #3763d2;    
+}
+.accountBanner  .bannerSocialNetworks .iconItem.twitter{
+    background-color: #1abcff;
+}
+.accountBanner  .bannerSocialNetworks .iconItem.twitch{
+    background-color: #7b5dfa;
+}
+.accountBanner  .bannerSocialNetworks .iconItem.youtube{
+    background-color: #fd434f;
+}
+.accountBanner  .bannerSocialNetworks .iconItem.instagram{
+    background-color: #f8468d;
+}
+.accountBanner  .bannerSocialNetworks .iconItem.discord{
+    background-color:#7289da ;
+}
+.accountBanner  .bannerSocialNetworks .iconItem.dribble{
+    background-color:#ea4c89 ;
+}
