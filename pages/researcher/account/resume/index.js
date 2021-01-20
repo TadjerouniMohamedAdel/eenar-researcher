@@ -17,6 +17,9 @@ import MyNetwork from '../../../../components/MyNetwork/MyNetwork';
 import LearnNow from '../../../../components/LearnNow/LearnNow';
 import LastArticles from '../../../../components/LastArticles/LastArticles';
 import MyGroups from '../../../../components/MyGroups/MyGroups';
+import ResumeMainCollection from '../../../../components/ResumeMainCollection/ResumeMainCollection';
+import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const aboutme = {
     description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.",
@@ -115,24 +118,18 @@ const educations = [
         title:"شهادة ليسانس  في العلوم الإجتماعية",
         startDate:"2012",
         endDate:"2015",
-        location:"الجزائر",
-        description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت ..."
     },
     {
         university:"جامعة الهواري بومدين - باب الزوار / الجزائر",
         title:"شهادة الماستر  في العلوم الإجتماعية",
         startDate:"2015",
         endDate:"2017",
-        location:"الجزائر",
-        description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت ..."
     },
     {
         university:"جامعة الهواري بومدين - باب الزوار / الجزائر",
         title:"شهادة الدكتوراه  في العلوم الإجتماعية",
         startDate:"2017",
         endDate:"2020",
-        location:"الجزائر",
-        description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت ..."
     }
 ]
 const experiences = [
@@ -161,24 +158,35 @@ const experiences = [
 
 const certifications = [
     {
-        title:"شهادة الماستر",
+        name:"شهادة الماستر",
         provider:"جامعة الهواري بومدين",
         startDate:"2017 نوفمبر",
-        endDate:"لا تاريخ انتهاء الصلاحية"
+        endDate:"لا تاريخ انتهاء الصلاحية",
+        link:{
+            url:"",
+            label:"إطلع على الإعتماد"
+        }
+    },
+    {
+        name:"شهادة الماستر",
+        provider:"جامعة الهواري بومدين",
+        startDate:"2017 نوفمبر",
+        endDate:"لا تاريخ انتهاء الصلاحية",
+        link:{
+            url:"",
+            label:"إطلع على الإعتماد"
+        }
 
     },
     {
-        title:"شهادة الماستر",
+        name:"شهادة الماستر",
         provider:"جامعة الهواري بومدين",
         startDate:"2017 نوفمبر",
-        endDate:"لا تاريخ انتهاء الصلاحية"
-
-    },
-    {
-        title:"شهادة الماستر",
-        provider:"جامعة الهواري بومدين",
-        startDate:"2017 نوفمبر",
-        endDate:"لا تاريخ انتهاء الصلاحية"
+        endDate:"لا تاريخ انتهاء الصلاحية",
+        link:{
+            url:"",
+            label:"إطلع على الإعتماد"
+        }
 
     }
 ]
@@ -382,144 +390,10 @@ export default function index() {
                 <MyNetwork users={users} />
             </div>
             <div className={classes.mainSection}>
-               <div className={classes.collectionContainer}>
-                    <h2>
-                        <span>
-                            <SchoolOutlinedIcon />
-                            المؤهلات الاكاديمية                        
-                        </span>
-                        <IconButton>
-                            <BorderColorOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <div className={classes.collectionItems}>
-                        {educations.map((education,index)=>(
-                            <div className={classes.collectionItem} key={`education-item-${index}`}>
-                                <div className={classes.collectionRectangle}></div>
-                                <div className={classes.collectionContent}>
-                                    <h2>{education.university}</h2>
-                                    <h3>{education.title}</h3>
-                                    <span>
-                                        {`${education.endDate} - ${education.startDate}`}
-                                    </span>
-                                    <div className={classes.line}></div>
-                                </div>
-                            </div>
-
-                        ))}
-                        <div className={classes.moreCollections}>
-                            <KeyboardArrowDownIcon className={classes.moreCollectionIcon}/>
-                            <span>إطلع على المزيد</span>
-                        </div>
-
-                    </div>
-               </div>
-               <div className={classes.collectionContainer}>
-                    <h2>
-                        <span>
-                            <WorkOutlineOutlinedIcon />
-                                الخبرة المهنية                
-                        </span>
-                        <IconButton>
-                            <BorderColorOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <div className={classes.collectionItems}>
-                        {experiences.map((experience,index)=>(
-                            <div className={classes.collectionItem} key={`experience-item-${index}`}>
-                                <div className={classes.collectionRectangle}></div>
-                                <div className={classes.collectionContent}>
-                                    <h2>{experience.company}</h2>
-                                    <h3>{experience.title}</h3>
-                                    <span>
-                                        {`${experience.endDate} - ${experience.startDate}`}
-                                    </span>
-                                    <span>
-                                        {experience.location}
-                                    </span>
-                                    <div className={classes.line}></div>
-                                </div>
-                            </div>
-
-                        ))}
-                        <div className={classes.moreCollections}>
-                            <KeyboardArrowDownIcon className={classes.moreCollectionIcon}/>
-                            <span>إطلع على المزيد</span>
-                        </div>
-
-                    </div>
-               </div>
-
-               <div className={classes.collectionContainer}>
-                    <h2>
-                        <span>
-                            <CardMembershipOutlinedIcon />
-                            الشهادات                       
-                        </span>
-                        <IconButton>
-                            <BorderColorOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <div className={classes.collectionItems}>
-                        {certifications.map((certification,index)=>(
-                            <div className={classes.collectionItem} key={`certification-item-${index}`}>
-                                <div className={classes.collectionRectangle}></div>
-                                <div className={classes.collectionContent}>
-                                    <h2>{certification.title}</h2>
-                                    <h3>{certification.provider}</h3>
-                                    <h3>
-                                        {`${certification.endDate} - ${certification.startDate}`}
-                                    </h3>
-                                    <span>
-                                        إطلع على الإعتماد  
-                                    </span>
-                                    <div className={classes.line}></div>
-                                </div>
-                            </div>
-
-                        ))}
-                        <div className={classes.moreCollections}>
-                            <KeyboardArrowDownIcon className={classes.moreCollectionIcon}/>
-                            <span>إطلع على المزيد</span>
-                        </div>
-
-                    </div>
-               </div>
-               <div className={classes.collectionContainer}>
-                    <h2>
-                        <span>
-                            <i className="fas fa-hand-holding-heart" style={{fontSize:"1.5rem"}}></i>
-                            العمل التطوعي                        
-                        </span>
-                        <IconButton>
-                            <BorderColorOutlinedIcon className={classes.actionSectionIcon}/>
-                        </IconButton>
-                    </h2>
-                    <div className={classes.collectionItems}>
-                        {volunteerings.map((volunteering,index)=>(
-                            <div className={classes.collectionItem} key={`volunteering-item-${index}`}>
-                                <div className={classes.collectionRectangle}></div>
-                                <div className={classes.collectionContent}>
-                                    <h2>{volunteering.organization}</h2>
-                                    <h3>{volunteering.role}</h3>
-                                    <h3>
-                                        {`${volunteering.endDate} - ${volunteering.startDate}`}
-                                    </h3>
-                                    <span>
-                                      {volunteering.description}
-                                    </span>
-                                    <div className={classes.line}></div>
-                                </div>
-                            </div>
-
-                        ))}
-                        <div className={classes.moreCollections}>
-                            <KeyboardArrowDownIcon className={classes.moreCollectionIcon}/>
-                            <span>إطلع على المزيد</span>
-                        </div>
-
-                    </div>
-               </div>
+               <ResumeMainCollection collections={educations} label="المؤهلات الاكاديمية" icon={<SchoolOutlinedIcon />}/>
+               <ResumeMainCollection icon={<WorkOutlineOutlinedIcon />} label="الخبرة المهنية" collections={experiences} />
+               <ResumeMainCollection icon={<CardMembershipOutlinedIcon />} label="الشهادات" collections={certifications} />
+               <ResumeMainCollection icon={<FontAwesomeIcon icon={faHandHoldingHeart} style={{fontSize:"1.5rem"}} />} label="العمل التطوعي" collections={volunteerings} />
                <div className={classes.collectionContainer}>
                     <h2>
                         <span>
