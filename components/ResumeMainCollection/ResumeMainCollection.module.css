@@ -1,6 +1,8 @@
 .collectionContainer{
     height: auto;
     margin: 0 0 13px;
+    display: flex;
+    flex-direction: column;
     padding: 24px 28px 32px 1px;
     border-radius: 8px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);

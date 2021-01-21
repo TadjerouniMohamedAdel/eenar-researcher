@@ -70,4 +70,16 @@
 .actionSectionIcon{
     font-size: 18px;
     color: #dfdfe6;
-  }
+}
+@media(max-width:1570px){
+    .articles .articlesItems .articlesItem{
+        width: 100%;
+    }  
+    .articles .articlesItems .collectionRectangle{
+        width: 44px;
+        height: 44px;
+        margin: 0 0 30px 6px;
+        border-radius: 8px;
+        background-color: #118ab2;     
+    } 
+}

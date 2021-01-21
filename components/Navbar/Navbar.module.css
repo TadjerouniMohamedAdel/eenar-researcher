@@ -1,5 +1,6 @@
 .navbar{
-    width: 100%;
+    /* width: 100%; */
+    min-width: 100vw;
     height: 80px;
     background-color: var(--primary-color);
     display: flex;
@@ -11,9 +12,10 @@
     display: flex;
     align-items: center;
     margin-right: 20px;
+    margin-left: 20px;
 }
 .navbar .navbarLogo h1{
-    width: 117px;
+    
     font-family: var(--primary-font);
     font-size: 16px;
     font-weight: normal;
@@ -86,4 +88,77 @@
     font-size: 24px;
     padding: 2px;
     color: rgba(255, 255, 255, 0.9);
+}
+@media(max-width:1250px){
+    .navbar .searchBarSection .searchInput{
+        width: 340px;
+       
+    }
+}
+@media(max-width:1150px){
+    .navbar .searchBarSection .searchInput{
+        width: 290px;  
+    }
+    .navbar .navbarLogo h1{
+        font-size: 14px;
+    }
+    .navbar .aboutUs li a{
+        height: 22px;
+        margin-left: 21px;
+        font-family: var(--primary-font);
+        font-size: 11px;
+        font-weight: bold;
+        font-stretch: normal;
+        text-decoration: none;
+        font-style: normal;
+        line-height: 1.17;
+        letter-spacing: normal;
+        text-align: right;
+        color: #ffffff;
+    }
+    .navbar  .navbarDivider{
+        width: 1px;
+        height: 32px;
+        background-color: #227c9d;
+        margin: 0 20px 0 20px;
+    }
+    .navbar .navbarActions .actionIcon{
+        font-size: 21px;
+        padding: 0px;
+        color: rgba(255, 255, 255, 0.9);
+    }      
+}
+@media(max-width:993px){
+    .navbar .navbarActions {
+            display: none;
+        
+    }
+    .navbar .searchBarSection {
+      order:2  
+    }
+    .navbar .navbarLogo{
+        order: 1;
+    }
+    .navbar .aboutUs{
+        order:3
+    }
+}
+@media(max-width:723px){
+    .navbar{
+        justify-content: flex-start;
+    }
+    .navbar .aboutUs{
+        display: none;
+    }
+    @media(max-width:1250px){
+        .navbar .searchBarSection{
+            width:70%;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .navbar .searchBarSection .searchInput{
+            width: 100%;
+           
+        }
+    }
 }

@@ -60,7 +60,8 @@ export default function AccountTab() {
             <Tabs
                 value={value}
                 onChange={handleChange}
-                variant="fullWidth"
+                variant="scrollable"
+                scrollButtons="on"	
                 indicatorColor="secondary"
                 textColor="secondary"
             >

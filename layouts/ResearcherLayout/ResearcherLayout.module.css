@@ -1,5 +1,6 @@
 .mainLayoutContainer{
     width: 100%;
+    min-width: 100vw;
     display: flex;
     flex-direction: column;
     background-color: #f8f8fb;
@@ -8,8 +9,19 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 .mainContent{
-    width: 100vw;
+    width: calc(100% - 300px) ;
     padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+@media(max-width:1155px){
+    .mainContent{
+        width: 100% ;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+    }
 }
