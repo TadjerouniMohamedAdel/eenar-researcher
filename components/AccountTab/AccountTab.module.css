@@ -2,9 +2,12 @@
     margin-top:32px;
     padding-top: 5px;
     border-radius: 8px;
+    justify-content: space-between;
+    flex-wrap: wrap !important;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06) !important;
     background-color: #ffffff !;
 }
+
  .accountTabs .tabDivider{
     width: 1px;
     height: 20px;

@@ -33,3 +33,6 @@ input{
 .MuiTabs-indicator{
     background-color: var(--active-color) !important;
 }
+.MuiTabs-flexContainer{
+    justify-content: space-between;
+}

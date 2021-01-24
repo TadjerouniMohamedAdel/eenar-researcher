@@ -179,3 +179,8 @@
 .sidebar .sidebarLinks .sidebarLinksItem.active  .linkIcon{
     color: #fff;
 }
+@media(max-width:1155px){
+    .sidebar{
+        display: none;
+    }
+}

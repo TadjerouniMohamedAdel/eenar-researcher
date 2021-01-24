@@ -13,7 +13,7 @@ export default function Navbar() {
         <nav className={classes.navbar}> 
             <div className={classes.navbarLogo}>
                 <img src="/images/colored-logo.png" width={60} />
-                <h1>منتدى كوالالمبور شبكة الباحثين</h1>
+                <h1>منتدى كوالالمبور  <br/>شبكة الباحثين</h1>
             </div>
             <ul className={classes.aboutUs}>
                 <li><a href="#">من نحن؟</a></li>
