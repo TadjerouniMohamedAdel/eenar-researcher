@@ -2,17 +2,16 @@ import React from 'react'
 import classes from './ResumeMainCollection.module.css'
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
-import SchoolOutlinedIcon from '@material-ui/icons/SchoolOutlined'
 import { IconButton } from '@material-ui/core'
 export default function ResumeMainCollection({children,collections,label,icon}){
     return (
         <div className={classes.collectionContainer}>
             <h2>
                 <span>
-                    {icon}
+                    <i className={classes.collectionTitleIcon}>{icon} </i> 
                     {label}              
                 </span>
-                <IconButton>
+                <IconButton className={classes.iconButtonHeader}>
                     <BorderColorOutlinedIcon className={classes.actionSectionIcon}/>
                 </IconButton>
             </h2>

@@ -136,6 +136,9 @@
     justify-content: space-between;
     list-style: none;
 }
+.accountBanner  .bannerSocialNetworks li{
+    cursor: pointer;
+}
 .accountBanner .bannerLinks{
     display: flex;
     flex-direction: column;

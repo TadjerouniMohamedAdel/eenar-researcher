@@ -4,10 +4,10 @@ import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout
 import classes from '../../../styles/Registration.module.css'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { useRouter } from 'next/router'
 export default function Registration() {
     const [user,setUser] = useState({firstName:"معاذ",lastName:"محساس",userName:"إسم المستخدم",university:"Mouadh7",password:"123456",retypedPassword:"123456",isAgree:true})
-
+    const router = useRouter()
     const handleChangeInput = (e)=>{
         switch (e.target.name) {
             case 'firstName':
@@ -36,6 +36,7 @@ export default function Registration() {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
+        router.push("/researcher/")
     }
 
     return (
