@@ -13,7 +13,9 @@ import ResumeMainCollection from '../../../../components/ResumeMainCollection/Re
 import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ResumeSuccessItem from '../../../../components/ResumeSuccessItem/ResumeSuccessItem';
-
+import Modal from '../../../../components/Modal/Modal';
+import AddElement from '../../../../components/CrudModal/AddElement';
+import { useState} from 'react'
 const aboutme = {
     description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.",
     job:"أستاذ جامعي",
@@ -367,9 +369,13 @@ const honors = [
 ]
 
 export default function index() {
+    const [visible,setVisible] = useState(true)
     
     return (
        <ResearcherAccountLayout>
+           <Modal visible={visible} setVisible={setVisible}>
+                <AddElement />
+            </Modal>
           <div className={classes.resumeContainer}>
             <div className={classes.sideSection}>
                 <AboutMe aboutme={aboutme}/>
