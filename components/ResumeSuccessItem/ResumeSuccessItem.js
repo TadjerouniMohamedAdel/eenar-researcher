@@ -3,9 +3,18 @@ import React,{useState} from 'react'
 import classes from './ResumeSuccessItem.module.css'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import {AnimatePresence , motion} from 'framer-motion'
+
+const backdropVariants = {
+    visible:{opacity:1},
+    hidden:{opacity:0},
+}
+
 export default function ResumeSuccessItem({label,items,last}) {
     const [isExpanded,setIsExpanded] =useState(false)
     return (
+        <AnimatePresence exitBeforeEnter>
+
         <div className={classes.successSection}>
                         <h3>
                             {label}
@@ -17,15 +26,27 @@ export default function ResumeSuccessItem({label,items,last}) {
                         </h3>
                         {
                             isExpanded ? (
-                                <ul className={classes.successSectionNotExpanded}>
+                                <motion.ul 
+                                    variants={backdropVariants}
+                                    animate="visible"
+                                    initial="hidden"
+                                    exit="hidden"
+                                    className={classes.successSectionNotExpanded}
+                                >
                                     {
                                         items.map((item,index)=>(
                                             <li key={`item=${label}-${index}`}>{item.name}</li>
                                         ))
                                     }
-                                </ul>
+                                </motion.ul>
                             ):(
-                                <div className={classes.successSectionItems}>
+                                <motion.div 
+                                    variants={backdropVariants}
+                                    animate="visible"
+                                    initial="hidden"
+                                    exit="hidden"
+                                    className={classes.successSectionItems}
+                                >
                                     {
                                         items.map((item,index)=>(
                                             <div key={`item=${label}-${index}`} className={classes.successSectionItem}>
@@ -39,11 +60,12 @@ export default function ResumeSuccessItem({label,items,last}) {
 
                                         ))
                                     }
-                                </div>
+                                </motion.div>
 
                             )
                         }
                         {!last && <div className={classes.seccessSectionDevider}></div>}
                 </div>
+        </AnimatePresence>
     )
 }
