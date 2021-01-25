@@ -1,32 +1,51 @@
 import React from 'react'
 import { TextField,Button } from '@material-ui/core'
 import classes from './CrudModal.module.css'
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const fields =[
     {
+        name:"address",
         label:"عنوان الطلب",
         type:"text",
     },
     {
+        name:"service",
         label:"الخدمة",
         type:"text",
     },
     {
+        name:"speciality",
         label:"التخصص الأساسي",
         type:"text",
-
-    }
+    } 
 ]
-const handleSubmit = (e)=>{
-    e.preventDefault()
+const handleSubmit = (data)=>{
+    console.log(data)
 }
 const title="طلب خدمة"
 
-const values = [
-
-]
+const values = {service:"إسم الخدمة",speciality:"علم الإجرام",address:"إعداد خطة البحث"}
 const formDescription ="لطلب أي خدمة مع انشاء حساب بخطوة واحدة فقط, أكمل النموذج التالي"
-export default function AddElement({values,validationSchema}) {
+
+const validationSchema = Yup.object({
+    address: Yup.string().required('يجب ملئ هذه المعلومة'),
+    service: Yup.string().required('يجب ملئ هذه المعلومة'),
+    speciality: Yup.string().required('يجب ملئ هذه المعلومة'),
+  })
+
+
+
+export default function AddElement(props) {
+    
+    const formik = useFormik({
+        initialValues:values,
+        onSubmit: handleSubmit,
+        validationSchema,
+      });    
+    
+    
     return (
         <div className={classes.crudElement}>
             <h1>{title}</h1>
@@ -34,7 +53,7 @@ export default function AddElement({values,validationSchema}) {
             <div className={classes.formDescription}>
                 {formDescription}
             </div>
-            <form className={classes.form} onSubmit={handleSubmit}>
+            <form className={classes.form} onSubmit={formik.handleSubmit}>
                 {
                     fields.map((field,index)=>(
                         <div 
@@ -42,12 +61,14 @@ export default function AddElement({values,validationSchema}) {
                         >
                             <TextField
                                 className={classes.formInput}
-                                name={field.label}
+                                name={field.name}
                                 type={field.type}
-                                id={`crud-add-element-${index}-${field.label}`}
+                                onChange={formik.handleChange}
+                                value={formik.values[field.name]}
+                                id={`crud-add-element-${index}-${field.name}`}
                                 label={field.label}
-                                error={false}
-                                helperText=""
+                                error={formik.errors[field.name]}
+                                helperText={formik.errors[field.name]}
                                 variant="outlined"
                             />
                         </div>

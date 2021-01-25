@@ -1,17 +1,27 @@
-import React from 'react'
+import { useState } from 'react'
 import classes from './ResumeMainCollection.module.css'
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import { IconButton } from '@material-ui/core'
+import Modal from '../Modal/Modal'
+import AddElement from '../CrudModal/AddElement'
+
+
+
 export default function ResumeMainCollection({children,collections,label,icon}){
+    const [visible,setVisible] = useState(false)
+
     return (
         <div className={classes.collectionContainer}>
+            <Modal visible={visible} setVisible={setVisible}>
+                <AddElement />
+            </Modal>
             <h2>
                 <span>
                     <i className={classes.collectionTitleIcon}>{icon} </i> 
                     {label}              
                 </span>
-                <IconButton className={classes.iconButtonHeader}>
+                <IconButton className={classes.iconButtonHeader} onClick={()=>setVisible(!visible)}>
                     <BorderColorOutlinedIcon className={classes.actionSectionIcon}/>
                 </IconButton>
             </h2>

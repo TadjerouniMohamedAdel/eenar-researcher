@@ -368,14 +368,9 @@ const honors = [
     },
 ]
 
-export default function index() {
-    const [visible,setVisible] = useState(true)
-    
+export default function index() {    
     return (
        <ResearcherAccountLayout>
-           <Modal visible={visible} setVisible={setVisible}>
-                <AddElement />
-            </Modal>
           <div className={classes.resumeContainer}>
             <div className={classes.sideSection}>
                 <AboutMe aboutme={aboutme}/>
