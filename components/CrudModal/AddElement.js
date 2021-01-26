@@ -4,41 +4,17 @@ import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const fields =[
-    {
-        name:"address",
-        label:"عنوان الطلب",
-        type:"text",
-    },
-    {
-        name:"service",
-        label:"الخدمة",
-        type:"text",
-    },
-    {
-        name:"speciality",
-        label:"التخصص الأساسي",
-        type:"text",
-    } 
-]
+
 const handleSubmit = (data)=>{
     console.log(data)
 }
-const title="طلب خدمة"
-
-const values = {service:"إسم الخدمة",speciality:"علم الإجرام",address:"إعداد خطة البحث"}
 const formDescription ="لطلب أي خدمة مع انشاء حساب بخطوة واحدة فقط, أكمل النموذج التالي"
 
-const validationSchema = Yup.object({
-    address: Yup.string().required('يجب ملئ هذه المعلومة'),
-    service: Yup.string().required('يجب ملئ هذه المعلومة'),
-    speciality: Yup.string().required('يجب ملئ هذه المعلومة'),
-  })
 
 
-
-export default function AddElement(props) {
-    
+export default function AddElement({fields,validationSchema,title}) {
+    let values = {}
+    fields.map((el,index)=>{values[el.name]=el.defaultValue})
     const formik = useFormik({
         initialValues:values,
         onSubmit: handleSubmit,
@@ -48,10 +24,13 @@ export default function AddElement(props) {
     
     return (
         <div className={classes.crudElement}>
-            <h1>{title}</h1>
+            <h1>
+            إضافة   
+                {` ${title}`}
+            </h1>
             <div className={classes.divider}></div>
             <div className={classes.formDescription}>
-                {formDescription}
+                {`يرجى ملئ المعلومات لإضافة ${title} `}
             </div>
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 {
@@ -76,7 +55,7 @@ export default function AddElement(props) {
                 }
                 <div className={classes.submitContainer}>
                     <Button className={classes.submit} type="submit">
-                        <span>التالي</span>
+                        <span>حفظ</span>
                     </Button>
                 </div>
             </form>

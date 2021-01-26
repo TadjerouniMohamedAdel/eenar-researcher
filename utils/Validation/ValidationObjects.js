@@ -1,59 +1,65 @@
 import * as Yup from 'yup';
 
-export const educationSchema = Yup.object({
-    university: Yup.string().required('Required'),
-    title: Yup.string().required('Required'),
-    startDate: Yup.string().required('Required'),
-    endDate: Yup.string().required('Required'),
+export const educationSchema = Yup.object().shape({
+    university: Yup.string().required('يجب ملئ هذه المعلومة'),
+    title: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const experienceSchema = Yup.object({
-    company: Yup.string().required('Required'),
-    title: Yup.string().required('Required'),
-    startDate: Yup.string().required('Required'),
-    endDate: Yup.string().required('Required'),
+export const experienceSchema = Yup.object().shape({
+    company: Yup.string().required('يجب ملئ هذه المعلومة'),
+    title: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const certificationSchema = Yup.object({
-    name: Yup.string().required('Required'),
-    provider: Yup.string().required('Required'),
-    startDate: Yup.string().required('Required'),
-    endDate: Yup.string().required('Required'),
+export const certificationSchema = Yup.object().shape({
+    name: Yup.string().required('يجب ملئ هذه المعلومة'),
+    provider: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const VolunteeringSchema = Yup.object({
-    organization: Yup.string().required('Required'),
-    role: Yup.string().required('Required'),
-    description: Yup.string().required('Required'),
-    startDate: Yup.string().required('Required'),
-    endDate: Yup.string().required('Required'),
+export const VolunteeringSchema = Yup.object().shape({
+    organization: Yup.string().required('يجب ملئ هذه المعلومة'),
+    role: Yup.string().required('يجب ملئ هذه المعلومة'),
+    description: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const languageSchema =  Yup.object({
-    name: Yup.string().required('Required'),
-    level: Yup.string().required('Required'),
+export const languageSchema =  Yup.object().shape({
+    name: Yup.string().required('يجب ملئ هذه المعلومة'),
+    level: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const activitySchema = Yup.object({
-    name: Yup.string().required('Required'),
-    role: Yup.string().required('Required'),
-    location: Yup.string().required('Required'),
-    startDate: Yup.string().required('Required'),
-    endDate: Yup.string().required('Required'),
+export const activitySchema = Yup.object().shape({
+    name: Yup.string().required('يجب ملئ هذه المعلومة'),
+    role: Yup.string().required('يجب ملئ هذه المعلومة'),
+    location: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const patentSchema = Yup.object({
-    name: Yup.string().required('Required'),
-    startDate: Yup.string().required('Required'),
-    endDate: Yup.string().required('Required'),
-    status: Yup.string().required('Required'),
-    code:   Yup.string().required('Required'),
-    description: Yup.string().required('Required'),
+export const patentSchema = Yup.object().shape({
+    name: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    status: Yup.string().required('يجب ملئ هذه المعلومة'),
+    code:   Yup.string().required('يجب ملئ هذه المعلومة'),
+    description: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const honorSchema = Yup.object({
-    name: Yup.string().required('Required'),
-    date: Yup.string().required('Required'),
-    center: Yup.string().required('Required'),
-    description: Yup.string().required('Required'),
+export const honorSchema = Yup.object().shape({
+    name: Yup.string().required('يجب ملئ هذه المعلومة'),
+    date: Yup.string().required('يجب ملئ هذه المعلومة'),
+    center: Yup.string().required('يجب ملئ هذه المعلومة'),
+    description: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const projectSchema = Yup.object().shape({
+    name: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    description: Yup.string().required('يجب ملئ هذه المعلومة'),
 })

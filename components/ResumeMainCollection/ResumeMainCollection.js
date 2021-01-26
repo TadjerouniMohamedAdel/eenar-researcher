@@ -8,14 +8,12 @@ import AddElement from '../CrudModal/AddElement'
 
 
 
-export default function ResumeMainCollection({children,collections,label,icon}){
+export default function ResumeMainCollection({validationSchema,fields,children,collections,label,icon}){
     const [visible,setVisible] = useState(false)
 
     return (
         <div className={classes.collectionContainer}>
-            <Modal visible={visible} setVisible={setVisible}>
-                <AddElement />
-            </Modal>
+   
             <h2>
                 <span>
                     <i className={classes.collectionTitleIcon}>{icon} </i> 
@@ -32,6 +30,9 @@ export default function ResumeMainCollection({children,collections,label,icon}){
                     </>
                 ):(
                 <div className={classes.collectionItems}>
+                    <Modal visible={visible} setVisible={setVisible}>
+                        <AddElement title={label} validationSchema={validationSchema} fields={fields} />
+                    </Modal>
                     {collections.map((collection,index)=>(
                         <div className={classes.collectionItem} key={`collection-item-${label}-${index}`}>
                             <div className={classes.collectionRectangle}></div>
