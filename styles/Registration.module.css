@@ -50,10 +50,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%); */
+    flex-wrap: wrap
 }
 .registrationContainer .registrationContent .registrationChoiceItem{
     width: 368px;

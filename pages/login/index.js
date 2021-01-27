@@ -6,9 +6,12 @@ import { faYoutube,faFacebookSquare,faTwitter,faTwitch } from '@fortawesome/free
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import classes from '../../styles/Login.module.css'
 import LoginLayout from '../../layouts/Login/LoginLayout'
+import Link  from 'next/link'
+import { useRouter } from 'next/router'
 
 
 export default function Login() {
+    const router = useRouter()
 	const [email,setEmail] = useState("معاذ محساس")
     const [password,setPassword] = useState("123456")
     const [rememberMe,setRememberMe] = useState(true)
@@ -28,7 +31,8 @@ export default function Login() {
 		}
 	}
 	const handleSubmit = (e)=>{
-		e.preventDefault()
+        e.preventDefault()
+        router.push("/researcher")
 	} 
 	
 	return (
@@ -92,9 +96,11 @@ export default function Login() {
                         <li className={classes.facebook}><FontAwesomeIcon icon={faFacebookSquare} style={{color:"white"}}/></li>
                     </ul>
                 </div>
-                <a href="#" className={classes.goRegistration}>
-                        ليس لديك حساب؟  
-                </a>
+                <Link href="/registration" >
+                        <span className={classes.goRegistration}>
+                                 ليس لديك حساب؟  
+                        </span>
+                </Link>
             </form>
 		</Paper>
 		</LoginLayout>

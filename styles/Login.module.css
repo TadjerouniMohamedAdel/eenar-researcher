@@ -86,6 +86,7 @@
     font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
+    cursor: pointer;
     font-style: normal;
     line-height: 1.71;
     letter-spacing: normal;
@@ -138,6 +139,7 @@
 .loginContainer .loginMainBase form .oauth .oauthLink{
     display: flex;
     flex-direction: row;
+    cursor: pointer;
     width: 100%;
     justify-content: center;
     list-style: none;
@@ -177,6 +179,7 @@
     letter-spacing: normal;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
     color: var(--primary-color);
 }
 

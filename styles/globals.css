@@ -15,7 +15,8 @@ input{
     --primary-color: #118ab2; 
     --secondary-color:#073b4c;
     --active-color:#06d6a0;
-
+    --danger-color:#ef476f;
+    
     /* buttons */
     --button-1:var(--primary-color);
     --button-2:var(--active-color);
@@ -35,4 +36,9 @@ input{
 }
 .MuiTabs-flexContainer{
     justify-content: space-between;
+}
+.MuiIconButton-label{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }

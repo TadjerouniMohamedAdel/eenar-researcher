@@ -98,7 +98,7 @@ export default function Sidebar() {
             <div className={classes.profile}>
                 <Rectangles />
                 <h2 className={classes.profileTitle}>معاذ محساس</h2>
-                <span className={classes.profileJob}>UI / UX Researcher</span>
+                <span className={classes.profileJob}>أستاذ جامعي</span>
             </div>
             <div className={classes.profileBadges}>
                 {
