@@ -1,5 +1,14 @@
 import * as Yup from 'yup';
 
+
+export const loginSchema = Yup.object().shape({
+    email: Yup.string().email("هذا البريد الإلكتروني غير صحيح").required('يجب ملئ هذه المعلومة'),
+    password: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+
+
+/**  researcher form validation **/
+
 export const aboutmeSchema = Yup.object().shape({
     date: Yup.string().required('يجب ملئ هذه المعلومة'),
     city: Yup.string().required('يجب ملئ هذه المعلومة'),

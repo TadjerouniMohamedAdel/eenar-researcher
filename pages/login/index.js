@@ -8,45 +8,41 @@ import classes from '../../styles/Login.module.css'
 import LoginLayout from '../../layouts/Login/LoginLayout'
 import Link  from 'next/link'
 import { useRouter } from 'next/router'
+import { useFormik } from 'formik';
+import { loginSchema } from '../../utils/Validation/ValidationObjects';
 
 
 export default function Login() {
     const router = useRouter()
-	const [email,setEmail] = useState("معاذ محساس")
-    const [password,setPassword] = useState("123456")
-    const [rememberMe,setRememberMe] = useState(true)
 
-	const handleChange =(e)=>{
-		switch (e.target.name) {
-			case "email":
-					setEmail(e.target.value)
-				break;
-
-			case "password":
-					setPassword(e.target.value)
-				break;
-		
-			default:
-				break;
-		}
-	}
-	const handleSubmit = (e)=>{
-        e.preventDefault()
+    const handleSubmit = (data)=>{
+        console.log(data)
         router.push("/researcher")
-	} 
+
+	}
+    
+    const formik = useFormik({
+        initialValues:{email:'',password:'',rememberMe:false},
+        onSubmit: handleSubmit,
+        validationSchema:loginSchema,
+      });   
+
+	
 	
 	return (
 		<LoginLayout>
 			<Paper className={classes.loginMainBase}>
             <h2 className={classes.baseTitle}>تسجيل الدخول</h2>
-            <form  onSubmit={handleSubmit}>
+            <form  onSubmit={formik.handleSubmit}>
                 <TextField
                     type="text"
                     variant="outlined"
                     className={classes.baseInput}
                     name="email"
-                    onChange={handleChange}
-                    value={email}
+                    onChange={formik.handleChange}
+                    error={formik.errors.email}
+                    helperText={formik.errors.email}
+                    value={formik.values.email}
                     label="إسم المستخدم أو الإيميل"
                 />
                 <TextField
@@ -54,19 +50,21 @@ export default function Login() {
                     variant="outlined"
                     className={classes.baseInput}
                     name="password"
-                    value={password}
-                    onChange={handleChange}
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    error={formik.errors.password}
+                    helperText={formik.errors.password}
                     label="كلمة المرور"
                 />
                 <div className={classes.basePossibleActions}>
                     <div className={classes.rememberMe}>
                         <Checkbox 
-                            checked={rememberMe}
-                            name="remember_me"
+                            checked={formik.values.rememberMe}
+                            name="rememberMe"
                             checkedIcon={<FontAwesomeIcon icon={faWindowClose} style={{color:"#06d6a0"}} />}
-                            onChange={(e)=>setRememberMe(!rememberMe)}
+                            onChange={formik.handleChange}
                         />
-                        <span>تذكرني</span>
+                        <span className={classes.rememberMeText}>تذكرني</span>
                     </div>
                     <div className={classes.forgetPassword}>
                         <span>نسيت كلمة المرور؟</span>

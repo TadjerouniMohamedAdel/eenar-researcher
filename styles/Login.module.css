@@ -81,6 +81,17 @@
     flex-direction: row;
     align-items: center;
 }
+.loginContainer .loginMainBase form .basePossibleActions .rememberMe  .rememberMeText{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
 .loginContainer .loginMainBase form .basePossibleActions .forgetPassword{
     font-family: var(--primary-font);
     font-size: 14px;
