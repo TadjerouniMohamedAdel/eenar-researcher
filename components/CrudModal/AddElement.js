@@ -2,17 +2,8 @@ import React from 'react'
 import { TextField,Button } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
-
-const handleSubmit = (data)=>{
-    console.log(data)
-}
-const formDescription ="لطلب أي خدمة مع انشاء حساب بخطوة واحدة فقط, أكمل النموذج التالي"
-
-
-
-export default function AddElement({fields,validationSchema,title}) {
+export default function AddElement({fields,handleSubmit,validationSchema,title}) {
     let values = {}
     fields.map((el,index)=>{values[el.name]=el.defaultValue})
     const formik = useFormik({

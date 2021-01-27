@@ -28,7 +28,7 @@ export const volunteerungFields = [
 ]
 
 export const languageFields = [
-    {name:"name",label:"اسم",type:"text",defaultValue:""},
+    {name:"name",label:"اللغة",type:"text",defaultValue:""},
     {name:"level",label:"مستوى",type:"text",defaultValue:""},
 ]
 

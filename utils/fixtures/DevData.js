@@ -63,26 +63,31 @@ export const databadges = [
   
 export const datausers = [
     {
+      id:1,
       fullName: "بلال بوعيشة",
       commonFrinedsNumber: 2,
       invitationStatus: "sent",
     },
     {
+      id:2,
       fullName: "بلال بوعيشة",
       commonFrinedsNumber: 0,
       invitationStatus: "notSent",
     },
     {
+      id:3,
       fullName: "بلال بوعيشة",
       commonFrinedsNumber: 5,
       invitationStatus: "sent",
     },
     {
+      id:4,
       fullName: "بلال بوعيشة",
       commonFrinedsNumber: 2,
       invitationStatus: "accepted",
     },
     {
+      id:5,
       fullName: "بلال بوعيشة",
       commonFrinedsNumber: 2,
       invitationStatus: "sent",
@@ -91,18 +96,21 @@ export const datausers = [
   
 export const dataeducations = [
     {
+      id:1,
       university: "جامعة الهواري بومدين - باب الزوار / الجزائر",
       title: "شهادة ليسانس  في العلوم الإجتماعية",
       startDate: "2012",
       endDate: "2015",
     },
     {
+      id:2,
       university: "جامعة الهواري بومدين - باب الزوار / الجزائر",
       title: "شهادة الماستر  في العلوم الإجتماعية",
       startDate: "2015",
       endDate: "2017",
     },
     {
+      id:3,
       university: "جامعة الهواري بومدين - باب الزوار / الجزائر",
       title: "شهادة الدكتوراه  في العلوم الإجتماعية",
       startDate: "2017",
@@ -111,6 +119,7 @@ export const dataeducations = [
   ];
 export const dataexperiences = [
     {
+      id:1,
       title: "مطور ويب",
       company: "CleverZone.ink",
       location: "الجزائر",
@@ -118,6 +127,7 @@ export const dataexperiences = [
       endDate: "2020 ديسمبر",
     },
     {
+      id:2,
       title: "مطور ويب",
       company: "CleverZone.ink",
       location: "الجزائر",
@@ -125,6 +135,7 @@ export const dataexperiences = [
       endDate: "2020 ديسمبر",
     },
     {
+      id:3,
       title: "مطور ويب",
       company: "CleverZone.ink",
       location: "الجزائر",
@@ -135,6 +146,7 @@ export const dataexperiences = [
   
 export const datacertifications = [
     {
+      id:1,
       name: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate: "2017 نوفمبر",
@@ -145,6 +157,7 @@ export const datacertifications = [
       },
     },
     {
+      id:2,
       name: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate: "2017 نوفمبر",
@@ -155,6 +168,7 @@ export const datacertifications = [
       },
     },
     {
+      id:3,
       name: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate: "2017 نوفمبر",
@@ -167,6 +181,7 @@ export const datacertifications = [
   ];
 export const datavolunteerings = [
     {
+      id:1,
       organization: "جمعية ورقة لحماية البيئة",
       role: "متطوع في دور معين",
       startDate: "2017",
@@ -175,6 +190,7 @@ export const datavolunteerings = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين",
     },
     {
+      id:2,
       organization: "جمعية ورقة لحماية البيئة",
       role: "متطوع في دور معين",
       startDate: "2017",
@@ -183,6 +199,7 @@ export const datavolunteerings = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين",
     },
     {
+      id:3,
       organization: "جمعية ورقة لحماية البيئة",
       role: "متطوع في دور معين",
       startDate: "2017",
@@ -194,22 +211,27 @@ export const datavolunteerings = [
   
 export const dataarticles = [
     {
+      id:1,
       title: "عنوان طويل جدا خاص بمقال معين للإستعمال في أمور معينة",
       publishedDate: "6 days ago",
     },
     {
+      id:2,
       title: "عنوان طويل جدا خاص بمقال معين للإستعمال في أمور معينة",
       publishedDate: "1 day ago",
     },
     {
+      id:3,
       title: "عنوان طويل جدا خاص بمقال معين للإستعمال في أمور معينة",
       publishedDate: "3 weeks ago",
     },
     {
+      id:4,
       title: "عنوان طويل جدا خاص بمقال معين للإستعمال في أمور معينة",
       publishedDate: "6 years ago",
     },
     {
+      id:5,
       title: "عنوان طويل جدا خاص بمقال معين للإستعمال في أمور معينة",
       publishedDate: "1 month ago",
     },
@@ -217,18 +239,22 @@ export const dataarticles = [
   
 export const datagroups = [
     {
+      id:1,
       name: "مجموعة معينة",
       members: 134,
     },
     {
+      id:2,
       name: "مجموعة معينة",
       members: 440,
     },
     {
+      id:3,
       name: "مجموعة معينة",
       members: 235,
     },
     {
+      id:4,
       name: "مجموعة معينة",
       members: 34,
     },
@@ -236,6 +262,7 @@ export const datagroups = [
   
 export const dataprojects = [
     {
+      id:1,
       name: "المشروع الفلاني الأول",
       startDate: "سبتمبر 2012",
       endDate: null,
@@ -243,6 +270,7 @@ export const dataprojects = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
     },
     {
+      id:2,
       name: "المشروع الفلاني الثاني",
       startDate: "سبتمبر 2009",
       endDate: "ديسمبر 2010",
@@ -250,6 +278,7 @@ export const dataprojects = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
     },
     {
+      id:3,
       name: "المشروع الفلاني الثالث",
       startDate: "سبتمبر 2002",
       endDate: "سبتمبر 2005",
@@ -260,14 +289,17 @@ export const dataprojects = [
   
 export const datalanguages = [
     {
+      id:1,
       name: "العربية",
       level: "اللغة الأم أومستوى احترافي",
     },
     {
+      id:2,
       name: "الإنجليزية",
       level: "مستوى احترافي",
     },
     {
+      id:3,
       name: "الفرنسية",
       level: "مستوى متوسط",
     },
@@ -275,6 +307,7 @@ export const datalanguages = [
   
 export const dataactivities = [
     {
+      id:1,
       name: "النشاط الفلاني الأول",
       startDate: "20/9/2020",
       endDate: "25/9/2020",
@@ -283,6 +316,7 @@ export const dataactivities = [
       location: "مصر",
     },
     {
+      id:2,
       name: "النشاط الفلاني الأول",
       startDate: "20/9/2020",
       endDate: "25/9/2020",
@@ -291,6 +325,7 @@ export const dataactivities = [
       location: "مصر",
     },
     {
+      id:3,
       name: "النشاط الفلاني الأول",
       startDate: "20/9/2020",
       endDate: "25/9/2020",
@@ -302,6 +337,7 @@ export const dataactivities = [
   
 export const datapatents = [
     {
+      id:1,
       name: "براءة الاختراع الأولى",
       startDate: "سبتمبر 2012",
       endDate: "ديسمبر 2015",
@@ -312,6 +348,7 @@ export const datapatents = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
     },
     {
+      id:2,
       name: "براءة الاختراع الأولى",
       startDate: "سبتمبر 2012",
       endDate: "ديسمبر 2015",
@@ -322,6 +359,7 @@ export const datapatents = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
     },
     {
+      id:3,
       name: "براءة الاختراع الأولى",
       startDate: "سبتمبر 2012",
       endDate: "ديسمبر 2015",
@@ -335,6 +373,7 @@ export const datapatents = [
   
 export const datahonors = [
     {
+      id:1,
       name: "التكريم الفلاني الأول",
       date: "ديسمبر 2012",
       center: "مركز الرؤيا للأبحاث الفلكية",
@@ -342,6 +381,7 @@ export const datahonors = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
     },
     {
+      id:2,
       name: "التكريم الفلاني الأول",
       date: "ديسمبر 2012",
       center: "مركز الرؤيا للأبحاث الفلكية",
@@ -349,6 +389,7 @@ export const datahonors = [
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
     },
     {
+      id:3,
       name: "التكريم الفلاني الأول",
       date: "ديسمبر 2015",
       center: "مركز الرؤيا للأبحاث الفلكية",

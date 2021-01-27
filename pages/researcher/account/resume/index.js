@@ -70,6 +70,7 @@ export default function index() {
                 icon={<SchoolOutlinedIcon />}
                 label="المؤهلات الاكاديمية"
                 collections={educations}
+                setCollections={setEducations}
                 validationSchema={educationSchema}
                 fields={educationFields}
             />
@@ -78,6 +79,7 @@ export default function index() {
                 icon={<WorkOutlineOutlinedIcon />}
                 label="الخبرة المهنية"
                 collections={experiences}
+                setCollections={setExperiences}
                 validationSchema={experienceSchema}
                 fields={expericenceFields}
             />
@@ -86,6 +88,7 @@ export default function index() {
                 icon={<CardMembershipOutlinedIcon />}
                 label="الشهادات"
                 collections={certifications}
+                setCollections={setCertifications}
                 validationSchema={certificationSchema}
                 fields={certificationFields}
             />
@@ -99,6 +102,7 @@ export default function index() {
                 }
                 label="العمل التطوعي"
                 collections={volunteerings}
+                setCollections={setVolunteerings}
                 validationSchema={VolunteeringSchema}
                 fields={volunteerungFields}
             />
@@ -106,12 +110,14 @@ export default function index() {
                 <ResumeSuccessItem
                     label="المشاريع"
                     items={projects}
+                    setItems={setProjects}
                     validationSchema={projectSchema}
                     fields={projectFields}
                 />
                 <ResumeSuccessItem
                     label="اللغات"
                     items={languages}
+                    setItems={setLanguages}
                     validationSchema={languageSchema}
                     fields={languageFields}
                 />
@@ -120,9 +126,11 @@ export default function index() {
                     validationSchema={activitySchema}
                     fields={activityFields}
                     items={activities}
+                    setItems={setActivities}
                 />
                 <ResumeSuccessItem
                     label="براءات الاختراع"
+                    setItems={setPatents}
                     items={patents}
                     validationSchema={patentSchema}
                     fields={patentFields}
@@ -130,6 +138,7 @@ export default function index() {
                 <ResumeSuccessItem
                     last
                     label="التكريمات"
+                    setItems={setHonors}
                     items={honors}
                     validationSchema={honorSchema}
                     fields={honorFields}

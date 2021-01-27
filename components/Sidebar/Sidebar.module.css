@@ -131,6 +131,7 @@
 .sidebar .sidebarLinks .sidebarLinksItem{
     width: 90%;
     display: flex;
+    cursor: pointer;
     text-decoration: none;
     height: 48px;
     margin-top: 16px;

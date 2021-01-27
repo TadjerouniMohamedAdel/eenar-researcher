@@ -3,21 +3,83 @@ import React,{useState} from 'react'
 import classes from './ResumeSuccessItem.module.css'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import {AnimatePresence , motion} from 'framer-motion'
+import Modal from '../Modal/Modal'
+import AddElement from '../CrudModal/AddElement'
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import EditElement from '../CrudModal/EditElement'
+import DeleteElement from '../CrudModal/DeleteElement'
 
 const backdropVariants = {
     visible:{opacity:1},
     hidden:{opacity:0},
 }
 
-export default function ResumeSuccessItem({label,items,last}) {
+export default function ResumeSuccessItem({setItems,label,items,last,fields,validationSchema}) {
     const [isExpanded,setIsExpanded] =useState(false)
+    const [addVisible,setAddVisible] = useState(false)
+    const [editVisible,setEditVisible] = useState(false)
+    const [deleteVisible,setDeleteVisible] = useState(false)
+    const [selectedItem,setSelectedItem] = useState(null)
+
+    const handleAddItem = (item)=>{
+        console.log("submit add element")
+        setItems([...items,item])
+        setAddVisible(false)
+    }
+
+    const handleEditItem = (item)=>{
+        console.log("submit edit element")
+        let lastItems = [...items]
+        const index = lastItems.findIndex((el)=>el.id === item.id)
+        lastItems[index] = item
+        setItems(lastItems)
+        setEditVisible(false)
+        setSelectedItem(null)
+    }
+    
+    const handleDeleteItem = (item)=>{
+        setItems(items.filter((el)=>el.id!==item.id))
+        setDeleteVisible(false)
+    }
+
     return (
         <AnimatePresence exitBeforeEnter>
 
         <div className={classes.successSection}>
+                    <Modal visible={addVisible} setVisible={setAddVisible}>
+                                    <AddElement 
+                                        title={label} 
+                                        validationSchema={validationSchema} 
+                                        fields={fields} 
+                                        handleSubmit={handleAddItem}
+                                    />
+                    </Modal>
+                    <Modal visible={editVisible} setVisible={setEditVisible}>
+                        <EditElement
+                            item={selectedItem} 
+                            title={label} 
+                            validationSchema={validationSchema} 
+                            fields={fields} 
+                            handleSubmit={handleEditItem}
+                        />
+                    </Modal>
+                    <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
+                        <DeleteElement
+                            item={selectedItem} 
+                            title={label} 
+                            handleSubmit={handleDeleteItem}
+                        />
+                    </Modal>
                         <h3>
-                            {label}
+                            <span>
+                                {label}
+                                <IconButton onClick={()=>{setAddVisible(true)}}>
+                                    <AddCircleOutlineOutlinedIcon className={classes.addIcon}/>
+                                </IconButton>
+                            </span>
                             <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
                                 {
                                     isExpanded ?  <ExpandLessIcon style={{fontSize:28,color:"#3e3f5e"}} />: <ExpandMoreIcon style={{fontSize:28,color:"#3e3f5e"}} /> 
@@ -50,7 +112,17 @@ export default function ResumeSuccessItem({label,items,last}) {
                                     {
                                         items.map((item,index)=>(
                                             <div key={`item=${label}-${index}`} className={classes.successSectionItem}>
-                                                <h3>{item.name}</h3>
+                                                <h3>
+                                                    {item.name}
+                                                    <div className={classes.actionItem}>
+                                                        <IconButton className={classes.actionItemButton} onClick={()=>{setSelectedItem(item),setEditVisible(true)}}>
+                                                            <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`}/>
+                                                        </IconButton>
+                                                        <IconButton className={classes.actionItemButton}  onClick={()=>{setSelectedItem(item),setDeleteVisible(true)}}>
+                                                            <DeleteOutlineOutlinedIcon className={`${classes.actionItemIcon} ${classes.delete}`}/>
+                                                        </IconButton>
+                                                    </div>
+                                                </h3>
                                                 {item.startDate && <h4>{`${item.startDate} - ${item.endDate!==null?item.endDate :"مستمر"}`} {item.role} {item.status}</h4>}
                                                 {item.level && <h4>{item.level}</h4>}
                                                 {item.date && <h4>{item.date}</h4>}
