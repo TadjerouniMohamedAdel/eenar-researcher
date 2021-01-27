@@ -1,0 +1,186 @@
+.crudElement{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.crudElement h1{
+    margin: 0 31px 8px 72px;
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.crudElement .divider{
+    width: 100%;
+    height: 1px;
+    margin: 8px 0 0;
+    background-color: #eaeaf5;
+}
+.crudElement .formDescription{
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+    margin-top: 8px;
+    margin-right: 32px;
+}
+.crudElement .form{
+    width: 100%;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: column;
+}
+
+.formInput{
+    height: 54px;
+    border-radius: 20px !important;
+    width: 100% !important;
+    margin-top: 28px !important;
+    margin: 11px 0 0;
+    padding: 10.4px 19.4px 10.6px 308.6px;
+    border: solid 1px #dedeea;
+    background-color: #ffffff;
+}
+.crudElement  .formInput > div{
+    border-radius: 10px !important;
+    border-color: transparent;
+}
+.crudElement .submitContainer{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.crudElement .submitContainer .submit{
+    width: 153px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    border: solid 1px #06d6a0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--active-color);   
+}
+.submitContainer .submit span {
+    /* width: 40px; */
+    height: 27px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+}
+.collectionItem{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    width: 100%;
+}
+.collectionRectangle{
+    width: 55px;
+    height: 55px;
+    margin: 0 0 40px 16px;
+    border-radius: 8px;
+    background-color: #118ab2;     
+}
+.collectionItem .collectionContent{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: calc(100% - 50px);
+}
+.collectionItem .collectionContent h2{
+    font-family: var(--primary-font);
+    font-size: 13px;
+    font-weight: bold;
+    font-stretch: normal;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #3e3f5e;
+}
+
+
+.collectionItem .collectionContent h2 .actionItem .actionItemIcon{
+    font-size: 22px !important;
+}
+.collectionItem .collectionContent h2 .actionItem .actionItemIcon.edit{
+    color: var(--active-color);
+}
+.collectionItem .collectionContent h2 .actionItem .actionItemIcon.delete{
+    color: var(--danger-color);
+}
+.collectionItem .collectionContent h3{
+    font-family: var(--primary-font);
+    font-size: 12.5px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #3e3f5e;
+}
+.collectionItem .collectionContent span{
+    font-weight: normal;
+    color: #afb0c0;
+    font-family: var(--primary-font);
+    font-size: 12.5px;
+    width: 90%;
+}
+.collectionItem .collectionContent .line{
+    width: 90%;
+    height: 0;
+    margin: 8px 0px 0 0;
+    opacity: 0.4;
+    border: solid 1px #9192a6
+}
+.moreCollections{
+    display: flex;
+    align-items: center;
+}
+.moreCollections .moreCollectionButton{
+    width: 40px;
+    height: 40px;
+    display: flex;
+}
+.moreCollections .moreText{
+    font-family: var(--primary-font);
+    /* margin: 0 8px 0 0; */
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.8;
+    letter-spacing: normal;
+    color: #3e3f5e;
+}
+.moreCollectionIcon{
+    color: #3e3f5e;
+    font-size: 13px;
+}

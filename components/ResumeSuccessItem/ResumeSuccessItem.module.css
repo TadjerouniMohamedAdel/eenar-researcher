@@ -4,7 +4,6 @@
     width: inherit;
 }
 .successSection h3{
-    height: 21px;
     font-family: var(--primary-font);
     font-size: 12px;
     font-weight: bold;
@@ -19,11 +18,16 @@
     text-align: right;
     color: #118ab2;
 }
+.successSection h3 .addIcon{
+    color: #118ab2;
+    font-size: 20px;
+}
 .successSection .successSectionNotExpanded{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 90%;
+    flex-direction: wrap;
+    width: 70%;
     font-size: 12px;
     margin-bottom: 16px;
     margin-right: 28px;
@@ -35,7 +39,6 @@
     padding-right: 47px;
 }
 .successSection .successSectionItems .successSectionItem h3{
-    height: 22px;
     margin: 0 0 0 32px;
     font-family: var(--primary-font);
     font-size: 12px;
@@ -48,10 +51,35 @@
     color: #3e3f5e;
 }
 .successSection .successSectionItems .successSectionItem{
+    cursor: pointer;
     margin-bottom: 16px;
 }
+.actionItemButton{
+    width: 40px;
+    height: 40px;
+}
+.successSection .successSectionItem .actionItem{
+    position: relative;
+    top: 30px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.successSection .successSectionItem:hover   .actionItem{
+    display: flex;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.successSection .successSectionItem .actionItem .actionItemIcon{
+    font-size: 22px !important;
+}
+.successSection .successSectionItem .actionItem .actionItemIcon.edit{
+    color: var(--active-color);
+}
+.successSection .successSectionItem .actionItem .actionItemIcon.delete{
+    color: var(--danger-color);
+}
 .successSection .successSectionItems .successSectionItem h4{
-    height: 22px;
     font-family: var(--primary-font);
     font-size: 12px;
     font-weight: normal;
@@ -65,10 +93,11 @@
 .successSection .successSectionItems .successSectionItem span{
     width: 90%;
     display: block;
-    height: 39px;
+
     font-family: var(--primary-font);
     font-size: 12px;
     font-weight: normal;
+    margin-top: 8px;
     font-stretch: normal;
     margin-bottom: 20px;
     font-style: normal;

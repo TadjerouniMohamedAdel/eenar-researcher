@@ -49,7 +49,7 @@ export default function AccountBanner() {
                     <div className={classes.bannerProfile}>
                         <Rectongles />
                         <span className={classes.profileName}>معاذ محساس</span>
-                        <span className={classes.profileJob}>UI / UX Researcher</span>
+                        <span className={classes.profileJob}>أستاذ جامعي</span>
                     </div>
                     <div className={classes.bannerLinks}>
                         <Link className={classes.linkEditAccount}>

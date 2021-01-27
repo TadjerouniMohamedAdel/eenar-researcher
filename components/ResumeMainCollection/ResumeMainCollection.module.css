@@ -21,19 +21,30 @@
     letter-spacing: normal;
     color: #3e3f5e;
 }
+.collectionTitleIcon{
+    margin-left: 5px;
+    margin-right: 5px;
+}
 .collectionContainer h2 span{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+.iconButtonHeader{
+    width:40px;
+    height: 40px;
+    text-align: center !important;
+    margin-left: 24px !important;
+   
+}
+
 .actionSectionIcon{
   font-size: 18px;
   color: #dfdfe6;
+  
 }
 
-.collectionContainer .actionSectionIcon{
-    margin-left: 24px;
-}
+
 .collectionContainer .collectionItems{
     display: flex;
     flex-direction: column;
@@ -56,6 +67,7 @@
 .collectionContainer .collectionItems .collectionItem .collectionContent{
     display: flex;
     flex-direction: column;
+    cursor: pointer;
     width: calc(100% - 50px);
 }
 .collectionContainer .collectionItems .collectionItem .collectionContent h2{
@@ -63,10 +75,34 @@
     font-size: 12px;
     font-weight: bold;
     font-stretch: normal;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
     font-style: normal;
     line-height: 1.5;
     letter-spacing: normal;
     color: #3e3f5e;
+}
+.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem{
+    position: relative;
+    top: 30px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.collectionContainer .collectionItems .collectionItem:hover .collectionContent h2 .actionItem{
+    display: flex;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem .actionItemIcon{
+    font-size: 22px !important;
+}
+.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem .actionItemIcon.edit{
+    color: var(--active-color);
+}
+.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem .actionItemIcon.delete{
+    color: var(--danger-color);
 }
 .collectionContainer .collectionItems .collectionItem .collectionContent h3{
     font-family: var(--primary-font);
@@ -96,9 +132,14 @@
     display: flex;
     align-items: center;
 }
-.collectionContainer .collectionItems .moreCollections span{
+.collectionContainer .collectionItems .moreCollections .moreCollectionButton{
+    width: 40px;
+    height: 40px;
+    display: flex;
+}
+.collectionContainer .collectionItems .moreCollections .moreText{
     font-family: var(--primary-font);
-    margin: 0 8px 0 0;
+    /* margin: 0 8px 0 0; */
     font-size: 10px;
     font-weight: bold;
     font-stretch: normal;

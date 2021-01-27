@@ -45,6 +45,7 @@
 }
 .myGroups .groupList .groupItem{
     display: flex;
+    cursor: pointer;
     justify-content: space-between;
 }
 .myGroups .groupList .groupDescription{

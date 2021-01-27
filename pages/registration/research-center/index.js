@@ -2,11 +2,12 @@ import { Button, Checkbox, TextField } from '@material-ui/core'
 import React,{useState} from 'react'
 import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout'
 import classes from '../../../styles/Registration.module.css'
+import { useRouter } from 'next/router'
 
 
 export default function index() {
     const [user,setUser] = useState({university:"معاذ ",class:"محساس",position:"Mouadh7"})
-
+    const router = useRouter()
     const handleChangeInput = (e)=>{
         switch (e.target.name) {
             case 'university':
@@ -26,6 +27,7 @@ export default function index() {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
+        router.push("/registration/research-center/next")
     }
 
     return (
