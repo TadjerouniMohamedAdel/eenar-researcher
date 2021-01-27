@@ -1,12 +1,20 @@
 export const dataaboutme = {
-    description:
-      "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.",
+    description:"لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.",
     job: "أستاذ جامعي",
     date: "26 مارس 2020",
     company: "CleverZone.link",
     city: "باب الزوار، الجزائر",
-    webSite: "www.mouadh.com",
+    website: "www.mouadh.com",
   };
+
+export const  dataprofile = {
+  lastName:"تجروني",
+  firstName:"عادل محمد ",
+  job:"مطور ويب",
+  birthday:"1997/02/24",
+  nationality:"الجزائر"
+}
+
 export const databadges = [
     {
       imageSrc: "/images/01.png",

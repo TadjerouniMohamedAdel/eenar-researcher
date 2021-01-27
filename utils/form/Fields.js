@@ -1,3 +1,19 @@
+export const aboutmeFields = [
+    {name:"date",label:"الإنضمام",type:"text",defaultValue:""},
+    {name:"city",label:"المدينة",type:"text",defaultValue:""},
+    {name:"company",label:"المؤسسة",type:"text",defaultValue:""},
+    {name:"job",label:"الوظيفة",type:"text",defaultValue:""},
+    {name:"description",label:"وصف",type:"text",defaultValue:""},
+    {name:"website",label:"الموقع",type:"text",defaultValue:""},
+]
+
+export const profileFields=[
+    {name:"lastName",label:"اللقب",type:"text",defaultValue:""},
+    {name:"firstName",label:"الاسم",type:"text",defaultValue:""},
+    {name:"birthday",label:"التاريخ الميلاد",type:"text",defaultValue:""},
+    {name:"nationality",label:"تاريخ الانتهاء",type:"text",defaultValue:""},
+]
+
 export const  educationFields = [
     {name:"university",label:"جامعة",type:"text",defaultValue:""},
     {name:"title",label:"عنوان",type:"text",defaultValue:""},
@@ -12,12 +28,14 @@ export const expericenceFields = [
     {name:"endDate",label:"تاريخ الانتهاء",type:"text",defaultValue:""},
 ]
 
+
 export const certificationFields = [
     {name:"name",label:"اسم",type:"text",defaultValue:""},
     {name:"provider",label:"مزود",type:"text",defaultValue:""},
     {name:"startDate",label:"تاريخ البدء",type:"text",defaultValue:""},
     {name:"endDate",label:"تاريخ الانتهاء",type:"text",defaultValue:""},
 ]
+
 
 export const volunteerungFields = [
     {name:"organization",label:"منظمة",type:"text",defaultValue:""},
