@@ -13,7 +13,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
         validationSchema,
       });    
     
-    
+   
     return (
         <div className={classes.crudElement}>
             <h1>
@@ -31,9 +31,10 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                             key={`crud-add-element-${index}`}
                         >
                             <TextField
-                                className={classes.formInput}
+                                className={`${classes.formInput} ${field.className}`}
                                 name={field.name}
                                 type={field.type}
+                                {...field.props}
                                 onChange={formik.handleChange}
                                 value={formik.values[field.name]}
                                 id={`crud-add-element-${index}-${field.name}`}

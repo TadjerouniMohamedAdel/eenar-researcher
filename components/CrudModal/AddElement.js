@@ -30,9 +30,10 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
                             key={`crud-add-element-${index}`}
                         >
                             <TextField
-                                className={classes.formInput}
+                                className={`${classes.formInput} ${field.className}`}
                                 name={field.name}
                                 type={field.type}
+                                {...field.props}
                                 onChange={formik.handleChange}
                                 value={formik.values[field.name]}
                                 id={`crud-add-element-${index}-${field.name}`}
