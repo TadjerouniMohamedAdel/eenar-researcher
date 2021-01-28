@@ -155,7 +155,7 @@ export const dataexperiences = [
 export const datacertifications = [
     {
       id:1,
-      name: "شهادة الماستر",
+      title: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate: "2017 نوفمبر",
       endDate: "لا تاريخ انتهاء الصلاحية",
@@ -166,7 +166,7 @@ export const datacertifications = [
     },
     {
       id:2,
-      name: "شهادة الماستر",
+      title: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate: "2017 نوفمبر",
       endDate: "لا تاريخ انتهاء الصلاحية",
@@ -177,7 +177,7 @@ export const datacertifications = [
     },
     {
       id:3,
-      name: "شهادة الماستر",
+      title: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate: "2017 نوفمبر",
       endDate: "لا تاريخ انتهاء الصلاحية",
@@ -271,7 +271,7 @@ export const datagroups = [
 export const dataprojects = [
     {
       id:1,
-      name: "المشروع الفلاني الأول",
+      title: "المشروع الفلاني الأول",
       startDate: "سبتمبر 2012",
       endDate: null,
       description:
@@ -279,7 +279,7 @@ export const dataprojects = [
     },
     {
       id:2,
-      name: "المشروع الفلاني الثاني",
+      title: "المشروع الفلاني الثاني",
       startDate: "سبتمبر 2009",
       endDate: "ديسمبر 2010",
       description:
@@ -287,7 +287,7 @@ export const dataprojects = [
     },
     {
       id:3,
-      name: "المشروع الفلاني الثالث",
+      title: "المشروع الفلاني الثالث",
       startDate: "سبتمبر 2002",
       endDate: "سبتمبر 2005",
       description:
@@ -316,7 +316,7 @@ export const datalanguages = [
 export const dataactivities = [
     {
       id:1,
-      name: "النشاط الفلاني الأول",
+      title: "النشاط الفلاني الأول",
       startDate: "20/9/2020",
       endDate: "25/9/2020",
       center: "مؤسسة الرؤيا للأبحاث الفلكية",
@@ -325,7 +325,7 @@ export const dataactivities = [
     },
     {
       id:2,
-      name: "النشاط الفلاني الأول",
+      title: "النشاط الفلاني الأول",
       startDate: "20/9/2020",
       endDate: "25/9/2020",
       center: "مؤسسة الرؤيا للأبحاث الفلكية",
@@ -334,7 +334,7 @@ export const dataactivities = [
     },
     {
       id:3,
-      name: "النشاط الفلاني الأول",
+      title: "النشاط الفلاني الأول",
       startDate: "20/9/2020",
       endDate: "25/9/2020",
       center: "مؤسسة الرؤيا للأبحاث الفلكية",
@@ -346,7 +346,7 @@ export const dataactivities = [
 export const datapatents = [
     {
       id:1,
-      name: "براءة الاختراع الأولى",
+      title: "براءة الاختراع الأولى",
       startDate: "سبتمبر 2012",
       endDate: "ديسمبر 2015",
       status: "تم الاصدار",
@@ -357,7 +357,7 @@ export const datapatents = [
     },
     {
       id:2,
-      name: "براءة الاختراع الأولى",
+      title: "براءة الاختراع الأولى",
       startDate: "سبتمبر 2012",
       endDate: "ديسمبر 2015",
       status: "تم الاصدار",
@@ -368,7 +368,7 @@ export const datapatents = [
     },
     {
       id:3,
-      name: "براءة الاختراع الأولى",
+      title: "براءة الاختراع الأولى",
       startDate: "سبتمبر 2012",
       endDate: "ديسمبر 2015",
       status: "تم الاصدار",
@@ -382,7 +382,7 @@ export const datapatents = [
 export const datahonors = [
     {
       id:1,
-      name: "التكريم الفلاني الأول",
+      title: "التكريم الفلاني الأول",
       date: "ديسمبر 2012",
       center: "مركز الرؤيا للأبحاث الفلكية",
       description:
@@ -390,7 +390,7 @@ export const datahonors = [
     },
     {
       id:2,
-      name: "التكريم الفلاني الأول",
+      title: "التكريم الفلاني الأول",
       date: "ديسمبر 2012",
       center: "مركز الرؤيا للأبحاث الفلكية",
       description:
@@ -398,7 +398,7 @@ export const datahonors = [
     },
     {
       id:3,
-      name: "التكريم الفلاني الأول",
+      title: "التكريم الفلاني الأول",
       date: "ديسمبر 2015",
       center: "مركز الرؤيا للأبحاث الفلكية",
       description:

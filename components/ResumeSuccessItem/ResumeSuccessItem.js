@@ -97,7 +97,7 @@ export default function ResumeSuccessItem({setItems,label,items,last,fields,vali
                                 >
                                     {
                                         items.map((item,index)=>(
-                                            <li key={`item=${label}-${index}`}>{item.name}</li>
+                                            <li key={`item=${label}-${index}`}>{item.title ?? item.name}</li>
                                         ))
                                     }
                                 </motion.ul>
@@ -113,7 +113,7 @@ export default function ResumeSuccessItem({setItems,label,items,last,fields,vali
                                         items.map((item,index)=>(
                                             <div key={`item=${label}-${index}`} className={classes.successSectionItem}>
                                                 <h3>
-                                                    {item.name}
+                                                    {item.name ?? item.title}
                                                     <div className={classes.actionItem}>
                                                         <IconButton className={classes.actionItemButton} onClick={()=>{setSelectedItem(item),setEditVisible(true)}}>
                                                             <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`}/>

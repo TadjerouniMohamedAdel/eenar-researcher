@@ -95,7 +95,7 @@ export default function ResumeMainCollection({setCollections,validationSchema,fi
                             <div className={classes.collectionRectangle}></div>
                             <div className={classes.collectionContent}>
                                 <h2>
-                                    {collection.university ?? collection.company??collection.organization ??collection.name }
+                                    {collection.title ??collection.name??collection.role }
                                     <div className={classes.actionItem}>
                                         <IconButton className={classes.actionItemButton} onClick={()=>{setSelectedItem(collection),setEditVisible(true)}}>
                                             <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`}/>
@@ -105,9 +105,8 @@ export default function ResumeMainCollection({setCollections,validationSchema,fi
                                         </IconButton>
                                     </div>
                                 </h2>
-                                <h3>{collection.title}</h3>
+                                <h3>{collection.university ?? collection.company??collection.organization}</h3>
                                 <h3>{collection.provider}</h3>
-                                <h3>{collection.role}</h3>
                                 <h3>{`${collection.endDate} - ${collection.startDate}`}</h3>
                                 <span>{collection.link && collection.link.label}</span>
                                 <span>{collection.description}

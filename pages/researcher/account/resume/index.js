@@ -23,7 +23,7 @@ import {
   languageFields,
   patentFields,
   projectFields,
-  volunteerungFields,
+  volunteeringFields,
 } from "../../../../utils/form/Fields";
 import {
   activitySchema,
@@ -104,7 +104,7 @@ export default function index() {
                 collections={volunteerings}
                 setCollections={setVolunteerings}
                 validationSchema={VolunteeringSchema}
-                fields={volunteerungFields}
+                fields={volunteeringFields}
             />
             <ResumeMainCollection label="الإنجازات">
                 <ResumeSuccessItem

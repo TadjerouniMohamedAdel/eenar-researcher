@@ -30,14 +30,14 @@ export const expericenceFields = [
 
 
 export const certificationFields = [
-    {name:"name",label:"اسم",type:"text",defaultValue:""},
+    {name:"title",label:"اسم",type:"text",defaultValue:""},
     {name:"provider",label:"مزود",type:"text",defaultValue:""},
     {name:"startDate",label:"تاريخ البدء",type:"text",defaultValue:""},
     {name:"endDate",label:"تاريخ الانتهاء",type:"text",defaultValue:""},
 ]
 
 
-export const volunteerungFields = [
+export const volunteeringFields = [
     {name:"organization",label:"منظمة",type:"text",defaultValue:""},
     {name:"role",label:"دور",type:"text",defaultValue:""},
     {name:"description",label:"وصف",type:"text",defaultValue:""},
@@ -51,7 +51,7 @@ export const languageFields = [
 ]
 
 export const activityFields = [
-    {name:"name",label:"اسم",type:"text",defaultValue:""},
+    {name:"title",label:"اسم",type:"text",defaultValue:""},
     {name:"role",label:"دور",type:"text",defaultValue:""},
     {name:"location",label:"موقع",type:"text",defaultValue:""},
     {name:"startDate",label:"تاريخ البدء",type:"text",defaultValue:""},
@@ -59,7 +59,7 @@ export const activityFields = [
 ]
 
 export const patentFields = [
-    {name:"name",label:"اسم",type:"text",defaultValue:""},
+    {name:"title",label:"اسم",type:"text",defaultValue:""},
     {name:"status",label:"الحالة",type:"text",defaultValue:""},
     {name:"code",label:"رمز",type:"text",defaultValue:""},
     {name:"description",label:"وصف",type:"text",defaultValue:""},
@@ -68,14 +68,14 @@ export const patentFields = [
 ]
 
 export const honorFields =[
-    {name:"name",label:"اسم",type:"text",defaultValue:""},
+    {name:"title",label:"اسم",type:"text",defaultValue:""},
     {name:"center",label:"center",type:"text",defaultValue:""},
     {name:"description",label:"وصف",type:"text",defaultValue:""},
     {name:"date",label:"date",type:"text",defaultValue:""},
 ]
 
 export const projectFields = [
-    {name:"name",label:"اسم",type:"text",defaultValue:""},
+    {name:"title",label:"اسم",type:"text",defaultValue:""},
     {name:"description",label:"وصف",type:"text",defaultValue:""},
     {name:"startDate",label:"تاريخ البدء",type:"text",defaultValue:""},
     {name:"endDate",label:"تاريخ الانتهاء",type:"text",defaultValue:""},

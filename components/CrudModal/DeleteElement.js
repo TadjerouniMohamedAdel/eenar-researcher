@@ -17,9 +17,9 @@ export default function DeleteElement({item,title,handleSubmit}) {
                             <div className={classes.collectionRectangle}></div>
                             <div className={classes.collectionContent}>
                                 <h2>
-                                    {item.university ?? item.company??item.organization ??item.name }
+                                    {item.title ?? item.university ?? item.company??item.organization ??item.name }
                                 </h2>
-                                <h3>{item.title}</h3>
+                                
                                 <h3>{item.provider}</h3>
                                 <h3>{item.role}</h3>
                                 <h3>{item.level ?? item.date ?? `${item.endDate} - ${item.startDate}`}</h3>
