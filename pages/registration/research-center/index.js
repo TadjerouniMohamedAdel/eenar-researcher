@@ -4,7 +4,7 @@ import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout
 import classes from '../../../styles/Registration.module.css'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
-import { centerRegistrationStpe1,centerRegistrationStpe2 } from '../../../utils/Validation/ValidationObjects'
+import { centerRegistrationStep1,centerRegistrationStep2 } from '../../../utils/Validation/ValidationObjects'
 
 
 export default function index() {
@@ -19,7 +19,7 @@ export default function index() {
     const formik = useFormik({
         initialValues:{centerName:'',region:"",city:"",address:"",class:'',job:""},
         onSubmit: handleSubmit,
-        validationSchema:centerRegistrationStpe1,
+        validationSchema:centerRegistrationStep1,
       });
       const handleSubmit2 = (data)=>{
         console.log(data)
@@ -28,7 +28,7 @@ export default function index() {
     const formik2 = useFormik({
         initialValues:{firstName:"",lastName:"",email:"",password:"",retypedPassword:""},
         onSubmit: handleSubmit2,
-        validationSchema:centerRegistrationStpe2,
+        validationSchema:centerRegistrationStep2,
     });
 
     
