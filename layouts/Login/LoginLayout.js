@@ -1,9 +1,11 @@
 import React from 'react'
+import MyHead from '../../components/MyHead/MyHead'
 import classes from '../../styles/Login.module.css'
 export default function LoginLayout(props) {
 
 	return (
 		<div className={classes.loginContainer}>
+			<MyHead title="تسجيل الدخول"/>
 			<div className={classes.arch}></div>
 			<div className={classes.loginRow}>
 				{props.children}
