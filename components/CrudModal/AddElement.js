@@ -6,12 +6,12 @@ import { useFormik } from 'formik';
 export default function AddElement({fields,handleSubmit,validationSchema,title}) {
     let values = {}
     fields.map((el,index)=>{values[el.name]=el.defaultValue})
+    console.log(values)
     const formik = useFormik({
         initialValues:values,
         onSubmit: handleSubmit,
         validationSchema,
       });    
-    
     
     return (
         <div className={classes.crudElement}>

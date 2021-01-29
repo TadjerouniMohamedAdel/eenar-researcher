@@ -10,7 +10,7 @@ import Modal from '../Modal/Modal'
 import AddElement from '../CrudModal/AddElement'
 import EditElement from '../CrudModal/EditElement';
 import DeleteElement from '../CrudModal/DeleteElement';
-
+import moment from 'moment'
 
 
 export default function ResumeMainCollection({setCollections,validationSchema,fields,children,collections,label,icon}){
@@ -19,7 +19,7 @@ export default function ResumeMainCollection({setCollections,validationSchema,fi
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [selectedItem,setSelectedItem] = useState(null)
     const [viewMore,setViewMore] = useState(false)
-
+    moment.locale('ar-dz')
     const handleAddItem = (item)=>{
         console.log("submit add element")
         setCollections([...collections,item])
@@ -107,7 +107,7 @@ export default function ResumeMainCollection({setCollections,validationSchema,fi
                                 </h2>
                                 <h3>{collection.university ?? collection.company??collection.organization}</h3>
                                 <h3>{collection.provider}</h3>
-                                <h3>{`${collection.endDate} - ${collection.startDate}`}</h3>
+                                <h3>{`${moment(collection.startDate).format('DD MMM YYYY')} - ${collection.endDate !=="" ?moment(collection.endDate).format('DD MMM YYYY') :"لا تاريخ انتهاء الصلاحية"}`}</h3>
                                 <span>{collection.link && collection.link.label}</span>
                                 <span>{collection.description}
                                 </span>

@@ -1,7 +1,9 @@
 import classes from './CrudModal.module.css'
 import { Button } from '@material-ui/core'
+import moment from 'moment'
 
 export default function DeleteElement({item,title,handleSubmit}) {
+    moment.locale('ar-dz')
     return (
         <div className={classes.crudElement}>
             <h1>
@@ -21,8 +23,9 @@ export default function DeleteElement({item,title,handleSubmit}) {
                                 </h2>
                                 
                                 <h3>{item.provider}</h3>
-                                <h3>{item.role}</h3>
-                                <h3>{item.level ?? item.date ?? `${item.endDate} - ${item.startDate}`}</h3>
+                                <h3>{item.role ?? item.university}</h3>
+                                <h3>{item.date && moment(item.date).format('DD MMM YYYY') }</h3>
+                                <h3>{item.startDate && `${moment(item.startDate).format('DD MMM YYYY')} - ${item.endDate!==""? moment(item.endDate).format('DD MMM YYYY'):"لا تاريخ انتهاء الصلاحية"}`}</h3>
                                 <span>{item.link && item.link.label}</span>
                                 <span>{item.description}
                                 </span>

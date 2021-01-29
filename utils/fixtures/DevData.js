@@ -158,7 +158,7 @@ export const datacertifications = [
       title: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate:"2020-12-31",
-      endDate: "لا تاريخ انتهاء الصلاحية",
+      endDate: "",
       link: {
         url: "",
         label: "إطلع على الإعتماد",
@@ -169,7 +169,7 @@ export const datacertifications = [
       title: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate:"2020-12-31",
-      endDate: "لا تاريخ انتهاء الصلاحية",
+      endDate: "",
       link: {
         url: "",
         label: "إطلع على الإعتماد",
@@ -180,7 +180,7 @@ export const datacertifications = [
       title: "شهادة الماستر",
       provider: "جامعة الهواري بومدين",
       startDate:"2020-12-31",
-      endDate: "لا تاريخ انتهاء الصلاحية",
+      endDate: "",
       link: {
         url: "",
         label: "إطلع على الإعتماد",
@@ -273,7 +273,7 @@ export const dataprojects = [
       id:1,
       title: "المشروع الفلاني الأول",
       startDate:"2020-12-31",
-      endDate: null,
+      endDate: "",
       description:
         "خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في, اقتصّت المحور حدة و. هذه ما طرفاً عالمية استسلام, الصين وتنامت حين ",
     },

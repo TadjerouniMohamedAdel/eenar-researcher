@@ -11,6 +11,7 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import EditElement from '../CrudModal/EditElement'
 import DeleteElement from '../CrudModal/DeleteElement'
+import moment from 'moment'
 
 const backdropVariants = {
     visible:{opacity:1},
@@ -23,7 +24,7 @@ export default function ResumeSuccessItem({setItems,label,items,last,fields,vali
     const [editVisible,setEditVisible] = useState(false)
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [selectedItem,setSelectedItem] = useState(null)
-
+    moment.locale('ar-dz')
     const handleAddItem = (item)=>{
         console.log("submit add element")
         setItems([...items,item])
@@ -123,9 +124,9 @@ export default function ResumeSuccessItem({setItems,label,items,last,fields,vali
                                                         </IconButton>
                                                     </div>
                                                 </h3>
-                                                {item.startDate && <h4>{`${item.startDate} - ${item.endDate!==null?item.endDate :"مستمر"}`} {item.role} {item.status}</h4>}
+                                                {item.startDate && <h4>{`${moment(item.startDate).format('DD MMM YYYY')} - ${item.endDate!==""?moment(item.endDate).format('DD MMM YYYY') :"مستمر"}`} {item.role} {item.status}</h4>}
                                                 {item.level && <h4>{item.level}</h4>}
-                                                {item.date && <h4>{item.date}</h4>}
+                                                {item.date && <h4>{moment(item.date).format('DD MMM YYYY')}</h4>}
                                                 {item.center && <h4>{item.center} {item.location ?? item.code}</h4>}
                                                 {item.description && <span>{item.description}</span>}
                                             </div>
