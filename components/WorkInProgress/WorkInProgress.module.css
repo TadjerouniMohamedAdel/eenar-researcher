@@ -27,3 +27,11 @@
     text-align: center;
     color: #3e3f5e;
 }
+@media(max-width:600px){
+    .inProgressContainer .inProgressIllustration{
+        width: 80%;
+    }
+    .inProgressContainer h2{
+        font-size:20px;
+    }
+}
