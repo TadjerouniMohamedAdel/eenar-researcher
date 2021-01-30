@@ -1,6 +1,6 @@
 .mainLayoutContainer{
     width: 100%;
-    min-width: 100vw;
+    /* min-width: 100vw; */
     display: flex;
     flex-direction: column;
     background-color: #f8f8fb;
@@ -10,6 +10,7 @@
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
+    width: 100%;
 }
 .mainContent{
     width: calc(100% - 300px) ;

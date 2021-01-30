@@ -1,6 +1,6 @@
 .navbar{
     /* width: 100%; */
-    min-width: 100vw;
+    /* min-wdthi: 100vw; */
     height: 80px;
     background-color: var(--primary-color);
     display: flex;

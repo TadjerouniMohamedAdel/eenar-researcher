@@ -23,7 +23,7 @@ import {
   languageFields,
   patentFields,
   projectFields,
-  volunteerungFields,
+  volunteeringFields,
 } from "../../../../utils/form/Fields";
 import {
   activitySchema,
@@ -37,6 +37,7 @@ import {
   certificationSchema,
 } from "../../../../utils/Validation/ValidationObjects";
 import { dataaboutme,datagroups,dataarticles,datahonors,datapatents,dataactivities,datalanguages,dataprojects,databadges,datausers,dataeducations,dataexperiences,datacertifications,datavolunteerings } from '../../../../utils/fixtures/DevData';
+import MyHead from '../../../../components/MyHead/MyHead';
 
 
 export default function index() {
@@ -57,6 +58,7 @@ export default function index() {
   
   return (
     <ResearcherAccountLayout>
+      <MyHead title="الملف الشخصي  - السيرة الذاتية" />
       <div className={classes.resumeContainer}>
         
         <div className={classes.sideSection}>
@@ -104,7 +106,7 @@ export default function index() {
                 collections={volunteerings}
                 setCollections={setVolunteerings}
                 validationSchema={VolunteeringSchema}
-                fields={volunteerungFields}
+                fields={volunteeringFields}
             />
             <ResumeMainCollection label="الإنجازات">
                 <ResumeSuccessItem

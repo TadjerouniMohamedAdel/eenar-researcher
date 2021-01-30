@@ -42,3 +42,6 @@ input{
     justify-content: center !important;
     align-items: center !important;
 }
+.autoHeight{
+    height: auto !important;
+}

@@ -1,9 +1,11 @@
 import React from 'react'
+import MyHead from '../../components/MyHead/MyHead'
 import classes from '../../styles/Registration.module.css'
 
 export default function RegistartionLayout(props) {
     return (
         <div className={classes.registrationContainer}>
+            <MyHead title="التسجيل في المنصة" />
             <div className={classes.registrationHeader}>
                 <div>
                     <img src="/images/colored-logo.png" width={50}/>

@@ -201,8 +201,9 @@
 .registrationContainer .registrationContent  .registrationForm .formFields .isAgree{
     display: flex;
     align-items: center;
-    float: right;
-    width: 80%
+    justify-content: flex-start;
+    width: 100%;
+    margin-top:13px;
 }
 .registrationContainer .registrationContent  .registrationForm .formFields .isAgree span{
    
@@ -222,7 +223,6 @@
     width: 80%;
     margin-top: 28px;
 }
-
 .registrationContainer .registrationContent  .registrationForm .registrationSubmit{
     height: 54px;
     margin-top: 24px;
@@ -231,6 +231,15 @@
     background-color: var(--active-color);
     width:80%;
     
+}
+.registrationContainer .registrationContent  .registrationForm  .registrationAction{
+    display: flex;
+    justify-content: space-around;
+}
+.registrationContainer .registrationContent  .registrationForm  .registrationAction .registrationSubmit{
+    padding:0;
+    margin: 20px !important;
+    width: 170px;
 }
 .registrationContainer .registrationContent  .registrationForm .registrationSubmit.step1{
     background-color: #fff;

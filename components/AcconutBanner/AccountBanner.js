@@ -1,8 +1,13 @@
-import React from 'react'
-import {Link} from '@material-ui/core'
+import {useState} from 'react'
+import {Button, Link} from '@material-ui/core'
 import classes from './AccountBanner.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube,faFacebookSquare,faTwitter,faTwitch, faDribbble, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
+import Modal from '../Modal/Modal'
+import EditElement from '../CrudModal/EditElement'
+import { dataprofile } from '../../utils/fixtures/DevData'
+import { profileFields } from '../../utils/form/Fields'
+import { profileSchema } from '../../utils/Validation/ValidationObjects'
 const overviews =[
     {name:"المنشورات",value:"930"},{name:"الأصدقاء",value:"82"},{name:"الزيارات",value:"5.7K"}
 ]
@@ -22,8 +27,29 @@ const Rectongles = ()=> (
 )
 
 export default function AccountBanner() {
+    const [editVisible,setEditVisible] = useState(false)
+    const [profile,setProfile] = useState(dataprofile)
+    
+    const handleEditSubmit = (data)=>{
+        setProfile(data)
+        setEditVisible(false)
+
+    }
+
     return (
         <div className={classes.accountBanner}>
+                <Modal
+                    visible={editVisible}
+                    setVisible={setEditVisible}
+                >
+                        <EditElement
+                            item={profile}      
+                            title="الحساب"                      
+                            fields={profileFields}
+                            validationSchema={profileSchema}
+                            handleSubmit={handleEditSubmit}
+                        />
+                </Modal>
                 <div className={classes.bondeau}></div>
                 <div className={classes.accountBannerContent}>
                     <div className={classes.accountBannerOverview}>
@@ -31,7 +57,7 @@ export default function AccountBanner() {
                                     <span className={classes.overviewValue}>
                                         <img src={nationality.src} width={15}/>
                                     </span>
-                                    <span className={classes.overviewName}>{nationality.name}</span>
+                                    <span className={classes.overviewName}>{profile.nationality}</span>
                                 </div>
                             
                         {
@@ -48,13 +74,13 @@ export default function AccountBanner() {
                     </div>
                     <div className={classes.bannerProfile}>
                         <Rectongles />
-                        <span className={classes.profileName}>معاذ محساس</span>
+                        <span className={classes.profileName}>{`${profile.firstName} ${profile.lastName}`}</span>
                         <span className={classes.profileJob}>أستاذ جامعي</span>
                     </div>
                     <div className={classes.bannerLinks}>
-                        <Link className={classes.linkEditAccount}>
+                        <Button className={classes.linkEditAccount} onClick={()=>setEditVisible(true)}>
                             <span>تعديل الحساب</span>
-                        </Link>
+                        </Button>
                         <ul className={classes.bannerSocialNetworks}>
                             <li className={`${classes.iconItem} ${classes.youtube}`}><FontAwesomeIcon icon={faYoutube} style={{color:"white"}}/></li>
                             <li className={`${classes.iconItem} ${classes.twitch}`}><FontAwesomeIcon icon={faTwitch} style={{color:"white"}}/></li>

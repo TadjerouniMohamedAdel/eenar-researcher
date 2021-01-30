@@ -6,12 +6,12 @@ import { useFormik } from 'formik';
 export default function AddElement({fields,handleSubmit,validationSchema,title}) {
     let values = {}
     fields.map((el,index)=>{values[el.name]=el.defaultValue})
+    console.log(values)
     const formik = useFormik({
         initialValues:values,
         onSubmit: handleSubmit,
         validationSchema,
       });    
-    
     
     return (
         <div className={classes.crudElement}>
@@ -30,9 +30,10 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
                             key={`crud-add-element-${index}`}
                         >
                             <TextField
-                                className={classes.formInput}
+                                className={`${classes.formInput} ${field.className}`}
                                 name={field.name}
                                 type={field.type}
+                                {...field.props}
                                 onChange={formik.handleChange}
                                 value={formik.values[field.name]}
                                 id={`crud-add-element-${index}-${field.name}`}
