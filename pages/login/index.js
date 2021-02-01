@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import { Button, Checkbox, Paper, TextField } from '@material-ui/core'
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,16 +10,23 @@ import Link  from 'next/link'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
 import { loginSchema } from '../../utils/Validation/ValidationObjects';
+import axios from 'axios'
 
 
 export default function Login() {
     const router = useRouter()
-
     const handleSubmit = (data)=>{
         console.log(data)
-        router.push("/researcher")
-
-	}
+        axios.post("https://eenar-backend.herokuapp.com/auth/login",data)
+        .then(function (response) {
+          console.log(response);
+          localStorage.setItem('user',JSON.stringify(response.data))
+          router.push("/researcher/account/resume")
+        })
+        .catch(function (error) {
+          console.log(JSON.stringify(error))
+        })
+    }
     
     const formik = useFormik({
         initialValues:{email:'',password:'',rememberMe:false},

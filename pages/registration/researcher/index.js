@@ -6,20 +6,41 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
-import { researcherRegistrationValidation1, researcherRegistrationValidation2, researcherRegistrationValidation3 } from '../../../utils/Validation/ValidationObjects'
+import Alert from '@material-ui/lab/Alert';
 
+import { researcherRegistrationValidation1, researcherRegistrationValidation2, researcherRegistrationValidation3 } from '../../../utils/Validation/ValidationObjects'
+import axios from 'axios'
 export default function Registration() {
     const [step,setStep] = useState(0)
+    const [showAlertSuccess,setShowAlertSuccess] = useState(false)
+    const [user,setUser] = useState({image:"",type:"researcher",firstname:"",gender:"",lastname:"",center:"",address:"",job:"",region:"",city:"",email:'',password:"",retypedPassword:"",isAgree:false})
     const router = useRouter()
+    let data={}
     const handleSubmit = (data)=>{
-            if(step<2) setStep(step+1)
+        
+        if(step<2) {
+            setUser({...user,...data})
+            setStep(step+1)
+        }
         else{
-            router.push("/researcher/")
-            console.log(data)
+
+            console.log({...user,...data})
+            axios.post("https://eenar-backend.herokuapp.com/user/addUser", {...user,...data})
+              .then(function (response) {
+                console.log(response);
+                setShowAlertSuccess(true)
+                setTimeout(() => {
+                    setShowAlertSuccess(false)
+                    router.push("/login")
+                }, 3000);
+              })
+              .catch(function (error) {
+                console.log(error)
+              })
         }
     }
     const formik1 = useFormik({
-        initialValues:{firstName:"",lastName:"",university:""},
+        initialValues:{firstname:"",lastname:"",gender:"",center:""},
         onSubmit: handleSubmit,
         validationSchema:researcherRegistrationValidation1,
       });
@@ -44,34 +65,45 @@ export default function Registration() {
                     label="الإسم"
                     variant="outlined"
                     className={classes.registrationInput}
-                    name="firstName"
-                    value={formik1.values.firstName}
+                    name="firstname"
+                    value={formik1.values.firstname}
                     type="text"
                     onChange={formik1.handleChange} 
-                    error={formik1.errors.firstName}
-                    helperText={formik1.errors.firstName}
+                    error={formik1.errors.firstname}
+                    helperText={formik1.errors.firstname}
                     />
                 <TextField
                     label="اللقب"
                     variant="outlined"
                     className={classes.registrationInput}
-                    name="lastName"
-                    value={formik1.values.lastName}
+                    name="lastname"
+                    value={formik1.values.lastname}
                     type="text"
                     onChange={formik1.handleChange}
-                    error={formik1.errors.lastName}
-                    helperText={formik1.errors.lastName} 
+                    error={formik1.errors.lastname}
+                    helperText={formik1.errors.lastname} 
                 />
                 <TextField
                     label="الجامعة / المؤسسة"
                     variant="outlined"
                     className={classes.registrationInput}
-                    name="university"
-                    value={formik1.values.university}
+                    name="center"
+                    value={formik1.values.center}
                     type="text"
                     onChange={formik1.handleChange}
-                    error={formik1.errors.university}
-                    helperText={formik1.errors.university} 
+                    error={formik1.errors.center}
+                    helperText={formik1.errors.center} 
+                    />
+                <TextField
+                    label="الجنس"
+                    variant="outlined"
+                    className={classes.registrationInput}
+                    name="gender"
+                    value={formik1.values.gender}
+                    type="text"
+                    onChange={formik1.handleChange}
+                    error={formik1.errors.gender}
+                    helperText={formik1.errors.gender} 
                     />
                 
                 <Button
@@ -146,6 +178,18 @@ export default function Registration() {
 
     const showStep3 = ()=>(
         <div className={classes.formFields}>
+                <TextField
+                    label="المنصب"
+                    variant="outlined"
+                    className={classes.registrationInput}
+                    name="job"
+                    key="job"
+                    value={formik3.values.job}
+                    type="text"
+                    onChange={formik3.handleChange} 
+                    error={formik3.errors.job}
+                    helperText={formik3.errors.job}
+                />
                 <TextField
                     label="البريد الإلكتروني"
                     variant="outlined"
@@ -231,6 +275,10 @@ export default function Registration() {
             {
                 step == 0 ? showStep1(): step==1?showStep2():showStep3()
             }
+            {showAlertSuccess &&(
+                    <Alert severity="success">تم  التسجيل بنجاح ، يمكنكم إستعمال المنصة بعد قبول الحساب</Alert>
+
+            )}
         </form>
         </RegistartionLayout>
     )

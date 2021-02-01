@@ -10,7 +10,7 @@ export default function LoginLayout(props) {
 			<div className={classes.loginRow}>
 				{props.children}
 				<div className={classes.loginPresentation}>
-					<img src="/images/colored-logo.png" width={100} />
+					<img src="/images/logoAdminWhite.png"  />
 					<h2>مرحبا بكم في</h2>
 					<h1>منتدى كوالالمبور<br/>شبكة الباحثين</h1>
 					<p>

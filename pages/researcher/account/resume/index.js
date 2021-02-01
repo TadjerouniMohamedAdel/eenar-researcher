@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import ResearcherAccountLayout from "../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import SchoolOutlinedIcon from "@material-ui/icons/SchoolOutlined";
@@ -38,24 +38,92 @@ import {
 } from "../../../../utils/Validation/ValidationObjects";
 import { dataaboutme,datagroups,dataarticles,datahonors,datapatents,dataactivities,datalanguages,dataprojects,databadges,datausers,dataeducations,dataexperiences,datacertifications,datavolunteerings } from '../../../../utils/fixtures/DevData';
 import MyHead from '../../../../components/MyHead/MyHead';
-
+import axios from 'axios'
 
 export default function index() {
-  const [aboutme,setAboutMe] = useState(dataaboutme)
-  const [badges,setBadges] = useState(databadges)
+  const [aboutme,setAboutMe] = useState([])
+  const [badges,setBadges] = useState([])
   const [users,setUsers] = useState(datausers)
-  const [educations,setEducations] = useState(dataeducations)
-  const [experiences,setExperiences] = useState(dataexperiences)
-  const [certifications,setCertifications] = useState(datacertifications)
-  const [volunteerings,setVolunteerings] = useState(datavolunteerings)
-  const [projects,setProjects] = useState(dataprojects)
-  const [languages,setLanguages] = useState(datalanguages)
-  const [activities,setActivities] = useState(dataactivities)
-  const [patents,setPatents] = useState(datapatents)
-  const [honors,setHonors] = useState(datahonors)
+  const [educations,setEducations] = useState([])
+  const [experiences,setExperiences] = useState([])
+  const [certifications,setCertifications] = useState([])
+  const [volunteerings,setVolunteerings] = useState([])
+  const [projects,setProjects] = useState([])
+  const [languages,setLanguages] = useState([])
+  const [activities,setActivities] = useState([])
+  const [patents,setPatents] = useState([])
+  const [honors,setHonors] = useState([])
   const [articles,setArticles] = useState(dataarticles)
   const [groups,setGroups] = useState(datagroups)
   
+    useEffect(()=>{
+        const user = JSON.parse(localStorage.getItem('user'))
+        axios.defaults.withCredentials = true;
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/education?researcherId=${user.researchers.id}`,{withCredentials: true})
+              .then((response)=>{
+                  console.log(response.data)
+              })
+              .catch(error=>{
+                console.log(error)
+              })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/activity?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/experience?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/language?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/patent?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/honor?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/project?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/volunteering?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+        axios.get(`https://eenar-backend.herokuapp.com/researcher/certificate?researcherId=${user.researchers.id}`,{withCredentials: true})
+        .then((response)=>{
+            console.log(response.data)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+      },[])
+
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - السيرة الذاتية" />

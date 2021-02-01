@@ -8,10 +8,9 @@ export const aboutmeFields = [
 ]
 
 export const profileFields=[
-    {name:"lastName",label:"اللقب",type:"text",defaultValue:"",className:""},
-    {name:"firstName",label:"الاسم",type:"text",defaultValue:"",className:""},
+    {name:"lastname",label:"اللقب",type:"text",defaultValue:"",className:""},
+    {name:"firstname",label:"الاسم",type:"text",defaultValue:"",className:""},
     {name:"birthday",label:"التاريخ الميلاد",type:"text",defaultValue:"",className:""},
-    {name:"nationality",label:"تاريخ الانتهاء",type:"text",defaultValue:"",className:""},
 ]
 
 export const  educationFields = [

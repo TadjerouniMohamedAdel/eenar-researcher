@@ -8,7 +8,7 @@ export default function RegistartionLayout(props) {
             <MyHead title="التسجيل في المنصة" />
             <div className={classes.registrationHeader}>
                 <div>
-                    <img src="/images/colored-logo.png" width={50}/>
+                    <img src="/images/logoAdmin2.png" width={50}/>
                 </div>
                 <h2>منتدى كوالالمبور<br/>شبكة الباحثين</h2>
             </div>

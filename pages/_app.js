@@ -3,6 +3,7 @@ import { createMuiTheme, StylesProvider, ThemeProvider,jssPreset, CssBaseline } 
 import rtl from 'jss-rtl';
 import { create } from 'jss';
 import {useEffect} from 'react'
+import UserContextProvider from '../utils/contexts/userContext';
 
 function MyApp({ Component, pageProps }) {
   const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -14,7 +15,7 @@ function MyApp({ Component, pageProps }) {
     <StylesProvider jss={jss}>
       <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Component {...pageProps} />
+              <Component {...pageProps} />
       </ThemeProvider>
     </StylesProvider>
   )

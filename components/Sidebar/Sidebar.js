@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import classes from './Sidebar.module.css'
 import HomeIcon from '@material-ui/icons/Home';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
@@ -9,6 +9,7 @@ import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceW
 import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import { useRouter } from 'next/router'
 import {Link} from '@material-ui/core'
+import { UserContext } from '../../utils/contexts/userContext';
 
 
 const Rectangles = function(){
@@ -62,43 +63,47 @@ const links =[
 ]
 
 const badges =[
-    {
-        src:"/images/more-small-badge.png",
-        srcSet:"/images/more-small-badge@2x.png 2x,/images/more-small-badge@3x.png 3x"
-    },
-    {
-        src:"/images/04.png",
-        srcSet:"/images/04@2x.png 2x,/images/04@3x.png 3x"
-    },
-    {
-        src:"/images/03.png",
-        srcSet:"/images/03@2x.png 2x,/images/03@3x.png 3x"
-    },
-    {
-        src:"/images/02.png",
-        srcSet:"/images/02@2x.png 2x,/images/02@3x.png 3x"
-    },
-    {
-        src:"/images/01.png",
-        srcSet:"/images/01@2x.png 2x,/images/01@3x.png 3x"
-    }
+    // {
+    //     src:"/images/more-small-badge.png",
+    //     srcSet:"/images/more-small-badge@2x.png 2x,/images/more-small-badge@3x.png 3x"
+    // },
+    // {
+    //     src:"/images/04.png",
+    //     srcSet:"/images/04@2x.png 2x,/images/04@3x.png 3x"
+    // },
+    // {
+    //     src:"/images/03.png",
+    //     srcSet:"/images/03@2x.png 2x,/images/03@3x.png 3x"
+    // },
+    // {
+    //     src:"/images/02.png",
+    //     srcSet:"/images/02@2x.png 2x,/images/02@3x.png 3x"
+    // },
+    // {
+    //     src:"/images/01.png",
+    //     srcSet:"/images/01@2x.png 2x,/images/01@3x.png 3x"
+    // }
 ]
 const overviews =[
-    {name:"المنشورات",value:"930"},{name:"الأصدقاء",value:"82"},{name:"الزيارات",value:"5.7K"}
+    {name:"المنشورات",value:"0"},{name:"الأصدقاء",value:"0"},{name:"الزيارات",value:"0"}
 ]
 
 export default function Sidebar() {
     let tab = [...links]
     tab.shift()
     const router = useRouter()
+    const [user,setUser] = useState({firstname:"",lastname:""})
     const [activeIndex,setActiveIndex] = useState(tab.findIndex(item=>router.pathname.includes(item.to))+1)
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('user')))
+    }, [])
     return (
         <div className={classes.sidebar}>
             <div className={classes.bondeau}></div>
             <div className={classes.profile}>
                 <Rectangles />
-                <h2 className={classes.profileTitle}>معاذ محساس</h2>
-                <span className={classes.profileJob}>أستاذ جامعي</span>
+                <h2 className={classes.profileTitle}>{user.firstname} {user.lastname}</h2>
+                <span className={classes.profileJob}>{user.job}</span>
             </div>
             <div className={classes.profileBadges}>
                 {

@@ -26,7 +26,7 @@ export default function index() {
     }
     
     const formik2 = useFormik({
-        initialValues:{firstName:"",lastName:"",email:"",password:"",retypedPassword:""},
+        initialValues:{firstname:"",lastname:"",email:"",password:"",retypedPassword:""},
         onSubmit: handleSubmit2,
         validationSchema:centerRegistrationStep2,
     });
@@ -134,23 +134,23 @@ export default function index() {
                             label="الإسم"
                             variant="outlined"
                             className={classes.registrationInput}
-                            name="firstName"
-                            value={formik2.values.firstName}
+                            name="firstname"
+                            value={formik2.values.firstname}
                             type="text"
                             onChange={formik2.handleChange} 
-                            error={formik2.errors.firstName}
-                            helperText={formik2.errors.firstName}
+                            error={formik2.errors.firstname}
+                            helperText={formik2.errors.firstname}
                             />
                         <TextField
                             label="اللقب"
                             variant="outlined"
                             className={classes.registrationInput}
-                            name="lastName"
-                            value={formik2.values.lastName}
+                            name="lastname"
+                            value={formik2.values.lastname}
                             type="text"
                             onChange={formik2.handleChange} 
-                            error={formik2.errors.lastName}
-                            helperText={formik2.errors.lastName}
+                            error={formik2.errors.lastname}
+                            helperText={formik2.errors.lastname}
                         />
                         <TextField
                             label="إيميل المؤسسة"

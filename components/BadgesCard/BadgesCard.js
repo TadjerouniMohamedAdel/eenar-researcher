@@ -12,7 +12,11 @@ export default function BadgesCard({badges}) {
             </IconButton>
         </h2>
         <div className={classes.resumeBagesImages}>
-            {badges.map((badge,index)=>(
+            {
+                badges.length == 0 && <h3 style={{fontFamily:"var(--primary-font)",fontWeight:500}}>قائمة الأوسمة فارغة</h3>
+            }
+            {
+            badges.map((badge,index)=>(
                 <img key={`badges-${index}`} alt="" src={badge.imageSrc} />
 
             ))}

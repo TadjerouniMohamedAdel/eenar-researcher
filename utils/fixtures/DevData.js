@@ -8,65 +8,65 @@ export const dataaboutme = {
   };
 
 export const  dataprofile = {
-  lastName:"تجروني",
-  firstName:"عادل محمد ",
+  lastname:"تجروني",
+  firstname:"عادل محمد ",
   job:"مطور ويب",
   birthday:"1997/02/24",
   nationality:"الجزائر"
 }
 
 export const databadges = [
-    {
-      imageSrc: "/images/01.png",
-    },
-    {
-      imageSrc: "/images/02.png",
-    },
-    {
-      imageSrc: "/images/03.png",
-    },
-    {
-      imageSrc: "/images/04.png",
-    },
-    {
-      imageSrc: "/images/01.png",
-    },
-    {
-      imageSrc: "/images/02.png",
-    },
-    {
-      imageSrc: "/images/03.png",
-    },
-    {
-      imageSrc: "/images/04.png",
-    },
-    {
-      imageSrc: "/images/01.png",
-    },
-    {
-      imageSrc: "/images/02.png",
-    },
-    {
-      imageSrc: "/images/03.png",
-    },
-    {
-      imageSrc: "/images/04.png",
-    },
-    {
-      imageSrc: "/images/01.png",
-    },
-    {
-      imageSrc: "/images/02.png",
-    },
-    {
-      imageSrc: "/images/03.png",
-    },
-    {
-      imageSrc: "/images/04.png",
-    },
-    {
-      imageSrc: "/images/04.png",
-    },
+    // {
+    //   imageSrc: "/images/01.png",
+    // },
+    // {
+    //   imageSrc: "/images/02.png",
+    // },
+    // {
+    //   imageSrc: "/images/03.png",
+    // },
+    // {
+    //   imageSrc: "/images/04.png",
+    // },
+    // {
+    //   imageSrc: "/images/01.png",
+    // },
+    // {
+    //   imageSrc: "/images/02.png",
+    // },
+    // {
+    //   imageSrc: "/images/03.png",
+    // },
+    // {
+    //   imageSrc: "/images/04.png",
+    // },
+    // {
+    //   imageSrc: "/images/01.png",
+    // },
+    // {
+    //   imageSrc: "/images/02.png",
+    // },
+    // {
+    //   imageSrc: "/images/03.png",
+    // },
+    // {
+    //   imageSrc: "/images/04.png",
+    // },
+    // {
+    //   imageSrc: "/images/01.png",
+    // },
+    // {
+    //   imageSrc: "/images/02.png",
+    // },
+    // {
+    //   imageSrc: "/images/03.png",
+    // },
+    // {
+    //   imageSrc: "/images/04.png",
+    // },
+    // {
+    //   imageSrc: "/images/04.png",
+    // },
   ];
   
 export const datausers = [

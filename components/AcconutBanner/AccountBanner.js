@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {Button, Link} from '@material-ui/core'
 import classes from './AccountBanner.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,12 +9,8 @@ import { dataprofile } from '../../utils/fixtures/DevData'
 import { profileFields } from '../../utils/form/Fields'
 import { profileSchema } from '../../utils/Validation/ValidationObjects'
 const overviews =[
-    {name:"المنشورات",value:"930"},{name:"الأصدقاء",value:"82"},{name:"الزيارات",value:"5.7K"}
+    {name:"المنشورات",value:"0"},{name:"الأصدقاء",value:"0"},{name:"الزيارات",value:"0"}
 ]
-const nationality = {
-    src:"https://www.countryflags.com/wp-content/uploads/algeria-algerian-flag-png-square-large.png",
-    name:"الجزائر"
-}
 
 const Rectongles = ()=> (
     <div className={classes.Rectangle9}>
@@ -28,7 +24,7 @@ const Rectongles = ()=> (
 
 export default function AccountBanner() {
     const [editVisible,setEditVisible] = useState(false)
-    const [profile,setProfile] = useState(dataprofile)
+    const [user,setUser] = useState({firstname:"",lastname:""})
     
     const handleEditSubmit = (data)=>{
         setProfile(data)
@@ -36,6 +32,9 @@ export default function AccountBanner() {
 
     }
 
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('user')))
+    }, [])
     return (
         <div className={classes.accountBanner}>
                 <Modal
@@ -43,7 +42,7 @@ export default function AccountBanner() {
                     setVisible={setEditVisible}
                 >
                         <EditElement
-                            item={profile}      
+                            item={user}      
                             title="الحساب"                      
                             fields={profileFields}
                             validationSchema={profileSchema}
@@ -53,13 +52,7 @@ export default function AccountBanner() {
                 <div className={classes.bondeau}></div>
                 <div className={classes.accountBannerContent}>
                     <div className={classes.accountBannerOverview}>
-                                <div className={classes.overviewItem} key={-1}>
-                                    <span className={classes.overviewValue}>
-                                        <img src={nationality.src} width={15}/>
-                                    </span>
-                                    <span className={classes.overviewName}>{profile.nationality}</span>
-                                </div>
-                            
+                                
                         {
                             overviews.map((overview,indx)=>(
                                 <>
@@ -74,8 +67,8 @@ export default function AccountBanner() {
                     </div>
                     <div className={classes.bannerProfile}>
                         <Rectongles />
-                        <span className={classes.profileName}>{`${profile.firstName} ${profile.lastName}`}</span>
-                        <span className={classes.profileJob}>أستاذ جامعي</span>
+                        <span className={classes.profileName}>{`${user.firstname} ${user.lastname}`}</span>
+                        <span className={classes.profileJob}>{user.job}</span>
                     </div>
                     <div className={classes.bannerLinks}>
                         <Button className={classes.linkEditAccount} onClick={()=>setEditVisible(true)}>
