@@ -1,15 +1,24 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { TextField,Button, FormControl, Select, MenuItem, InputLabel } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
+import { CircularProgress } from '@material-ui/core';
+
 
 export default function AddElement({fields,handleSubmit,validationSchema,title}) {
+    const [isLoading,setIsLoading] = useState(false)
     let values = {}
     fields.map((el,index)=>{values[el.name]=el.defaultValue})
     console.log(values)
+    
+    const submit = (data)=>{
+        setIsLoading(true)
+        handleSubmit(data)
+    }
+    
     const formik = useFormik({
         initialValues:values,
-        onSubmit: handleSubmit,
+        onSubmit: submit,
         validationSchema,
       });    
     
@@ -70,8 +79,11 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
                     ))
                 }
                 <div className={classes.submitContainer}>
-                    <Button className={classes.submit} type="submit">
-                        <span>حفظ</span>
+                    <Button className={classes.submit} type="submit" disabled={isLoading} >
+                        <div>
+                            {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
+                        </div>
+                        <span className="submitLabel">حفظ</span>
                     </Button>
                 </div>
             </form>

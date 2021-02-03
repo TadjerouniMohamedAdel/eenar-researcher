@@ -53,3 +53,6 @@ input{
     color: #f44336 !important;
     font-size: 11px !important;
 }
+.MuiAlert-message{
+    font-family: var(--primary-font);
+}

@@ -119,7 +119,7 @@ export const centerRegistrationStep1 = Yup.object().shape({
     region: Yup.string().required('يجب ملئ هذه المعلومة'),
     city: Yup.string().required('يجب ملئ هذه المعلومة'),
     address: Yup.string().required('يجب ملئ هذه المعلومة'),
-    centerName: Yup.string().required('يجب ملئ هذه المعلومة'),
+    center: Yup.string().required('يجب ملئ هذه المعلومة'),
     class: Yup.string().required('يجب ملئ هذه المعلومة'),
     job: Yup.string().required('يجب ملئ هذه المعلومة'),
 })

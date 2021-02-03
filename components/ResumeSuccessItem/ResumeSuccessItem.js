@@ -38,7 +38,7 @@ export default function ResumeSuccessItem({setItems,collectionName,label,items,l
           })
             .then(response=>{
                 console.log("response add",response.data)
-                setItems([...items,item])
+                setItems([...items,response.data])
                 setAddVisible(false)
             })
             .catch(error=>console.log(error))

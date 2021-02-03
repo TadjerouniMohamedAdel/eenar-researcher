@@ -41,7 +41,7 @@ export default function ResumeMainCollection({researcherId,setCollections,collec
           })
             .then(response=>{
                 console.log("response add",response.data)
-                setCollections([...collections,item]);
+                setCollections([...collections,response.data]);
                 setAddVisible(false)
             })
             .catch(error=>console.log(error))
