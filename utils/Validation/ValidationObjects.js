@@ -16,7 +16,7 @@ export const researcherRegistrationValidation1 = Yup.object().shape({
     firstname: Yup.string().required('يجب ملئ هذه المعلومة'),
     lastname: Yup.string().required('يجب ملئ هذه المعلومة'),
     center: Yup.string().required('يجب ملئ هذه المعلومة'),
-    gender: Yup.string().required('يجب ملئ هذه المعلومة'),
+    gender: Yup.string().oneOf(["male","female"]).required('يجب ملئ هذه المعلومة'),
 })
 export const researcherRegistrationValidation2 = Yup.object().shape({
     region: Yup.string().required('يجب ملئ هذه المعلومة'),
@@ -80,7 +80,7 @@ export const VolunteeringSchema = Yup.object().shape({
 
 export const languageSchema =  Yup.object().shape({
     name: Yup.string().required('يجب ملئ هذه المعلومة'),
-    level: Yup.string().required('يجب ملئ هذه المعلومة'),
+    level: Yup.string().oneOf(["beginner","intermediate","advanced","native"]).required('يجب ملئ هذه المعلومة'),
 })
 
 export const activitySchema = Yup.object().shape({
@@ -119,7 +119,7 @@ export const centerRegistrationStep1 = Yup.object().shape({
     region: Yup.string().required('يجب ملئ هذه المعلومة'),
     city: Yup.string().required('يجب ملئ هذه المعلومة'),
     address: Yup.string().required('يجب ملئ هذه المعلومة'),
-    centerName: Yup.string().required('يجب ملئ هذه المعلومة'),
+    center: Yup.string().required('يجب ملئ هذه المعلومة'),
     class: Yup.string().required('يجب ملئ هذه المعلومة'),
     job: Yup.string().required('يجب ملئ هذه المعلومة'),
 })

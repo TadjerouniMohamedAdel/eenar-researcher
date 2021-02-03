@@ -45,3 +45,14 @@ input{
 .autoHeight{
     height: auto !important;
 }
+.MuiTypography-root.MuiFormControlLabel-label.MuiTypography-body1{
+    font-family: var(--primary-font) !important;
+}
+.MuiFormHelperText-root{
+    font-family: var(--primary-font) !important;
+    color: #f44336 !important;
+    font-size: 11px !important;
+}
+.MuiAlert-message{
+    font-family: var(--primary-font);
+}

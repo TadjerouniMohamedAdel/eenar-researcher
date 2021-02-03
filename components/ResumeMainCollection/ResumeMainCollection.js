@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import classes from './ResumeMainCollection.module.css'
 import AddIcon from '@material-ui/icons/Add';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
@@ -11,34 +11,82 @@ import AddElement from '../CrudModal/AddElement'
 import EditElement from '../CrudModal/EditElement';
 import DeleteElement from '../CrudModal/DeleteElement';
 import moment from 'moment'
+import axios from 'axios'
 
 
-export default function ResumeMainCollection({setCollections,validationSchema,fields,children,collections,label,icon}){
+export default function ResumeMainCollection({researcherId,setCollections,collectionName,validationSchema,fields,children,collections,label,icon}){
     const [addVisible,setAddVisible] = useState(false)
     const [editVisible,setEditVisible] = useState(false)
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [selectedItem,setSelectedItem] = useState(null)
     const [viewMore,setViewMore] = useState(false)
+    let user =''
     moment.locale('ar-dz')
+
+
+
+    useEffect(()=>{
+        user = JSON.parse(localStorage.getItem('user'))
+    },[])
+
+
+
     const handleAddItem = (item)=>{
-        console.log("submit add element")
-        setCollections([...collections,item])
-        setAddVisible(false)
+        const user = JSON.parse(localStorage.getItem('user'))        
+        item.researcherId = user.researchers.id
+        axios({
+            method: 'post',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/${collectionName}/add`,
+            data: item
+          })
+            .then(response=>{
+                console.log("response add",response.data)
+                setCollections([...collections,response.data]);
+                setAddVisible(false)
+            })
+            .catch(error=>console.log(error))
+          ;
+        
     }
 
     const handleEditItem = (item)=>{
-        console.log("submit edit element")
-        let lastItems = [...collections]
-        const index = lastItems.findIndex((el)=>el.id === item.id)
-        lastItems[index] = item
-        setCollections(lastItems)
-        setEditVisible(false)
-        setSelectedItem(null)
+        const user = JSON.parse(localStorage.getItem('user'))
+        item.researcherId = user.researchers.id
+        
+        axios({
+            method: 'put',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/${collectionName}/edit`,
+            data: item
+          })
+            .then(response=>{
+                console.log(response)
+                let lastItems = [...collections]
+                const index = lastItems.findIndex((el)=>el.id === item.id)
+                lastItems[index] = item
+                setCollections(lastItems)
+                setEditVisible(false)
+                setSelectedItem(null)
+            })
+            .catch(error=>console.log(error))
+          ;
     }
     
     const handleDeleteItem = (item)=>{
-        setCollections(collections.filter((el)=>el.id!==item.id))
-        setDeleteVisible(false)
+        const user = JSON.parse(localStorage.getItem('user'))
+        item.researcherId = user.researchers.id
+        
+        axios({
+            method: 'delete',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/${collectionName}/delete?id=${item.id}`,
+            data: item
+          })
+            .then(response=>{
+                console.log(response)
+                setCollections(collections.filter((el)=>el.id!==item.id))
+                setDeleteVisible(false)
+            })
+            .catch(error=>console.log(error))
+          ;
     }
 
     return (

@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormHelperText, TextField } from '@material-ui/core'
+import { Button, Checkbox, CircularProgress, FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup, TextField } from '@material-ui/core'
 import React,{useState} from 'react'
 import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout'
 import classes from '../../../styles/Registration.module.css'
@@ -6,14 +6,20 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
-import Alert from '@material-ui/lab/Alert';
-
+import MuiAlert from '@material-ui/lab/Alert';
 import { researcherRegistrationValidation1, researcherRegistrationValidation2, researcherRegistrationValidation3 } from '../../../utils/Validation/ValidationObjects'
 import axios from 'axios'
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default function Registration() {
     const [step,setStep] = useState(0)
     const [showAlertSuccess,setShowAlertSuccess] = useState(false)
     const [user,setUser] = useState({image:"",type:"researcher",firstname:"",gender:"",lastname:"",center:"",address:"",job:"",region:"",city:"",email:'',password:"",retypedPassword:"",isAgree:false})
+    const [isLoading,setIsLoading] = useState(false)
+    const [errorRegistration,setErrorRegistration] = useState(null)
     const router = useRouter()
     let data={}
     const handleSubmit = (data)=>{
@@ -23,7 +29,7 @@ export default function Registration() {
             setStep(step+1)
         }
         else{
-
+            setIsLoading(true)
             console.log({...user,...data})
             axios.post("https://eenar-backend.herokuapp.com/user/addUser", {...user,...data})
               .then(function (response) {
@@ -32,10 +38,13 @@ export default function Registration() {
                 setTimeout(() => {
                     setShowAlertSuccess(false)
                     router.push("/login")
+                    setIsLoading(false)
                 }, 3000);
               })
               .catch(function (error) {
                 console.log(error)
+                setErrorRegistration(true)
+                setIsLoading(false)
               })
         }
     }
@@ -94,17 +103,24 @@ export default function Registration() {
                     error={formik1.errors.center}
                     helperText={formik1.errors.center} 
                     />
-                <TextField
-                    label="الجنس"
-                    variant="outlined"
-                    className={classes.registrationInput}
-                    name="gender"
-                    value={formik1.values.gender}
-                    type="text"
-                    onChange={formik1.handleChange}
-                    error={formik1.errors.gender}
-                    helperText={formik1.errors.gender} 
-                    />
+
+                <FormControl component="fieldset" className={classes.registrationInput} style={{marginBottom:10}}>
+                    <FormLabel component="legend">الجنس</FormLabel>
+                    <RadioGroup 
+                        aria-label="gender" 
+                        name="gender"  
+                        value={formik1.values.gender} 
+                        onChange={formik1.handleChange}
+                        error={formik1.errors.gender}
+                    >
+                            <div style={{display:"flex"}}>
+                                <FormControlLabel value="male" control={<Radio />} label="رجل" />
+                                <FormControlLabel value="female" control={<Radio />} label="إمرأة" />
+                            </div>
+                    </RadioGroup>
+                    <FormHelperText style={{marginTop:-5}}>{formik1.errors.gender}</FormHelperText>
+                    </FormControl>
+
                 
                 <Button
                     type="submit"
@@ -242,7 +258,11 @@ export default function Registration() {
                         type="submit"
                         variant="contained"
                         className={classes.registrationSubmit}
+                        disabled={isLoading}
                     >
+                        <div>
+                            {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
+                        </div>
                         <span>سجل الآن</span>
                     </Button>
                     <Button
@@ -254,6 +274,11 @@ export default function Registration() {
                         <span>العودة</span>
                     </Button>
 
+                </div>
+                <div style={{marginTop:-10,marginBottom:10,width:"80%"}}>
+                    {
+                        errorRegistration&&       <Alert severity="error">يرجى التحقق من معلومات الحساب</Alert>
+                    }
                 </div>
             </div>
     )

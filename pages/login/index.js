@@ -1,5 +1,5 @@
-import React,{useState,useContext} from 'react'
-import { Button, Checkbox, Paper, TextField } from '@material-ui/core'
+import React,{useState} from 'react'
+import { Button, Checkbox, CircularProgress, Paper, TextField } from '@material-ui/core'
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube,faFacebookSquare,faTwitter,faTwitch } from '@fortawesome/free-brands-svg-icons'
@@ -10,22 +10,42 @@ import Link  from 'next/link'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
 import { loginSchema } from '../../utils/Validation/ValidationObjects';
+import MuiAlert from '@material-ui/lab/Alert';
+
 import axios from 'axios'
 
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+
 export default function Login() {
+    const [isLoading,setIsLoading] = useState(false)
+    const [errorLogin,setErrorLogin] = useState(false)
     const router = useRouter()
     const handleSubmit = (data)=>{
+        setIsLoading(true)
         console.log(data)
-        axios.post("https://eenar-backend.herokuapp.com/auth/login",data)
-        .then(function (response) {
-          console.log(response);
-          localStorage.setItem('user',JSON.stringify(response.data))
-          router.push("/researcher/account/resume")
-        })
-        .catch(function (error) {
-          console.log(JSON.stringify(error))
-        })
+        axios({
+            method: 'post',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+            data,
+            // withCredentials:true
+          })
+            .then(response=>{
+                console.log(response.data)
+                localStorage.setItem('user',JSON.stringify(response.data))
+                setErrorLogin(null)
+                router.push("/researcher/account/resume")
+            })
+            .catch(error=>{
+                setIsLoading(false)
+                setErrorLogin(true)
+                console.log(error.response.message)
+            })
+          ;
+          
     }
     
     const formik = useFormik({
@@ -34,7 +54,6 @@ export default function Login() {
         validationSchema:loginSchema,
       });   
 
-	
 	
 	return (
 		<LoginLayout>
@@ -81,11 +100,20 @@ export default function Login() {
                     type="submit"
                     className={classes.loginFormSubmit}
                     variant="contained"
+                    disabled={isLoading}
                 >
+                        <div>
+                            {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
+                        </div>
                     <span>
                         تسجيل الدخول                                    
                     </span>
                 </Button> 
+                <div style={{marginTop:-10,marginBottom:10,width:"80%"}}>
+                    {
+                        errorLogin&&       <Alert severity="error">يرجى التحقق من معلومات الحساب</Alert>
+                    }
+                </div>
                 <div className={classes.oauth}>
                     <div className={classes.suggestOauth}>
                         <div className={classes.hDivider}></div>

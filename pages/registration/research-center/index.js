@@ -1,33 +1,61 @@
-import { Button, Checkbox, TextField } from '@material-ui/core'
+import { Button, Checkbox, CircularProgress, TextField } from '@material-ui/core'
 import React,{useState} from 'react'
 import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout'
 import classes from '../../../styles/Registration.module.css'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
 import { centerRegistrationStep1,centerRegistrationStep2 } from '../../../utils/Validation/ValidationObjects'
+import MuiAlert from '@material-ui/lab/Alert';
+import axios from 'axios' 
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export default function index() {
     const [step,setStep] = useState(0)
+    const [centerUser,setCenterUser] = useState({center:'',region:"",city:"",address:"",class:'',job:"",firstname:"",lastname:"",email:"",password:"",retypedPassword:""})
+    const [isLoading,setIsLoading] = useState(false)
+    const [errorRegistration,setErrorRegistration] = useState(null)
     const router = useRouter()
     
+    let data={}
     const handleSubmit = (data)=>{
-        console.log(data)
-        setStep(1)
+        
+        if(step<1) {
+            setCenterUser({...centerUser,...data})
+            setStep(step+1)
+        }
+        else{
+            setIsLoading(true)
+            console.log({...centerUser,...data})
+            axios.post("https://eenar-backend.herokuapp.com/user/addUser", {...centerUser,...data})
+              .then(function (response) {
+                console.log(response);
+                setShowAlertSuccess(true)
+                setTimeout(() => {
+                    setShowAlertSuccess(false)
+                    router.push("/login")
+                    setIsLoading(false)
+                }, 3000);
+              })
+              .catch(function (error) {
+                console.log(error)
+                setErrorRegistration(true)
+                setIsLoading(false)
+              })
+        }
     }
-    
     const formik = useFormik({
-        initialValues:{centerName:'',region:"",city:"",address:"",class:'',job:""},
+        initialValues:{center:'',region:"",city:"",address:"",class:'',job:""},
         onSubmit: handleSubmit,
         validationSchema:centerRegistrationStep1,
       });
-      const handleSubmit2 = (data)=>{
-        console.log(data)
-    }
+      
     
     const formik2 = useFormik({
         initialValues:{firstname:"",lastname:"",email:"",password:"",retypedPassword:""},
-        onSubmit: handleSubmit2,
+        onSubmit: handleSubmit,
         validationSchema:centerRegistrationStep2,
     });
 
@@ -54,12 +82,12 @@ export default function index() {
                             label="المؤسسة"
                             variant="outlined"
                             className={classes.registrationInput}
-                            name="centerName"
-                            value={formik.values.centerName}
+                            name="center"
+                            value={formik.values.center}
                             type="text"
                             onChange={formik.handleChange} 
-                            error={formik.errors.centerName}
-                            helperText={formik.errors.centerName}
+                            error={formik.errors.center}
+                            helperText={formik.errors.center}
                             />
                         <TextField
                             label="إقليم"
@@ -191,6 +219,9 @@ export default function index() {
                                 variant="contained"
                                 className={classes.registrationSubmit}
                             >
+                                <div>
+                                    {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
+                                </div>
                                 <span>سجل الآن</span>
                             </Button>
                             <Button
@@ -202,6 +233,11 @@ export default function index() {
                                 <span>العودة</span>
                             </Button>
 
+                        </div>
+                        <div style={{marginTop:-10,marginBottom:10,width:"80%"}}>
+                                {
+                                    errorRegistration&&       <Alert severity="error">يرجى التحقق من معلومات الحساب</Alert>
+                                }
                         </div>
                     </div>
                 </form>

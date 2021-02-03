@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import classes from './CrudModal.module.css'
-import { Button } from '@material-ui/core'
+import { Button, CircularProgress } from '@material-ui/core'
 import moment from 'moment'
 
 export default function DeleteElement({item,title,handleSubmit}) {
     moment.locale('ar-dz')
+    const [isLoading,setIsLoading] = useState(false)
     return (
         <div className={classes.crudElement}>
             <h1>
@@ -32,8 +34,11 @@ export default function DeleteElement({item,title,handleSubmit}) {
                                 <span>{item.location}</span>
                             </div>
                         </div>
-                <div className={classes.submitContainer} onClick={()=>handleSubmit(item)}>
-                        <Button className={classes.submit} type="button">
+                <div className={classes.submitContainer} onClick={()=>{setIsLoading(true);handleSubmit(item)}}>
+                        <Button className={classes.submit} type="button" disabled={isLoading}>
+                            <div>
+                                {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
+                            </div>
                             <span>تأكيد الحذف</span>
                         </Button>
                 </div>
