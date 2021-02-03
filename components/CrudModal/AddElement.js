@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField,Button } from '@material-ui/core'
+import { TextField,Button, FormControl, Select, MenuItem, InputLabel } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 
@@ -25,7 +25,31 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
             </div>
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 {
-                    fields.map((field,index)=>(
+                    fields.map((field,index)=>
+                    field.type == "select" ?
+                    (
+                         <FormControl  variant="outlined"  className={`${classes.formInput} ${field.className}`}>
+                            <InputLabel id="demo-simple-select-outlined-label">{field.label}</InputLabel>
+                            <Select
+                                value={formik.values[field.name]}
+                                name={field.name}
+                                onChange={formik.handleChange}
+                                label={field.name}
+                                error={formik.errors[field.name]}
+                                helperText={formik.errors[field.name]}
+
+                            >
+                                {
+                                    field.choices.map((choice,index)=>(
+                                        <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
+                                    ))
+                                }
+                                
+                            </Select>
+                        </FormControl>
+                    )
+                    
+                    :(
                         <div 
                             key={`crud-add-element-${index}`}
                         >

@@ -12,38 +12,79 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import EditElement from '../CrudModal/EditElement'
 import DeleteElement from '../CrudModal/DeleteElement'
 import moment from 'moment'
+import axios from 'axios'
 
 const backdropVariants = {
     visible:{opacity:1},
     hidden:{opacity:0},
 }
 
-export default function ResumeSuccessItem({setItems,label,items,last,fields,validationSchema}) {
+export default function ResumeSuccessItem({setItems,collectionName,label,items,last,fields,validationSchema}) {
     const [isExpanded,setIsExpanded] =useState(false)
     const [addVisible,setAddVisible] = useState(false)
     const [editVisible,setEditVisible] = useState(false)
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [selectedItem,setSelectedItem] = useState(null)
     moment.locale('ar-dz')
+
+
     const handleAddItem = (item)=>{
-        console.log("submit add element")
-        setItems([...items,item])
-        setAddVisible(false)
+        const user = JSON.parse(localStorage.getItem('user'))        
+        item.researcherId = user.researchers.id
+        axios({
+            method: 'post',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/${collectionName}/add`,
+            data: item
+          })
+            .then(response=>{
+                console.log("response add",response.data)
+                setItems([...items,item])
+                setAddVisible(false)
+            })
+            .catch(error=>console.log(error))
+          ;
     }
 
     const handleEditItem = (item)=>{
-        console.log("submit edit element")
-        let lastItems = [...items]
-        const index = lastItems.findIndex((el)=>el.id === item.id)
-        lastItems[index] = item
-        setItems(lastItems)
-        setEditVisible(false)
-        setSelectedItem(null)
+       
+        const user = JSON.parse(localStorage.getItem('user'))
+        item.researcherId = user.researchers.id
+        
+        axios({
+            method: 'put',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/${collectionName}/edit`,
+            data: item
+          })
+            .then(response=>{
+                let lastItems = [...items]
+                const index = lastItems.findIndex((el)=>el.id === item.id)
+                lastItems[index] = item
+                setItems(lastItems)
+                setEditVisible(false)
+                setSelectedItem(null)
+            })
+            .catch(error=>console.log(error))
+          ;
     }
     
     const handleDeleteItem = (item)=>{
-        setItems(items.filter((el)=>el.id!==item.id))
-        setDeleteVisible(false)
+        
+        const user = JSON.parse(localStorage.getItem('user'))
+        item.researcherId = user.researchers.id
+        
+        axios({
+            method: 'delete',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/${collectionName}/delete?id=${item.id}`,
+            data: item
+        })
+        .then(response=>{
+            console.log(response)
+            setItems(items.filter((el)=>el.id!==item.id))
+            setDeleteVisible(false)
+              
+            })
+            .catch(error=>console.log(error))
+          ;
     }
 
     return (

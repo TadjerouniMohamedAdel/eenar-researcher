@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormHelperText, TextField } from '@material-ui/core'
+import { Button, Checkbox, FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup, TextField } from '@material-ui/core'
 import React,{useState} from 'react'
 import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout'
 import classes from '../../../styles/Registration.module.css'
@@ -94,17 +94,24 @@ export default function Registration() {
                     error={formik1.errors.center}
                     helperText={formik1.errors.center} 
                     />
-                <TextField
-                    label="الجنس"
-                    variant="outlined"
-                    className={classes.registrationInput}
-                    name="gender"
-                    value={formik1.values.gender}
-                    type="text"
-                    onChange={formik1.handleChange}
-                    error={formik1.errors.gender}
-                    helperText={formik1.errors.gender} 
-                    />
+
+                <FormControl component="fieldset" className={classes.registrationInput} style={{marginBottom:10}}>
+                    <FormLabel component="legend">الجنس</FormLabel>
+                    <RadioGroup 
+                        aria-label="gender" 
+                        name="gender"  
+                        value={formik1.values.gender} 
+                        onChange={formik1.handleChange}
+                        error={formik1.errors.gender}
+                    >
+                            <div style={{display:"flex"}}>
+                                <FormControlLabel value="male" control={<Radio />} label="رجل" />
+                                <FormControlLabel value="female" control={<Radio />} label="إمرأة" />
+                            </div>
+                    </RadioGroup>
+                    <FormHelperText style={{marginTop:-5}}>{formik1.errors.gender}</FormHelperText>
+                    </FormControl>
+
                 
                 <Button
                     type="submit"

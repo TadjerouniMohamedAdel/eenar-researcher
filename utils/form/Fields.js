@@ -46,7 +46,7 @@ export const volunteeringFields = [
 
 export const languageFields = [
     {name:"name",label:"اللغة",type:"text",defaultValue:"",className:""},
-    {name:"level",label:"مستوى",type:"text",defaultValue:"",className:""},
+    {name:"level",label:"المستوى",type:"select",choices:[{label:"مبتدئ",value:"beginner"},{label:"متوسط",value:"intermediate"},{label:"متقدم",value:"advanced"},{label:"اللغة الأم",value:"native"}],defaultValue:"",className:""},
 ]
 
 export const activityFields = [

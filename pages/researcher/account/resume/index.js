@@ -58,72 +58,82 @@ export default function index() {
   
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem('user'))
-        axios.defaults.withCredentials = true;
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/education?researcherId=${user.researchers.id}`,{withCredentials: true})
-              .then((response)=>{
-                  console.log(response.data)
-              })
-              .catch(error=>{
-                console.log(error)
-              })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/activity?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/education?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        .catch(error=>{
-          console.log(error)
+          .then(response=>setEducations(response.data))
+          .catch(error=>console.log(error))
+        ;
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/experience?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/experience?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
+          .then(response=>setExperiences(response.data))
+          .catch(error=>console.log(error))
+        ;
+        
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/activity?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        .catch(error=>{
-          console.log(error)
+          .then(response=>setActivities(response.data))
+          .catch(error=>console.log(error))
+        ;
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/volunteering?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/language?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
+          .then(response=>setVolunteerings(response.data))
+          .catch(error=>console.log(error))
+        ;
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/certification?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        .catch(error=>{
-          console.log(error)
+          .then(response=>setCertifications(response.data))
+          .catch(error=>console.log(error))
+        ;
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/honor?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/patent?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
+          .then(response=>setHonors(response.data))
+          .catch(error=>console.log(error))
+        ;
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/project?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        .catch(error=>{
-          console.log(error)
+          .then(response=>setProjects(response.data))
+          .catch(error=>console.log(error))
+        ;
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/patent?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/honor?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
+          .then(response=>setPatents(response.data))
+          .catch(error=>console.log(error))
+        ;
+        axios({
+          method: 'get',
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/language?researcherId=${user.researchers.id}`,
+          data: {}
         })
-        .catch(error=>{
-          console.log(error)
-        })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/project?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
-        })
-        .catch(error=>{
-          console.log(error)
-        })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/volunteering?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
-        })
-        .catch(error=>{
-          console.log(error)
-        })
-        axios.get(`https://eenar-backend.herokuapp.com/researcher/certificate?researcherId=${user.researchers.id}`,{withCredentials: true})
-        .then((response)=>{
-            console.log(response.data)
-        })
-        .catch(error=>{
-          console.log(error)
-        })
-      },[])
+          .then(response=>setLanguages(response.data))
+          .catch(error=>console.log(error))
+        ;
+      },[])   
 
+      
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - السيرة الذاتية" />
@@ -140,6 +150,7 @@ export default function index() {
                 icon={<SchoolOutlinedIcon />}
                 label="المؤهلات الاكاديمية"
                 collections={educations}
+                collectionName="education"
                 setCollections={setEducations}
                 validationSchema={educationSchema}
                 fields={educationFields}
@@ -149,6 +160,7 @@ export default function index() {
                 icon={<WorkOutlineOutlinedIcon />}
                 label="الخبرة المهنية"
                 collections={experiences}
+                collectionName="experience"
                 setCollections={setExperiences}
                 validationSchema={experienceSchema}
                 fields={expericenceFields}
@@ -158,6 +170,7 @@ export default function index() {
                 icon={<CardMembershipOutlinedIcon />}
                 label="الشهادات"
                 collections={certifications}
+                collectionName="certification"
                 setCollections={setCertifications}
                 validationSchema={certificationSchema}
                 fields={certificationFields}
@@ -171,6 +184,7 @@ export default function index() {
                   />
                 }
                 label="العمل التطوعي"
+                collectionName="volunteering"
                 collections={volunteerings}
                 setCollections={setVolunteerings}
                 validationSchema={VolunteeringSchema}
@@ -180,6 +194,8 @@ export default function index() {
                 <ResumeSuccessItem
                     label="المشاريع"
                     items={projects}
+  
+                    collectionName="project"
                     setItems={setProjects}
                     validationSchema={projectSchema}
                     fields={projectFields}
@@ -187,12 +203,16 @@ export default function index() {
                 <ResumeSuccessItem
                     label="اللغات"
                     items={languages}
+  
+                    collectionName="language"
                     setItems={setLanguages}
                     validationSchema={languageSchema}
                     fields={languageFields}
                 />
                 <ResumeSuccessItem
                     label="النشاطات و الفعاليات"
+  
+                    collectionName="activity"
                     validationSchema={activitySchema}
                     fields={activityFields}
                     items={activities}
@@ -200,6 +220,8 @@ export default function index() {
                 />
                 <ResumeSuccessItem
                     label="براءات الاختراع"
+  
+                    collectionName="patent"
                     setItems={setPatents}
                     items={patents}
                     validationSchema={patentSchema}
@@ -208,6 +230,8 @@ export default function index() {
                 <ResumeSuccessItem
                     last
                     label="التكريمات"
+  
+                    collectionName="honor"
                     setItems={setHonors}
                     items={honors}
                     validationSchema={honorSchema}
