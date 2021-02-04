@@ -3,9 +3,6 @@ import { TextField,Button, Select, MenuItem, FormControl, InputLabel, CircularPr
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 
-
-
-
 export default function EditElement({item,fields,handleSubmit,validationSchema,title}) {
     const [isLoading,setIsLoading] = useState(false)
 

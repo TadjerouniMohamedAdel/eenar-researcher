@@ -66,3 +66,10 @@ input{
 .input-align-right input{
     text-align: right;
 }
+.MuiMenuItem-root{
+    font-family: var(--primary-font) !important;
+    font-size: 13px !important;
+}
+.MuiSelect-select{
+    font-family: var(--primary-font) !important;
+}
