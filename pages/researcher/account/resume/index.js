@@ -39,6 +39,8 @@ import {
 import { dataaboutme,datagroups,dataarticles,datahonors,datapatents,dataactivities,datalanguages,dataprojects,databadges,datausers,dataeducations,dataexperiences,datacertifications,datavolunteerings } from '../../../../utils/fixtures/DevData';
 import MyHead from '../../../../components/MyHead/MyHead';
 import axios from 'axios'
+import { useSelector } from 'react-redux'
+
 
 export default function index() {
   const [aboutme,setAboutMe] = useState([])
@@ -55,9 +57,9 @@ export default function index() {
   const [honors,setHonors] = useState([])
   const [articles,setArticles] = useState(dataarticles)
   const [groups,setGroups] = useState(datagroups)
+  const user = useSelector((state) => state.user)
   
     useEffect(()=>{
-        const user = JSON.parse(localStorage.getItem('user'))
         axios({
           method: 'get',
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/education?researcherId=${user.researchers.id}`,

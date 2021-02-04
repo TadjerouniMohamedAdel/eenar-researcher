@@ -25,14 +25,11 @@ export default function ResumeMainCollection({researcherId,setCollections,collec
 
 
 
-    useEffect(()=>{
-        user = JSON.parse(localStorage.getItem('user'))
-    },[])
-
+   
 
 
     const handleAddItem = (item)=>{
-        const user = JSON.parse(localStorage.getItem('user'))        
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)        
         item.researcherId = user.researchers.id
         axios({
             method: 'post',
@@ -50,7 +47,7 @@ export default function ResumeMainCollection({researcherId,setCollections,collec
     }
 
     const handleEditItem = (item)=>{
-        const user = JSON.parse(localStorage.getItem('user'))
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
         
         axios({
@@ -72,7 +69,7 @@ export default function ResumeMainCollection({researcherId,setCollections,collec
     }
     
     const handleDeleteItem = (item)=>{
-        const user = JSON.parse(localStorage.getItem('user'))
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
         
         axios({
