@@ -1,16 +1,15 @@
 export const aboutmeFields = [
-    {name:"date",label:"الإنضمام",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
     {name:"city",label:"المدينة",type:"text",defaultValue:"",className:""},
-    {name:"company",label:"المؤسسة",type:"text",defaultValue:"",className:""},
+    {name:"center",label:"المؤسسة",type:"text",defaultValue:"",className:""},
     {name:"job",label:"الوظيفة",type:"text",defaultValue:"",className:""},
     {name:"website",label:"الموقع",type:"text",defaultValue:"",className:""},
-    {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"aboutMe",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
 export const profileFields=[
     {name:"lastname",label:"اللقب",type:"text",defaultValue:"",className:""},
     {name:"firstname",label:"الاسم",type:"text",defaultValue:"",className:""},
-    {name:"birthday",label:"التاريخ الميلاد",type:"text",defaultValue:"",className:""},
+    {name:"birthday",label:"التاريخ الميلاد",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
 ]
 
 export const  educationFields = [

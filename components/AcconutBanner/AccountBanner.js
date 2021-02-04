@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube,faFacebookSquare,faTwitter,faTwitch, faDribbble, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
 import Modal from '../Modal/Modal'
 import EditElement from '../CrudModal/EditElement'
-import { dataprofile } from '../../utils/fixtures/DevData'
 import { profileFields } from '../../utils/form/Fields'
 import { useSelector } from 'react-redux'
 import { profileSchema } from '../../utils/Validation/ValidationObjects'
@@ -27,7 +26,6 @@ export default function AccountBanner() {
     const [editVisible,setEditVisible] = useState(false)
     const user = useSelector((state) => state.user)
     const handleEditSubmit = (data)=>{
-        setProfile(data)
         setEditVisible(false)
 
     }

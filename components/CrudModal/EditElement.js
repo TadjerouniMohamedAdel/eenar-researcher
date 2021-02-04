@@ -67,7 +67,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                     type={field.type}
                                     {...field.props}
                                     onChange={formik.handleChange}
-                                    value={field.type!="date"?formik.values[field.name]:formik.values[field.name].split("T")[0]}
+                                    value={field.type=="date"&&formik.values[field.name]?formik.values[field.name].split("T")[0]:formik.values[field.name]}
                                     id={`crud-add-element-${index}-${field.name}`}
                                     label={field.label}
                                     error={formik.errors[field.name]}
