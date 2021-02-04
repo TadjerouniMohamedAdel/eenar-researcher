@@ -62,7 +62,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                 key={`crud-add-element-${index}`}
                             >
                                 <TextField
-                                    className={`${classes.formInput} ${field.className}`}
+                                    className={`input-align-right ${classes.formInput} ${field.className}`}
                                     name={field.name}
                                     type={field.type}
                                     {...field.props}
