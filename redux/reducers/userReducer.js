@@ -8,10 +8,13 @@ export default (state = initialState, { type, payload }) => {
     switch (type) {
 
     case SET_USER:
-        return payload
+        return {
+            ...state,
+            ...payload,
+        }
    
     case DELETE_USER:
-        return null
+        return {}
     
     default:
         return state
