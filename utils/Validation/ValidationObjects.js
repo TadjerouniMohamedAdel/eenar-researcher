@@ -44,9 +44,7 @@ export const aboutmeSchema = Yup.object().shape({
 export const profileSchema = Yup.object().shape({
     lastname: Yup.string().required('يجب ملئ هذه المعلومة'),
     firstname: Yup.string().required('يجب ملئ هذه المعلومة'),
-    job: Yup.string().required('يجب ملئ هذه المعلومة'),
     birthday: Yup.string().required('يجب ملئ هذه المعلومة'),
-    nationality: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
 export const educationSchema = Yup.object().shape({

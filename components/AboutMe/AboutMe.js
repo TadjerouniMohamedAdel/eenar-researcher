@@ -17,7 +17,6 @@ export default function AboutMe() {
     const user = useSelector(state => state.user)
     moment.locale('ar-dz')
     const handleEditAboutme = (data)=>{
-        setAboutme(data)
         setEditVisible(false)
     }
     return (

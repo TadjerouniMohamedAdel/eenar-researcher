@@ -8,6 +8,10 @@ import EditElement from '../CrudModal/EditElement'
 import { profileFields } from '../../utils/form/Fields'
 import { useSelector } from 'react-redux'
 import { profileSchema } from '../../utils/Validation/ValidationObjects'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../redux/actions/actionCreator'
+
 const overviews =[
     {name:"المنشورات",value:"0"},{name:"الأصدقاء",value:"0"},{name:"الزيارات",value:"0"}
 ]
@@ -25,8 +29,21 @@ const Rectongles = ()=> (
 export default function AccountBanner() {
     const [editVisible,setEditVisible] = useState(false)
     const user = useSelector((state) => state.user)
+    const dispatch = useDispatch()
+    
     const handleEditSubmit = (data)=>{
-        setEditVisible(false)
+        axios({
+            method:'put',
+            url:`${process.env.NEXT_PUBLIC_API_URL}/user/edit`,
+            data
+        }).then(response=>{
+            console.log("respnse",response.data)
+            dispatch(setUser(response.data))
+            setEditVisible(false)
+        }).catch(error=>{
+            console.log(error)
+        })
+
 
     }
 
