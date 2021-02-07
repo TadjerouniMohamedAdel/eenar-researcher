@@ -13,6 +13,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
 
     const formik = useFormik({
         initialValues:item,
+        validateOnChange:false,
         onSubmit: submit,
         validationSchema,
       });    

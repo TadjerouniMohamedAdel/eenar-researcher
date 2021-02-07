@@ -18,6 +18,7 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
     
     const formik = useFormik({
         initialValues:values,
+        validateOnChange:false,
         onSubmit: submit,
         validationSchema,
       });    
