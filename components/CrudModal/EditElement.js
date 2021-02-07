@@ -3,9 +3,6 @@ import { TextField,Button, Select, MenuItem, FormControl, InputLabel, CircularPr
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 
-
-
-
 export default function EditElement({item,fields,handleSubmit,validationSchema,title}) {
     const [isLoading,setIsLoading] = useState(false)
 
@@ -62,12 +59,12 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                 key={`crud-add-element-${index}`}
                             >
                                 <TextField
-                                    className={`${classes.formInput} ${field.className}`}
+                                    className={`input-align-right ${classes.formInput} ${field.className}`}
                                     name={field.name}
                                     type={field.type}
                                     {...field.props}
                                     onChange={formik.handleChange}
-                                    value={field.type!="date"?formik.values[field.name]:formik.values[field.name].split("T")[0]}
+                                    value={field.type=="date"&&formik.values[field.name]?formik.values[field.name].split("T")[0]:formik.values[field.name]}
                                     id={`crud-add-element-${index}-${field.name}`}
                                     label={field.label}
                                     error={formik.errors[field.name]}

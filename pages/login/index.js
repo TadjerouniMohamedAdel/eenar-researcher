@@ -11,8 +11,10 @@ import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
 import { loginSchema } from '../../utils/Validation/ValidationObjects';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useDispatch } from 'react-redux'
 
 import axios from 'axios'
+import { setUser } from '../../redux/actions/actionCreator';
 
 
 function Alert(props) {
@@ -24,6 +26,7 @@ export default function Login() {
     const [isLoading,setIsLoading] = useState(false)
     const [errorLogin,setErrorLogin] = useState(false)
     const router = useRouter()
+    const dispatch = useDispatch()
     const handleSubmit = (data)=>{
         setIsLoading(true)
         console.log(data)
@@ -35,7 +38,7 @@ export default function Login() {
           })
             .then(response=>{
                 console.log(response.data)
-                localStorage.setItem('user',JSON.stringify(response.data))
+                dispatch(setUser(response.data))
                 setErrorLogin(null)
                 router.push("/researcher/account/resume")
             })

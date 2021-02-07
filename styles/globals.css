@@ -56,3 +56,20 @@ input{
 .MuiAlert-message{
     font-family: var(--primary-font);
 }
+
+.MuiInputLabel-outlined {
+    z-index: 2 !important;
+    background: white;
+    padding-right: 4px !important;
+    padding-left: 4px !important;
+}
+.input-align-right input{
+    text-align: right;
+}
+.MuiMenuItem-root{
+    font-family: var(--primary-font) !important;
+    font-size: 13px !important;
+}
+.MuiSelect-select{
+    font-family: var(--primary-font) !important;
+}

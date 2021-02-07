@@ -67,6 +67,9 @@
     flex-direction: column;
     align-items: center;
 }
+.registrationContainer .registrationContent .registrationChoiceItem .choiceImg{
+    width: 90%;
+}
 .registrationContainer .registrationContent .registrationChoiceItem .choiceImg img{
     position: relative;
     top: 0;

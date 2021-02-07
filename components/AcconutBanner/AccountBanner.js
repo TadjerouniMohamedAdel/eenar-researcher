@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube,faFacebookSquare,faTwitter,faTwitch, faDribbble, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
 import Modal from '../Modal/Modal'
 import EditElement from '../CrudModal/EditElement'
-import { dataprofile } from '../../utils/fixtures/DevData'
 import { profileFields } from '../../utils/form/Fields'
+import { useSelector } from 'react-redux'
 import { profileSchema } from '../../utils/Validation/ValidationObjects'
 const overviews =[
     {name:"المنشورات",value:"0"},{name:"الأصدقاء",value:"0"},{name:"الزيارات",value:"0"}
@@ -24,17 +24,13 @@ const Rectongles = ()=> (
 
 export default function AccountBanner() {
     const [editVisible,setEditVisible] = useState(false)
-    const [user,setUser] = useState({firstname:"",lastname:""})
-    
+    const user = useSelector((state) => state.user)
     const handleEditSubmit = (data)=>{
-        setProfile(data)
         setEditVisible(false)
 
     }
 
-    useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem('user')))
-    }, [])
+    
     return (
         <div className={classes.accountBanner}>
                 <Modal

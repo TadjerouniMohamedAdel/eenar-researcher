@@ -9,7 +9,8 @@ import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceW
 import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import { useRouter } from 'next/router'
 import {Link} from '@material-ui/core'
-import { UserContext } from '../../utils/contexts/userContext';
+import { useSelector } from 'react-redux'
+
 
 
 const Rectangles = function(){
@@ -90,13 +91,11 @@ const overviews =[
 
 export default function Sidebar() {
     let tab = [...links]
+    const user = useSelector((state) => state.user)
     tab.shift()
     const router = useRouter()
-    const [user,setUser] = useState({firstname:"",lastname:""})
     const [activeIndex,setActiveIndex] = useState(tab.findIndex(item=>router.pathname.includes(item.to))+1)
-    useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem('user')))
-    }, [])
+   
     return (
         <div className={classes.sidebar}>
             <div className={classes.bondeau}></div>

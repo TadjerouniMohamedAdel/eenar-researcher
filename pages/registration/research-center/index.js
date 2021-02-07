@@ -90,7 +90,7 @@ export default function index() {
                             helperText={formik.errors.center}
                             />
                         <TextField
-                            label="إقليم"
+                            label="الولاية"
                             variant="outlined"
                             className={classes.registrationInput}
                             name="region"
