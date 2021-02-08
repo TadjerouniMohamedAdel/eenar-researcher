@@ -92,6 +92,10 @@
     justify-content: center;
     align-items: center;
 }
+.noStyled{
+    text-decoration: none !important;
+}
+
 .downloadResume span{
     /* width: auto; */
     /* height: 27px; */

@@ -80,7 +80,7 @@ export default function AccountBanner() {
                     </div>
                     <div className={classes.bannerProfile}>
                         <Rectongles />
-                        <span className={classes.profileName}>{`${user.firstname} ${user.lastname}`}</span>
+                        <span className={classes.profileName}>{`${user.lastname} ${user.firstname}`}</span>
                         <span className={classes.profileJob}>{user.job}</span>
                     </div>
                     <div className={classes.bannerLinks}>
