@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { TextField,Button, FormControl, Select, MenuItem, InputLabel } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress , Stepper , Step , StepLabel  } from '@material-ui/core';
 
 
 export default function MultiStepsAddElement({steps,handleSubmit,title}) {
@@ -35,8 +35,21 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
     return (
         <div className={classes.crudElement}>
             <h1>
-            إضافة   
-                {` ${title}`}
+                <span>
+                    إضافة   
+                    {` ${title}`}
+                </span>
+                <div className={classes.stepper}>
+                    {
+                        steps.map((el,index)=>(
+                            <>
+                            <div className={`${classes.step} ${step >= index&& classes.done}`}><span>{index+1}</span></div>
+                            {steps[index+1] && <div className={classes.stepConjection}></div>}
+                            </>
+                        ))
+                    }
+                </div>
+
             </h1>
             <div className={classes.divider}></div>
             <div className={classes.formDescription}>
