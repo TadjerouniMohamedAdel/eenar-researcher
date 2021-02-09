@@ -13,6 +13,8 @@
     font-stretch: normal;
     font-style: normal;
     line-height: 1;
+    display: flex;
+    justify-content: space-between;
     letter-spacing: normal;
     text-align: right;
     color: #3e3f5e;
@@ -61,7 +63,7 @@
     display: flex;
     width: 100%;
     justify-content: flex-end;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .crudElement .submitContainer .submit{
@@ -90,6 +92,64 @@
     letter-spacing: normal;
     text-align: center;
     color: #fff;
+}
+.crudElement .submitContainer .back{
+    width: 153px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    align-items: center;
+    border: solid 1px #afb0c0;
+    background-color: #ffffff;   
+}
+.submitContainer .back span {
+    /* width: 40px; */
+    height: 27px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: #afb0c0;
+}
+.crudElement .submitContainer .next{
+    width: 153px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    align-items: center;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    border: solid 1px #06d6a0;
+    background-color: #ffffff;   
+}
+.submitContainer .next span {
+    /* width: 40px; */
+    height: 27px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--active-color);
 }
 .collectionItem{
     display: flex;

@@ -13,6 +13,12 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import { Button, FormControl, IconButton, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from '../../../../components/Modal/Modal';
+import MultiStepsAddElement from '../../../../components/CrudModal/MultiStepsAddElement';
+import { postStep1,postStep2 } from '../.././../../utils/form/Fields'
+import { postSchemaStep1,postSchemaStep2 } from '../.././../../utils/Validation/ValidationObjects'
+
+
+
 export default function index() {
     const [articles,setArticles] = useState(dataarticles)
     const [groups,setGroups] = useState(datagroups)
@@ -44,6 +50,10 @@ export default function index() {
                             fields={fields} 
                             handleSubmit={handleAddItem}
                         /> */}
+                        <MultiStepsAddElement
+                            title="منشور"
+                            steps={[{fields:postStep1,validationSchema:postSchemaStep1},{fields:postStep2,validationSchema:postSchemaStep2}]}
+                        />
                 </Modal>
                 <div className={classes.mainSection}>
                     <div className={classes.filterSection}>
