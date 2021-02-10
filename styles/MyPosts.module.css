@@ -41,18 +41,23 @@
 }
 .myPostsContainer .mainSection .filterSection .input{
     width: 349px !important;
-    border-radius: 8px;
-    border: solid 1px #dedeea !important;
+    border-radius: 10px !important;
+    border: solid 1px transparent !important;
     background-color: #ffffff;
     margin-top: 6px;
 }
-.select{
+.myPostsContainer  .input > div{
+    border-radius: 10px !important;
+    border-color: transparent;
+}
+.myPostsContainer .select{
     width: 143px;
-    height: 48px;
+    /* height: 48px !important; */
     border-radius: 8px;
     border: solid 1px #dedeea;
     background-color: #ffffff;
 }
+
 .myPostsContainer .mainSection .filterSection .searchButton{
     width: 64px !important;
     height: 48px !important;

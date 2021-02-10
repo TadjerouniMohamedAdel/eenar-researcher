@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { CircularProgress , Stepper , Step , StepLabel  } from '@material-ui/core';
 
 
-export default function MultiStepsAddElement({steps,handleSubmit,title}) {
+export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
     const [isLoading,setIsLoading] = useState(false)
     const [step,setStep] = useState(0)
     const submit = (data)=>{
@@ -18,11 +18,10 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
     }
     let formiks =[]
     steps.map((formStep,index)=>{
-            let values = {}
-            formStep.fields.map((el,index)=>{values[el.name]=el.defaultValue})
+            
             formiks.push(
                 useFormik({
-                    initialValues:values,
+                    initialValues:item,
                     validateOnChange:false,
                     onSubmit: submit,
                     validationSchema:formStep.validationSchema,
@@ -36,7 +35,7 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
         <div className={classes.crudElement}>
             <h1>
                 <span>
-                    إضافة   
+                تعديل   
                     {` ${title}`}
                 </span>
                 <div className={classes.stepper}>
@@ -53,14 +52,14 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
             </h1>
             <div className={classes.divider}></div>
             <div className={classes.formDescription}>
-                {`يرجى ملئ المعلومات لإضافة ${title} `}
+            {`يرجى ملئ المعلومات لتعديل ${title} `}
             </div>
             <form className={classes.form} onSubmit={formiks[step].handleSubmit}>
                 {
                     steps[step].fields.map((field,index)=>
                     field.type == "select" ?
                     (
-                         <FormControl  key={`crud-add-element-${index}-${step}`} variant="outlined"  className={`${classes.formInput} ${field.className}`}>
+                         <FormControl  key={`crud-edit-element-${index}-${step}`}  variant="outlined"  className={`${classes.formInput} ${field.className}`}>
                             <InputLabel id="demo-simple-select-outlined-label">{field.label}</InputLabel>
                             <Select
                                 value={formiks[step].values[field.name]}
@@ -83,7 +82,7 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                     
                     :(
                         <div 
-                            key={`crud-add-element-${index}-${step}`}
+                            key={`crud-edit-element-${index}-${step}`}
                         >
                             <TextField
                                 className={`input-align-right ${classes.formInput} ${field.className}`}
@@ -92,7 +91,7 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                                 {...field.props}
                                 onChange={formiks[step].handleChange}
                                 value={formiks[step].values[field.name]}
-                                id={`crud-add-element-${index}-${field.name}`}
+                                id={`crud-edit-element-${index}-${field.name}`}
                                 label={field.label}
                                 error={formiks[step].errors[field.name]}
                                 helperText={formiks[step].errors[field.name]}
