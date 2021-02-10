@@ -57,50 +57,55 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
             </div>
             <form className={classes.form} onSubmit={formiks[step].handleSubmit}>
                 {
-                    steps[step].fields.map((field,index)=>
-                    field.type == "select" ?
-                    (
-                         <FormControl  key={`crud-add-element-${index}-${step}`} variant="outlined"  className={`${classes.formInput} ${field.className}`}>
-                            <InputLabel id="demo-simple-select-outlined-label">{field.label}</InputLabel>
-                            <Select
-                                value={formiks[step].values[field.name]}
-                                name={field.name}
-                                onChange={formiks[step].handleChange}
-                                label={field.name}
-                                error={formiks[step].errors[field.name]}
-                                helperText={formiks[step].errors[field.name]}
+                    steps[step].fields.map((field,index)=>{
+                        switch (field.type) {
+                            case "select":
+                                return (
+                                    <FormControl  key={`crud-add-element-${index}-${step}`} variant="outlined"  className={`${classes.formInput} ${field.className}`}>
+                                        <InputLabel id="demo-simple-select-outlined-label">{field.label}</InputLabel>
+                                        <Select
+                                            value={formiks[step].values[field.name]}
+                                            name={field.name}
+                                            onChange={formiks[step].handleChange}
+                                            label={field.name}
+                                            error={formiks[step].errors[field.name]}
+                                            helperText={formiks[step].errors[field.name]}
 
-                            >
-                                {
-                                    field.choices.map((choice,index)=>(
-                                        <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
-                                    ))
-                                }
-                                
-                            </Select>
-                        </FormControl>
-                    )
+                                        >
+                                            {
+                                                field.choices.map((choice,index)=>(
+                                                    <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
+                                                ))
+                                            }
+                                            
+                                        </Select>
+                                    </FormControl>
+                                )
+                                break;
+                        
+                            default:
+                                return (
+                                    <div  key={`crud-add-element-${index}-${step}`}>
+                                        <TextField
+                                            className={`input-align-right ${classes.formInput} ${field.className}`}
+                                            name={field.name}
+                                            type={field.type}
+                                            {...field.props}
+                                            onChange={formiks[step].handleChange}
+                                            value={formiks[step].values[field.name]}
+                                            id={`crud-add-element-${index}-${field.name}`}
+                                            label={field.label}
+                                            error={formiks[step].errors[field.name]}
+                                            helperText={formiks[step].errors[field.name]}
+                                            variant="outlined"
+                                        />
+                                    </div>
+                                )
+                                break;
+                            }
+                        })
+                    }
                     
-                    :(
-                        <div 
-                            key={`crud-add-element-${index}-${step}`}
-                        >
-                            <TextField
-                                className={`input-align-right ${classes.formInput} ${field.className}`}
-                                name={field.name}
-                                type={field.type}
-                                {...field.props}
-                                onChange={formiks[step].handleChange}
-                                value={formiks[step].values[field.name]}
-                                id={`crud-add-element-${index}-${field.name}`}
-                                label={field.label}
-                                error={formiks[step].errors[field.name]}
-                                helperText={formiks[step].errors[field.name]}
-                                variant="outlined"
-                            />
-                        </div>
-                    ))
-                }
                 <div className={classes.submitContainer}>
                     {step !=0 && (
                     <Button className={classes.back} type="button" onClick={()=>setStep(step-1)}>
