@@ -54,6 +54,7 @@
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }
+
 .crudElement .step.done span{
     font-weight: bold;
     font-stretch: normal;

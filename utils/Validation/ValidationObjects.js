@@ -113,7 +113,7 @@ export const projectSchema = Yup.object().shape({
 
 export const postSchemaStep1 = Yup.object().shape({
     primaryAuthor: Yup.string().required('يجب ملئ هذه المعلومة'),
-    secondaryAuthors: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // secondaryAuthors: Yup.string().required('يجب ملئ هذه المعلومة'),
     arabicTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
     englishTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
     publishedBy: Yup.string().required('يجب ملئ هذه المعلومة'),
@@ -125,7 +125,7 @@ export const postSchemaStep2 = Yup.object().shape({
     publishedDate: Yup.string().required('يجب ملئ هذه المعلومة'),
     file: Yup.string().required('يجب ملئ هذه المعلومة'),
     publishedBy: Yup.string().required('يجب ملئ هذه المعلومة'),
-    keywords: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // keywords: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
 

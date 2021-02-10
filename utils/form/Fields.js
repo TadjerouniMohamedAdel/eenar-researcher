@@ -81,7 +81,7 @@ export const projectFields = [
 
 export const postStep1=[
     {name:"primaryAuthor",label:"المؤلف الرئيسي",type:"text",defaultValue:"",className:""},
-    {name:"secondaryAuthors",label:"المؤلفون المشاركون",type:"text",defaultValue:"",className:""},
+    {name:"secondaryAuthors",label:"المؤلفون المشاركون",type:"array",defaultValue:"",className:""},
     {name:"arabicTitle",label:"عنوان المنشور بالعربية",type:"text",defaultValue:"",className:""},
     {name:"englishTitle",label:"عنوان المنشور بالإنجليزية",type:"text",defaultValue:"",className:""},
     {name:"publishedBy",label:"الناشر",type:"text",defaultValue:"",className:""},
@@ -93,5 +93,5 @@ export const postStep2=[
     {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"publishedDate",label:"تاريخ النشر",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
     {name:"file",label:"تحميل ملف المقال",type:"text",defaultValue:"",className:""},
-    {name:"keywords",label:"تحميل ملف المقال",type:"text",defaultValue:"",className:""},
+    {name:"keywords",label:"الكلمات المفتاحية",type:"array",defaultValue:"",className:""},
 ]

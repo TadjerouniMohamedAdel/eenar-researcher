@@ -37,6 +37,7 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
                 {
                     fields.map((field,index)=>{
                         switch (field.type) {
+                            
                             case "select":
                                 return(
                                     <FormControl  variant="outlined"  className={`${classes.formInput} ${field.className}`}>

@@ -1,13 +1,16 @@
-import React,{useState} from 'react'
+import React,{ useState } from 'react'
 import { TextField,Button, FormControl, Select, MenuItem, InputLabel } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 import { CircularProgress , Stepper , Step , StepLabel  } from '@material-ui/core';
+import Chip from "@material-ui/core/Chip";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 
 export default function MultiStepsAddElement({steps,handleSubmit,title}) {
     const [isLoading,setIsLoading] = useState(false)
     const [step,setStep] = useState(0)
+              
     const submit = (data)=>{
         console.log("executed submit",data)
         if(step !== steps.length -1) setStep(step+1)
@@ -59,6 +62,36 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                 {
                     steps[step].fields.map((field,index)=>{
                         switch (field.type) {
+                            case "array":
+                                let values = formiks[step].values[field.name]
+                                return (
+                                        <Autocomplete
+                                            style={{marginTop:28,borderRadius:12}}
+                                            multiple
+                                            key={`crud-add-element-${index}-${step}`}
+                                            onChange={(e,values)=>{
+                                                formiks[step].values[field.name] = values
+                                            }}
+                                            freeSolo
+                                            name={field.name}
+                                            defaultValue={values}
+                                            id={`crud-add-element-${index}-${step}`}
+                                            options={[]}
+                                            renderTags={(value, getTagProps) =>
+                                                value.map((option, index) => (
+                                                <Chip
+                                                    variant="outlined"
+                                                    label={option}
+                                                    {...getTagProps({ index })}
+                                                />
+                                                ))
+                                            }
+                                            renderInput={(params) => (
+                                                <TextField  className={`${field.className}`} {...params} label={field.label} variant="outlined" />
+                                            )}
+                                        />
+                                );
+                                break;
                             case "select":
                                 return (
                                     <FormControl  key={`crud-add-element-${index}-${step}`} variant="outlined"  className={`${classes.formInput} ${field.className}`}>

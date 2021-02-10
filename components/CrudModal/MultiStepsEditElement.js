@@ -3,6 +3,8 @@ import { TextField,Button, FormControl, Select, MenuItem, InputLabel } from '@ma
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 import { CircularProgress , Stepper , Step , StepLabel  } from '@material-ui/core';
+import Chip from "@material-ui/core/Chip";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 
 export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
@@ -58,6 +60,35 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
                 {
                     steps[step].fields.map((field,index)=>{
                         switch (field.type) {
+                            case "array":
+                                let values = formiks[step].values[field.name]
+                                return (
+                                        <Autocomplete
+                                            multiple
+                                            key={`crud-edit-element-${index}-${step}`}
+                                            onChange={(e,values)=>{
+                                                formiks[step].values[field.name] = values
+                                            }}
+                                            freeSolo
+                                            name={field.name}
+                                            defaultValue={values}
+                                            id={`crud-edit-element-${index}-${step}`}
+                                            options={[]}
+                                            renderTags={(value, getTagProps) =>
+                                                value.map((option, index) => (
+                                                <Chip
+                                                    variant="outlined"
+                                                    label={option}
+                                                    {...getTagProps({ index })}
+                                                />
+                                                ))
+                                            }
+                                            renderInput={(params) => (
+                                                <TextField  className={`${classes.formInput} ${field.className}`} {...params} label={field.label} variant="outlined" />
+                                            )}
+                                        />
+                                );
+                                break;
                             case "select":
                                 return(
                                     <FormControl  key={`crud-edit-element-${index}-${step}`}  variant="outlined"  className={`${classes.formInput} ${field.className}`}>
