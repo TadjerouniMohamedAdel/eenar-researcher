@@ -127,6 +127,32 @@ export const postSchemaStep2 = Yup.object().shape({
     // keywords: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
+export const projectSchemaStep1 = Yup.object().shape({
+    primaryAuthor: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // secondaryAuthors: Yup.string().required('يجب ملئ هذه المعلومة'),
+    arabicTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
+    englishTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
+    supervisor: Yup.string().required('يجب ملئ هذه المعلومة'),
+    center: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const projectSchemaStep2 = Yup.object().shape({
+    arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
+    englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+
+export const projectSchemaStep3 = Yup.object().shape({
+    justifications: Yup.string().required('يجب ملئ هذه المعلومة'),
+    goals: Yup.string().required('يجب ملئ هذه المعلومة'),
+    previousStudies: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const projectSchemaStep4 = Yup.object().shape({
+    methodology: Yup.string().required('يجب ملئ هذه المعلومة'),
+    materials: Yup.string().required('يجب ملئ هذه المعلومة'),
+    steps: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+
 
 /**  researche center form validation **/
 export const centerRegistrationStep1 = Yup.object().shape({

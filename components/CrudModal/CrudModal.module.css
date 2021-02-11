@@ -63,7 +63,7 @@
     color: #ffffff;
 }
 .crudElement .stepConjection{
-    width: 90%;
+    flex: 1;
     height: 0;
     border: solid 1px var(--primary-color);
   }

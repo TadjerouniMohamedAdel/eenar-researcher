@@ -19,6 +19,10 @@ import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import MultiStepsEditElement from '../../../../components/CrudModal/MultiStepsEditElement';
 import MultiStepsAddElement from '../../../../components/CrudModal/MultiStepsAddElement';
 import classes from '../../../../styles/MyProjects.module.css'
+import { projectSchemaStep1, projectSchemaStep2, projectSchemaStep3, projectSchemaStep4 } from '../../../../utils/Validation/ValidationObjects'
+import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../../../utils/form/Fields'
+import axios from 'axios'
+
 
 export default function index() {
     const [addVisible,setAddVisible] = useState(false)
@@ -27,32 +31,101 @@ export default function index() {
     const [articles,setArticles] = useState(dataarticles)
     const [groups,setGroups] = useState(datagroups)
     const [projects,setProjects] = useState([])
+    const [selectedItem,setSelectedItem] = useState(null)
 
+    useEffect(() => {
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        axios({
+            method:"GET",
+            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject?researcherId=${user.researchers.id}`
+        }).then(response=>{
+            setProjects(response.data)
+        }).catch(error=>{
+            console.log(error)
+        })
+    }, [])
+
+    const handleDeleteItem = (item)=>{
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        item.researcherId = user.researchers.id
+        console.log("delete post",item)
+        axios({
+            method: 'delete',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/delete?id=${item.id}`,
+            data: item
+          })
+            .then(response=>{
+                console.log(response)
+                setPosts(posts.filter((el)=>el.id!==item.id))
+                setDeleteVisible(false)
+            })
+            .catch(error=>console.log(error))
+          ;
+        
+    }
+    const handleAddItem = (item)=>{
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        item.researcherId = user.researchers.id
+        console.log("add post",item)
+        axios({
+            method: 'post',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/add`,
+            data: item
+          })
+            .then(response=>{
+                console.log("response add",response.data)
+                setPosts([...posts,response.data])
+                setAddVisible(false)
+            })
+            .catch(error=>console.log(error))
+          ;
+    }
+    const handleEditItem = (item)=>{
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        item.researcherId = user.researchers.id
+        console.log("edit post",item)
+        axios({
+            method: 'put',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/edit`,
+            data: item
+          })
+            .then(response=>{
+                console.log(response)
+                let lastItems = [...posts]
+                const index = lastItems.findIndex((el)=>el.id === item.id)
+                lastItems[index] = item
+                setPosts(lastItems)
+                setEditVisible(false)
+                setSelectedItem(null)
+            })
+            .catch(error=>console.log(error))
+          ;
+    }
     return (
         <ResearcherAccountLayout>
             <MyHead title="الملف الشخصي  - مشاريعي" />
            <div className={classes.myProjectsContainer}>
            <Modal visible={addVisible} setVisible={setAddVisible}>
-                        {/* <MultiStepsAddElement
+                        <MultiStepsAddElement
                             title="مشروع"
                             handleSubmit={handleAddItem}
-                            steps={[{fields:postStep1,validationSchema:postSchemaStep1},{fields:postStep2,validationSchema:postSchemaStep2}]}
-                        /> */}
+                            steps={[{fields:projectStep1,validationSchema:projectSchemaStep1},{fields:projectStep2,validationSchema:projectSchemaStep2},{fields:projectStep3,validationSchema:projectSchemaStep3},{fields:projectStep4,validationSchema:projectSchemaStep4}]}
+                        />
                 </Modal>
                 <Modal visible={editVisible} setVisible={setEditVisible}>
-                        {/* <MultiStepsEditElement
+                        <MultiStepsEditElement
                             item={selectedItem}
                             handleSubmit={handleEditItem}
                             title="مشروع"
-                            steps={[{fields:postStep1,validationSchema:postSchemaStep1},{fields:postStep2,validationSchema:postSchemaStep2}]}
-                        /> */}
+                            steps={[{fields:projectStep1,validationSchema:projectSchemaStep1},{fields:projectStep2,validationSchema:projectSchemaStep2},{fields:projectStep3,validationSchema:projectSchemaStep3},{fields:projectStep4,validationSchema:projectSchemaStep4}]}
+                        />
                 </Modal>
                 <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
-                        {/* <DeleteElement
+                        <DeleteElement
                             item={selectedItem} 
                             title="مشروع" 
                             handleSubmit={handleDeleteItem}
-                        /> */}
+                        />
                 </Modal>
                 <div className={classes.mainSection}>
                     <div className={classes.filterSection}>
@@ -100,9 +173,7 @@ export default function index() {
                                 <TableCell className={`${classes.cellBody} ${classes.title}`} align="left">{row.arabicTitle}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">{row.primaryAuthor}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">
-                                    <IconButton>
-                                        <GetAppIcon  className={classes.downloadIcon} />
-                                    </IconButton>
+                                    
                                     <IconButton onClick={()=>{setSelectedItem(row);setEditVisible(true)}}>
                                         <EditIcon  className={classes.downloadIcon} />
                                     </IconButton>
