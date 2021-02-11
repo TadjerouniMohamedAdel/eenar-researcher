@@ -12,9 +12,9 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
     const [step,setStep] = useState(0)
               
     const submit = (data)=>{
-        console.log("executed submit",data)
         if(step !== steps.length -1) setStep(step+1)
         else{
+            console.log("executed submit",data)
             setIsLoading(true)
             handleSubmit(data)
         }
@@ -145,7 +145,7 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                         <span className="submitLabel">السابق</span>
                     </Button>
                     )}
-                    <Button className={step == steps.length -1 ? classes.submit : classes.next} type="submit" disabled={isLoading} >
+                    <Button className={step == steps.length -1 ? classes.submit : classes.next} type="submit" disabled={isLoading}>
                         <div>
                             {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
                         </div>

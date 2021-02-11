@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import GetAppIcon from '@material-ui/icons/GetApp';
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
 import {datagroups,dataarticles } from '../../../../utils/fixtures/DevData';
@@ -20,6 +20,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import MultiStepsEditElement from '../../../../components/CrudModal/MultiStepsEditElement';
+import axios from 'axios'
 
 export default function index() {
     const [articles,setArticles] = useState(dataarticles)
@@ -28,32 +29,75 @@ export default function index() {
     const [editVisible,setEditVisible] = useState(false)
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [selectedItem,setSelectedItem] = useState(null)
-    const rows = [
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-        {publishedDate:'12/07/2020',arabicTitle: "عنوان طويل قليلا خاص يشير إلى وجود بحث مهم",primaryAuthor: "معاذ محساس",secondaryAuthors:"adel moh aymen",link:"www,fileuploader.com/fjjjgbrehfdg$3dsf",englishTitle:"District Mobility Analyst",keywords:"post myPost linkedin researcher invistisor sponsoring",publishedBy:"Adel Mohamed Tadjerouni",arabicDescription:"Et id quos voluptatem accusamus a voluptates autem nisi. Assumenda est nihil et nesciunt adipisci est dolore et impedit. Delectus quos et et assumenda. Ex quia doloribus nulla.",englishDescription:"Non esse quia. Sit accusamus ipsa ut vel. Provident voluptatem aut molestiae voluptates sint consequatur quaerat qui.",keywords:["keyword1","keyword2","keyword3"],secondaryAuthors:["author 1","author 2","author 3"]},
-       
-  
-    ]
+    const [posts,setPosts] = useState([])
+
+    useEffect(() => {
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        axios({
+            method:"GET",
+            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}`
+        }).then(response=>{
+            setPosts(response.data)
+        }).catch(error=>{
+            console.log(error)
+        })
+    }, [])
 
     const handleDeleteItem = (item)=>{
-
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        item.researcherId = user.researchers.id
+        console.log("delete post",item)
+        axios({
+            method: 'delete',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/delete?id=${item.id}`,
+            data: item
+          })
+            .then(response=>{
+                console.log(response)
+                setPosts(posts.filter((el)=>el.id!==item.id))
+                setDeleteVisible(false)
+            })
+            .catch(error=>console.log(error))
+          ;
+        
     }
     const handleAddItem = (item)=>{
-
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        item.researcherId = user.researchers.id
+        console.log("add post",item)
+        axios({
+            method: 'post',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/add`,
+            data: item
+          })
+            .then(response=>{
+                console.log("response add",response.data)
+                setPosts([...posts,response.data])
+                setAddVisible(false)
+            })
+            .catch(error=>console.log(error))
+          ;
     }
     const handleEditItem = (item)=>{
-
+        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+        item.researcherId = user.researchers.id
+        console.log("edit post",item)
+        axios({
+            method: 'put',
+            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/edit`,
+            data: item
+          })
+            .then(response=>{
+                console.log(response)
+                let lastItems = [...posts]
+                const index = lastItems.findIndex((el)=>el.id === item.id)
+                lastItems[index] = item
+                setPosts(lastItems)
+                setEditVisible(false)
+                setSelectedItem(null)
+            })
+            .catch(error=>console.log(error))
+          ;
     }
     return (
         <ResearcherAccountLayout>
@@ -118,7 +162,7 @@ export default function index() {
                             </TableRow>
                             </TableHead>
                             <TableBody className={classes.tableBody}>
-                            {rows.map((row,index) => (
+                            {posts.map((row,index) => (
                                 <TableRow key={index}>
                                 <TableCell className={classes.cellBody} align="center">
                                     {row.publishedDate}
