@@ -184,25 +184,38 @@ export default function index() {
                             ))}
                             </TableBody>
                         </Table>
-                        <div className={classes.paginationContainer}>
-                                <div className={classes.paginationCustom}>
-                                    <div className={classes.paginationButton}><NavigateNextIcon className={classes.disableButton} /></div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={`${classes.paginationButton} ${classes.activeButton}`}>01</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>02</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>03</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>04</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>05</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>06</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}><NavigateBeforeIcon /></div>
+                        {
+                            posts.length == 0&& (
+                                    <div className={classes.empty}>
+                                        <img src="/images/empty.png" alt="empty-list"/>
+                                        <h3>لا تحتوي هذه القائمة على بيانات</h3>
+                                    </div>
+                            )
+                        }
+                        {
+                            posts.length > 10 && (
+                                <div className={classes.paginationContainer}>
+                                        <div className={classes.paginationCustom}>
+                                            <div className={classes.paginationButton}><NavigateNextIcon className={classes.disableButton} /></div>
+                                            <div className={classes.dividerPagination}></div>
+                                            <div className={`${classes.paginationButton} ${classes.activeButton}`}>01</div>
+                                            <div className={classes.dividerPagination}></div>
+                                            <div className={classes.paginationButton}>02</div>
+                                            <div className={classes.dividerPagination}></div>
+                                            <div className={classes.paginationButton}>03</div>
+                                            <div className={classes.dividerPagination}></div>
+                                            <div className={classes.paginationButton}>04</div>
+                                            <div className={classes.dividerPagination}></div>
+                                            <div className={classes.paginationButton}>05</div>
+                                            <div className={classes.dividerPagination}></div>
+                                            <div className={classes.paginationButton}>06</div>
+                                            <div className={classes.dividerPagination}></div>
+                                            <div className={classes.paginationButton}><NavigateBeforeIcon /></div>
+                                        </div>
                                 </div>
-                        </div>
+
+                            )
+                        }
                     </div>
                 </div>
                 <div className={classes.sideSection}>

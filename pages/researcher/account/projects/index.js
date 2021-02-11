@@ -185,6 +185,15 @@ export default function index() {
                             ))}
                             </TableBody>
                         </Table>
+                        {
+                            projects.length == 0&& (
+                                    <div className={classes.empty}>
+                                        <img src="/images/empty.png" alt="empty-list"/>
+                                        <h3>لا تحتوي هذه القائمة على بيانات</h3>
+                                    </div>
+                            )
+                        }
+                        {  projects.length > 10 && (
                         <div className={classes.paginationContainer}>
                                 <div className={classes.paginationCustom}>
                                     <div className={classes.paginationButton}><NavigateNextIcon className={classes.disableButton} /></div>
@@ -204,6 +213,8 @@ export default function index() {
                                     <div className={classes.paginationButton}><NavigateBeforeIcon /></div>
                                 </div>
                         </div>
+                        )
+                        }
                     </div>
                 </div>
                 <div className={classes.sideSection}>
