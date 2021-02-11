@@ -65,6 +65,7 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
                                 return (
                                         <Autocomplete
                                             multiple
+                                            autoSelect
                                             key={`crud-edit-element-${index}-${step}`}
                                             onChange={(e,values)=>{
                                                 formiks[step].values[field.name] = values

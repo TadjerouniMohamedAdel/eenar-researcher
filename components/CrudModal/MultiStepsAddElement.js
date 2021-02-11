@@ -64,10 +64,12 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                         switch (field.type) {
                             case "array":
                                 let values = formiks[step].values[field.name]
+                                console.log(values)
                                 return (
                                         <Autocomplete
                                             style={{marginTop:28,borderRadius:12}}
                                             multiple
+                                            autoSelect
                                             key={`crud-add-element-${index}-${step}`}
                                             onChange={(e,values)=>{
                                                 formiks[step].values[field.name] = values
@@ -87,7 +89,12 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                                                 ))
                                             }
                                             renderInput={(params) => (
-                                                <TextField  className={`${field.className}`} {...params} label={field.label} variant="outlined" />
+                                                <TextField  
+                                                    className={`${field.className}`} 
+                                                    {...params}
+                                                    label={field.label} 
+                                                    variant="outlined" 
+                                                    />
                                             )}
                                         />
                                 );
