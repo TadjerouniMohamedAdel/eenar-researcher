@@ -123,7 +123,7 @@ export const postSchemaStep2 = Yup.object().shape({
     arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
     englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
     publishedDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    file: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // file: Yup.string().required('يجب ملئ هذه المعلومة'),
     // keywords: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 

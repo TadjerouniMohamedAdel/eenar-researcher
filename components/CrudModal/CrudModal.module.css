@@ -107,6 +107,10 @@
     border-radius: 10px !important;
     border-color: transparent;
 }
+.crudElement input::-webkit-file-upload-button {
+    display: none !important;
+}
+
 .crudElement .submitContainer{
     display: flex;
     width: 100%;

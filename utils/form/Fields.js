@@ -93,7 +93,7 @@ export const postStep2=[
     {name:"arabicDescription",label:"الملخص بالعربية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"publishedDate",label:"تاريخ النشر",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"file",label:"تحميل ملف المقال",type:"text",defaultValue:"",className:""},
+    {name:"file",label:"تحميل ملف المقال",type:"file",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:"fileInput"},
     {name:"keywords",label:"الكلمات المفتاحية",type:"array",defaultValue:[],className:""},
 ]
 

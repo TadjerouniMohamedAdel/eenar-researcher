@@ -64,7 +64,6 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                         switch (field.type) {
                             case "array":
                                 let values = formiks[step].values[field.name]
-                                console.log(values)
                                 return (
                                         <Autocomplete
                                             style={{marginTop:28,borderRadius:12}}
