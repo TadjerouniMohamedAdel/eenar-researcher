@@ -3,6 +3,9 @@ import { TextField,Button, FormControl, Select, MenuItem, InputLabel } from '@ma
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 import { CircularProgress } from '@material-ui/core';
+import Chip from "@material-ui/core/Chip";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+
 
 
 export default function AddElement({fields,handleSubmit,validationSchema,title}) {
@@ -37,6 +40,42 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
                 {
                     fields.map((field,index)=>{
                         switch (field.type) {
+                            case "array":
+                                let values = formik.values[field.name]
+                                return (
+                                        <Autocomplete
+                                            style={{marginTop:28,borderRadius:12}}
+                                            multiple
+                                            autoSelect
+                                            key={`crud-add-element-${index}-${step}`}
+                                            onChange={(e,values)=>{
+                                                formik.values[field.name] = values
+                                            }}
+                                            freeSolo
+                                            name={field.name}
+                                            defaultValue={values}
+                                            id={`crud-add-element-${index}-${step}`}
+                                            options={[]}
+                                            renderTags={(value, getTagProps) =>
+                                                value.map((option, index) => (
+                                                <Chip
+                                                    variant="outlined"
+                                                    label={option}
+                                                    {...getTagProps({ index })}
+                                                />
+                                                ))
+                                            }
+                                            renderInput={(params) => (
+                                                <TextField  
+                                                    className={`${field.className}`} 
+                                                    {...params}
+                                                    label={field.label} 
+                                                    variant="outlined" 
+                                                    />
+                                            )}
+                                        />
+                                );
+                                break;
                             
                             case "select":
                                 return(
