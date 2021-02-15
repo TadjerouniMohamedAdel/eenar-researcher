@@ -7,22 +7,22 @@ import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout
 import { Button, FormControl, IconButton, InputLabel, Select,TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import classes from '../../../styles/Library.module.css'
+import Pagination from '../../../components/Pagination/Pagination'
+import Link from 'next/link'
+
 export default function index() {
-
-
-
     const books=[
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:1,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:2,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:3,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:4,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:5,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:6,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:7,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:8,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:9,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:10,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:11,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
     ]
 
     return (
@@ -57,26 +57,32 @@ export default function index() {
                 <div className={classes.bookList}>
                     {
                         books.map((book,index)=>(
-                            <>
-                                <div className={classes.bookItem} key={`book-${index}`}>
-                                    <div className={classes.bookCover}>
-                                        <img src={book.img} alt={book.title} />
-                                    </div>
-                                    <div className={classes.bookContent}>
-                                        <h2>{book.title}</h2>
-                                        <div className={classes.groupedContent}>
-                                            <h3>{book.author}</h3>
-                                            <div className={classes.groupedDivider}></div>
-                                            <h3>{book.publishedDate}</h3>
+                            <Link href={{pathname:"/researcher/library/[id]",query:{id:book.id}}} key={`book-link-${index}`} className={classes.bookLink}>
+                                <div>
+                                    <div className={classes.bookItem} key={`book-${index}`}>
+                                        <div className={classes.bookCover}>
+                                            <img src={book.img} alt={book.title} />
                                         </div>
-                                        <h3>{book.publishingHouse}</h3>
+                                        <div className={classes.bookContent}>
+                                            <h2>{book.title}</h2>
+                                            <div className={classes.groupedContent}>
+                                                <h3>{book.author}</h3>
+                                                <div className={classes.groupedDivider}></div>
+                                                <h3>{book.publishedDate}</h3>
+                                            </div>
+                                            <h3>{book.publishingHouse}</h3>
+                                        </div>
                                     </div>
+                                    <div className={classes.bookDivider}></div>
                                 </div>
-                                <div className={classes.bookDivider}></div>
-                            </>
+                            </Link>
                         ))
                     }
                 </div>
+                {  books.length > 10 && (
+                            <Pagination />
+                        )
+                }
             </div>
         </ResearcherLayout>
     )

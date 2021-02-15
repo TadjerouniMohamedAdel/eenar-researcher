@@ -1,0 +1,35 @@
+.paginationCustom{
+    width: auto;
+    height: 60px;
+    margin: 16px 457px 0 0;
+    padding: 19.3px 27px 20px 27px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+ .paginationCustom .paginationButton{
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    cursor: pointer;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.disableButton{
+    opacity: 0.4;
+    color: #afb0c0;
+}
+ .paginationCustom .paginationButton.activeButton{
+    color: var(--primary-color);
+}
+ .paginationCustom .dividerPagination{
+    width: 1px;
+    height: 20px;
+    margin: 0.7px 22.7px 0 27px;
+    background-color: #eaeaf5;
+}

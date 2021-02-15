@@ -82,7 +82,6 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                             name={field.name}
                                             onChange={formik.handleChange}
                                             label={field.name}
-
                                         >
                                             {
                                                 field.choices.map((choice,index)=>(

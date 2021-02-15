@@ -12,8 +12,6 @@ import MyGroups from "../../../../components/MyGroups/MyGroups";
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from '../../../../components/Modal/Modal';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import MultiStepsEditElement from '../../../../components/CrudModal/MultiStepsEditElement';
@@ -22,6 +20,7 @@ import classes from '../../../../styles/MyProjects.module.css'
 import { projectSchemaStep1, projectSchemaStep2, projectSchemaStep3, projectSchemaStep4 } from '../../../../utils/Validation/ValidationObjects'
 import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../../../utils/form/Fields'
 import axios from 'axios'
+import Pagination from '../../../../components/Pagination/Pagination'
 
 
 export default function index() {
@@ -56,7 +55,7 @@ export default function index() {
           })
             .then(response=>{
                 console.log(response)
-                setPosts(posts.filter((el)=>el.id!==item.id))
+                setProjects(projects.filter((el)=>el.id!==item.id))
                 setDeleteVisible(false)
             })
             .catch(error=>console.log(error))
@@ -74,7 +73,7 @@ export default function index() {
           })
             .then(response=>{
                 console.log("response add",response.data)
-                setPosts([...posts,response.data])
+                setProjects([...projects,response.data])
                 setAddVisible(false)
             })
             .catch(error=>console.log(error))
@@ -91,10 +90,10 @@ export default function index() {
           })
             .then(response=>{
                 console.log(response)
-                let lastItems = [...posts]
+                let lastItems = [...projects]
                 const index = lastItems.findIndex((el)=>el.id === item.id)
                 lastItems[index] = item
-                setPosts(lastItems)
+                setProjects(lastItems)
                 setEditVisible(false)
                 setSelectedItem(null)
             })
@@ -194,25 +193,7 @@ export default function index() {
                             )
                         }
                         {  projects.length > 10 && (
-                        <div className={classes.paginationContainer}>
-                                <div className={classes.paginationCustom}>
-                                    <div className={classes.paginationButton}><NavigateNextIcon className={classes.disableButton} /></div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={`${classes.paginationButton} ${classes.activeButton}`}>01</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>02</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>03</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>04</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>05</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}>06</div>
-                                    <div className={classes.dividerPagination}></div>
-                                    <div className={classes.paginationButton}><NavigateBeforeIcon /></div>
-                                </div>
-                        </div>
+                            <Pagination />
                         )
                         }
                     </div>

@@ -21,6 +21,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import MultiStepsEditElement from '../../../../components/CrudModal/MultiStepsEditElement';
 import axios from 'axios'
+import Pagination from '../../../../components/Pagination/Pagination';
 
 export default function index() {
     const [articles,setArticles] = useState(dataarticles)
@@ -194,26 +195,9 @@ export default function index() {
                         }
                         {
                             posts.length > 10 && (
-                                <div className={classes.paginationContainer}>
-                                        <div className={classes.paginationCustom}>
-                                            <div className={classes.paginationButton}><NavigateNextIcon className={classes.disableButton} /></div>
-                                            <div className={classes.dividerPagination}></div>
-                                            <div className={`${classes.paginationButton} ${classes.activeButton}`}>01</div>
-                                            <div className={classes.dividerPagination}></div>
-                                            <div className={classes.paginationButton}>02</div>
-                                            <div className={classes.dividerPagination}></div>
-                                            <div className={classes.paginationButton}>03</div>
-                                            <div className={classes.dividerPagination}></div>
-                                            <div className={classes.paginationButton}>04</div>
-                                            <div className={classes.dividerPagination}></div>
-                                            <div className={classes.paginationButton}>05</div>
-                                            <div className={classes.dividerPagination}></div>
-                                            <div className={classes.paginationButton}>06</div>
-                                            <div className={classes.dividerPagination}></div>
-                                            <div className={classes.paginationButton}><NavigateBeforeIcon /></div>
-                                        </div>
+                                <div style={{width:"100%",display:"flex",justifyContent:"flex-end"}}>
+                                <Pagination />
                                 </div>
-
                             )
                         }
                     </div>
