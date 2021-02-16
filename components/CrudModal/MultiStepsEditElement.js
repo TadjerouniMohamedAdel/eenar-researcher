@@ -10,20 +10,25 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
     const [isLoading,setIsLoading] = useState(false)
     const [step,setStep] = useState(0)
+    const [dataToSend,setDataToSend] = useState({})
     const submit = (data)=>{
-        console.log("executed submit",data)
-        if(step !== steps.length -1) setStep(step+1)
+        if(step !== steps.length -1){
+            console.log(data)
+            setDataToSend({...dataToSend,...data})
+            setStep(step+1)
+        }
         else{
             setIsLoading(true)
-            handleSubmit(data)
+            handleSubmit({...dataToSend,...data})
         }
     }
     let formiks =[]
     steps.map((formStep,index)=>{
-            
-            formiks.push(
+                let values = {id:item.id}
+                formStep.fields.map((el,index)=>{values[el.name]=item[el.name]})            
+                formiks.push(
                 useFormik({
-                    initialValues:item,
+                    initialValues:values,
                     validateOnChange:false,
                     onSubmit: submit,
                     validationSchema:formStep.validationSchema,
@@ -125,7 +130,7 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
                                             type={field.type}
                                             {...field.props}
                                             onChange={formiks[step].handleChange}
-                                            value={formiks[step].values[field.name]}
+                                            value={field.type=="date"&&formiks[step].values[field.name]?formiks[step].values[field.name].split("T")[0]:formiks[step].values[field.name]}
                                             id={`crud-edit-element-${index}-${field.name}`}
                                             label={field.label}
                                             error={formiks[step].errors[field.name]}

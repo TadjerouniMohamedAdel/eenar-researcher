@@ -10,13 +10,16 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 export default function MultiStepsAddElement({steps,handleSubmit,title}) {
     const [isLoading,setIsLoading] = useState(false)
     const [step,setStep] = useState(0)
+    const [dataToSend,setDataToSend] = useState({})
               
     const submit = (data)=>{
-        if(step !== steps.length -1) setStep(step+1)
+        if(step !== steps.length -1){
+            setDataToSend({...dataToSend,...data})
+            setStep(step+1)
+        }
         else{
-            console.log("executed submit",data)
             setIsLoading(true)
-            handleSubmit(data)
+            handleSubmit({...dataToSend,...data})
         }
     }
     let formiks =[]
