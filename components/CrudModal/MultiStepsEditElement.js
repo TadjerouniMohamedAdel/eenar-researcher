@@ -13,7 +13,6 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
     const [dataToSend,setDataToSend] = useState({})
     const submit = (data)=>{
         if(step !== steps.length -1){
-            console.log(data)
             setDataToSend({...dataToSend,...data})
             setStep(step+1)
         }
