@@ -117,6 +117,24 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
                                     </FormControl>
                                 )
                                 break;
+                                case 'file':
+                                    return (
+                                        <div  key={`crud-edit-element-${index}-${step}`}>
+                                            <TextField
+                                                className={`input-align-right ${classes.formInput} ${field.className}`}
+                                                name={field.name}
+                                                type={field.type}
+                                                {...field.props}
+                                                onChange={(event) => {formiks[step].setFieldValue("file", event.currentTarget.files[0]);}}          
+                                                id={`crud-edit-element-${index}-${field.name}`}
+                                                label={field.label}
+                                                error={formiks[step].errors[field.name]}
+                                                helperText={formiks[step].errors[field.name]}
+                                                variant="outlined"
+                                            />
+                                        </div>
+                                    )
+                                break;
                         
                             default:
                                 return(

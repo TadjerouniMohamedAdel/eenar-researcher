@@ -22,6 +22,7 @@ import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import MultiStepsEditElement from '../../../../components/CrudModal/MultiStepsEditElement';
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination';
+import Link from 'next/link'
 
 export default function index() {
     const [articles,setArticles] = useState(dataarticles)
@@ -65,11 +66,14 @@ export default function index() {
     const handleAddItem = (item)=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
-        console.log("add post",item)
+        let data = new FormData()
+        for (const key in item) {
+            data.append([key],item[key]);
+          }
         axios({
             method: 'post',
             url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/add`,
-            data: item
+            data
           })
             .then(response=>{
                 console.log("response add",response.data)
@@ -83,10 +87,14 @@ export default function index() {
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
         console.log("edit post",item)
+        let data = new FormData()
+        for (const key in item) {
+            data.append([key],item[key]);
+          }
         axios({
             method: 'put',
             url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/edit`,
-            data: item
+            data
           })
             .then(response=>{
                 console.log(response)
@@ -171,9 +179,11 @@ export default function index() {
                                 <TableCell className={`${classes.cellBody} ${classes.title}`} align="left">{row.arabicTitle}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">{row.primaryAuthor}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">
-                                    <IconButton>
-                                        <GetAppIcon  className={classes.downloadIcon} />
-                                    </IconButton>
+                                    <Link href={row.file}>
+                                        <IconButton>
+                                            <GetAppIcon  className={classes.downloadIcon} />
+                                        </IconButton>
+                                    </Link>
                                     <IconButton onClick={()=>{setSelectedItem(row);setEditVisible(true)}}>
                                         <EditIcon  className={classes.downloadIcon} />
                                     </IconButton>

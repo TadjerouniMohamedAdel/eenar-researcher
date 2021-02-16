@@ -169,8 +169,9 @@ export default function index() {
                                 <TableCell className={classes.cellBody} align="center">
                                     {row.publishedDate}
                                 </TableCell>
-                                <TableCell className={`${classes.cellBody} ${classes.title}`} align="left">{row.arabicTitle}</TableCell>
+                                <TableCell className={`${classes.cellBody}`} align="left">{row.arabicTitle}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">{row.primaryAuthor}</TableCell>
+                                <TableCell className={classes.cellBody} align="center">{row.center}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">
                                     
                                     <IconButton onClick={()=>{setSelectedItem(row);setEditVisible(true)}}>
