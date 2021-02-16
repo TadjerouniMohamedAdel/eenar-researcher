@@ -23,6 +23,7 @@ import MultiStepsEditElement from '../../../../components/CrudModal/MultiStepsEd
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination';
 import Link from 'next/link'
+import moment from 'moment'
 
 export default function index() {
     const [articles,setArticles] = useState(dataarticles)
@@ -32,6 +33,7 @@ export default function index() {
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [selectedItem,setSelectedItem] = useState(null)
     const [posts,setPosts] = useState([])
+    moment.locale('ar-dz')
 
     useEffect(() => {
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
@@ -142,22 +144,26 @@ export default function index() {
                                 label="العنوان"
                                 className={classes.input}  
                             />
-                            <FormControl  variant="outlined" className={classes.select}>
+                            {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المنشور</InputLabel>
                                 <Select
                                     label="نوع المنشور"
                                 >   
                                 </Select>
-                            </FormControl>
+                            </FormControl> */}
                             <Button className={classes.searchButton}>
                                 <SearchIcon className={`${classes.searchIcon} ${classes.right}`} />
                             </Button>
 
                         </div>
-                        <Button className={classes.addButton} onClick={()=> setAddVisible(true)}>
-                            <span className={classes.text}>أضف منشور</span>  
-                            <AddIcon  className={classes.addIcon}/>
-                        </Button>
+                        <div className={classes.buttonSection}>
+                            <Button className={classes.addButton} onClick={()=> setAddVisible(true)}>
+                                <span className={classes.text}>أضف منشور</span>  
+                                <AddIcon  className={classes.addIcon}/>
+                            </Button>
+
+                        </div>
+
                     
                     </div>
                     <div className={classes.tableContainer}>
@@ -174,7 +180,8 @@ export default function index() {
                             {posts.map((row,index) => (
                                 <TableRow key={index}>
                                 <TableCell className={classes.cellBody} align="center">
-                                    {row.publishedDate}
+                                    {/* {row.publishedDate} */}
+                                    {moment(row.publishedDate).format('DD MMM YYYY')}
                                 </TableCell>
                                 <TableCell className={`${classes.cellBody} ${classes.title}`} align="left">{row.arabicTitle}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">{row.primaryAuthor}</TableCell>

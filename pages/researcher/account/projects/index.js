@@ -21,7 +21,7 @@ import { projectSchemaStep1, projectSchemaStep2, projectSchemaStep3, projectSche
 import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../../../utils/form/Fields'
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination'
-
+import moment from 'moment'
 
 export default function index() {
     const [addVisible,setAddVisible] = useState(false)
@@ -31,7 +31,8 @@ export default function index() {
     const [groups,setGroups] = useState(datagroups)
     const [projects,setProjects] = useState([])
     const [selectedItem,setSelectedItem] = useState(null)
-
+    moment.locale('ar-dz')
+    
     useEffect(() => {
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         axios({
@@ -134,22 +135,23 @@ export default function index() {
                                 label="العنوان"
                                 className={classes.input}  
                             />
-                            <FormControl  variant="outlined" className={classes.select}>
+                            {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المشروع</InputLabel>
                                 <Select
                                     label="نوع المشروع"
                                 >   
                                 </Select>
-                            </FormControl>
+                            </FormControl> */}
                             <Button className={classes.searchButton}>
                                 <SearchIcon className={`${classes.searchIcon} ${classes.right}`} />
                             </Button>
-
                         </div>
-                        <Button className={classes.addButton} onClick={()=> setAddVisible(true)}>
-                            <span className={classes.text}>أضف مشروع</span>  
-                            <AddIcon  className={classes.addIcon}/>
-                        </Button>
+                        <div className={classes.buttonSection}>
+                            <Button className={classes.addButton} onClick={()=> setAddVisible(true)}>
+                                <span className={classes.text}>أضف مشروع</span>  
+                                <AddIcon  className={classes.addIcon}/>
+                            </Button>
+                        </div>
                     
                     </div>
                     <div className={classes.tableContainer}>
