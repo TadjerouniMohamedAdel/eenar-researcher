@@ -18,63 +18,65 @@ export default function bookItemPage() {
                     description="تفاعل بشكل أفضل مع زملائك الباحثين، أرسل ملفات، صور وروابط."
                     imgSrc="/images/library-banner.png"
                 />
-                <div className={classes.bookDetails}>
-                    <div className={classes.getResumeContainer}>
-                        <Button variant="contained" className={classes.getResume}>
-                            <span>تحميل الكتاب</span>
-                            <GetAppIcon />
-                        </Button>
-                    </div>
-                    <div className={classes.bookPageContent}>
-                        <div className={classes.bookPageImage}>
-                            <img src={book.img} alt={book.title} />
+                <div className={classes.libraryItemContainer}>
+                    <div className={classes.bookDetails}>
+                        <div className={classes.getResumeContainer}>
+                            <Button variant="contained" className={classes.getResume}>
+                                <span>تحميل الكتاب</span>
+                                <GetAppIcon />
+                            </Button>
                         </div>
-                        <div className={classes.bookPageOverview}>
-                            <h1>{book.title}</h1>
-                            <h2>من تأليف  {book.author}</h2>
-                            <p>
-                                {book.overview}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className={classes.sideSection}>
-                    <div className={classes.sideMenu}>
-                        <h3>
-                            <span>مؤلفات {book.author}</span>
-                            <IconButton>
-                                <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
-                            </IconButton>
-                        </h3>
-                        <div className={classes.list}>
-                            <img src={book.img} alt="" />
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            
+                        <div className={classes.bookPageContent}>
+                            <div className={classes.bookPageImage}>
+                                <img src={book.img} alt={book.title} />
+                            </div>
+                            <div className={classes.bookPageOverview}>
+                                <h1>{book.title}</h1>
+                                <h2>من تأليف  {book.author}</h2>
+                                <p>
+                                    {book.overview}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div className={classes.sideMenu}>
-                        <h3>
-                            <span>كتب مشابهة</span>
-                            <IconButton>
-                                <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
-                            </IconButton>
-                        </h3>
-                        <div className={classes.list}>
-                            <img src={book.img} alt="" />
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            <img src={book.img} alt=""/>
-                            
+                    <div className={classes.sideSection}>
+                        <div className={classes.sideMenu}>
+                            <h3>
+                                <span>مؤلفات {book.author}</span>
+                                <IconButton>
+                                    <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
+                                </IconButton>
+                            </h3>
+                            <div className={classes.list}>
+                                <img src={book.img} alt="" />
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                
+                            </div>
+                        </div>
+                        <div className={classes.sideMenu}>
+                            <h3>
+                                <span>كتب مشابهة</span>
+                                <IconButton>
+                                    <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
+                                </IconButton>
+                            </h3>
+                            <div className={classes.list}>
+                                <img src={book.img} alt="" />
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

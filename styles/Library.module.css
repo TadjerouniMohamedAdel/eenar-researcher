@@ -185,7 +185,12 @@
     display: flex;
     flex-direction: column;
 }
-
+.libraryContainer .libraryItemContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
 .libraryContainer .bookDetails .getResumeContainer{
     display: flex;
     width: 100%;

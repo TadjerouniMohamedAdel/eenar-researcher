@@ -91,7 +91,6 @@
     background-color: var(--active-color);
 }
 .myProjectsContainer .mainSection .filterSection .addButton span.text{
-    width: 81px;
     font-family: var(--primary-font);
     font-size: 13.9px;
     color: #ffffff;
