@@ -36,7 +36,7 @@ export default function DeleteElement({item,title,handleSubmit}) {
                             </div>
                         </div>
                 <div className={classes.submitContainer} onClick={()=>{setIsLoading(true);handleSubmit(item)}}>
-                        <Button className={classes.submit} type="button" disabled={isLoading}>
+                        <Button className={classes.submit} type="button" disabled={isLoading} variant="contained">
                             <div>
                                 {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
                             </div>

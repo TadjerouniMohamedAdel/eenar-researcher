@@ -180,7 +180,6 @@ export default function index() {
                             {posts.map((row,index) => (
                                 <TableRow key={index}>
                                 <TableCell className={classes.cellBody} align="center">
-                                    {/* {row.publishedDate} */}
                                     {moment(row.publishedDate).format('DD MMM YYYY')}
                                 </TableCell>
                                 <TableCell className={`${classes.cellBody} ${classes.title}`} align="left">{row.arabicTitle}</TableCell>

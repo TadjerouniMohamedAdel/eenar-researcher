@@ -109,8 +109,8 @@ export const projectStep1=[
 export const projectStep2=[
     {name:"arabicDescription",label:"الملخص بالعربية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
-    {name:"startDate",label:"تاريخ البدأ",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"startDate",label:"تاريخ البدأ",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
 ]
 export const projectStep3=[
     {name:"justifications",label:"المبررات",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},

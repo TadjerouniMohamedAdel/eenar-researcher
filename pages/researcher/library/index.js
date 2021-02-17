@@ -42,13 +42,13 @@ export default function index() {
                             label="العنوان"
                             className={classes.input}  
                         />
-                        <FormControl  variant="outlined" className={classes.select}>
+                        {/* <FormControl  variant="outlined" className={classes.select}>
                             <InputLabel id="demo-simple-select-outlined-label">نوع المشروع</InputLabel>
                             <Select
                                 label="نوع المشروع"
                             >   
                             </Select>
-                        </FormControl>
+                        </FormControl> */}
                         <Button className={classes.searchButton}>
                             <SearchIcon className={`${classes.searchIcon} ${classes.right}`} />
                         </Button>

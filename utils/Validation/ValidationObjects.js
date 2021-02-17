@@ -132,14 +132,14 @@ export const projectSchemaStep1 = Yup.object().shape({
     // secondaryAuthors: Yup.string().required('يجب ملئ هذه المعلومة'),
     arabicTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
     englishTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
-    supervisor: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // supervisor: Yup.string().required('يجب ملئ هذه المعلومة'),
     center: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 export const projectSchemaStep2 = Yup.object().shape({
     arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
     englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().nullable().default(null),
+    endDate: Yup.date().nullable().default(null),
 })
 
 export const projectSchemaStep3 = Yup.object().shape({

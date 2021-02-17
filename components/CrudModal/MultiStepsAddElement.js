@@ -173,6 +173,7 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                                             onChange={formiks[step].handleChange}
                                             value={formiks[step].values[field.name]}
                                             id={`crud-add-element-${index}-${field.name}`}
+                                            defaultValue={field.defaultValue}
                                             label={field.label}
                                             error={formiks[step].errors[field.name]}
                                             helperText={formiks[step].errors[field.name]}

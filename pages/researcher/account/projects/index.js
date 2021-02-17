@@ -66,6 +66,8 @@ export default function index() {
     const handleAddItem = (item)=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
+        if(item.startDate=="") item.startDate=null
+        if(item.endDate=="") item.endDate=null
         console.log("add post",item)
         axios({
             method: 'post',
@@ -83,6 +85,9 @@ export default function index() {
     const handleEditItem = (item)=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
+        if(item.startDate=="") item.startDate=null
+        if(item.endDate=="") item.endDate=null
+
         console.log("edit post",item)
         axios({
             method: 'put',
@@ -100,6 +105,12 @@ export default function index() {
             })
             .catch(error=>console.log(error))
           ;
+    }
+    const getStatus = (item)=>{
+        if(item.supervisor== null || item.supervisor=="") return "بحث عن مشرف"
+        if(item.startDate== null || item.startDate=="") return "قيد التحضير"
+        if(item.endDate== null || item.endDate=="") return "معلق"
+        return "تم الانتهاء منه"
     }
     return (
         <ResearcherAccountLayout>
@@ -158,7 +169,7 @@ export default function index() {
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                             <TableRow>
-                                <TableCell className={classes.cellHeader} align="center">تاريخ النشر</TableCell>
+                                <TableCell className={classes.cellHeader} align="center">تاريخ البدأ</TableCell>
                                 <TableCell className={classes.cellHeader} align="left">المشروع</TableCell>
                                 <TableCell className={classes.cellHeader} align="center">المؤسسة</TableCell>
                                 <TableCell className={classes.cellHeader} align="center">الحالة </TableCell>
@@ -169,11 +180,10 @@ export default function index() {
                             {projects.map((row,index) => (
                                 <TableRow key={index}>
                                 <TableCell className={classes.cellBody} align="center">
-                                    {row.publishedDate}
-                                </TableCell>
+                                {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}                                </TableCell>
                                 <TableCell className={`${classes.cellBody}`} align="left">{row.arabicTitle}</TableCell>
-                                <TableCell className={classes.cellBody} align="center">{row.primaryAuthor}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">{row.center}</TableCell>
+                                <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">
                                     
                                     <IconButton onClick={()=>{setSelectedItem(row);setEditVisible(true)}}>
