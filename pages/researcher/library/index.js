@@ -79,10 +79,10 @@ export default function index() {
                         ))
                     }
                 </div>
-                {  books.length > 10 && (
+                {/* {  books.length > 10 && (
                             <Pagination />
                         )
-                }
+                } */}
             </div>
         </ResearcherLayout>
     )
