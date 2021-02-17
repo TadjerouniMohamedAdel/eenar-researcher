@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import { CircularProgress , Stepper , Step , StepLabel  } from '@material-ui/core';
 import Chip from "@material-ui/core/Chip";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { Hidden } from '@material-ui/core';
 
 
 export default function MultiStepsAddElement({steps,handleSubmit,title}) {
@@ -127,18 +128,36 @@ export default function MultiStepsAddElement({steps,handleSubmit,title}) {
                             case 'file':
                                 return (
                                     <div  key={`crud-add-element-${index}-${step}`}>
-                                    <TextField
-                                        className={`input-align-right ${classes.formInput} ${field.className}`}
-                                        name={field.name}
-                                        type={field.type}
-                                        {...field.props}
-                                        onChange={(event) => {formiks[step].setFieldValue("file", event.currentTarget.files[0]);}}          
-                                        id={`crud-add-element-${index}-${field.name}`}
-                                        label={field.label}
-                                        error={formiks[step].errors[field.name]}
-                                        helperText={formiks[step].errors[field.name]}
-                                        variant="outlined"
-                                    />
+                                            <TextField
+                                                style={{display:"none"}}
+                                                className={`input-align-right ${classes.formInput} ${field.className}`}
+                                                name={field.name}
+                                                type={field.type}
+                                                hidden={true}
+                                                {...field.props}
+                                                onChange={(event) => {formiks[step].setFieldValue("file", event.currentTarget.files[0]);}}          
+                                                id={`crud-add-element-${index}-${field.name}`}
+                                                label={field.label}
+                                                error={formiks[step].errors[field.name]}
+                                                helperText={formiks[step].errors[field.name]}
+                                                variant="outlined"
+                                            />
+                                            <TextField
+                                                className={`input-align-right ${classes.formInput} ${field.className}`}
+                                                name={field.name}
+                                                type="text"
+                                                {...field.props}
+                                                placeholder={"الملف لا يتعدى 25 ميغابايت / الصيغ المقبولة: pdf, docs"}
+                                                InputProps={{
+                                                    readOnly: true,
+                                                  }}
+                                                onClick={()=>{document.getElementById(`crud-add-element-${index}-${field.name}`).click()}}
+                                                value={formiks[step].values[field.name]?.name}
+                                                label={field.label}
+                                                error={formiks[step].errors[field.name]}
+                                                helperText={formiks[step].errors[field.name]}
+                                                variant="outlined"
+                                            />
                                 </div>
                                 )
                             break;

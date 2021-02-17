@@ -103,6 +103,18 @@
     border: solid 1px #dedeea;
     background-color: #ffffff;
 }
+.fileValue {
+    position: relative;
+    width: 90%;
+    background: #fff;
+    font-size: 16px;
+    top: -45px;
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin: 10px;
+    margin-bottom: -25px;
+  }
 .crudElement  .formInput > div{
     border-radius: 10px !important;
     border-color: transparent;

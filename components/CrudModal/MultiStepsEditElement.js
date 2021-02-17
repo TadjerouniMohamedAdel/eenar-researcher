@@ -121,12 +121,26 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
                                     return (
                                         <div  key={`crud-edit-element-${index}-${step}`}>
                                             <TextField
+                                                style={{display:"none"}}
                                                 className={`input-align-right ${classes.formInput} ${field.className}`}
                                                 name={field.name}
                                                 type={field.type}
                                                 {...field.props}
                                                 onChange={(event) => {formiks[step].setFieldValue("file", event.currentTarget.files[0]);}}          
                                                 id={`crud-edit-element-${index}-${field.name}`}
+                                                label={field.label}
+                                                error={formiks[step].errors[field.name]}
+                                                helperText={formiks[step].errors[field.name]}
+                                                variant="outlined"
+                                            />
+                                             <TextField
+                                                className={`input-align-right ${classes.formInput} ${field.className}`}
+                                                name={field.name}
+                                                type="text"
+                                                {...field.props}
+                                                placeholder={"الملف لا يتعدى 25 ميغابايت / الصيغ المقبولة: pdf, docs"}
+                                                onClick={()=>{document.getElementById(`crud-edit-element-${index}-${field.name}`).click()}}
+                                                value={formiks[step].values[field.name]?.name ?? formiks[step].values[field.name]}
                                                 label={field.label}
                                                 error={formiks[step].errors[field.name]}
                                                 helperText={formiks[step].errors[field.name]}
