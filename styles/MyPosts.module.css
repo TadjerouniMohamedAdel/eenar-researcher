@@ -310,6 +310,8 @@
     .myPostsContainer .mainSection .filterSection .input{
         width: 200px !important;
         border-radius: 10px !important;
+        margin-left: 10px;
+        margin-right: 10px;
         border: solid 1px transparent !important;
         background-color: #ffffff;
         margin-top: 6px;
@@ -320,5 +322,49 @@
     }
     .myPostsContainer .select{
         width: 100px;
+    }
+}
+@media(max-width:545px){
+    .myPostsContainer .mainSection .filterSection{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        width: 100%;
+        align-items: flex-end;
+    }
+    .myPostsContainer .mainSection .filterSection  .groupedActions{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .myPostsContainer .mainSection .filterSection  .groupedActions .input{ 
+        flex:2;
+    }
+    .myPostsContainer .mainSection .filterSection .buttonSection{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .myPostsContainer .sideSection {
+       display: column;
+       align-items: center;
+       flex: none;
+       width: 100%;
+    }
+    .myPostsContainer .sideSection > div{
+        display: column;
+        width: 100%;
+        margin:0;
+        margin-bottom: 10px;
+        flex: none;
+        align-items: center;
+     }
+     .myPostsContainer .mainSection {
+        flex: none;
+        width: 100%;
+    }
+    .myPostsContainer .mainSection >div{
+        flex: none;
+        width: 100%;
     }
 }

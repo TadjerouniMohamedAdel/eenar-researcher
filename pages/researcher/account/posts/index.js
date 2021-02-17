@@ -10,7 +10,7 @@ import MyGroups from "../../../../components/MyGroups/MyGroups";
 import SearchIcon from '@material-ui/icons/Search';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import { Button, FormControl, IconButton, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@material-ui/core';
+import { Button, FormControl, IconButton, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField,Hidden } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from '../../../../components/Modal/Modal';
 import MultiStepsAddElement from '../../../../components/CrudModal/MultiStepsAddElement';
@@ -172,7 +172,7 @@ export default function index() {
                             <TableRow>
                                 <TableCell className={classes.cellHeader} align="center">تاريخ النشر</TableCell>
                                 <TableCell className={classes.cellHeader} align="left">العنوان</TableCell>
-                                <TableCell className={classes.cellHeader} align="center">المؤلف</TableCell>
+                                <Hidden only="xs"><TableCell className={classes.cellHeader} align="center">المؤلف</TableCell></Hidden>
                                 <TableCell className={classes.cellHeader} align="center">إجراأت</TableCell>
                             </TableRow>
                             </TableHead>
@@ -183,7 +183,7 @@ export default function index() {
                                     {moment(row.publishedDate).format('DD MMM YYYY')}
                                 </TableCell>
                                 <TableCell className={`${classes.cellBody} ${classes.title}`} align="left">{row.arabicTitle}</TableCell>
-                                <TableCell className={classes.cellBody} align="center">{row.primaryAuthor}</TableCell>
+                                <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.primaryAuthor}</TableCell></Hidden>
                                 <TableCell className={classes.cellBody} align="center">
                                     <Link href={row.file}>
                                         <IconButton>

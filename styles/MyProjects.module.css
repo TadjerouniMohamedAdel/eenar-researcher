@@ -305,10 +305,11 @@
     }
 }
 @media(max-width:750px){
-    
     .myProjectsContainer .mainSection .filterSection .input{
         width: 200px !important;
         border-radius: 10px !important;
+        margin-left: 10px;
+        margin-right: 10px;
         border: solid 1px transparent !important;
         background-color: #ffffff;
         margin-top: 6px;
@@ -319,5 +320,49 @@
     }
     .myProjectsContainer .select{
         width: 100px;
+    }
+}
+@media(max-width:545px){
+    .myProjectsContainer .mainSection .filterSection{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        width: 100%;
+        align-items: flex-end;
+    }
+    .myProjectsContainer .mainSection .filterSection  .groupedActions{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .myProjectsContainer .mainSection .filterSection  .groupedActions .input{ 
+        flex:2;
+    }
+    .myProjectsContainer .mainSection .filterSection .buttonSection{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .myProjectsContainer .sideSection {
+       display: column;
+       align-items: center;
+       flex: none;
+       width: 100%;
+    }
+    .myProjectsContainer .sideSection > div{
+        display: column;
+        width: 100%;
+        margin:0;
+        margin-bottom: 10px;
+        flex: none;
+        align-items: center;
+     }
+     .myProjectsContainer .mainSection {
+        flex: none;
+        width: 100%;
+    }
+    .myProjectsContainer .mainSection >div{
+        flex: none;
+        width: 100%;
     }
 }

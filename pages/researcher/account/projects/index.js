@@ -3,7 +3,7 @@ import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout
 import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 import MyHead from '../../../../components/MyHead/MyHead'
 import { dataarticles, datagroups } from '../../../../utils/fixtures/DevData'
-import { Button, FormControl, IconButton, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@material-ui/core';
+import { Button, FormControl, IconButton, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField, Hidden } from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import EditIcon from '@material-ui/icons/Edit';
 import LearnNow from "../../../../components/LearnNow/LearnNow";
@@ -171,7 +171,7 @@ export default function index() {
                             <TableRow>
                                 <TableCell className={classes.cellHeader} align="center">تاريخ البدأ</TableCell>
                                 <TableCell className={classes.cellHeader} align="left">المشروع</TableCell>
-                                <TableCell className={classes.cellHeader} align="center">المؤسسة</TableCell>
+                                <Hidden only="xs"><TableCell className={classes.cellHeader} align="center">المؤسسة</TableCell></Hidden>
                                 <TableCell className={classes.cellHeader} align="center">الحالة </TableCell>
                                 <TableCell className={classes.cellHeader} align="center">إجراأت</TableCell>
                             </TableRow>
@@ -182,7 +182,7 @@ export default function index() {
                                 <TableCell className={classes.cellBody} align="center">
                                 {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}                                </TableCell>
                                 <TableCell className={`${classes.cellBody}`} align="left">{row.arabicTitle}</TableCell>
-                                <TableCell className={classes.cellBody} align="center">{row.center}</TableCell>
+                                <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
                                 <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
                                 <TableCell className={classes.cellBody} align="center">
                                     
