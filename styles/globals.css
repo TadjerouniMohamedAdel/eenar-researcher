@@ -76,3 +76,6 @@ input{
 .MuiAutocomplete-inputRoot{
     border-radius: 12px !important;
 }
+.no-scroll{
+    overflow-y: hidden;
+}

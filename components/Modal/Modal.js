@@ -1,4 +1,4 @@
-import React from 'react'
+import {useEffect} from 'react'
 import Link from 'next/link'
 import {motion, AnimatePresence} from 'framer-motion'
 import classes from './Modal.module.css'
@@ -12,9 +12,16 @@ const backdropVariants = {
 
 const modalVariants = {
     hidden:{y:"-110vh",opacity:0},
-    visible:{y:"200px",opacity:1,transition:{delay:0.5}}
+    visible:{y:"90px",opacity:1,transition:{delay:0.5}}
 }
 export default function Modal({visible,setVisible,children}) {
+   
+    useEffect(() => {
+       console.log("changed visible",visible)
+       visible ? document.body.classList.add("no-scroll") :document.body.classList.remove("no-scroll");
+
+    }, [visible])
+
     return (
         <AnimatePresence exitBeforeEnter>
             {visible && (
