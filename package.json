@@ -10,7 +10,6 @@
     "build-docker": "docker build -t next-app .",
     "build-docker-multistage": "docker build --target production -t next-app -f ./Dockerfile.multistage .",
     "run-docker": "docker run --rm -it -p 3000:3000 next-app"
-
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -30,10 +29,12 @@
     "next": "10.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-id-swiper": "^4.0.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
+    "swiper": "^6.4.14",
     "swr": "^0.4.1",
     "yup": "^0.32.8"
   }
