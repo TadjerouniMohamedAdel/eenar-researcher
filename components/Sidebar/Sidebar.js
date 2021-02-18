@@ -101,7 +101,7 @@ export default function Sidebar() {
             <div className={classes.bondeau}></div>
             <div className={classes.profile}>
                 <Rectangles />
-                <h2 className={classes.profileTitle}>{user.firstname} {user.lastname}</h2>
+                <h2 className={classes.profileTitle}>{user.lastname} {user.firstname}</h2>
                 <span className={classes.profileJob}>{user.job}</span>
             </div>
             <div className={classes.profileBadges}>

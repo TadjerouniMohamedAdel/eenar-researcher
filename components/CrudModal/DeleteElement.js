@@ -21,21 +21,22 @@ export default function DeleteElement({item,title,handleSubmit}) {
                             <div className={classes.collectionRectangle}></div>
                             <div className={classes.collectionContent}>
                                 <h2>
-                                    {item.title ?? item.university ?? item.company??item.organization ??item.name }
+                                    {item.title ?? item.arabicTitle ?? item.university ?? item.company??item.organization ??item.name }
                                 </h2>
                                 
                                 <h3>{item.provider}</h3>
                                 <h3>{item.role ?? item.university}</h3>
                                 <h3>{item.date && moment(item.date).format('DD MMM YYYY') }</h3>
+                                <h3>{item.publishedDate && moment(item.publishedDate).format('DD MMM YYYY') }</h3>
                                 <h3>{item.startDate && `${moment(item.startDate).format('DD MMM YYYY')} - ${item.endDate!==""? moment(item.endDate).format('DD MMM YYYY'):"لا تاريخ انتهاء الصلاحية"}`}</h3>
                                 <span>{item.link && item.link.label}</span>
-                                <span>{item.description}
+                                <span>{item.description ?? item.arabicDescription}
                                 </span>
                                 <span>{item.location}</span>
                             </div>
                         </div>
                 <div className={classes.submitContainer} onClick={()=>{setIsLoading(true);handleSubmit(item)}}>
-                        <Button className={classes.submit} type="button" disabled={isLoading}>
+                        <Button className={classes.submit} type="button" disabled={isLoading} variant="contained">
                             <div>
                                 {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
                             </div>

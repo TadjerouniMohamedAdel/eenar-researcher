@@ -2,6 +2,8 @@ import React,{useState} from 'react'
 import { TextField,Button, Select, MenuItem, FormControl, InputLabel, CircularProgress } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
+import Chip from "@material-ui/core/Chip";
+import Autocomplete from "@material-ui/lab/Autocomplete"
 
 export default function EditElement({item,fields,handleSubmit,validationSchema,title}) {
     const [isLoading,setIsLoading] = useState(false)
@@ -13,6 +15,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
 
     const formik = useFormik({
         initialValues:item,
+        validateOnChange:false,
         onSubmit: submit,
         validationSchema,
       });    
@@ -31,52 +34,93 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 
                 {
-                    fields.map((field,index)=>
-                    (
-                        field.type == "select" ?
-                        (
-                            <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-outlined-label">{field.label}</InputLabel>
-                            <Select
-                                value={formik.values[field.name]}
-                                name={field.name}
-                                onChange={formik.handleChange}
-                                label={field.name}
+                    fields.map((field,index)=>{
+                        switch (field.type) {
+                            case "array":
+                                let values = formik.values[field.name]
+                                return (
+                                        <Autocomplete
+                                            style={{marginTop:28,borderRadius:12}}
+                                            multiple
+                                            autoSelect
+                                            key={`crud-add-element-${index}-${step}`}
+                                            onChange={(e,values)=>{
+                                                formik.values[field.name] = values
+                                            }}
+                                            freeSolo
+                                            name={field.name}
+                                            defaultValue={values}
+                                            id={`crud-add-element-${index}-${step}`}
+                                            options={[]}
+                                            renderTags={(value, getTagProps) =>
+                                                value.map((option, index) => (
+                                                <Chip
+                                                    variant="outlined"
+                                                    label={option}
+                                                    {...getTagProps({ index })}
+                                                />
+                                                ))
+                                            }
+                                            renderInput={(params) => (
+                                                <TextField  
+                                                    className={`${field.className}`} 
+                                                    {...params}
+                                                    label={field.label} 
+                                                    variant="outlined" 
+                                                    />
+                                            )}
+                                        />
+                                );
+                                break;
 
-                            >
-                                {
-                                    field.choices.map((choice,index)=>(
-                                        <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
-                                    ))
-                                }
-                                
-                            </Select>
-                        </FormControl>
-                        )
-                        :(
-
-                            <div 
-                                key={`crud-add-element-${index}`}
-                            >
-                                <TextField
-                                    className={`input-align-right ${classes.formInput} ${field.className}`}
-                                    name={field.name}
-                                    type={field.type}
-                                    {...field.props}
-                                    onChange={formik.handleChange}
-                                    value={field.type=="date"&&formik.values[field.name]?formik.values[field.name].split("T")[0]:formik.values[field.name]}
-                                    id={`crud-add-element-${index}-${field.name}`}
-                                    label={field.label}
-                                    error={formik.errors[field.name]}
-                                    helperText={formik.errors[field.name]}
-                                    variant="outlined"
-                                />
-                            </div>
-                        )
-                    ))
+                            case "select":
+                                return(
+                                    <FormControl variant="outlined" className={classes.formControl}>
+                                        <InputLabel id="demo-simple-select-outlined-label">{field.label}</InputLabel>
+                                        <Select
+                                            value={formik.values[field.name]}
+                                            name={field.name}
+                                            onChange={formik.handleChange}
+                                            label={field.name}
+                                        >
+                                            {
+                                                field.choices.map((choice,index)=>(
+                                                    <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
+                                                ))
+                                            }
+                                            
+                                        </Select>
+                                    </FormControl>
+                                )
+                                break;
+                        
+                            default:
+                                return(
+                                    <div 
+                                        key={`crud-add-element-${index}`}
+                                    >
+                                        <TextField
+                                            className={`input-align-right ${classes.formInput} ${field.className}`}
+                                            name={field.name}
+                                            type={field.type}
+                                            {...field.props}
+                                            onChange={formik.handleChange}
+                                            value={field.type=="date"&&formik.values[field.name]?formik.values[field.name].split("T")[0]:formik.values[field.name]}
+                                            id={`crud-add-element-${index}-${field.name}`}
+                                            label={field.label}
+                                            error={formik.errors[field.name]}
+                                            helperText={formik.errors[field.name]}
+                                            variant="outlined"
+                                        />
+                                    </div>
+                                )
+                                break;
+                        }
+                    }
+                    )
                 }
                 <div className={classes.submitContainer}>
-                    <Button className={classes.submit} type="submit" disabled={isLoading}>
+                    <Button onClick={()=>console.log(formik.errors)} className={classes.submit} type="submit" disabled={isLoading}>
                         <div>
                             {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
                         </div>

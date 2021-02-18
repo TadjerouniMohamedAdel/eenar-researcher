@@ -1,3 +1,4 @@
+/** researcher form fields */
 export const aboutmeFields = [
     {name:"city",label:"المدينة",type:"text",defaultValue:"",className:""},
     {name:"center",label:"المؤسسة",type:"text",defaultValue:"",className:""},
@@ -77,4 +78,49 @@ export const projectFields = [
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
     {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+]
+
+export const postStep1=[
+    {name:"primaryAuthor",label:"المؤلف الرئيسي",type:"text",defaultValue:"",className:""},
+    {name:"secondaryAuthors",label:"المؤلفون المشاركون",type:"array",defaultValue:[],className:""},
+    {name:"arabicTitle",label:"عنوان المنشور بالعربية",type:"text",defaultValue:"",className:""},
+    {name:"englishTitle",label:"عنوان المنشور بالإنجليزية",type:"text",defaultValue:"",className:""},
+    {name:"publishedBy",label:"الناشر",type:"text",defaultValue:"",className:""},
+    {name:"link",label:"رابط DOI ISSN",type:"text",defaultValue:"",className:""},
+]
+
+export const postStep2=[
+    {name:"arabicDescription",label:"الملخص بالعربية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"publishedDate",label:"تاريخ النشر",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"file",label:"تحميل ملف المقال",type:"file",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:"fileInput"},
+    {name:"keywords",label:"الكلمات المفتاحية",type:"array",defaultValue:[],className:""},
+]
+
+export const projectStep1=[
+    {name:"primaryAuthor",label:"المؤلف الرئيسي",type:"text",defaultValue:"",className:""},
+    {name:"secondaryAuthors",label:"المؤلفون المشاركون",type:"array",defaultValue:[],className:""},
+    {name:"arabicTitle",label:"عنوان المنشور بالعربية",type:"text",defaultValue:"",className:""},
+    {name:"englishTitle",label:"عنوان المنشور بالإنجليزية",type:"text",defaultValue:"",className:""},
+    {name:"supervisor",label:"المشرف",type:"text",defaultValue:"",className:""},
+    {name:"center",label:"الجامعة / المؤسسة",type:"text",defaultValue:"",className:""},
+]
+
+export const projectStep2=[
+    {name:"arabicDescription",label:"الملخص بالعربية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"startDate",label:"تاريخ البدأ",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
+]
+export const projectStep3=[
+    {name:"justifications",label:"المبررات",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"goals",label:"الأهداف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"previousStudies",label:"الدراسات السابقة للمشروع",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    
+]
+
+export const projectStep4=[
+    {name:"methodology",label:"منهج البحث ووسائله",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"materials",label:"المراجع والمصادر",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+    {name:"steps",label:"مراحل البحث",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]

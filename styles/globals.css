@@ -73,3 +73,6 @@ input{
 .MuiSelect-select{
     font-family: var(--primary-font) !important;
 }
+.MuiAutocomplete-inputRoot{
+    border-radius: 12px !important;
+}

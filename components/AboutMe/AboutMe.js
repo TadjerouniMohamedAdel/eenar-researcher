@@ -10,6 +10,57 @@ import {aboutmeSchema} from '../../utils/Validation/ValidationObjects'
 import { dataaboutme } from '../../utils/fixtures/DevData';
 import {useSelector} from 'react-redux'
 import moment from 'moment'
+import { Page, PDFDownloadLink , Text, Image , Font , View, Document, StyleSheet } from '@react-pdf/renderer';
+
+
+Font.register({ family: 'arb', src: '//db.onlinewebfonts.com/t/eb685f5dc6b663497f7d5d4aa4a6c13d.ttf' });
+
+
+// Create styles
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'column',
+    alignItems:'center',
+  },
+  section: {
+    fontFamily:'arb',
+    width:"100%",
+    flexDirection: 'column',
+    alignItems:'center',
+  },
+  logo:{
+    width:130,
+    height:50,
+  },
+  title:{
+    fontWeight:800,
+    fontSize:14,
+    marginTop:20
+  },
+  inProgress:{
+    width:390,
+    height:400,
+  },
+  textProgress:{
+      fontSize:14
+  }
+});
+
+// Create Document Component
+const MyDocument = ({user}) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Image src="/images/logo-complete.png" style={styles.logo}/>
+        <Text style={styles.title}>{user.lastname} {user.firstname} السيرة الذاتية ل</Text>
+      </View>
+      <View style={styles.section}>
+          <Image src="/images/in-progress.png" style={styles.inProgress}/>
+          <Text style={styles.textProgress}>في قيد الإنجاز</Text>
+      </View>
+    </Page>
+  </Document>
+);
 
 export default function AboutMe() {
     const [editVisible,setEditVisible] = useState(false)
@@ -17,7 +68,6 @@ export default function AboutMe() {
     const user = useSelector(state => state.user)
     moment.locale('ar-dz')
     const handleEditAboutme = (data)=>{
-        setAboutme(data)
         setEditVisible(false)
     }
     return (
@@ -50,10 +100,12 @@ export default function AboutMe() {
                         <li><span className={classes.infoLabel}>الوظيفة</span><span className={classes.infoValue}>{user.job}</span></li>
                         <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={aboutme.website} target="_blank">{aboutme.website}</a></span></li>
                     </ul>
+                    <PDFDownloadLink className={classes.noStyled} document={<MyDocument user={user} />} fileName={`resume-${user.firstname}-${user.lastname}.pdf`}>
                     <Button className={classes.downloadResume}>
                         <span>حمل السيرة الذاتية</span>
                         <GetAppIcon />
                     </Button>
+                    </PDFDownloadLink>
     </div>
     )
 }

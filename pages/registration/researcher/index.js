@@ -51,18 +51,21 @@ export default function Registration() {
     const formik1 = useFormik({
         initialValues:{firstname:"",lastname:"",gender:"",center:""},
         onSubmit: handleSubmit,
+        validateOnChange:false,
         validationSchema:researcherRegistrationValidation1,
       });
     
     const formik2 = useFormik({
         initialValues:{address:"",region:"",city:""},
         onSubmit: handleSubmit,
+        validateOnChange:false,
         validationSchema:researcherRegistrationValidation2,
       });
     
       const formik3 = useFormik({
         initialValues:{email:'',password:"",retypedPassword:"",isAgree:false},
         onSubmit: handleSubmit,
+        validateOnChange:false,
         validationSchema:researcherRegistrationValidation3,
       });
     

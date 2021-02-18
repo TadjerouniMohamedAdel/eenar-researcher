@@ -1,0 +1,330 @@
+.libraryContainer{
+    display: flex;
+    margin-top: 32px;
+    flex-direction: column;
+}
+.libraryContainer > h1{
+    font-family: var(--primary-font);
+    font-size: 26px;
+    font-weight: bold;
+    font-stretch: normal;
+    margin-top: 34.2px;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+
+.libraryContainer  .filterSection {
+    width: 100%;
+    height: 100px;
+    margin-top: 26px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    align-items: center !important;
+    justify-content: space-between;
+    padding-right: 28px;
+    padding-left: 28px;
+}
+.libraryContainer  .filterSection .groupedActions{
+    display: flex;
+    width: 45%;
+    align-items: center;
+    justify-content: space-between;
+}
+.libraryContainer  .filterSection .input{
+    width: 349px !important;
+    border-radius: 10px !important;
+    border: solid 1px transparent !important;
+    background-color: #ffffff;
+    margin-top: 6px;
+}
+.libraryContainer  .input > div{
+    border-radius: 10px !important;
+    border-color: transparent;
+}
+.libraryContainer .select{
+    width: 143px;
+    /* height: 48px !important; */
+    border-radius: 8px;
+    border: solid 1px #dedeea;
+    background-color: #ffffff;
+}
+
+.libraryContainer  .filterSection .searchButton{
+    width: 64px !important;
+    height: 48px !important;
+    padding: 12px 20px;
+    border-radius: 8px !important;
+    box-shadow: 3px 5.2px 10px 0 rgba(255, 209, 102, 0.3);
+    background-color: #ffd166 !important;
+}
+.libraryContainer  .filterSection .searchButton .searchIcon{
+    font-size: 30px !important;
+    color: #ffffff;   
+}
+.libraryContainer  .filterSection .searchButton .searchIcon.right{
+    transform: rotate(100deg) !important;
+}
+.libraryContainer  .filterSection .addButton{
+    width: 140px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    background-color: var(--active-color);
+}
+.libraryContainer  .filterSection .addButton span.text{
+    /* width: 81px; */
+    font-family: var(--primary-font);
+    font-size: 13.9px;
+    color: #ffffff;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+}
+.libraryContainer  .filterSection .addButton .addIcon{
+    font-size: 19px;
+    color: #ffffff;
+}
+
+.libraryContainer .bookList{
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 8px;
+    flex-direction: column;
+    margin-top: 32px;
+}
+.libraryContainer .bookDivider{
+    width: 100%;
+    height: 2px;
+    margin: 28px 0 0;
+    background-color: #eaeaf5;
+}
+.libraryContainer .bookList .bookItem{
+    display: flex;
+    height: 200px;
+    align-items: center;
+}
+.libraryContainer .bookList .bookItem .bookCover{
+    width: 100px;
+    height: 149px;
+    margin-left: 28px;
+    margin-right: 28px;
+}
+.bookLink{
+    cursor:  pointer !important;
+}
+.libraryContainer .bookList .bookItem .bookCover img{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.libraryContainer .bookList .bookItem .bookContent h2{
+    font-family: var(--primary-font);
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.libraryContainer .bookList .bookItem .bookContent > h3{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.86;
+    margin-top: 10px;
+    letter-spacing: normal;
+    text-align: right;
+    color:var(--primary-color);
+}
+.libraryContainer .bookList .bookItem .bookContent .groupedContent{
+    display: flex;
+    margin-top: 10px;
+}
+
+.libraryContainer .bookList .bookItem .bookContent .groupedContent  h3{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.86;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+
+.libraryContainer .bookList .bookItem .bookContent .groupedContent .groupedDivider{
+    width: 2px;
+    height: 10px;
+    margin: 0px 12px 18px;
+    background-color: #06d6a0
+}
+.libraryContainer .bookDetails{
+    width: 1200px;
+    height: auto;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-top: 32px;
+    padding: 28px 40px 84px 28px;
+    display: flex;
+    flex-direction: column;
+}
+.libraryContainer .libraryItemContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.libraryContainer .bookDetails .getResumeContainer{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+.libraryContainer .bookDetails .getResume{
+        height: 40px;
+        display: flex;
+        align-items: center;
+        margin: 0 11px 41px 0;
+        padding: 7px 48px 6px;
+        border-radius: 8px;
+        box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+        background-color: #06d6a0;
+}
+.libraryContainer .bookDetails .getResume span{
+  font-family: var(--primary-font);
+  font-size: 13.9px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+.libraryContainer .bookDetails .bookPageContent{
+    display: flex;
+    width:100%;
+}
+.libraryContainer .bookDetails .bookPageContent .bookPageImage{
+    width: 182px;
+    height: 273px;
+    margin: 12px 0 185px 32px;
+
+}
+
+.libraryContainer .bookDetails .bookPageContent .bookPageImage img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+.libraryContainer .bookDetails .bookPageContent .bookPageOverview{
+    display: flex;
+    width: calc(100% - 200px);
+    flex-direction: column;
+}
+.libraryContainer .bookDetails .bookPageContent .bookPageOverview h1{
+    font-family: var(--primary-font);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 11.7px 32px 0.4px 125px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.libraryContainer .bookDetails .bookPageContent .bookPageOverview h2{
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: normal;
+    margin: 10px 32px 0px 10px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.libraryContainer .bookDetails .bookPageContent .bookPageOverview p{
+    height: auto;
+    margin: 36px 32px 0 12px;
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.libraryContainer .sideSection{
+    margin-top: 32px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+.libraryContainer .sideSection > div{
+    width: 300px;
+    padding: 24px 16px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+
+}
+
+.libraryContainer .sideSection .sideMenu h3{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.libraryContainer .sideSection .sideMenu h3 span{
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.libraryContainer .sideSection .sideMenu h3 .iconMenu{
+    color: #dfdfe6;
+}
+.libraryContainer .sideSection .sideMenu .list{
+    display: flex;
+    padding-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+.libraryContainer .sideSection .sideMenu .list img{
+    width: 55px;
+    height: 86px;
+    margin: 0 8px;
+    border-radius: 8px;
+    background-color: #118ab2;
+}

@@ -1,0 +1,368 @@
+.myProjectsContainer{
+    display: flex;
+    margin-top: 32px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.myProjectsContainer .mainSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.myProjectsContainer .sideSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.myProjectsContainer .mainSection{
+    /* width: 1150px; */
+    flex:2;
+}
+
+.myProjectsContainer .sideSection > div{
+    flex: 1;
+    width: 90%;
+}
+.myProjectsContainer .mainSection .filterSection {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    align-items: center !important;
+    justify-content: space-between;
+    padding-right: 28px;
+    padding-left: 28px;
+}
+.myProjectsContainer .mainSection .filterSection .groupedActions{
+    display: flex;
+    flex:1;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.myProjectsContainer .mainSection .filterSection .input{
+    width: 349px !important;
+    border-radius: 10px !important;
+    border: solid 1px transparent !important;
+    background-color: #ffffff;
+    margin-top: 6px;
+}
+.myProjectsContainer  .input > div{
+    border-radius: 10px !important;
+    border-color: transparent;
+}
+.myProjectsContainer .select{
+    width: 143px;
+    /* height: 48px !important; */
+    border-radius: 8px;
+    border: solid 1px #dedeea;
+    background-color: #ffffff;
+}
+
+.myProjectsContainer .mainSection .filterSection .searchButton{
+    width: 64px !important;
+    height: 48px !important;
+    padding: 12px 20px;
+    border-radius: 8px !important;
+    box-shadow: 3px 5.2px 10px 0 rgba(255, 209, 102, 0.3);
+    background-color: #ffd166 !important;
+}
+.myProjectsContainer .mainSection .filterSection .searchButton .searchIcon{
+    font-size: 30px !important;
+    color: #ffffff;   
+}
+.myProjectsContainer .mainSection .filterSection .searchButton .searchIcon.right{
+    transform: rotate(100deg) !important;
+}
+.buttonSection{
+    flex:1;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.myProjectsContainer .mainSection .filterSection .addButton{
+    width: 132px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    background-color: var(--active-color);
+}
+.myProjectsContainer .mainSection .filterSection .addButton span.text{
+    font-family: var(--primary-font);
+    font-size: 13.9px;
+    color: #ffffff;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+}
+.myProjectsContainer .mainSection .filterSection .addButton .addIcon{
+    font-size: 19px;
+    color: #ffffff;
+}
+
+.myProjectsContainer .mainSection .tableContainer{
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.myProjectsContainer .mainSection .table{
+    width: 100%;
+}
+.myProjectsContainer .mainSection .table .cellHeader {
+    width: 42px;
+    height: 22px;
+    margin: 0 341.7px 0 274.3px;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    color: #3e3f5e;
+    border-bottom: 0px;
+}
+.myProjectsContainer .mainSection .table .cellBody {
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: normal;
+    color: #9192a6;
+}
+.myProjectsContainer .mainSection .table .tableBody{
+    background-color: #fff;
+    padding: 24px 32px 19px;
+    border-radius: 8px !important;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+}
+.myProjectsContainer .mainSection .table .cellBody.title{
+    width: 150px;
+    height: 27px;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: #118ab2;
+}
+.myProjectsContainer .mainSection .table .cellBody .downloadIcon{
+    font-size: 24px;
+    color: var(--primary-color);
+}
+.myProjectsContainer .mainSection .tableContainer .paginationContainer{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.myProjectsContainer .mainSection .tableContainer .paginationContainer .paginationCustom{
+    width: auto;
+    height: 60px;
+    margin: 16px 457px 0 0;
+    padding: 19.3px 27px 20px 27px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+.myProjectsContainer .mainSection .tableContainer .paginationContainer .paginationCustom .paginationButton{
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.disableButton{
+    opacity: 0.4;
+    color: #afb0c0;
+}
+.myProjectsContainer .mainSection .tableContainer .paginationContainer .paginationCustom .paginationButton.activeButton{
+    color: var(--primary-color);
+}
+.myProjectsContainer .mainSection .tableContainer .paginationContainer .paginationCustom .dividerPagination{
+    width: 1px;
+    height: 20px;
+    margin: 0.7px 22.7px 0 27px;
+    background-color: #eaeaf5;
+}
+.myProjectsContainer .empty{
+    width: 100%;
+    height: 550px;
+    margin-top: 20px;
+    font-family: var(--primary-font);
+    display: flex;
+    flex-direction: column;
+    /* background-color: #fff; */
+    justify-content: center;
+    align-items: center;
+}
+.myProjectsContainer .empty img{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+}
+.myProjectsContainer .empty h3{
+    font-size: 26px;
+    color: #afb0c0;
+}
+@media(max-width:1590px){
+    .myProjectsContainer .mainSection .table .cellBody {
+        font-size: 13px;
+    }
+    .myProjectsContainer .mainSection .table .tableBody{
+        background-color: #fff;
+        padding: 24px 32px 19px;
+        border-radius: 8px !important;
+        box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+        background-color: #ffffff;
+    }
+    .myProjectsContainer .mainSection .table .cellBody.title{
+        width: 90px;
+        font-size: 14px;
+    }
+    .myProjectsContainer .mainSection .table .cellBody .downloadIcon{
+        font-size: 21px;
+        color: var(--primary-color);
+    }
+    .myProjectsContainer .mainSection .filterSection .groupedActions{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .myProjectsContainer .mainSection .filterSection .input{
+        width: 250px !important;
+        border-radius: 10px !important;
+        border: solid 1px transparent !important;
+        background-color: #ffffff;
+        margin-top: 6px;
+    }
+    .myProjectsContainer  .input > div{
+        border-radius: 10px !important;
+        border-color: transparent;
+    }
+    .myProjectsContainer .select{
+        width: 143px;
+       
+    }
+    
+    .myProjectsContainer .mainSection .filterSection .searchButton{
+        width: 64px !important;
+        height: 48px !important;
+        padding: 12px 20px;
+        border-radius: 8px !important;
+        box-shadow: 3px 5.2px 10px 0 rgba(255, 209, 102, 0.3);
+        background-color: #ffd166 !important;
+    }
+    .myProjectsContainer .mainSection .filterSection .searchButton .searchIcon{
+        font-size: 25px !important;
+        color: #ffffff;   
+    }
+    .myProjectsContainer .mainSection .filterSection .searchButton .searchIcon.right{
+        transform: rotate(100deg) !important;
+    }
+    .myProjectsContainer .mainSection .filterSection .addButton span.text{
+        font-size: 12px;
+       
+    }
+    .myProjectsContainer .mainSection .filterSection .addButton .addIcon{
+        font-size: 15px;
+    }
+}
+@media(max-width:1370px){
+    .myProjectsContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .myProjectsContainer .sideSection{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex:1;
+        align-items: flex-start;
+    }
+    .myProjectsContainer .sideSection > div{
+        width: 100%;
+        margin: 10px;
+    }
+}
+@media(max-width:750px){
+    .myProjectsContainer .mainSection .filterSection .input{
+        width: 200px !important;
+        border-radius: 10px !important;
+        margin-left: 10px;
+        margin-right: 10px;
+        border: solid 1px transparent !important;
+        background-color: #ffffff;
+        margin-top: 6px;
+    }
+    .myProjectsContainer  .input > div{
+        border-radius: 10px !important;
+        border-color: transparent;
+    }
+    .myProjectsContainer .select{
+        width: 100px;
+    }
+}
+@media(max-width:545px){
+    .myProjectsContainer .mainSection .filterSection{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        width: 100%;
+        align-items: flex-end;
+    }
+    .myProjectsContainer .mainSection .filterSection  .groupedActions{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .myProjectsContainer .mainSection .filterSection  .groupedActions .input{ 
+        flex:2;
+    }
+    .myProjectsContainer .mainSection .filterSection .buttonSection{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .myProjectsContainer .sideSection {
+       display: column;
+       align-items: center;
+       flex: none;
+       width: 100%;
+    }
+    .myProjectsContainer .sideSection > div{
+        display: column;
+        width: 100%;
+        margin:0;
+        margin-bottom: 10px;
+        flex: none;
+        align-items: center;
+     }
+     .myProjectsContainer .mainSection {
+        flex: none;
+        width: 100%;
+    }
+    .myProjectsContainer .mainSection >div{
+        flex: none;
+        width: 100%;
+    }
+}

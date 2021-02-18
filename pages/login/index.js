@@ -55,6 +55,8 @@ export default function Login() {
         initialValues:{email:'',password:'',rememberMe:false},
         onSubmit: handleSubmit,
         validationSchema:loginSchema,
+        validateOnChange:false,
+
       });   
 
 	

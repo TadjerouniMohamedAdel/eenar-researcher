@@ -49,6 +49,7 @@ export default function index() {
     const formik = useFormik({
         initialValues:{center:'',region:"",city:"",address:"",class:'',job:""},
         onSubmit: handleSubmit,
+        validateOnChange:false,
         validationSchema:centerRegistrationStep1,
       });
       
@@ -56,6 +57,7 @@ export default function index() {
     const formik2 = useFormik({
         initialValues:{firstname:"",lastname:"",email:"",password:"",retypedPassword:""},
         onSubmit: handleSubmit,
+        validateOnChange:false,
         validationSchema:centerRegistrationStep2,
     });
 

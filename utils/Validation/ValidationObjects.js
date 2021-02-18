@@ -44,9 +44,7 @@ export const aboutmeSchema = Yup.object().shape({
 export const profileSchema = Yup.object().shape({
     lastname: Yup.string().required('يجب ملئ هذه المعلومة'),
     firstname: Yup.string().required('يجب ملئ هذه المعلومة'),
-    job: Yup.string().required('يجب ملئ هذه المعلومة'),
     birthday: Yup.string().required('يجب ملئ هذه المعلومة'),
-    nationality: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
 export const educationSchema = Yup.object().shape({
@@ -111,6 +109,48 @@ export const projectSchema = Yup.object().shape({
     startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
     endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
     description: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+
+export const postSchemaStep1 = Yup.object().shape({
+    primaryAuthor: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // secondaryAuthors: Yup.string().required('يجب ملئ هذه المعلومة'),
+    arabicTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
+    englishTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
+    publishedBy: Yup.string().required('يجب ملئ هذه المعلومة'),
+    link: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const postSchemaStep2 = Yup.object().shape({
+    arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
+    englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
+    publishedDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // file: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // keywords: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+
+export const projectSchemaStep1 = Yup.object().shape({
+    primaryAuthor: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // secondaryAuthors: Yup.string().required('يجب ملئ هذه المعلومة'),
+    arabicTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
+    englishTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
+    // supervisor: Yup.string().required('يجب ملئ هذه المعلومة'),
+    center: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const projectSchemaStep2 = Yup.object().shape({
+    arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
+    englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().nullable().default(null),
+    endDate: Yup.date().nullable().default(null),
+})
+
+export const projectSchemaStep3 = Yup.object().shape({
+    justifications: Yup.string().required('يجب ملئ هذه المعلومة'),
+    goals: Yup.string().required('يجب ملئ هذه المعلومة'),
+    previousStudies: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const projectSchemaStep4 = Yup.object().shape({
+    methodology: Yup.string().required('يجب ملئ هذه المعلومة'),
+    materials: Yup.string().required('يجب ملئ هذه المعلومة'),
+    steps: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
 

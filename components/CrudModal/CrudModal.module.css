@@ -6,17 +6,67 @@
     padding-bottom: 40px;
 }
 .crudElement h1{
-    margin: 0 31px 8px 72px;
+    margin-right:30px;
+    margin-left:30px;
+    margin-bottom: 8px;
     font-family: var(--primary-font);
     font-size: 16px;
     font-weight: bold;
+    width: calc(100% - 60px);
     font-stretch: normal;
     font-style: normal;
     line-height: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     letter-spacing: normal;
     text-align: right;
     color: #3e3f5e;
 }
+.crudElement .stepper{
+    display: flex;
+    flex-direction: flex-end;
+    align-items: center;
+    width: 70%;
+}
+.crudElement .step{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: solid 1px #afb0c0;
+    background-color: #ffffff;
+}
+.crudElement .step span {
+    font-family: var(--primary-font);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    color: #afb0c0;
+}
+.crudElement .step.done{
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.crudElement .step.done span{
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+.crudElement .stepConjection{
+    flex: 1;
+    height: 0;
+    border: solid 1px var(--primary-color);
+  }
 .crudElement .divider{
     width: 100%;
     height: 1px;
@@ -53,15 +103,31 @@
     border: solid 1px #dedeea;
     background-color: #ffffff;
 }
+.fileValue {
+    position: relative;
+    width: 90%;
+    background: #fff;
+    font-size: 16px;
+    top: -45px;
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin: 10px;
+    margin-bottom: -25px;
+  }
 .crudElement  .formInput > div{
     border-radius: 10px !important;
     border-color: transparent;
 }
+.crudElement input::-webkit-file-upload-button {
+    display: none !important;
+}
+
 .crudElement .submitContainer{
     display: flex;
     width: 100%;
     justify-content: flex-end;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .crudElement .submitContainer .submit{
@@ -90,6 +156,64 @@
     letter-spacing: normal;
     text-align: center;
     color: #fff;
+}
+.crudElement .submitContainer .back{
+    width: 153px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    align-items: center;
+    border: solid 1px #afb0c0;
+    background-color: #ffffff;   
+}
+.submitContainer .back span {
+    /* width: 40px; */
+    height: 27px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: #afb0c0;
+}
+.crudElement .submitContainer .next{
+    width: 153px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    align-items: center;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    border: solid 1px #06d6a0;
+    background-color: #ffffff;   
+}
+.submitContainer .next span {
+    /* width: 40px; */
+    height: 27px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--active-color);
 }
 .collectionItem{
     display: flex;
