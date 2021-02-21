@@ -9,20 +9,22 @@ import SearchIcon from '@material-ui/icons/Search';
 import classes from '../../../styles/Library.module.css'
 import Pagination from '../../../components/Pagination/Pagination'
 import Link from 'next/link'
+import moment from 'moment'
 
 export default function index() {
+    moment.locale('ar-dz')
     const books=[
-        {id:1,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:2,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:3,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:4,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:5,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:6,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:7,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:8,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:9,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:10,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:11,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"15/09/2020",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:1,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:2,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:3,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:4,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:5,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:6,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:7,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:8,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:9,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:10,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
+        {id:11,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
     ]
 
     return (
@@ -68,7 +70,7 @@ export default function index() {
                                             <div className={classes.groupedContent}>
                                                 <h3>{book.author}</h3>
                                                 <div className={classes.groupedDivider}></div>
-                                                <h3>{book.publishedDate}</h3>
+                                                <h3>{moment(book.publishedDate).format('DD MMM YYYY')}</h3>
                                             </div>
                                             <h3>{book.publishingHouse}</h3>
                                         </div>
