@@ -2,15 +2,19 @@
 export const aboutmeFields = [
     {name:"city",label:"المدينة",type:"text",defaultValue:"",className:""},
     {name:"center",label:"المؤسسة",type:"text",defaultValue:"",className:""},
-    {name:"job",label:"الوظيفة",type:"text",defaultValue:"",className:""},
+
     {name:"website",label:"الموقع",type:"text",defaultValue:"",className:""},
     {name:"aboutMe",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
-export const profileFields=[
+export const profileFields1=[
     {name:"lastname",label:"اللقب",type:"text",defaultValue:"",className:""},
     {name:"firstname",label:"الاسم",type:"text",defaultValue:"",className:""},
     {name:"birthday",label:"التاريخ الميلاد",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"job",label:"الوظيفة",type:"text",defaultValue:"",className:""},
+]
+
+export const profileFields2= [
     {name:"facebookLink",label:"رابط الفيسبوك",type:"text",defaultValue:"",className:""},
     {name:"twitterLink",label:"رابط التويتر",type:"text",defaultValue:"",className:""},
     {name:"twitchLink",label:"رابط التويتش",type:"text",defaultValue:"",className:""},
@@ -18,8 +22,8 @@ export const profileFields=[
     {name:"discordLink",label:"رابط الديسكورد",type:"text",defaultValue:"",className:""},
     {name:"dribbleLink",label:"رابط الدريبل",type:"text",defaultValue:"",className:""},
     {name:"instagramLink",label:"رابط الأنستاغرام",type:"text",defaultValue:"",className:""},
-]
 
+]
 export const  educationFields = [
     {name:"university",label:"جامعة",type:"text",defaultValue:"",className:""},
     {name:"title",label:"عنوان",type:"text",defaultValue:"",className:""},

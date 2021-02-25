@@ -41,10 +41,20 @@ export const aboutmeSchema = Yup.object().shape({
     website: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
-export const profileSchema = Yup.object().shape({
+export const profileSchema1 = Yup.object().shape({
     lastname: Yup.string().required('يجب ملئ هذه المعلومة'),
     firstname: Yup.string().required('يجب ملئ هذه المعلومة'),
     birthday: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const profileSchema2 = Yup.object().shape({
+    facebookLink: Yup.string(),
+    twitterLink: Yup.string(),
+    twitchLink: Yup.string(),
+    youtubeLink: Yup.string(),
+    discordLink: Yup.string(),
+    dribbleLink: Yup.string(),
+    instagramLink: Yup.string(),
+
 })
 
 export const educationSchema = Yup.object().shape({

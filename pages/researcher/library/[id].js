@@ -22,11 +22,18 @@ export default function bookItemPage() {
             disableOnInteraction: false
           },
        }   
+       const params2 = {
+        slidesPerView: 'auto',
+        autoplay: {
+          delay: 2700,
+          disableOnInteraction: false
+        },
+     }   
 
         
     return (
        <ResearcherLayout>
-           <div className={classes.libraryContainer}>
+           <div className={classes.bookContainer}>
             <MyHead title={`المكتبة | ${book.title}`} />
                 <BannerMenu 
                     title="المكتبة"
@@ -84,7 +91,7 @@ export default function bookItemPage() {
                                 </IconButton>
                             </h3>
                             <div className={classes.list}>
-                                <Swiper {...params}>
+                                <Swiper {...params2}>
                                     <img src={book.img} alt="" />
                                     <img src={book.img} alt=""/>
                                     <img src={book.img} alt=""/>

@@ -117,10 +117,25 @@
     text-align: center;
     color: #3e3f5e;
 }
+.accountBanner .bannerProfile .editProfile{
+    background-color: var(--active-color);
+    color: #ffffff;
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -23px;
+    left:-80px;
+    z-index: 10;
+}
+
 .accountBanner .bannerProfile .profileJob{
     font-family: var(--primary-font);
     font-size: 14px;
-    margin-top: 2px;
+    margin-top: 8px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

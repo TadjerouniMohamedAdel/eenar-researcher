@@ -22,6 +22,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@react-pdf/renderer": "^1.6.13",
     "axios": "^0.21.1",
+    "compressorjs": "^1.0.7",
     "formik": "^2.2.6",
     "framer-motion": "^3.2.2-rc.1",
     "jss-rtl": "^0.3.0",
