@@ -139,12 +139,11 @@ export default function AccountBanner() {
                             <span>تعديل الحساب</span>
                         </Button>
                         <ul className={classes.bannerSocialNetworks}>
-                            <li className={`${classes.iconItem} ${classes.linkedin}`}><FontAwesomeIcon icon={faLinkedin} style={{color:"white"}}/></li>
-                            <li className={`${classes.iconItem} ${classes.facebook}`}><FontAwesomeIcon icon={faFacebookSquare} style={{color:"white"}}/></li>
-                            <li className={`${classes.iconItem} ${classes.twitter}`}><FontAwesomeIcon icon={faTwitter} style={{color:"white"}}/></li>
-                            <li className={`${classes.iconItem} ${classes.skype}`}><FontAwesomeIcon icon={faSkype} style={{color:"white"}}/></li>
+                            <li className={`${classes.iconItem} ${classes.linkedin}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faLinkedin} style={{color:"white"}}/></a></li>
+                            <li className={`${classes.iconItem} ${classes.facebook}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faFacebookSquare} style={{color:"white"}}/></a></li>
+                            <li className={`${classes.iconItem} ${classes.twitter}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faTwitter} style={{color:"white"}}/></a></li>
+                            <li className={`${classes.iconItem} ${classes.skype}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faSkype} style={{color:"white"}}/></a></li>
                         </ul>
-
                     </div>
                 </div>
             </div>

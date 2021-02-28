@@ -293,11 +293,11 @@ export default function index() {
                             className={classes.cellBody}
                             align="center"
                           >
-                            <Link href={row.file}>
+                            <a href={row.file} target="_blank">
                               <IconButton>
                                 <GetAppIcon className={classes.downloadIcon} />
                               </IconButton>
-                            </Link>
+                            </a>
                             <IconButton
                               onClick={() => {
                                 setSelectedItem(row);
