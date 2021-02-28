@@ -13,6 +13,7 @@ import { setUser } from '../../redux/actions/actionCreator'
 import MultiStepsEditElement from '../CrudModal/MultiStepsEditElement'
 import EditIcon from '@material-ui/icons/Edit';
 import Compressor from 'compressorjs'
+import { Skeleton } from '@material-ui/lab'
 
 const overviews =[
     {name:"المنشورات",value:"0"},{name:"الأصدقاء",value:"0"},{name:"الزيارات",value:"0"}
@@ -30,6 +31,7 @@ const Rectongles = ()=> (
 
 export default function AccountBanner() {
     const [editVisible,setEditVisible] = useState(false)
+    const [isLoadingImage,setIsLoadingImage] = useState(false)
     const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
     
@@ -52,6 +54,7 @@ export default function AccountBanner() {
 
 
     const editProfileImage = (e)=>{
+        setIsLoadingImage(true)
         let file = e.currentTarget.files[0]
         new Compressor(file, {
             quality: 0.8,
@@ -71,13 +74,16 @@ export default function AccountBanner() {
                     console.log("respnse",response.data)
                     dispatch(setUser(response.data))
                     setEditVisible(false)
+                    setIsLoadingImage(false)
                 }).catch(error=>{
                     console.log(error)
+                    setIsLoadingImage(false)
                 })
               }
             },
             error (err) {
               console.log(err.message)
+              setIsLoadingImage(false)
             }
           })
     }
@@ -113,7 +119,13 @@ export default function AccountBanner() {
                     </div>
                     <div className={classes.bannerProfile}>
                         {
-                            user.image!="" && user.image ? (
+                            isLoadingImage? (
+                                <Skeleton variant="rect" className={classes.Rectangle9}/>
+
+                            )
+                            
+                            
+                            : user.image!="" && user.image ? (
                                     <img src={user.image} alt="" className={classes.Rectangle9} />
                             ):(
 
