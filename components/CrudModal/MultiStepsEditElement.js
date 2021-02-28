@@ -120,7 +120,7 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
                                 case 'file':
                                     return (
                                         <div  key={`crud-edit-element-${index}-${step}`}>
-                                            <TextField
+                                            <input
                                                 style={{display:"none"}}
                                                 className={`input-align-right ${classes.formInput} ${field.className}`}
                                                 name={field.name}

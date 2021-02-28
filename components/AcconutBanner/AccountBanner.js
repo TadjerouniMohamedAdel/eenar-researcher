@@ -125,6 +125,7 @@ export default function AccountBanner() {
                         </IconButton>
                         <input 
                             type="file" 
+                            accept="image/x-png,image/gif,image/jpeg"
                             name="image" 
                             id="edit-image-user" 
                             hidden
