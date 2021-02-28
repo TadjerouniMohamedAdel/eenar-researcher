@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin,faFacebookSquare,faTwitter,faTwitch, faSkype, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
 import Modal from '../Modal/Modal'
 import EditElement from '../CrudModal/EditElement'
-import { profileFields1, profileFields2 } from '../../utils/form/Fields'
+import { profileFields1, profileFields2, profileFields3 } from '../../utils/form/Fields'
 import { useSelector,useDispatch } from 'react-redux'
-import { profileSchema1, profileSchema2 } from '../../utils/Validation/ValidationObjects'
+import { profileSchema1, profileSchema2, profileSchema3 } from '../../utils/Validation/ValidationObjects'
 import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator'
 import MultiStepsEditElement from '../CrudModal/MultiStepsEditElement'
@@ -92,7 +92,7 @@ export default function AccountBanner() {
                         item={{...user,birthday:user.researchers.birthday}}
                         title="الحساب"
                         handleSubmit={handleEditSubmit}                            
-                        steps={[{fields:profileFields1,validationSchema:profileSchema1},{fields:profileFields2,validationSchema:profileSchema2}]}
+                        steps={[{fields:profileFields1,validationSchema:profileSchema1},{fields:profileFields2,validationSchema:profileSchema2},{fields:profileFields3,validationSchema:profileSchema3}]}
                     />
                 </Modal>
                 <div className={classes.bondeau}></div>

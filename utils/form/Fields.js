@@ -13,7 +13,13 @@ export const profileFields1=[
     {name:"job",label:"الوظيفة",type:"text",defaultValue:"",className:""},
 ]
 
-export const profileFields2= [
+export const profileFields2 = [
+    {name:"phone",label:"الهاتف",type:"text",defaultValue:"",className:""},
+    {name:"country",label:"البلد",type:"text",defaultValue:"",className:""},
+    {name:"address",label:"العنوان",type:"text",defaultValue:"",className:""}
+]
+
+export const profileFields3= [
     {name:"linkedinLink",label:"رابط لينكدين",type:"text",defaultValue:"",className:""},
     {name:"facebookLink",label:"رابط الفيسبوك",type:"text",defaultValue:"",className:""},
     {name:"twitterLink",label:"رابط التويتر",type:"text",defaultValue:"",className:""},

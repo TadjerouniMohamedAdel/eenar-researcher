@@ -42,6 +42,11 @@ export const profileSchema1 = Yup.object().shape({
     birthday: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 export const profileSchema2 = Yup.object().shape({
+    phone: Yup.string().required('يجب ملئ هذه المعلومة'),
+    country: Yup.string().required('يجب ملئ هذه المعلومة'),
+    address: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const profileSchema3 = Yup.object().shape({
     linkedinLink: Yup.string(),
     facebookLink: Yup.string(),
     twitterLink: Yup.string(),

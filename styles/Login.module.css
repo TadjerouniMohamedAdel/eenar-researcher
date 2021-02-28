@@ -170,14 +170,14 @@
 .loginContainer .loginMainBase form .oauth .oauthLink li.facebook{
     background-color: #3763d2;    
 }
-.loginContainer .loginMainBase form .oauth .oauthLink li.youtube{
-    background-color: #fd434f;    
+.loginContainer .loginMainBase form .oauth .oauthLink li.google{
+    background-color: #dd4b39;    
 }
 .loginContainer .loginMainBase form .oauth .oauthLink li.twitter{
     background-color: #1abcff;    
 }
-.loginContainer .loginMainBase form .oauth .oauthLink li.twitch{
-    background-color: #7b5dfa;    
+.loginContainer .loginMainBase form .oauth .oauthLink li.linkedin{
+    background-color: #0077B5;    
 }
 
 .loginContainer .loginMainBase form .goRegistration{
