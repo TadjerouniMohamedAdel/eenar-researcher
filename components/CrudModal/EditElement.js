@@ -7,7 +7,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete"
 
 export default function EditElement({item,fields,handleSubmit,validationSchema,title}) {
     const [isLoading,setIsLoading] = useState(false)
-
     const submit = (data)=>{
         setIsLoading(true)
         handleSubmit(data)

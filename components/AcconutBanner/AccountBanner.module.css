@@ -199,26 +199,18 @@
     color: #fff;
 }
 .accountBanner  .bannerSocialNetworks .iconItem.facebook{
-    background-color: #3763d2;    
+    background-color: #3b5999;    
 }
 .accountBanner  .bannerSocialNetworks .iconItem.twitter{
-    background-color: #1abcff;
+    background-color: #55acee;
 }
-.accountBanner  .bannerSocialNetworks .iconItem.twitch{
-    background-color: #7b5dfa;
+.accountBanner  .bannerSocialNetworks .iconItem.linkedin{
+    background-color: #0077B5;
 }
-.accountBanner  .bannerSocialNetworks .iconItem.youtube{
-    background-color: #fd434f;
+.accountBanner  .bannerSocialNetworks .iconItem.skype{
+    background-color: #00AFF0;
 }
-.accountBanner  .bannerSocialNetworks .iconItem.instagram{
-    background-color: #f8468d;
-}
-.accountBanner  .bannerSocialNetworks .iconItem.discord{
-    background-color:#7289da ;
-}
-.accountBanner  .bannerSocialNetworks .iconItem.dribble{
-    background-color:#ea4c89 ;
-}
+
 .accountBanner .bannerLinks .bannerSocialNetworks{
     position: relative;
     top: 20px;

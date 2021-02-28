@@ -8,10 +8,11 @@ import EditElement from '../CrudModal/EditElement';
 import { aboutmeFields } from '../../utils/form/Fields';
 import {aboutmeSchema} from '../../utils/Validation/ValidationObjects'
 import { dataaboutme } from '../../utils/fixtures/DevData';
-import {useSelector} from 'react-redux'
+import {useSelector ,useDispatch} from 'react-redux'
 import moment from 'moment'
 import { Page, PDFDownloadLink , Text, Image , Font , View, Document, StyleSheet } from '@react-pdf/renderer';
-
+import { setUser } from '../../redux/actions/actionCreator';
+import axios from 'axios'
 
 Font.register({ family: 'arb', src: '//db.onlinewebfonts.com/t/eb685f5dc6b663497f7d5d4aa4a6c13d.ttf' });
 
@@ -66,9 +67,24 @@ export default function AboutMe() {
     const [editVisible,setEditVisible] = useState(false)
     const [aboutme,setAboutme] = useState(dataaboutme)
     const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
     moment.locale('ar-dz')
+
+    
     const handleEditAboutme = (data)=>{
-        setEditVisible(false)
+        data.researchers={...data.researchers,aboutMe:data.aboutMe}
+        console.log("data to send aboutme",data)
+        axios({
+          method:'put',
+          url:`${process.env.NEXT_PUBLIC_API_URL}/user/edit`,
+          data
+      }).then(response=>{
+          console.log("respnse",response.data)
+          // dispatch(setUser(response.data))
+          // setEditVisible(false)
+      }).catch(error=>{
+          console.log(error)
+      })
     }
     return (
         <div className={classes.resumeAboutMe}>
@@ -77,7 +93,7 @@ export default function AboutMe() {
                         setVisible={setEditVisible}
                     >
                         <EditElement
-                            item={{...user,...user.researchers}}                            
+                            item={{...user,aboutMe:user.researchers.aboutMe}}                            
                             fields={aboutmeFields}
                             validationSchema={aboutmeSchema}
                             handleSubmit={handleEditAboutme}

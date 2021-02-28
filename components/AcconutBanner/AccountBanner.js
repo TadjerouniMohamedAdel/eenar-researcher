@@ -2,14 +2,13 @@ import {useEffect, useState} from 'react'
 import {Button, IconButton, Link} from '@material-ui/core'
 import classes from './AccountBanner.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faYoutube,faFacebookSquare,faTwitter,faTwitch, faDribbble, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
+import { faLinkedin,faFacebookSquare,faTwitter,faTwitch, faSkype, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
 import Modal from '../Modal/Modal'
 import EditElement from '../CrudModal/EditElement'
 import { profileFields1, profileFields2 } from '../../utils/form/Fields'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { profileSchema1, profileSchema2 } from '../../utils/Validation/ValidationObjects'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
 import { setUser } from '../../redux/actions/actionCreator'
 import MultiStepsEditElement from '../CrudModal/MultiStepsEditElement'
 import EditIcon from '@material-ui/icons/Edit';
@@ -35,7 +34,7 @@ export default function AccountBanner() {
     const dispatch = useDispatch()
     
     const handleEditSubmit = (data)=>{
-        data.researchers={birthday:data.birthday}
+        data.researchers={...data.researchers,birthday:data.birthday}
         console.log("edit profil",data)
         axios({
             method:'put',
@@ -139,13 +138,10 @@ export default function AccountBanner() {
                             <span>تعديل الحساب</span>
                         </Button>
                         <ul className={classes.bannerSocialNetworks}>
-                            <li className={`${classes.iconItem} ${classes.youtube}`}><FontAwesomeIcon icon={faYoutube} style={{color:"white"}}/></li>
-                            <li className={`${classes.iconItem} ${classes.twitch}`}><FontAwesomeIcon icon={faTwitch} style={{color:"white"}}/></li>
+                            <li className={`${classes.iconItem} ${classes.linkedin}`}><FontAwesomeIcon icon={faLinkedin} style={{color:"white"}}/></li>
                             <li className={`${classes.iconItem} ${classes.facebook}`}><FontAwesomeIcon icon={faFacebookSquare} style={{color:"white"}}/></li>
-                            <li className={`${classes.iconItem} ${classes.dribble}`}><FontAwesomeIcon icon={faDribbble} style={{color:"white"}}/></li>
-                            <li className={`${classes.iconItem} ${classes.instagram}`}><FontAwesomeIcon icon={faInstagram} style={{color:"white"}}/></li>
-                            <li className={`${classes.iconItem} ${classes.discord}`}><FontAwesomeIcon icon={faDiscord} style={{color:"white"}}/></li>
                             <li className={`${classes.iconItem} ${classes.twitter}`}><FontAwesomeIcon icon={faTwitter} style={{color:"white"}}/></li>
+                            <li className={`${classes.iconItem} ${classes.skype}`}><FontAwesomeIcon icon={faSkype} style={{color:"white"}}/></li>
                         </ul>
 
                     </div>
