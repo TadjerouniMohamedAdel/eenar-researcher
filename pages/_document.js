@@ -11,7 +11,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+        <link rel="shortcut icon" href="/images/colored-logo.png" />
+          </Head>
         <body dir="rtl">
           <Main />
           <NextScript />
