@@ -34,7 +34,7 @@ export default function Login() {
             method: 'post',
             url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
             data,
-            // withCredentials:true
+            withCredentials:true
           })
             .then(response=>{
                 console.log(response.data)
