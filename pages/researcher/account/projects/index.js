@@ -22,6 +22,7 @@ import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../..
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination'
 import moment from 'moment'
+import { Skeleton } from "@material-ui/lab";
 
 export default function index() {
     const [addVisible,setAddVisible] = useState(false)
@@ -31,6 +32,7 @@ export default function index() {
     const [groups,setGroups] = useState(datagroups)
     const [projects,setProjects] = useState([])
     const [selectedItem,setSelectedItem] = useState(null)
+    const [isLoading, setIsLoading] = useState(true);
     moment.locale('ar-dz')
     
     useEffect(() => {
@@ -39,6 +41,7 @@ export default function index() {
             method:"GET",
             url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject?researcherId=${user.researchers.id}`
         }).then(response=>{
+            setIsLoading(false)
             setProjects(response.data)
         }).catch(error=>{
             console.log(error)
@@ -165,51 +168,105 @@ export default function index() {
                         </div>
                     
                     </div>
-                    <div className={classes.tableContainer}>
-                        <Table className={classes.table} aria-label="simple table">
-                            <TableHead>
+                    {
+                        isLoading === false && projects.length == 0 ? (
+                            <div className={classes.empty}>
+                                <img src="/images/empty.png" alt="empty-list"/>
+                                <h3>لا تحتوي هذه القائمة على بيانات</h3>
+                            </div>
+                        ):(
+                            <div className={classes.tableContainer}>
+                                <Table className={classes.table} aria-label="simple table">
+                                    <TableHead>
+                                    <TableRow>
+                                        <TableCell className={classes.cellHeader} align="center">تاريخ البدأ</TableCell>
+                                        <TableCell className={classes.cellHeader} align="left">المشروع</TableCell>
+                                        <Hidden only="xs"><TableCell className={classes.cellHeader} align="center">المؤسسة</TableCell></Hidden>
+                                        <TableCell className={classes.cellHeader} align="center">الحالة </TableCell>
+                                        <TableCell className={classes.cellHeader} align="center">إجراأت</TableCell>
+                                    </TableRow>
+                                    </TableHead>
+                                    <TableBody className={classes.tableBody}>
+                                    {isLoading ? (
+                            <>
                             <TableRow>
-                                <TableCell className={classes.cellHeader} align="center">تاريخ البدأ</TableCell>
-                                <TableCell className={classes.cellHeader} align="left">المشروع</TableCell>
-                                <Hidden only="xs"><TableCell className={classes.cellHeader} align="center">المؤسسة</TableCell></Hidden>
-                                <TableCell className={classes.cellHeader} align="center">الحالة </TableCell>
-                                <TableCell className={classes.cellHeader} align="center">إجراأت</TableCell>
-                            </TableRow>
-                            </TableHead>
-                            <TableBody className={classes.tableBody}>
-                            {projects.map((row,index) => (
-                                <TableRow key={index}>
+                            <TableCell className={classes.cellBody} align="center">
+                                <Skeleton variant="rect" />
+                            </TableCell>
+                            <TableCell
+                                className={`${classes.cellBody} ${classes.title}`}
+                                align="left"
+                            >
+                                <Skeleton variant="rect" />
+                            </TableCell>
+                            <Hidden only="xs">
                                 <TableCell className={classes.cellBody} align="center">
-                                {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}                                </TableCell>
-                                <TableCell className={`${classes.cellBody}`} align="left">{row.arabicTitle}</TableCell>
-                                <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
-                                <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
-                                <TableCell className={classes.cellBody} align="center">
-                                    
-                                    <IconButton onClick={()=>{setSelectedItem(row);setEditVisible(true)}}>
-                                        <EditIcon  className={classes.downloadIcon} />
-                                    </IconButton>
-                                    <IconButton onClick={()=>{setSelectedItem(row);setDeleteVisible(true)}}>
-                                        <DeleteIcon  className={classes.downloadIcon} />
-                                    </IconButton>
+                                <Skeleton variant="rect" />
                                 </TableCell>
-                                </TableRow>
-                            ))}
-                            </TableBody>
-                        </Table>
-                        {
-                            projects.length == 0&& (
-                                    <div className={classes.empty}>
-                                        <img src="/images/empty.png" alt="empty-list"/>
-                                        <h3>لا تحتوي هذه القائمة على بيانات</h3>
-                                    </div>
-                            )
-                        }
-                        {  projects.length > 10 && (
-                            <Pagination />
+                            </Hidden>
+                            <TableCell className={classes.cellBody} align="center">
+                                <Skeleton variant="rect" />
+                            </TableCell>
+                            <TableCell className={classes.cellBody} align="center">
+                                <Skeleton variant="rect" />
+                            </TableCell>
+                            </TableRow>
+                            <TableRow>
+                            <TableCell className={classes.cellBody} align="center">
+                            <Skeleton variant="rect" />
+                            </TableCell>
+                            <TableCell
+                            className={`${classes.cellBody} ${classes.title}`}
+                            align="left"
+                            >
+                            <Skeleton variant="rect" />
+                            </TableCell>
+                            <Hidden only="xs">
+                            <TableCell className={classes.cellBody} align="center">
+                                <Skeleton variant="rect" />
+                            </TableCell>
+                            </Hidden>
+                            <TableCell className={classes.cellBody} align="center">
+                            <Skeleton variant="rect" />
+                            </TableCell>
+                            <TableCell className={classes.cellBody} align="center">
+                                <Skeleton variant="rect" />
+                            </TableCell>
+                        </TableRow>
+                        </>
+                        ) : (
+                            <>
+                                    {projects.map((row,index) => (
+                                        <TableRow key={index}>
+                                        <TableCell className={classes.cellBody} align="center">
+                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}                                </TableCell>
+                                        <TableCell className={`${classes.cellBody}`} align="left">{row.arabicTitle}</TableCell>
+                                        <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
+                                        <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
+                                        <TableCell className={classes.cellBody} align="center">
+                                            
+                                            <IconButton onClick={()=>{setSelectedItem(row);setEditVisible(true)}}>
+                                                <EditIcon  className={classes.downloadIcon} />
+                                            </IconButton>
+                                            <IconButton onClick={()=>{setSelectedItem(row);setDeleteVisible(true)}}>
+                                                <DeleteIcon  className={classes.downloadIcon} />
+                                            </IconButton>
+                                        </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </>
+                        )}
+                                    </TableBody>
+                                </Table>
+                            
+                                {  projects.length > 10 && (
+                                    <Pagination />
+                                )
+                                }
+                            </div>
+
                         )
-                        }
-                    </div>
+                    }
                 </div>
                 <div className={classes.sideSection}>
                     <LearnNow />

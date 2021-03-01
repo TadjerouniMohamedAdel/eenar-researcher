@@ -100,7 +100,14 @@ export default function Sidebar() {
         <div className={classes.sidebar}>
             <div className={classes.bondeau}></div>
             <div className={classes.profile}>
-                <Rectangles />
+            {
+                            user.image!="" && user.image ? (
+                                    <img src={user.image} alt="" className={classes.Rectangle5} />
+                            ):(
+
+                                <Rectongles />
+                            )
+                        }
                 <h2 className={classes.profileTitle}>{user.lastname} {user.firstname}</h2>
                 <span className={classes.profileJob}>{user.job}</span>
             </div>

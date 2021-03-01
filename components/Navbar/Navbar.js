@@ -16,9 +16,9 @@ export default function Navbar() {
                 <h1>منتدى كوالالمبور  <br/>شبكة الباحثين</h1>
             </div>
             <ul className={classes.aboutUs}>
-                <li><a href="#">من نحن؟</a></li>
-                <li><a href="#">خدماتنا</a></li>
-                <li><a href="#">جائزة مهاتير</a></li>
+                <li><a href="https://kl-forum.org/ar/nrict" target="_blank">من نحن؟</a></li>
+                <li><a href="">خدماتنا</a></li>
+                <li><a href="https://kl-forum.org/ar/kl1" target="_blank">جائزة مهاتير</a></li>
             </ul>
             <div className={classes.searchBarSection}>
                 <TextField

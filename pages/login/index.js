@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Button, Checkbox, CircularProgress, Paper, TextField } from '@material-ui/core'
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faYoutube,faFacebookSquare,faTwitter,faTwitch } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle,faFacebookSquare,faTwitter,faTwitch, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import classes from '../../styles/Login.module.css'
 import LoginLayout from '../../layouts/Login/LoginLayout'
@@ -34,7 +34,7 @@ export default function Login() {
             method: 'post',
             url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
             data,
-            // withCredentials:true
+            withCredentials:true
           })
             .then(response=>{
                 console.log(response.data)
@@ -128,8 +128,8 @@ export default function Login() {
                         <div className={classes.hDivider}></div>
                     </div>
                     <ul className={classes.oauthLink}>
-                        <li className={classes.youtube}><FontAwesomeIcon icon={faYoutube} style={{color:"white"}}/></li>
-                        <li className={classes.twitch}><FontAwesomeIcon icon={faTwitch} style={{color:"white"}}/></li>
+                        <li className={classes.google}><FontAwesomeIcon icon={faGoogle} style={{color:"white"}}/></li>
+                        <li className={classes.linkedin}><FontAwesomeIcon icon={faLinkedin} style={{color:"white"}}/></li>
                         <li className={classes.twitter}><FontAwesomeIcon icon={faTwitter} style={{color:"white"}}/></li>
                         <li className={classes.facebook}><FontAwesomeIcon icon={faFacebookSquare} style={{color:"white"}}/></li>
                     </ul>

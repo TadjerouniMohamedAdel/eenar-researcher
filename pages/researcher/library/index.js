@@ -1,5 +1,5 @@
 import { ClassSharp } from '@material-ui/icons'
-import React from 'react'
+import {useState ,useEffect} from 'react'
 import BannerMenu from '../../../components/BannerMenu/BannerMenu'
 import MyHead from '../../../components/MyHead/MyHead'
 import WorkInProgress from '../../../components/WorkInProgress/WorkInProgress'
@@ -10,10 +10,12 @@ import classes from '../../../styles/Library.module.css'
 import Pagination from '../../../components/Pagination/Pagination'
 import Link from 'next/link'
 import moment from 'moment'
+import axios from 'axios'
+import { Skeleton } from '@material-ui/lab'
 
 export default function index() {
     moment.locale('ar-dz')
-    const books=[
+    const bookList=[
         {id:1,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
         {id:2,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
         {id:3,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
@@ -26,6 +28,22 @@ export default function index() {
         {id:10,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
         {id:11,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
     ]
+    const [books,setBooks] = useState([])
+    const [isLoading,setIsLoading] = useState(true)
+
+    useEffect(()=>{
+        axios({
+            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book`,
+            method:"GET"
+        }).then(response=>{
+            console.log(response.data)
+            setBooks(response.data)
+            setIsLoading(false)
+        }).catch(error=>{
+            console.log(error)
+            setIsLoading(false)
+        })
+    },[])
 
     return (
         <ResearcherLayout>
@@ -57,13 +75,32 @@ export default function index() {
                     </div>
                 </div>
                 <div className={classes.bookList}>
+
                     {
-                        books.map((book,index)=>(
+                        isLoading ? (
+                            <div className={classes.bookItem} key={`book`}>
+                                <Skeleton className={classes.bookCoverSkeleton}/>
+                            <div className={classes.bookContent}>
+                                <Skeleton className={classes.SkeletonInfo} />
+                                <Skeleton />
+                                <Skeleton />
+                            </div>
+                            </div>
+                        ) 
+                        
+                        :books.length == 0 ?
+                            (
+                                    <div className={classes.empty}>
+                                      <img src="/images/empty.png" alt="empty-list" />
+                                      <h3>لا تحتوي هذه القائمة على بيانات</h3>
+                                    </div>
+                            )
+                        :books.map((book,index)=>(
                             <Link href={{pathname:"/researcher/library/[id]",query:{id:book.id}}} key={`book-link-${index}`} className={classes.bookLink}>
                                 <div>
                                     <div className={classes.bookItem} key={`book-${index}`}>
                                         <div className={classes.bookCover}>
-                                            <img src={book.img} alt={book.title} />
+                                            <img src={book.cover} alt={book.title} />
                                         </div>
                                         <div className={classes.bookContent}>
                                             <h2>{book.title}</h2>

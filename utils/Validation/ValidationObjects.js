@@ -33,18 +33,24 @@ export const researcherRegistrationValidation3 = Yup.object().shape({
 
 
 export const aboutmeSchema = Yup.object().shape({
-    date: Yup.string().required('يجب ملئ هذه المعلومة'),
-    city: Yup.string().required('يجب ملئ هذه المعلومة'),
-    description: Yup.string().required('يجب ملئ هذه المعلومة'),
-    job: Yup.string().required('يجب ملئ هذه المعلومة'),
-    city: Yup.string().required('يجب ملئ هذه المعلومة'),
-    website: Yup.string().required('يجب ملئ هذه المعلومة'),
+    aboutMe: Yup.string().required('يجب ملئ هذه المعلومة')
 })
 
-export const profileSchema = Yup.object().shape({
+export const profileSchema1 = Yup.object().shape({
     lastname: Yup.string().required('يجب ملئ هذه المعلومة'),
     firstname: Yup.string().required('يجب ملئ هذه المعلومة'),
     birthday: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const profileSchema2 = Yup.object().shape({
+    phone: Yup.string().required('يجب ملئ هذه المعلومة'),
+    country: Yup.string().required('يجب ملئ هذه المعلومة'),
+    address: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+export const profileSchema3 = Yup.object().shape({
+    linkedinLink: Yup.string(),
+    facebookLink: Yup.string(),
+    twitterLink: Yup.string(),
+    skypeLink: Yup.string(),
 })
 
 export const educationSchema = Yup.object().shape({

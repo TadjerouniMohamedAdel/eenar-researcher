@@ -2,24 +2,30 @@
 export const aboutmeFields = [
     {name:"city",label:"المدينة",type:"text",defaultValue:"",className:""},
     {name:"center",label:"المؤسسة",type:"text",defaultValue:"",className:""},
-    {name:"job",label:"الوظيفة",type:"text",defaultValue:"",className:""},
     {name:"website",label:"الموقع",type:"text",defaultValue:"",className:""},
     {name:"aboutMe",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
-export const profileFields=[
+export const profileFields1=[
     {name:"lastname",label:"اللقب",type:"text",defaultValue:"",className:""},
     {name:"firstname",label:"الاسم",type:"text",defaultValue:"",className:""},
     {name:"birthday",label:"التاريخ الميلاد",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
-    {name:"facebookLink",label:"رابط الفيسبوك",type:"text",defaultValue:"",className:""},
-    {name:"twitterLink",label:"رابط التويتر",type:"text",defaultValue:"",className:""},
-    {name:"twitchLink",label:"رابط التويتش",type:"text",defaultValue:"",className:""},
-    {name:"youtubeLink",label:"رابط يوتيوب",type:"text",defaultValue:"",className:""},
-    {name:"discordLink",label:"رابط الديسكورد",type:"text",defaultValue:"",className:""},
-    {name:"dribbleLink",label:"رابط الدريبل",type:"text",defaultValue:"",className:""},
-    {name:"instagramLink",label:"رابط الأنستاغرام",type:"text",defaultValue:"",className:""},
+    {name:"job",label:"الوظيفة",type:"text",defaultValue:"",className:""},
 ]
 
+export const profileFields2 = [
+    {name:"phone",label:"الهاتف",type:"text",defaultValue:"",className:""},
+    {name:"country",label:"البلد",type:"text",defaultValue:"",className:""},
+    {name:"address",label:"العنوان",type:"text",defaultValue:"",className:""}
+]
+
+export const profileFields3= [
+    {name:"linkedinLink",label:"رابط لينكدين",type:"text",defaultValue:"",className:""},
+    {name:"facebookLink",label:"رابط الفيسبوك",type:"text",defaultValue:"",className:""},
+    {name:"twitterLink",label:"رابط التويتر",type:"text",defaultValue:"",className:""},
+    {name:"skypeLink",label:"رابط السكايب",type:"text",defaultValue:"",className:""},
+  
+]
 export const  educationFields = [
     {name:"university",label:"جامعة",type:"text",defaultValue:"",className:""},
     {name:"title",label:"عنوان",type:"text",defaultValue:"",className:""},
@@ -100,7 +106,7 @@ export const postStep2=[
     {name:"arabicDescription",label:"الملخص بالعربية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"publishedDate",label:"تاريخ النشر",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"file",label:"تحميل ملف المقال",type:"file",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:"fileInput"},
+    {name:"file",label:"تحميل ملف المقال",type:"file",props:{accept:"application/pdf",InputLabelProps:{shrink:true}},defaultValue:null,className:"fileInput"},
     {name:"keywords",label:"الكلمات المفتاحية",type:"array",defaultValue:[],className:""},
 ]
 
