@@ -80,7 +80,9 @@
   
 .downloadResume {
     /* width: 196px; */
-    width: 224px;
+    /* width: 224px; */
+    width: 100%;
+    flex:1;
     align-self: center;
     margin-top: 22px !important;
     height: 48px;
