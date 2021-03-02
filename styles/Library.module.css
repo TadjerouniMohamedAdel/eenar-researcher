@@ -95,7 +95,7 @@
 
 .libraryContainer .bookList{
     display: flex;
-    background-color: #fff;
+    /* background-color: #fff; */
     width: 100%;
     border-radius: 8px;
     flex-direction: column;
@@ -111,6 +111,14 @@
     display: flex;
     height: 200px;
     align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    transition: .5s;   
+}
+.libraryContainer .bookList .bookItem:hover{
+    transform: scale(1.02);
 }
 .libraryContainer .bookList .bookItem .bookCover{
     width: 100px;

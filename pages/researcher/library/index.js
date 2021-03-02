@@ -112,7 +112,7 @@ export default function index() {
                                             <h3>{book.publishingHouse}</h3>
                                         </div>
                                     </div>
-                                    <div className={classes.bookDivider}></div>
+                                    {/* <div className={classes.bookDivider}></div> */}
                                 </div>
                             </Link>
                         ))
