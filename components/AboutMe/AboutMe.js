@@ -80,8 +80,8 @@ export default function AboutMe() {
           data
       }).then(response=>{
           console.log("respnse",response.data)
-          // dispatch(setUser(response.data))
-          // setEditVisible(false)
+          dispatch(setUser(response.data))
+          setEditVisible(false)
       }).catch(error=>{
           console.log(error)
       })

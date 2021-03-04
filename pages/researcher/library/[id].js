@@ -1,5 +1,5 @@
 import { Button, IconButton } from '@material-ui/core'
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import BannerMenu from '../../../components/BannerMenu/BannerMenu'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
 import classes from '../../../styles/Library.module.css'
@@ -11,27 +11,15 @@ import 'swiper/swiper-bundle.min.css';
 import SwiperCore, { Lazy, Navigation, Autoplay } from 'swiper'
 SwiperCore.use([Lazy, Navigation, Autoplay])
 import axios from 'axios'
+import {useRouter} from 'next/router'
+import { Skeleton } from '@material-ui/lab'
 
 
-export async function getServerSideProps(context) {
-    let book = null
-    await axios({
-        url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${context.query.id}`,
-        method:"GET",
-    }).then(response=>{
-        console.log(response.data)
-        book = response.data
-    }).catch(error=>{
-        console.log(error)
-    })
-    return{
-        props:{
-            book
-        }
-    }
 
-}
-export default function bookItemPage({book}) {
+export default function bookItemPage() {
+        const bookId = useRouter().query.id
+        const [isLoading,setIsLoading] = useState(true)
+        const [book,setBook] = useState(null)
         const params = {
           slidesPerView: 'auto',
           autoplay: {
@@ -47,84 +35,151 @@ export default function bookItemPage({book}) {
         },
      }   
 
+     useEffect(()=>{
+         bookId &&
+        axios({
+            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${bookId}`,
+            method:"GET",
+        }).then(response=>{
+            setBook(response.data)
+            setIsLoading(false)
+        }).catch(error=>{
+            console.log(error)
+        })
+     },[bookId])
+
         
     return (
        <ResearcherLayout>
            <div className={classes.bookContainer}>
-            <MyHead title={`المكتبة | ${book.title}`} />
                 <BannerMenu 
                     title="المكتبة"
                     description="تفاعل بشكل أفضل مع زملائك الباحثين، أرسل ملفات، صور وروابط."
                     imgSrc="/images/library-banner.png"
                 />
-                <div className={classes.libraryItemContainer}>
-                    <div className={classes.bookDetails}>
-                        <div className={classes.getResumeContainer}>
-                            <a href={book.file} target="_blank" style={{textDecoration:"none"}}>
-                                <Button variant="contained" className={classes.getResume}>
-                                    <span>تحميل الكتاب</span>
-                                    <GetAppIcon />
-                                </Button>
-                            </a>
-                        </div>
-                        <div className={classes.bookPageContent}>
-                            <div className={classes.bookPageImage}>
-                                <img src={book.cover} alt={book.title} />
-                            </div>
-                            <div className={classes.bookPageOverview}>
-                                <h1>{book.title}</h1>
-                                <h2>من تأليف  {book.author}</h2>
-                                <p>
-                                    {book.overview}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={classes.sideSection}>
-                        <div className={classes.sideMenu}>
-                            <h3>
-                                <span>مؤلفات {book.author}</span>
-                                <IconButton>
-                                    <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
-                                </IconButton>
-                            </h3>
-                            <div className={classes.list}>
-                                <Swiper {...params}>
+                
+                    {
+                        isLoading? 
+                        (
+                            <div className={classes.libraryItemContainer}>
+                                    <MyHead title={`المكتبة`} />
+                                    <div className={classes.bookDetails}>
+                                        <MyHead title={`المكتبة`}/>
+                                        <div className={classes.getResumeContainer}>
+                                                <Skeleton variant="rect" className={classes.getResume} />
+                                        </div>
+                                        <div className={classes.bookPageContent}>
+                                            
+                                                <Skeleton variant="rect"  className={classes.bookPageImage}/>
+                                                <div className={classes.bookPageOverviewSkeletons}>
+                                                        <Skeleton variant="text" />
+                                                        <Skeleton variant="text" />
+                                                        <Skeleton variant="rect"  className={classes.pSkeleton} />
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div className={classes.sideSection}>
+                                            <div className={classes.sideMenu}>
+                                                
+                                                    <Skeleton variant="text" />
+                                               
+                                                <div className={classes.list}>
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton}  />
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
+                                                </div>
+                                            </div>
+                                            <div className={classes.sideMenu}>
+                                                
+                                                    <Skeleton variant="text" />
+                                               
+                                                <div className={classes.list}>
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton}  />
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
+                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
+                                                </div>
+                                            </div>
+                                            
+                                    </div> 
 
-                                    <img src={book.img} alt="" />
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                </Swiper>                                
+                                </div>
+                        )
+                        
+                        :(
+                        <div className={classes.libraryItemContainer}>
+                            <div className={classes.bookDetails}>
+                                <MyHead title={`المكتبة | ${book.title}`} />
+                                <div className={classes.getResumeContainer}>
+                                    <a href={book.file} target="_blank" style={{textDecoration:"none"}}>
+                                        <Button variant="contained" className={classes.getResume}>
+                                            <span>تحميل الكتاب</span>
+                                            <GetAppIcon />
+                                        </Button>
+                                    </a>
+                                </div>
+                                <div className={classes.bookPageContent}>
+                                    <div className={classes.bookPageImage}>
+                                        <img src={book.cover} alt={book.title} />
+                                    </div>
+                                    <div className={classes.bookPageOverview}>
+                                        <h1>{book.title}</h1>
+                                        <h2>من تأليف  {book.author}</h2>
+                                        <p>
+                                            {book.overview}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className={classes.sideMenu}>
-                            <h3>
-                                <span>كتب مشابهة</span>
-                                <IconButton>
-                                    <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
-                                </IconButton>
-                            </h3>
-                            <div className={classes.list}>
-                                <Swiper {...params2}>
-                                    <img src={book.img} alt="" />
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                    <img src={book.img} alt=""/>
-                                </Swiper>
-                            </div>
+
+                <div className={classes.sideSection}>
+                    <div className={classes.sideMenu}>
+                        <h3>
+                            <span>مؤلفات {book.author}</span>
+                            <IconButton>
+                                <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
+                            </IconButton>
+                        </h3>
+                        <div className={classes.list}>
+                            <Swiper {...params}>
+
+                                <img src={book.img} alt="" />
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                            </Swiper>                                
                         </div>
                     </div>
+                    <div className={classes.sideMenu}>
+                        <h3>
+                            <span>كتب مشابهة</span>
+                            <IconButton>
+                                <MoreHorizOutlinedIcon  className={classes.iconMenu}/>
+                            </IconButton>
+                        </h3>
+                        <div className={classes.list}>
+                            <Swiper {...params2}>
+                                <img src={book.img} alt="" />
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                                <img src={book.img} alt=""/>
+                            </Swiper>
+                        </div>
+                    </div>
+                </div> 
                 </div>
-            </div>
+                        )
+                    }
+                </div>
        </ResearcherLayout>
     )
 }

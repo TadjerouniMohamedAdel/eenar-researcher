@@ -79,3 +79,11 @@ input{
 .no-scroll{
     overflow-y: hidden;
 }
+#nprogress .bar{
+    background: #fff !important;
+    height: 3px !important;
+}
+#nprogress .spinner-icon{
+    border-top-color: #fff !important;
+    border-left-color: #fff !important;
+}
