@@ -31,7 +31,7 @@ export default function Registration() {
         else{
             setIsLoading(true)
             console.log({...user,...data})
-            axios.post("https://eenar-backend.herokuapp.com/user/addUser", {...user,...data})
+            axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/addUser`, {...user,...data})
               .then(function (response) {
                 console.log(response);
                 setShowAlertSuccess(true)
