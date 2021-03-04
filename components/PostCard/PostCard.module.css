@@ -1,0 +1,67 @@
+.postCard{
+    width: 304px;
+    height: 384px;
+    margin: 0 0px 0 0;
+    /* padding: 168px 0 0; */
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;   
+    display: flex;
+    flex-direction: column;
+}
+
+.postCard .postImg{
+    width: 100%;
+    height: 184px;
+    background-color: #118ab2;   
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.postCard .postContent{
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+}
+.postCard .postContent h2{
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;   
+}
+.postCard .postContent p{
+    font-family: var(--primary-font);
+    font-size: 12px;
+    margin-top: 6px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.66;
+    letter-spacing: normal;
+    text-align: right;
+    color: #9192a6;
+}
+.postCard .postFooter{
+    border-top: 2px red;
+    width: 100%;
+    height: 55px;
+    padding: 15px 16px 16px 24px;
+    background-color: #fcfcfd;
+    display: flex;
+    justify-content: space-between;
+}
+.postCard .postFooter .postAuthor{
+    font-family: var(--primary-font);
+}
+.postCard .postFooter .postAuthor .postAuthorImg{
+    width: 24px;
+    height: 24px;
+    margin: 0 0 0 8px;
+    border-radius: 4px;
+    background-color: #118ab2;
+
+}
