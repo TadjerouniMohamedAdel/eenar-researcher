@@ -8,19 +8,46 @@
     background-color: #ffffff;   
     display: flex;
     flex-direction: column;
+    transition: .5s;
+}
+.postCard:hover{
+    transform: scale(1.05);
 }
 
 .postCard .postImg{
     width: 100%;
-    height: 184px;
+    height: 184px !important;
     background-color: #118ab2;   
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
+
 .postCard .postContent{
     display: flex;
-    padding: 24px;
     flex-direction: column;
+}
+.postCard .postContent .postInfo{
+    padding: 24px;
+}
+.postCard .postContent .postType{
+    height: 32px;
+    width: 90px;
+    box-shadow: 3px 5.2px 20px 0 rgba(94, 92, 154, 0.12);
+    background-color: #06d6a0;
+    border-radius: 25px;
+    margin-top: -42px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--primary-font);
+    font-size: 13px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
 }
 .postCard .postContent h2{
     font-family: var(--primary-font);
@@ -31,12 +58,13 @@
     line-height: 1.38;
     letter-spacing: normal;
     text-align: right;
-    color: #3e3f5e;   
+    color: #3e3f5e;
+    margin-bottom: 8px;
 }
 .postCard .postContent p{
     font-family: var(--primary-font);
     font-size: 12px;
-    margin-top: 6px;
+
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -46,22 +74,29 @@
     color: #9192a6;
 }
 .postCard .postFooter{
-    border-top: 2px red;
+    border-top: 1px solid #eaeaf5;
     width: 100%;
+    padding: 0;
     height: 55px;
-    padding: 15px 16px 16px 24px;
     background-color: #fcfcfd;
     display: flex;
     justify-content: space-between;
+    padding: 24px;
+    align-items: center;
 }
 .postCard .postFooter .postAuthor{
     font-family: var(--primary-font);
+    display: flex;
+    align-items: center;
 }
 .postCard .postFooter .postAuthor .postAuthorImg{
     width: 24px;
     height: 24px;
-    margin: 0 0 0 8px;
     border-radius: 4px;
     background-color: #118ab2;
+}
 
+.postCard .postFooter .postAuthor h5{
+    margin-left: 7px;
+    margin-right: 7px;
 }

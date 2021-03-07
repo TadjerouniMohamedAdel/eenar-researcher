@@ -107,7 +107,11 @@
     margin-top: 16px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.researchsContainer .content .mainSection .postsContainer > *{
+    margin: 16px
 }
 .researchsContainer .content .sideSection{
     display: flex;
