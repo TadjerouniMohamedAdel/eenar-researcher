@@ -119,11 +119,9 @@
     align-items: flex-end;
 }
 .researchsContainer .content .mainSection{
-    /* width: 1150px; */
     flex:2;
 }
 
-.researchsContainer .content .sideSection > div{
-    flex: 1;
+.researchsContainer  .sideSection > div{
     width: 90%;
 }
