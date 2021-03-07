@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux'
 
 
 
-const Rectangles = function(){
+const Rectongles = function(){
     return(
         <div className={classes.Rectangle5}>
             <div className={classes.Rectangle4}>
