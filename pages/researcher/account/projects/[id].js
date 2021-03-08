@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { datagroups, dataarticles } from "../../../../utils/fixtures/DevData";
 import MyHead from "../../../../components/MyHead/MyHead";
-import classes from "../../../../styles/MyPosts.module.css";
+import classes from "../../../../styles/MyProjects.module.css";
 import LearnNow from "../../../../components/LearnNow/LearnNow";
 import LastArticles from "../../../../components/LastArticles/LastArticles";
 import MyGroups from "../../../../components/MyGroups/MyGroups";
@@ -31,11 +31,10 @@ export default function post() {
         console.log(error);
       });
   }, []);
-
   return (
     <ResearcherLayout>
       <MyHead title="الملف الشخصي  - منشوراتي" />
-      <div className={classes.myPostsContainer}>
+      <div className={classes.myProjectsContainer}>
         <div className={classes.mainSection}>
             <ResearchView />
         </div>

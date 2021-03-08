@@ -21,7 +21,7 @@
 }
 
 .myProjectsContainer .sideSection > div{
-    flex: 1;
+    /* flex: 1; */
     width: 90%;
 }
 .myProjectsContainer .mainSection .filterSection {
