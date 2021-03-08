@@ -21,7 +21,7 @@
 }
 
 .myPostsContainer .sideSection > div{
-    flex: 1;
+    /* flex: 1; */
     width: 90%;
 }
 .myPostsContainer .mainSection .filterSection {

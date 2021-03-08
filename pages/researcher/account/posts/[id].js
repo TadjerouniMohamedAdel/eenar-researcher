@@ -1,29 +1,10 @@
 import { useState, useEffect } from "react";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import { datagroups, dataarticles } from "../../../../utils/fixtures/DevData";
 import MyHead from "../../../../components/MyHead/MyHead";
 import classes from "../../../../styles/MyPosts.module.css";
 import LearnNow from "../../../../components/LearnNow/LearnNow";
 import LastArticles from "../../../../components/LastArticles/LastArticles";
 import MyGroups from "../../../../components/MyGroups/MyGroups";
-import SearchIcon from "@material-ui/icons/Search";
-import {
-  Button,
-  FormControl,
-  IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  TextField,
-  Hidden,
-} from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
-import AddIcon from "@material-ui/icons/Add";
 import Modal from "../../../../components/Modal/Modal";
 import MultiStepsAddElement from "../../../../components/CrudModal/MultiStepsAddElement";
 import { postStep1, postStep2 } from "../.././../../utils/form/Fields";
@@ -31,13 +12,10 @@ import {
   postSchemaStep1,
   postSchemaStep2,
 } from "../.././../../utils/Validation/ValidationObjects";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import DeleteElement from "../../../../components/CrudModal/DeleteElement";
 import MultiStepsEditElement from "../../../../components/CrudModal/MultiStepsEditElement";
 import axios from "axios";
-import Pagination from "../../../../components/Pagination/Pagination";
-import Link from "next/link";
 import moment from "moment";
 import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
 import ResearchView from "../../../../components/ResearchView/ResearchView";
@@ -139,34 +117,6 @@ export default function post() {
     <ResearcherLayout>
       <MyHead title="الملف الشخصي  - منشوراتي" />
       <div className={classes.myPostsContainer}>
-        <Modal visible={addVisible} setVisible={setAddVisible}>
-          <MultiStepsAddElement
-            title="منشور"
-            handleSubmit={handleAddItem}
-            steps={[
-              { fields: postStep1, validationSchema: postSchemaStep1 },
-              { fields: postStep2, validationSchema: postSchemaStep2 },
-            ]}
-          />
-        </Modal>
-        <Modal visible={editVisible} setVisible={setEditVisible}>
-          <MultiStepsEditElement
-            item={selectedItem}
-            handleSubmit={handleEditItem}
-            title="منشور"
-            steps={[
-              { fields: postStep1, validationSchema: postSchemaStep1 },
-              { fields: postStep2, validationSchema: postSchemaStep2 },
-            ]}
-          />
-        </Modal>
-        <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
-          <DeleteElement
-            item={selectedItem}
-            title="منشور"
-            handleSubmit={handleDeleteItem}
-          />
-        </Modal>
         <div className={classes.mainSection}>
             <ResearchView />
         </div>
