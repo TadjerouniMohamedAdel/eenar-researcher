@@ -5,6 +5,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.myProjectsContainer a{
+    text-decoration: none;
+    color: unset;
+}
 .myProjectsContainer .mainSection{
     display: flex;
     flex-direction: column;

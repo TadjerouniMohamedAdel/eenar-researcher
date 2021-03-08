@@ -22,6 +22,7 @@ import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../..
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination'
 import moment from 'moment'
+import Link from 'next/link'
 import { Skeleton } from "@material-ui/lab";
 
 export default function index() {
@@ -239,8 +240,8 @@ export default function index() {
                                     {projects.map((row,index) => (
                                         <TableRow key={index}>
                                         <TableCell className={classes.cellBody} align="center">
-                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}                                </TableCell>
-                                        <TableCell className={`${classes.cellBody}`} align="left">{row.arabicTitle}</TableCell>
+                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}</TableCell>
+                                        <TableCell className={`${classes.cellBody} ${classes.title}`} align="left"><Link href={`/researcher/account/projects/${row.id}`}>{row.arabicTitle}</Link></TableCell>
                                         <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
                                         <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
                                         <TableCell className={classes.cellBody} align="center">

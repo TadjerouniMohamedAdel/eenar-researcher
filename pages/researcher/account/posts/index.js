@@ -279,7 +279,9 @@ export default function index() {
                             className={`${classes.cellBody} ${classes.title}`}
                             align="left"
                           >
-                            {row.arabicTitle}
+                          <Link href={`/researcher/account/posts/${row.id}`}>
+                              {row.arabicTitle}
+                            </Link>
                           </TableCell>
                           <Hidden only="xs">
                             <TableCell
