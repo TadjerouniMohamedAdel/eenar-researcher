@@ -40,6 +40,7 @@ import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
 import moment from "moment";
 import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
+import ResearchView from "../../../../components/ResearchView/ResearchView";
 
 export default function post() {
   const [articles, setArticles] = useState(dataarticles);
@@ -167,7 +168,7 @@ export default function post() {
           />
         </Modal>
         <div className={classes.mainSection}>
-          
+            <ResearchView />
         </div>
         <div className={classes.sideSection}>
           <LearnNow />
