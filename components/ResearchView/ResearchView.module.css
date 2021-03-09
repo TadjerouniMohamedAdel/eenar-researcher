@@ -18,6 +18,13 @@
     height: auto;
     align-items: center;
 }
+.researchView .researchImageSkeleton{
+    width: 100%;
+    height: 502px;
+    padding: 253px 80px 92px 104px;
+    border-radius: 8px;
+    background-color: #073b4cb6;
+}
 .researchView .researchImage{
     width: 100%;
     height: 502px;
@@ -29,6 +36,17 @@
     position: relative;
     top: -250px;
     height: auto;
+    width: 89%;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.researchView .researchBodySkeleton{
+    position: relative;
+    top: -250px;
+    height: 500px;
     width: 89%;
     border-radius: 8px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
