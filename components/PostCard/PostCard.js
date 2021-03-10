@@ -12,15 +12,15 @@ export default function PostCard({post}) {
                 <div className={classes.postContent}>
                     <div className={classes.postInfo}>
                         <span className={classes.postType}>{post.type}</span>
-                        <h2>{post.title}</h2>
+                        <h2>{post.arabicTitle}</h2>
                         <p>
-                            {post.description}
+                            {post.arabicDescription.substring(0,200)}
                         </p>
                     </div>
                     <div className={classes.postFooter}>
                         <div className={classes.postAuthor}>
                             <div className={classes.postAuthorImg}></div>
-                            <h5>{post.author}</h5>
+                            <h5>{post.primaryAuthor}</h5>
                         </div>
                         <div className={classes.postDownload}>
                             <IconButton>

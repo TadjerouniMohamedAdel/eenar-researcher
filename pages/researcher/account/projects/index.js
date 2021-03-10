@@ -260,10 +260,10 @@ export default function index() {
                                     </TableBody>
                                 </Table>
                             
-                                {  projects.length > 10 && (
+                                {/* {  projects.length > 10 && (
                                     <Pagination />
                                 )
-                                }
+                                } */}
                             </div>
 
                         )
