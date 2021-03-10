@@ -7,16 +7,16 @@ export default function PostCardSkeleton() {
     return (
             <div className={`${classes.postCard} ${classes.postCardSkeleton}`}>
                  <div className={classes.postImg}>
-                    <Skeleton variant="rect"   />
+                    <Skeleton animation="wave" variant="rect"   />
                 </div>
                 <div className={classes.postContent}>
                     <div className={classes.postInfo}>
-                        <Skeleton className={classes.postType} />
-                       <Skeleton variant="text" />
-                        <Skeleton variant="rect" height={100}/>
+                        <Skeleton animation="wave" className={classes.postType} />
+                       <Skeleton animation="wave" variant="text" />
+                        <Skeleton animation="wave" variant="rect" height={100}/>
                     </div>
                     <div className={classes.postFooter}>
-                        <Skeleton  variant="rect"  className={classes.footerSekeleton}/>
+                        <Skeleton animation="wave"  variant="rect"  className={classes.footerSekeleton}/>
                     </div>
 
                 </div>

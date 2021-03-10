@@ -228,40 +228,40 @@ export default function index() {
                     <>
                     <TableRow>
                       <TableCell className={classes.cellBody} align="center">
-                        <Skeleton variant="rect" />
+                        <Skeleton animation="wave" variant="rect" />
                       </TableCell>
                       <TableCell
                         className={`${classes.cellBody} ${classes.title}`}
                         align="left"
                       >
-                        <Skeleton variant="rect" />
+                        <Skeleton animation="wave" variant="rect" />
                       </TableCell>
                       <Hidden only="xs">
                         <TableCell className={classes.cellBody} align="center">
-                          <Skeleton variant="rect" />
+                          <Skeleton animation="wave" variant="rect" />
                         </TableCell>
                       </Hidden>
                       <TableCell className={classes.cellBody} align="center">
-                        <Skeleton variant="rect" />
+                        <Skeleton animation="wave" variant="rect" />
                       </TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell className={classes.cellBody} align="center">
-                      <Skeleton variant="rect" />
+                      <Skeleton animation="wave" variant="rect" />
                     </TableCell>
                     <TableCell
                       className={`${classes.cellBody} ${classes.title}`}
                       align="left"
                     >
-                      <Skeleton variant="rect" />
+                      <Skeleton animation="wave" variant="rect" />
                     </TableCell>
                     <Hidden only="xs">
                       <TableCell className={classes.cellBody} align="center">
-                        <Skeleton variant="rect" />
+                        <Skeleton animation="wave" variant="rect" />
                       </TableCell>
                     </Hidden>
                     <TableCell className={classes.cellBody} align="center">
-                      <Skeleton variant="rect" />
+                      <Skeleton animation="wave" variant="rect" />
                     </TableCell>
                   </TableRow>
                   </>

@@ -10,14 +10,27 @@ import moment from "moment";
 import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
 import ResearchView from "../../../../components/ResearchView/ResearchView";
 import ResearchViewSkeleton from "../../../../components/ResearchView/ResearchViewSkeleton";
+import {useRouter} from 'next/router'
 
 export default function post() {
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
   const [isLoading,setIsLoading] = useState(true)
+  const [research,setResearch] = useState(null)
+  const researchId = useRouter().query.id
   moment.locale("ar-dz");
 
   useEffect(() => {
+    researchId && axios({
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${researchId}`,
+    })
+      .then((response) => {
+        setResearch(response.data)
+        setIsLoading(false)
+        console.log("response add", response.data);
+      })
+      .catch((error) => console.log(error));
   },[])
 
   return (
@@ -30,7 +43,7 @@ export default function post() {
                 ?
                 <ResearchViewSkeleton />
                 :
-                <ResearchView />
+                <ResearchView  research={research}/>
               }
         </div>
         <div className={classes.sideSection}>

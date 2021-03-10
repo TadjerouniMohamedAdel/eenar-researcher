@@ -7,8 +7,8 @@ export default function ResearchViewSkeleton() {
     
     return (
         <div className={classes.researchView}>
-            <Skeleton className={classes.researchImageSkeleton} variant="rect" />
-            <Skeleton className={classes.researchBodySkeleton} variant="rect"/>
+            <Skeleton className={classes.researchImageSkeleton} variant="rect" animation="wave" />
+            <Skeleton className={classes.researchBodySkeleton} variant="rect" animation="wave"/>
         </div>
     )
 }

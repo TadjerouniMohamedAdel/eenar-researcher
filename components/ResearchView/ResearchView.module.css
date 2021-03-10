@@ -46,7 +46,7 @@
 .researchView .researchBodySkeleton{
     position: relative;
     top: -250px;
-    height: 500px;
+    height: 1000px;
     width: 89%;
     border-radius: 8px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
@@ -240,6 +240,8 @@
     font-stretch: normal;
     font-style: normal;
     line-height: 3;
+    padding-left: 10px;
+    padding-right: 10px;
     letter-spacing: -0.1px;
     color: #ffffff;
 }
