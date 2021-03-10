@@ -331,7 +331,7 @@ export default function index() {
                     justifyContent: "flex-end",
                   }}
                 >
-                  <Pagination />
+                  {/* <Pagination /> */}
                 </div>
               )}
             </div>

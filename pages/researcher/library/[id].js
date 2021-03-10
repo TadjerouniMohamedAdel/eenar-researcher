@@ -15,11 +15,50 @@ import {useRouter} from 'next/router'
 import { Skeleton } from '@material-ui/lab'
 
 
+export async function getStaticPaths() {
+    let paths = []
+    await  axios({
+                method: "get",
+                url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book`,
+        })
+        .then((response) => {
+           paths = response.data.map((item)=>{
+                return {
+                    params:{id:item.id.toString()}
+                }
+            })
+        })
+        .catch((error) => console.log(error));
+    
+    
+      return {
+        paths,
+        fallback: 'blocking' // See the "fallback" section below
+      };
+  }
+  
+  
+  export async function getStaticProps(context) {
+    let book =null
+    console.log(context)
+    await axios({
+          method: "get",
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${context.params.id}`,
+        })
+          .then((response) => {
+              book = response.data
+          })
+          .catch((error) => console.log(error));
+    return {
+      props: {
+        book,
+      }, 
+    }
+  }
 
-export default function bookItemPage() {
-        const bookId = useRouter().query.id
-        const [isLoading,setIsLoading] = useState(true)
-        const [book,setBook] = useState(null)
+
+
+export default function bookItemPage({book}) {
         const params = {
           slidesPerView: 'auto',
           autoplay: {
@@ -35,18 +74,6 @@ export default function bookItemPage() {
         },
      }   
 
-     useEffect(()=>{
-         bookId &&
-        axios({
-            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${bookId}`,
-            method:"GET",
-        }).then(response=>{
-            setBook(response.data)
-            setIsLoading(false)
-        }).catch(error=>{
-            console.log(error)
-        })
-     },[bookId])
 
         
     return (
@@ -57,57 +84,6 @@ export default function bookItemPage() {
                     description="تفاعل بشكل أفضل مع زملائك الباحثين، أرسل ملفات، صور وروابط."
                     imgSrc="/images/library-banner.png"
                 />
-                
-                    {
-                        isLoading? 
-                        (
-                            <div className={classes.libraryItemContainer}>
-                                    <MyHead title={`المكتبة`} />
-                                    <div className={classes.bookDetails}>
-                                        <MyHead title={`المكتبة`}/>
-                                        <div className={classes.getResumeContainer}>
-                                                <Skeleton variant="rect" className={classes.getResume} />
-                                        </div>
-                                        <div className={classes.bookPageContent}>
-                                            
-                                                <Skeleton variant="rect"  className={classes.bookPageImage}/>
-                                                <div className={classes.bookPageOverviewSkeletons}>
-                                                        <Skeleton variant="text" />
-                                                        <Skeleton variant="text" />
-                                                        <Skeleton variant="rect"  className={classes.pSkeleton} />
-                                                </div>
-                                        </div>
-                                    </div>
-                                    <div className={classes.sideSection}>
-                                            <div className={classes.sideMenu}>
-                                                
-                                                    <Skeleton variant="text" />
-                                               
-                                                <div className={classes.list}>
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton}  />
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
-                                                </div>
-                                            </div>
-                                            <div className={classes.sideMenu}>
-                                                
-                                                    <Skeleton variant="text" />
-                                               
-                                                <div className={classes.list}>
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton}  />
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
-                                                        <Skeleton variant="rect" className={classes.imgSkeleton} />
-                                                </div>
-                                            </div>
-                                            
-                                    </div> 
-
-                                </div>
-                        )
-                        
-                        :(
                         <div className={classes.libraryItemContainer}>
                             <div className={classes.bookDetails}>
                                 <MyHead title={`المكتبة | ${book.title}`} />
@@ -177,8 +153,8 @@ export default function bookItemPage() {
                     </div>
                 </div> 
                 </div>
-                        )
-                    }
+                        
+                    
                 </div>
        </ResearcherLayout>
     )
