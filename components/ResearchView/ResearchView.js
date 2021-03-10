@@ -43,7 +43,8 @@ export default function ResearchView({research}) {
                 <div className={classes.researchHeaderDivider}>
                     <div className={classes.line}></div>
                     <span className={classes.date}>
-                        {moment(research.publishedDate?.split("T")[0]).format("DD MMM YYYY")}
+                        {research.publishedDate && moment(research.publishedDate?.split("T")[0]).format("DD MMM YYYY")}
+                        {research.startDate && moment(research.startDate?.split("T")[0]).format("DD MMM YYYY")}
                     </span>
                 </div>
                 <div className={classes.researchContent}>
@@ -58,14 +59,26 @@ export default function ResearchView({research}) {
                     </p>
                     <div className={classes.researchRest}>
                         <p>
-                            {research.arabicDescription}
+                            {research.steps}
+                        </p>
+                        <p>
+                            {research.goals ?? research.arabicDescription}
                         </p>
                         <div className={classes.researchImg}></div>
                         <span className={classes.researchImgLegend}>
                                 لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت
                         </span>
                         <p>
-                            {research.arabicDescription}
+                            {research.justifications ?? research.arabicDescription}
+                        </p>
+                        <p>
+                            {research.materials }
+                        </p>
+                        <p>
+                            {research.methodology}
+                        </p>
+                        <p>
+                            {research.previousStudies}
                         </p>
                         <div className={classes.researchKeywords}>
                             {

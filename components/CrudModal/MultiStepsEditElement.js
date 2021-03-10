@@ -76,7 +76,7 @@ export default function MultiStepsEditElement({item,steps,handleSubmit,title}) {
                                             }}
                                             freeSolo
                                             name={field.name}
-                                            defaultValue={values}
+                                            defaultValue={values?values:[]}
                                             id={`crud-edit-element-${index}-${step}`}
                                             options={[]}
                                             renderTags={(value, getTagProps) =>

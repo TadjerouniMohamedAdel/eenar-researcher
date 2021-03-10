@@ -48,7 +48,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                             }}
                                             freeSolo
                                             name={field.name}
-                                            defaultValue={values}
+                                            defaultValue={values?values:[]}
                                             id={`crud-add-element-${index}-${step}`}
                                             options={[]}
                                             renderTags={(value, getTagProps) =>

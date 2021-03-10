@@ -200,6 +200,9 @@
     text-align: right;
     color: #3e3f5e;
 }
+.researchView .researchBody .researchContent .researchRest >p{
+    margin-bottom: 20px;
+}
 .researchView .researchBody .researchContent .researchRest .researchImg{
     margin-top: 32px;
     width: 100%;
