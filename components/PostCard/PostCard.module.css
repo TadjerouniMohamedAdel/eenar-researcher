@@ -1,8 +1,9 @@
 .postCard{
     width: 304px;
-    height: 384px;
+    height: auto;
     margin: 0 0px 0 0;
     /* padding: 168px 0 0; */
+    padding: 0 !important;
     border-radius: 12px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
     background-color: #ffffff;   
@@ -12,7 +13,7 @@
 }
 .postCardSkeleton{
     width: 304px;
-    height: 384px;
+    height: auto;
     margin: 0;
     padding: 0 !important;
     border-radius: 12px;
@@ -40,7 +41,7 @@
 .postCardSkeleton .postImg{
     background-color: inherit;
     background-color:#118ab281;
-    height: 150px  !important;
+    height: 185px  !important;
     width: 100%;
 }
 .postCardSkeleton .postImg > *{
@@ -100,6 +101,7 @@
 .postCard .postContent h2{
     font-family: var(--primary-font);
     font-size: 16px;
+    height: 50px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -117,6 +119,7 @@
     font-style: normal;
     line-height: 1.66;
     letter-spacing: normal;
+    height:100px;
     text-align: right;
     color: #9192a6;
 }

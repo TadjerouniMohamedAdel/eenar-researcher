@@ -13,7 +13,7 @@ export default function PostCardSkeleton() {
                     <div className={classes.postInfo}>
                         <Skeleton animation="wave" className={classes.postType} />
                        <Skeleton animation="wave" variant="text" />
-                        <Skeleton animation="wave" variant="rect" height={100}/>
+                        <Skeleton animation="wave" variant="rect" height={125}/>
                     </div>
                     <div className={classes.postFooter}>
                         <Skeleton animation="wave"  variant="rect"  className={classes.footerSekeleton}/>

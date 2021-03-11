@@ -5,7 +5,7 @@ import classes from './PostCard.module.css'
 import Link from 'next/link' 
 export default function PostCard({post}) {
     return (
-        <Link href="/researcher/researchs">    
+        <Link href={`/researcher/researchs/${post.id}`}>    
             <div className={classes.postCard}>
                 <div className={classes.postImg}>
                 </div>
@@ -14,7 +14,7 @@ export default function PostCard({post}) {
                         <span className={classes.postType}>{post.type}</span>
                         <h2>{post.arabicTitle}</h2>
                         <p>
-                            {post.arabicDescription.substring(0,200)}
+                            {post.arabicDescription.substring(0,200)}...
                         </p>
                     </div>
                     <div className={classes.postFooter}>

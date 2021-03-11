@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { datagroups, dataarticles } from "../../../../utils/fixtures/DevData";
-import MyHead from "../../../../components/MyHead/MyHead";
-import classes from "../../../../styles/MyPosts.module.css";
-import LearnNow from "../../../../components/LearnNow/LearnNow";
-import LastArticles from "../../../../components/LastArticles/LastArticles";
-import MyGroups from "../../../../components/MyGroups/MyGroups";
+import classes from "../../../styles/MyPosts.module.css";
 import axios from "axios";
 import moment from "moment";
-import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
-import ResearchView from "../../../../components/ResearchView/ResearchView";
+import { dataarticles, datagroups } from "../../../utils/fixtures/DevData";
+import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout";
+import MyHead from "../../../components/MyHead/MyHead";
+import LearnNow from "../../../components/LearnNow/LearnNow";
+import LastArticles from "../../../components/LastArticles/LastArticles";
+import MyGroups from "../../../components/MyGroups/MyGroups";
+import ResearchView from "../../../components/ResearchView/ResearchView";
 
 
 
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
   let paths = []
   await  axios({
               method: "get",
-              url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/all`,
+              url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/all`,
       })
       .then((response) => {
          paths = response.data.map((item)=>{
@@ -40,7 +40,7 @@ export async function getStaticProps(context) {
   console.log(context)
   await axios({
         method: "get",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchprojectById?id=${context.params.id}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params.id}`,
       })
         .then((response) => {
             research = response.data
@@ -53,7 +53,7 @@ export async function getStaticProps(context) {
   }
 }
 
-export default function project({research}) {
+export default function research({research}) {
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
   moment.locale("ar-dz");
