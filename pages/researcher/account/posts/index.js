@@ -41,6 +41,7 @@ import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
 import moment from "moment";
 
+
 export default function index() {
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
@@ -50,24 +51,41 @@ export default function index() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [offset,setOffset] = useState(0)
+  const [limit,setLimit] = useState(10)
+  const [pages,setPages] = useState(0)
+  const [page,setPage] = useState(1)
   moment.locale("ar-dz");
 
-  useEffect(() => {
+
+  const getNextData = ()=>{
+    setIsLoading(true)
     const user = JSON.parse(
       JSON.parse(localStorage.getItem("persist:primary")).user
     );
     axios({
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}`,
     })
       .then((response) => {
+        console.log("response",response.data)
         setIsLoading(false)
-        setPosts(response.data);
+        setPosts(response.data.posts);
+        setPages(response.data.maxPages)
       })
       .catch((error) => {
         console.log(error);
-      });
-  }, []);
+      })
+  }
+
+  useEffect(() => {
+    setPage(offset/limit+1)
+    getNextData()
+  }, [offset]);
+
+  useEffect(()=>{
+    console.log(page)
+  },[page])
 
   const handleDeleteItem = (item) => {
     const user = JSON.parse(
@@ -226,49 +244,35 @@ export default function index() {
                 <TableBody className={classes.tableBody}>
                   {isLoading ? (
                     <>
-                    <TableRow>
-                      <TableCell className={classes.cellBody} align="center">
-                        <Skeleton animation="wave" variant="rect" />
-                      </TableCell>
-                      <TableCell
-                        className={`${classes.cellBody} ${classes.title}`}
-                        align="left"
-                      >
-                        <Skeleton animation="wave" variant="rect" />
-                      </TableCell>
-                      <Hidden only="xs">
+                    {
+
+                    new Array(limit).fill().map((el,index)=>(
+                      <TableRow key={index} style={{height:80}}>
                         <TableCell className={classes.cellBody} align="center">
                           <Skeleton animation="wave" variant="rect" />
                         </TableCell>
-                      </Hidden>
-                      <TableCell className={classes.cellBody} align="center">
-                        <Skeleton animation="wave" variant="rect" />
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell className={classes.cellBody} align="center">
-                      <Skeleton animation="wave" variant="rect" />
-                    </TableCell>
-                    <TableCell
-                      className={`${classes.cellBody} ${classes.title}`}
-                      align="left"
-                    >
-                      <Skeleton animation="wave" variant="rect" />
-                    </TableCell>
-                    <Hidden only="xs">
-                      <TableCell className={classes.cellBody} align="center">
-                        <Skeleton animation="wave" variant="rect" />
-                      </TableCell>
-                    </Hidden>
-                    <TableCell className={classes.cellBody} align="center">
-                      <Skeleton animation="wave" variant="rect" />
-                    </TableCell>
-                  </TableRow>
+                        <TableCell
+                          className={`${classes.cellBody} ${classes.title}`}
+                          align="left"
+                        >
+                          <Skeleton animation="wave" variant="rect" />
+                        </TableCell>
+                        <Hidden only="xs">
+                          <TableCell className={classes.cellBody} align="center">
+                            <Skeleton animation="wave" variant="rect" />
+                          </TableCell>
+                        </Hidden>
+                        <TableCell className={classes.cellBody} align="center">
+                          <Skeleton animation="wave" variant="rect" />
+                        </TableCell>
+                      </TableRow>
+                      ))
+                    }
                   </>
                   ) : (
                     <>
                       {posts.map((row, index) => (
-                        <TableRow key={index}>
+                        <TableRow key={index} style={{height:20}}>
                           <TableCell
                             className={classes.cellBody}
                             align="center"
@@ -323,7 +327,7 @@ export default function index() {
                   )}
                 </TableBody>
               </Table>
-              {posts.length > 10 && (
+              {pages > 1 && (
                 <div
                   style={{
                     width: "100%",
@@ -331,7 +335,14 @@ export default function index() {
                     justifyContent: "flex-end",
                   }}
                 >
-                  {/* <Pagination /> */}
+                  <Pagination 
+                      active={page}
+                      limit={limit}
+                      pages={pages}
+                      onNext={()=>{setOffset(offset+10)}}
+                      onPrev={()=>{setOffset(offset-10)}}
+                      onNum={setOffset}
+                  />
                 </div>
               )}
             </div>

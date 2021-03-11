@@ -31,22 +31,31 @@ export default function index() {
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [articles,setArticles] = useState(dataarticles)
     const [groups,setGroups] = useState(datagroups)
-    const [projects,setProjects] = useState([])
     const [selectedItem,setSelectedItem] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
+    const [projects,setProjects] = useState([])
+    const [offset,setOffset] = useState(0)
+    const [limit,setLimit] = useState(10)
+    const [pages,setPages] = useState(0)
+    const [page,setPage] = useState(1)
+
     moment.locale('ar-dz')
     
-    useEffect(() => {
+    
+    const getNextData = ()=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         axios({
             method:"GET",
-            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject?researcherId=${user.researchers.id}`
+            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}`
         }).then(response=>{
             setIsLoading(false)
-            setProjects(response.data)
+            setProjects(response.data.projects)
         }).catch(error=>{
             console.log(error)
         })
+    }
+    useEffect(() => {
+        getNextData()
     }, [])
 
     const handleDeleteItem = (item)=>{

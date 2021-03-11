@@ -4,7 +4,6 @@ import LastArticles from "../../../components/LastArticles/LastArticles";
 import LearnNow from "../../../components/LearnNow/LearnNow";
 import MyGroups from "../../../components/MyGroups/MyGroups";
 import MyHead from "../../../components/MyHead/MyHead";
-import WorkInProgress from "../../../components/WorkInProgress/WorkInProgress";
 import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout";
 import classes from "../../../styles/Researchs.module.css";
 import { dataarticles, datagroups } from "../../../utils/fixtures/DevData";
@@ -28,6 +27,8 @@ export default function index() {
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
   const [posts,setPosts] = useState([])
+  const [offset,setOffset] = useState(0)
+  const [limit,setLimit] = useState(10)
   
   const getNextData = ()=>{
     const user = JSON.parse(
@@ -35,18 +36,20 @@ export default function index() {
     );
     axios({
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}`,
     })
       .then((response) => {
         // setIsLoading(false)
-        setPosts([...posts,...response.data]);
+        console.log(response.data)
+        setPosts([...posts,...response.data.posts]);
+        setOffset(offset+10)
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  useEffect(() => {
-      getNextData()
+  useEffect(() => {  
+    getNextData()
   }, []);
   
   return (
