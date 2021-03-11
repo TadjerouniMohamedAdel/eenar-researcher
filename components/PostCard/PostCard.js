@@ -11,7 +11,7 @@ export default function PostCard({post}) {
                 </div>
                 <div className={classes.postContent}>
                     <div className={classes.postInfo}>
-                        <span className={classes.postType}>{post.type}</span>
+                        <span className={classes.postType}>كتاب</span>
                         <h2>{post.arabicTitle}</h2>
                         <p>
                             {post.arabicDescription.substring(0,200)}...

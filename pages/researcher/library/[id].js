@@ -11,8 +11,7 @@ import 'swiper/swiper-bundle.min.css';
 import SwiperCore, { Lazy, Navigation, Autoplay } from 'swiper'
 SwiperCore.use([Lazy, Navigation, Autoplay])
 import axios from 'axios'
-import {useRouter} from 'next/router'
-import { Skeleton } from '@material-ui/lab'
+
 
 
 export async function getStaticPaths() {
@@ -84,7 +83,18 @@ export default function bookItemPage({book}) {
                     description="تفاعل بشكل أفضل مع زملائك الباحثين، أرسل ملفات، صور وروابط."
                     imgSrc="/images/library-banner.png"
                 />
+                        {!book ?
+                                    (
                         <div className={classes.libraryItemContainer}>
+                                    <div className={classes.notFound}>
+                                    <img src="/images/404.png" alt="" />
+                                    <h1>هذا الكتاب غير موجود</h1>
+                                    </div>
+                        </div>
+                            )
+                            :(
+                                <div className={classes.libraryItemContainer}>
+
                             <div className={classes.bookDetails}>
                                 <MyHead title={`المكتبة | ${book.title}`} />
                                 <div className={classes.getResumeContainer}>
@@ -153,6 +163,9 @@ export default function bookItemPage({book}) {
                     </div>
                 </div> 
                 </div>
+                            )
+                        }
+
                         
                     
                 </div>

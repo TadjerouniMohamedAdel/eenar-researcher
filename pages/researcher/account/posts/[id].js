@@ -62,7 +62,13 @@ export default function post({research}) {
       <MyHead title="الملف الشخصي  - منشوراتي" />
       <div className={classes.myPostsContainer}>
         <div className={classes.mainSection}>
-                <ResearchView  research={research}/>
+          {research ?   <ResearchView  research={research}/> :
+              (
+                <div className={classes.notFound}>
+                  <img src="/images/404.png" alt="" />
+                  <h1>هذا المنشور غير موجود</h1>
+                </div>
+          )}
               
         </div>
         <div className={classes.sideSection}>
