@@ -43,6 +43,7 @@ export default function index() {
     
     
     const getNextData = ()=>{
+        setIsLoading(true)
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         axios({
             method:"GET",
@@ -50,13 +51,15 @@ export default function index() {
         }).then(response=>{
             setIsLoading(false)
             setProjects(response.data.projects)
+            setPages(response.data.maxPages)
         }).catch(error=>{
             console.log(error)
         })
     }
     useEffect(() => {
+        setPage(offset/limit+1)
         getNextData()
-    }, [])
+      }, [offset]);
 
     const handleDeleteItem = (item)=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
@@ -197,54 +200,39 @@ export default function index() {
                                     </TableRow>
                                     </TableHead>
                                     <TableBody className={classes.tableBody}>
-                                    {isLoading ? (
+                                    
+                        {isLoading ? (
                             <>
-                            <TableRow>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <TableCell
-                                className={`${classes.cellBody} ${classes.title}`}
-                                align="left"
-                            >
-                                <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <Hidden only="xs">
+                            {
+                                
+                            new Array(limit).fill().map((el,index)=>(
+                                <TableRow key={index} style={{height:80}}>
                                 <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
+                                    <Skeleton animation="wave" variant="rect" />
                                 </TableCell>
-                            </Hidden>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            </TableRow>
-                            <TableRow>
-                            <TableCell className={classes.cellBody} align="center">
-                            <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <TableCell
-                            className={`${classes.cellBody} ${classes.title}`}
-                            align="left"
-                            >
-                            <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <Hidden only="xs">
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            </Hidden>
-                            <TableCell className={classes.cellBody} align="center">
-                            <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                        </TableRow>
-                        </>
-                        ) : (
+                                <TableCell
+                                    className={`${classes.cellBody} ${classes.title}`}
+                                    align="left"
+                                >
+                                    <Skeleton animation="wave" variant="rect" />
+                                </TableCell>
+                                <Hidden only="xs">
+                                    <TableCell className={classes.cellBody} align="center">
+                                    <Skeleton animation="wave" variant="rect" />
+                                    </TableCell>
+                                </Hidden>
+                                <TableCell className={classes.cellBody} align="center">
+                                    <Skeleton animation="wave" variant="rect" />
+                                </TableCell>
+                                <TableCell className={classes.cellBody} align="center">
+                                    <Skeleton animation="wave" variant="rect" />
+                                </TableCell>
+                                </TableRow>
+                                
+                              ))
+                            }
+                          </>
+                          ) : (
                             <>
                                     {projects.map((row,index) => (
                                         <TableRow key={index}>
@@ -269,14 +257,28 @@ export default function index() {
                                     </TableBody>
                                 </Table>
                             
-                                {/* {  projects.length > 10 && (
-                                    <Pagination />
-                                )
-                                } */}
-                            </div>
+                                {pages > 1 && (
+                                    <div
+                                    style={{
+                                        width: "100%",
+                                        display: "flex",
+                                        justifyContent: "flex-end",
+                                    }}
+                                    >
+                                    <Pagination 
+                                        active={page}
+                                        limit={limit}
+                                        pages={pages}
+                                        onNext={()=>{setOffset(offset+10)}}
+                                        onPrev={()=>{setOffset(offset-10)}}
+                                        onNum={setOffset}
+                                    />
+                                    </div>
+                                )}
+                                                </div>
 
-                        )
-                    }
+                                            )
+                                }
                 </div>
                 <div className={classes.sideSection}>
                     <LearnNow />

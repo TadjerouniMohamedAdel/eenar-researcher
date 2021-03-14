@@ -29,24 +29,29 @@ export default function index() {
   const [posts,setPosts] = useState([])
   const [offset,setOffset] = useState(0)
   const [limit,setLimit] = useState(10)
+  const [hasMore,setHasMore] = useState(true)
   
   const getNextData = ()=>{
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
-    axios({
-      method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}`,
-    })
-      .then((response) => {
-        // setIsLoading(false)
-        console.log(response.data)
-        setPosts([...posts,...response.data.posts]);
-        setOffset(offset+10)
+    if(hasMore){
+      const user = JSON.parse(
+        JSON.parse(localStorage.getItem("persist:primary")).user
+      );
+      axios({
+        method: "GET",
+        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}`,
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          // setIsLoading(false)
+          console.log(response.data)
+          if(response.data.posts.length == 0) setHasMore(false)
+          setPosts([...posts,...response.data.posts]);
+          setOffset(offset+10)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+    }
   }
   useEffect(() => {  
     getNextData()
@@ -100,7 +105,7 @@ export default function index() {
                 className={classes.postsContainer}
                 next={getNextData}
                 inverse={false}
-                hasMore={true}
+                hasMore={hasMore}
                 loader={<PostCardSkeleton />}
               >
                 {posts.map((post, id) => (
