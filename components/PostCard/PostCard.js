@@ -23,9 +23,11 @@ export default function PostCard({post}) {
                             <h5>{post.primaryAuthor}</h5>
                         </div>
                         <div className={classes.postDownload}>
-                            <IconButton>
-                                <GetAppSharpIcon />
-                            </IconButton>
+                            <a href={post.file} target="_blank" style={{zIndex:100000}} onClick={(e)=>e.stopPropagation()}>
+                                <IconButton>
+                                    <GetAppSharpIcon />
+                                </IconButton>
+                            </a>
                         </div>
                     </div>
 
