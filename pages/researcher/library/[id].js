@@ -86,6 +86,7 @@ export default function bookItemPage({book}) {
                         {!book ?
                                     (
                         <div className={classes.libraryItemContainer}>
+                                        <MyHead title={`المكتبة | 404`} />
                                     <div className={classes.notFound}>
                                     <img src="/images/404.png" alt="" />
                                     <h1>هذا الكتاب غير موجود</h1>
