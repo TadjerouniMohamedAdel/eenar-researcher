@@ -92,7 +92,6 @@ export default function index() {
               <div className={classes.buttonSection}>
                 <Button
                   className={classes.addButton}
-                  onClick={() => setAddVisible(true)}
                 >
                   <span className={classes.text}>أضف منشور</span>
                   <AddIcon className={classes.addIcon} />
