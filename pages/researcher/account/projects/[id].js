@@ -59,7 +59,7 @@ export default function project({research}) {
   moment.locale("ar-dz");
   return (
     <ResearcherLayout>
-      <MyHead title="الملف الشخصي  - منشوراتي" />
+      <MyHead title={`${research.arabicTitle}  - مشاريعي`} />
       <div className={classes.myPostsContainer}>
         <div className={classes.mainSection}>
         {research ?   <ResearchView  research={research}/> :

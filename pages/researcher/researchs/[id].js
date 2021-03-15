@@ -57,13 +57,19 @@ export default function research({research}) {
   const [groups, setGroups] = useState(datagroups);
   return (
     <ResearcherLayout>
-      <MyHead title="الملف الشخصي  - منشوراتي" />
       <div className={classes.myPostsContainer}>
         <div className={classes.mainSection}>
 
-              {research ?   <ResearchView  research={research}/> :
+              {research ?   (
+
+                  <>
+                      <MyHead title={`${research.arabicTitle}  - بحث`} />
+                      <ResearchView  research={research}/> :
+                  </>
+              ):
               (
                 <div className={classes.notFound}>
+                  <MyHead title="بحث  - 404" />
                   <img src="/images/404.png" alt="" />
                   <h1>هذا البحث غير موجود</h1>
                 </div>
