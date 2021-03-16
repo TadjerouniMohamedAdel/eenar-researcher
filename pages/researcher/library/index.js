@@ -35,6 +35,7 @@ export default function index() {
     const [limit,setLimit] = useState(10)
     const [pages,setPages] = useState(0)
     const [page,setPage] = useState(1)
+    const [research,setResearch] = useState("")
 
     useEffect(()=>{
         setPage(offset/limit+1)
@@ -44,7 +45,7 @@ export default function index() {
     const getNextData = ()=>{
         setIsLoading(true)
         axios({
-            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book?offset=${offset}&limit=${limit}`,
+            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book/research?offset=${offset}&limit=${limit}&title=${research}`,
             method:"GET"
         }).then(response=>{
             console.log(response.data)
@@ -56,6 +57,12 @@ export default function index() {
             setIsLoading(false)
         })
     }
+
+    const handleResearch = ()=>{
+        setOffset(0)
+        getNextData()
+    }
+
     return (
         <ResearcherLayout>
             <MyHead title="المكتبة" />
@@ -71,7 +78,8 @@ export default function index() {
                         <TextField
                             variant="outlined"
                             label="العنوان"
-                            className={classes.input}  
+                            className={classes.input}
+                            onChange={(e)=>setResearch(e.target.value)}  
                         />
                         {/* <FormControl  variant="outlined" className={classes.select}>
                             <InputLabel id="demo-simple-select-outlined-label">نوع المشروع</InputLabel>
@@ -80,7 +88,7 @@ export default function index() {
                             >   
                             </Select>
                         </FormControl> */}
-                        <Button className={classes.searchButton}>
+                        <Button className={classes.searchButton} onClick={() => handleResearch()}>
                             <SearchIcon className={`${classes.searchIcon} ${classes.right}`} />
                         </Button>
                     </div>

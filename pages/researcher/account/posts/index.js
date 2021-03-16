@@ -55,6 +55,7 @@ export default function index() {
   const [limit,setLimit] = useState(10)
   const [pages,setPages] = useState(0)
   const [page,setPage] = useState(1)
+  const [research,setResearch] = useState("")
   moment.locale("ar-dz");
 
 
@@ -65,7 +66,7 @@ export default function index() {
     );
     axios({
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}&title=${research}`,
     })
       .then((response) => {
         console.log("response",response.data)
@@ -82,6 +83,11 @@ export default function index() {
     setPage(offset/limit+1)
     getNextData()
   }, [offset]);
+
+  const handleResearch = ()=>{
+      setOffset(0)
+      getNextData()
+  }
 
   useEffect(()=>{
     console.log(page)
@@ -190,6 +196,7 @@ export default function index() {
               <TextField
                 variant="outlined"
                 label="العنوان"
+                onChange={(e)=>setResearch(e.target.value)}
                 className={classes.input}
               />
               {/* <FormControl  variant="outlined" className={classes.select}>
@@ -199,7 +206,7 @@ export default function index() {
                                 >   
                                 </Select>
                             </FormControl> */}
-              <Button className={classes.searchButton}>
+              <Button className={classes.searchButton} onClick={() => handleResearch()}>
                 <SearchIcon
                   className={`${classes.searchIcon} ${classes.right}`}
                 />
@@ -208,7 +215,6 @@ export default function index() {
             <div className={classes.buttonSection}>
               <Button
                 className={classes.addButton}
-                onClick={() => setAddVisible(true)}
               >
                 <span className={classes.text}>أضف منشور</span>
                 <AddIcon className={classes.addIcon} />
