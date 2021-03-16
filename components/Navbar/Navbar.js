@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import classes from './Navbar.module.css'
 import SearchIcon from '@material-ui/icons/Search';
 import { IconButton, TextField } from '@material-ui/core';
@@ -6,9 +6,19 @@ import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+import {motion, AnimatePresence} from 'framer-motion'
+import TranslateOutlinedIcon from '@material-ui/icons/TranslateOutlined';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 
-
+const dropdownVariant = {
+    hidden:{y:-20,opacity:0},
+    visible:{y:0,opacity:1,transition: { duration: 0.05 }}
+}
 export default function Navbar() {
+    const [isSettingsOpen,setIsSettingsOpen] = useState(false)
+    
     return (
         <nav className={classes.navbar}> 
             <div className={classes.navbarLogo}>
@@ -42,9 +52,33 @@ export default function Navbar() {
                     <NotificationsNoneOutlinedIcon className={classes.actionIcon}/>
                 </IconButton>
                 <div className={classes.navbarDivider}></div>
-                <IconButton>
-                    <SettingsOutlinedIcon className={classes.actionIcon}/>
-                </IconButton>
+                <div className={classes.myDropDown}>
+                    <IconButton className={classes.dropButton} onClick={()=>setIsSettingsOpen(!isSettingsOpen)}>
+                        <SettingsOutlinedIcon className={classes.actionIcon}/>
+                    </IconButton>
+                    <AnimatePresence exitBeforeEnter>
+                            {
+                                isSettingsOpen && (
+                                    <motion.div 
+                                        className={classes.dropDownMenu}
+                                        variants={dropdownVariant}
+                                        animate="visible"
+                                        initial="hidden"
+                                        exit="hidden"
+
+                                    >
+                                            <h3>General Settings <br/><span>Website Designer</span></h3>
+                                            <ul>
+                                                <li><a href="#">Edit Credentials<LockOutlinedIcon style={{marginLeft:5,marginRight:5}} /></a></li>
+                                                <li><a href="#">Edit Language <TranslateOutlinedIcon style={{marginLeft:5,marginRight:5}} /></a></li>
+                                                <li><a href="#">Help <ContactSupportOutlinedIcon style={{marginLeft:5,marginRight:5}} /></a></li>
+                                                <li><a href="#">Log Out<ExitToAppOutlinedIcon style={{marginLeft:5,marginRight:5}} /></a></li>
+                                            </ul>
+                                    </motion.div>
+                                )
+                            }
+                    </AnimatePresence>
+                </div>
             </div>
         </nav>
     )
