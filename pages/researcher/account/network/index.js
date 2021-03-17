@@ -41,6 +41,15 @@ const groupsHardCoded = [
     {name:"المجموعة الفلانية",title:"كليفرزون ترحب بكم",stats:{views:"7.3K",posts:"105",members:"139"}},
     {name:"المجموعة الفلانية",title:"كليفرزون ترحب بكم",stats:{views:"7.3K",posts:"105",members:"139"}},
 ]
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 
 export default function index() {
     const [offset,setOffset] = useState(0)

@@ -12,7 +12,15 @@ import Link from 'next/link'
 import moment from 'moment'
 import axios from 'axios'
 import { Skeleton } from '@material-ui/lab'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 
 export default function index() {
     moment.locale('ar-dz')

@@ -1,0 +1,16 @@
+{
+    "overviews":{
+        "posts":"Posts",
+        "friends":"Friends",
+        "views":"Views"
+    },
+    "menu":{
+        "home":"Home",
+        "account":"Account",
+        "research-store":"Research Complex",
+        "research-services":"Research services",
+        "messages":"Messages",
+        "library":"Library",
+        "discussions-forum":"Discussions forum"
+    }
+}

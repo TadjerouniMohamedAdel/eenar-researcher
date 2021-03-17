@@ -21,6 +21,10 @@
     right: -400px;
     overflow: hidden ;
 }
+.archLeft{
+    left: -400px;
+    right: unset;
+}
 .loginRow{
     width: 80%;
     display: flex;

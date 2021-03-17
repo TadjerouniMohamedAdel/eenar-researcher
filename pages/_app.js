@@ -9,19 +9,27 @@ import { useStore } from '../redux/store'
 import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
+import { appWithTranslation } from 'next-i18next'
+
+
+
 //Binding events. 
 Router.events.on('routeChangeStart', () => NProgress.start()); 
 Router.events.on('routeChangeComplete', () => NProgress.done()); 
 Router.events.on('routeChangeError', () => NProgress.done());
 
-function MyApp({ Component, pageProps }) {
+
+ 
+
+function MyApp({ Component, pageProps,router }) {
     const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
     const store = useStore(pageProps.initialReduxState)
     const persistor = persistStore(store, {}, function () {
       persistor.persist()
     })
+    console.log("from _app",router)
     const theme = createMuiTheme({
-        direction: 'rtl',
+        direction: router.locale ==='ar' ?'rtl' :'ltr',
       });
   return (
     <Provider store={store}>
@@ -36,5 +44,4 @@ function MyApp({ Component, pageProps }) {
     </Provider>
   )
 }
- 
-export default MyApp
+export default appWithTranslation(MyApp)

@@ -1,20 +1,24 @@
 import React from 'react'
 import MyHead from '../../components/MyHead/MyHead'
 import classes from '../../styles/Login.module.css'
-export default function LoginLayout(props) {
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
+export default function LoginLayout(props) {
+	const { t } = useTranslation('login')
+	const router = useRouter()
 	return (
 		<div className={classes.loginContainer}>
-			<MyHead title="تسجيل الدخول"/>
-			<div className={classes.arch}></div>
+			<MyHead title={t("title")} />
+			<div className={`${classes.arch} ${router.locale!=="ar" && classes.archLeft}`}></div>
 			<div className={classes.loginRow}>
 				{props.children}
 				<div className={classes.loginPresentation}>
 					<img src="/images/logoAdminWhite.png"  />
-					<h2>مرحبا بكم في</h2>
-					<h1>منتدى كوالالمبور<br/>شبكة الباحثين</h1>
+					<h2>{t("welcome")}</h2>
+					<h1>{t("company-name")}<br/>{t("company-job")}</h1>
 					<p>
-						هي مؤسسة عالمية تعمل تحت مظلة منتدى كوالالمبور تعنى ببناء المسارات البحثية  وتنسيق وتثمين ونشر جهود الباحثين في مجال الحضارة والفكر الإسلامي، وتقديمها للمهتمين وصناع القرار، ويمكن أن تأخذ ترخيصا قانونيا خاصا بها.
+						{t("description")}
 					</p>
 				</div>
 			 </div>

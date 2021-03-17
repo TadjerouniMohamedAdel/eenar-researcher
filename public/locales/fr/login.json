@@ -1,0 +1,14 @@
+{
+    "title":"Se connecter",
+    "welcome":"Bienvenue à",
+    "company-name":"Forum de Kuala Lumpur",
+    "company-job":"Réseau de chercheurs",
+    "description":"C'est une institution mondiale travaillant sous l'égide du Forum de Kuala Lumpur, soucieuse de construire des voies de recherche, de coordonner, valoriser et diffuser les efforts des chercheurs dans le domaine de la civilisation et de la pensée islamique, et de les présenter aux personnes intéressées et aux décideurs, et il peut prendre sa propre licence légale.",
+    "email":"Nom d'utilisateur ou email",
+    "password":"Mot de passe",
+    "remember-me":"Se souvenir de moi",
+    "forget-password":"J'ai oublie le mot de passe?",
+    "login-error":"Veuillez vérifier les informations du compte",
+    "suggest-oauth":"Connectez-vous via les réseaux sociaux",
+    "go-registration":"Vous n'avez pas de compte?"
+}

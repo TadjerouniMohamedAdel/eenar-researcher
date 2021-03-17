@@ -41,6 +41,15 @@ import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
 import moment from "moment";
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 
 export default function index() {
   const [articles, setArticles] = useState(dataarticles);

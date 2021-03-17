@@ -24,7 +24,15 @@ import Pagination from '../../../../components/Pagination/Pagination'
 import moment from 'moment'
 import Link from 'next/link'
 import { Skeleton } from "@material-ui/lab";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 export default function index() {
     const [addVisible,setAddVisible] = useState(false)
     const [editVisible,setEditVisible] = useState(false)

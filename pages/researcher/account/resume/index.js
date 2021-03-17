@@ -40,7 +40,15 @@ import { dataaboutme,datagroups,dataarticles,datahonors,datapatents,dataactiviti
 import MyHead from '../../../../components/MyHead/MyHead';
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 
 export default function index() {
   const [aboutme,setAboutMe] = useState([])

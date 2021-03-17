@@ -28,6 +28,7 @@
     "jss-rtl": "^0.3.0",
     "moment": "^2.29.1",
     "next": "10.0.5",
+    "next-i18next": "^8.1.2",
     "nprogress": "^0.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",

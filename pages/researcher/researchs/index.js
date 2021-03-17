@@ -22,7 +22,15 @@ import {
 import PostCard from "../../../components/PostCard/PostCard";
 import PostCardSkeleton from "../../../components/PostCard/PostCardSkeleton"; 
 import InfiniteScroll from "react-infinite-scroll-component";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 export default function index() {
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
