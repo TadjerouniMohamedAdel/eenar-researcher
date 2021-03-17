@@ -29,6 +29,7 @@ export default function index() {
   const [posts,setPosts] = useState([])
   const [offset,setOffset] = useState(0)
   const [limit,setLimit] = useState(10)
+  const [research,setResearch] = useState("")
   const [hasMore,setHasMore] = useState(true)
   
   const getNextData = ()=>{
@@ -38,7 +39,7 @@ export default function index() {
       );
       axios({
         method: "GET",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?offset=${offset}&limit=${limit}&title=${research}`,
       })
         .then((response) => {
           // setIsLoading(false)
@@ -56,6 +57,13 @@ export default function index() {
   useEffect(() => {  
     getNextData()
   }, []);
+
+  const handleResearch = ()=>{
+    setOffset(0)
+    setPosts([])
+    setHasMore(true)
+    getNextData()
+}
   
   return (
     <ResearcherLayout>
@@ -75,6 +83,7 @@ export default function index() {
                   variant="outlined"
                   label="العنوان"
                   className={classes.input}
+                  onChange={(e)=>setResearch(e.target.value)}
                 />
                 {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المنشور</InputLabel>
@@ -83,7 +92,7 @@ export default function index() {
                                 >   
                                 </Select>
                             </FormControl> */}
-                <Button className={classes.searchButton}>
+                <Button className={classes.searchButton} onClick={()=>handleResearch()}>
                   <SearchIcon
                     className={`${classes.searchIcon} ${classes.right}`}
                   />
