@@ -1,7 +1,7 @@
-import {useState} from 'react'
+import {useState , useEffect} from 'react'
 import classes from './Navbar.module.css'
 import SearchIcon from '@material-ui/icons/Search';
-import { IconButton, TextField } from '@material-ui/core';
+import { IconButton, Menu, MenuItem, TextField } from '@material-ui/core';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
@@ -11,14 +11,25 @@ import TranslateOutlinedIcon from '@material-ui/icons/TranslateOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router' 
 
 const dropdownVariant = {
     hidden:{y:-20,opacity:0},
     visible:{y:0,opacity:1,transition: { duration: 0.05 }}
 }
 export default function Navbar() {
-    const [isSettingsOpen,setIsSettingsOpen] = useState(false)
+    const router = useRouter();
+    const { locale } = router;
+    const { i18n } = useTranslation();
     
+    const [isSettingsOpen,setIsSettingsOpen] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null);
+    
+    const changeLocale = (locale)=>{
+        document.body.dir=locale == "ar" ?"rtl" : "ltr"
+        router.push(router.pathname, router.pathname, { locale })
+    }
     return (
         <nav className={classes.navbar}> 
             <div className={classes.navbarLogo}>
@@ -42,9 +53,40 @@ export default function Navbar() {
             </div>
             <div className={classes.navbarActions} style={{marginLeft:28}}>
                 <div className={classes.navbarDivider}></div>
-                <IconButton>
-                    <VisibilityOutlinedIcon className={classes.actionIcon}/>
-                </IconButton>
+                <div>
+                    <IconButton onClick={(event)=>setAnchorEl(event.currentTarget)} aria-controls="fade-menu">
+                        <div className={classes.languageSwitcher}>
+                            <img src={locale === "ar"? "/images/arabic-flag.svg" : locale==="en"?"/images/usa-flag.png":"/images/french-flag.webp"} alt=""/>
+                        </div>
+                    </IconButton>
+                    <Menu
+                        id="fade-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={()=>setAnchorEl(null)}
+                        style={{marginTop:50}}
+                    >
+                        <MenuItem onClick={()=>changeLocale("ar")}>
+                            <div className={classes.choiceLanguage}>
+                                <img src="/images/arabic-flag.svg" alt=""/>
+                                العربية
+                            </div>
+                        </MenuItem>
+                        <MenuItem onClick={()=>changeLocale("en")}>
+                            <div className={classes.choiceLanguage}>
+                                <img src="/images/usa-flag.png" alt=""/>
+                                English
+                            </div>
+                        </MenuItem>
+                        <MenuItem onClick={()=>changeLocale("fr")}>
+                            <div className={classes.choiceLanguage}>
+                                <img src="/images/french-flag.webp" alt=""/>
+                                Français
+                            </div>
+                        </MenuItem>
+                    </Menu>
+                </div>
                 <IconButton>
                     <QuestionAnswerOutlinedIcon className={classes.actionIcon}/>
                 </IconButton>

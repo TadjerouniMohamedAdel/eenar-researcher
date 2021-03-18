@@ -51,15 +51,7 @@ const badges =[
 ]
 
 export default function Sidebar() {
-    let tab = [...links]
     const { t } = useTranslation('sidebar')
-    const user = useSelector((state) => state.user)
-    tab.shift()
-    const router = useRouter()
-    const [activeIndex,setActiveIndex] = useState(tab.findIndex(item=>router.pathname.includes(item.to))+1)
-    const overviews =[
-        {name:t("overviews.posts"),value:"0"},{name:t("overviews.friends"),value:"0"},{name:t("overviews.views"),value:"0"}
-    ]
     const links =[
         {
             name:t("menu.home"),
@@ -97,6 +89,14 @@ export default function Sidebar() {
             to:"/researcher/forums"
         }
     ]
+    const router = useRouter()
+    const overviews =[
+        {name:t("overviews.posts"),value:"0"},{name:t("overviews.friends"),value:"0"},{name:t("overviews.views"),value:"0"}
+    ]
+    let tab = [...links]
+    const [activeIndex,setActiveIndex] = useState(tab.findIndex(item=>router.pathname.includes(item.to))+1)
+    const user = useSelector((state) => state.user)
+    tab.shift()
     
     return (
         <div className={classes.sidebar}>
@@ -107,7 +107,7 @@ export default function Sidebar() {
                                     <img src={user.image} alt="" className={classes.Rectangle5} />
                             ):(
 
-                                <Rectongles />
+                                <Rectangles />
                             )
                         }
                 <h2 className={classes.profileTitle}>{user.lastname} {user.firstname}</h2>

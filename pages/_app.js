@@ -19,6 +19,9 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 
+
+
+
  
 
 function MyApp({ Component, pageProps,router }) {
@@ -27,7 +30,6 @@ function MyApp({ Component, pageProps,router }) {
     const persistor = persistStore(store, {}, function () {
       persistor.persist()
     })
-    console.log("from _app",router)
     const theme = createMuiTheme({
         direction: router.locale ==='ar' ?'rtl' :'ltr',
       });

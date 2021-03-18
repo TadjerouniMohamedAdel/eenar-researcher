@@ -8,14 +8,19 @@ class MyDocument extends Document {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
+
+  updateDirection = ()=>{
+    return this.props.locale !== "ar" ?"ltr" : "rtl"
+  }
   
   render() {
+    console.log("from_document",this.props.locale)
     return (
       <Html>
         <Head>
         <link rel="shortcut icon" href="/images/colored-logo.png" />
           </Head>
-        <body dir={this.props.locale === "ar" ?"rtl" : "ltr"}>
+        <body dir={this.updateDirection()}>
           <Main />
           <NextScript />
         </body>
