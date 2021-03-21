@@ -94,9 +94,10 @@ export default function Sidebar() {
         {name:t("overviews.posts"),value:"0"},{name:t("overviews.friends"),value:"0"},{name:t("overviews.views"),value:"0"}
     ]
     let tab = [...links]
+    tab.shift()
+    console.log("router",router)
     const [activeIndex,setActiveIndex] = useState(tab.findIndex(item=>router.pathname.includes(item.to))+1)
     const user = useSelector((state) => state.user)
-    tab.shift()
     
     return (
         <div className={classes.sidebar}>
