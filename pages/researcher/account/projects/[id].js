@@ -9,7 +9,7 @@ import axios from "axios";
 import moment from "moment";
 import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
 import ResearchView from "../../../../components/ResearchView/ResearchView";
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
 export async function getStaticPaths() {
@@ -49,6 +49,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       research,
+      ...await serverSideTranslations(context.locale, ["sidebar"]),
     }, 
   }
 }

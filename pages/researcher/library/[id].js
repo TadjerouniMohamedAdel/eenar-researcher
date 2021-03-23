@@ -11,7 +11,7 @@ import 'swiper/swiper-bundle.min.css';
 import SwiperCore, { Lazy, Navigation, Autoplay } from 'swiper'
 SwiperCore.use([Lazy, Navigation, Autoplay])
 import axios from 'axios'
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
 export async function getStaticPaths() {
@@ -51,6 +51,7 @@ export async function getStaticPaths() {
     return {
       props: {
         book,
+        ...await serverSideTranslations(context.locale, ["sidebar"]),
       }, 
     }
   }

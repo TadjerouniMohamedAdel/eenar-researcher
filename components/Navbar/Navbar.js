@@ -28,7 +28,8 @@ export default function Navbar() {
     
     const changeLocale = (locale)=>{
         document.body.dir=locale == "ar" ?"rtl" : "ltr"
-        router.push(router.pathname, router.pathname, { locale })
+        console.log("asPath",router.asPath)
+        router.push(router.asPath, router.asPath, { locale })
     }
     return (
         <nav className={classes.navbar}> 

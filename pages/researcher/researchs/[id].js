@@ -8,7 +8,7 @@ import LearnNow from "../../../components/LearnNow/LearnNow";
 import LastArticles from "../../../components/LastArticles/LastArticles";
 import MyGroups from "../../../components/MyGroups/MyGroups";
 import ResearchView from "../../../components/ResearchView/ResearchView";
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
 export async function getStaticPaths() {
@@ -48,6 +48,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       research,
+      ...await serverSideTranslations(context.locale, ["sidebar"]),
     }, 
   }
 }
