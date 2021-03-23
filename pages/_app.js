@@ -10,6 +10,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 import { appWithTranslation } from 'next-i18next'
+import Laoding from '../components/Loading/Laoding';
 
 
 
@@ -35,7 +36,7 @@ function MyApp({ Component, pageProps,router }) {
       });
   return (
     <Provider store={store}>
-      <PersistGate loading={<div>loading</div>} persistor={persistor}>
+      <PersistGate loading={<Laoding />} persistor={persistor}>
           <StylesProvider jss={jss}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />

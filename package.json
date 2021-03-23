@@ -26,6 +26,7 @@
     "formik": "^2.2.6",
     "framer-motion": "^3.2.2-rc.1",
     "jss-rtl": "^0.3.0",
+    "lottie-web": "^5.7.7",
     "moment": "^2.29.1",
     "next": "10.0.5",
     "next-i18next": "^8.1.2",
