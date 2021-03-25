@@ -68,9 +68,21 @@ export default function index() {
 
   const handleResearch = ()=>{
     setOffset(0)
-    setPosts([])
     setHasMore(true)
-    getNextData()
+    axios({
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?offset=0&limit=${limit}&title=${research}`,
+    })
+      .then((response) => {
+        // setIsLoading(false)
+        console.log(response.data)
+        if(response.data.posts.length == 0) setHasMore(false)
+        setPosts(response.data.posts);
+        setOffset(offset+10)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 }
   
   return (

@@ -95,7 +95,6 @@ export default function Sidebar() {
     ]
     let tab = [...links]
     tab.shift()
-    console.log("router",router)
     const [activeIndex,setActiveIndex] = useState(tab.findIndex(item=>router.pathname.includes(item.to))+1)
     const user = useSelector((state) => state.user)
     
