@@ -130,7 +130,7 @@ export default function index() {
                 console.log(response)
                 let lastItems = [...projects]
                 const index = lastItems.findIndex((el)=>el.id === item.id)
-                lastItems[index] = item
+                lastItems[index] = response.data
                 setProjects(lastItems)
                 setEditVisible(false)
                 setSelectedItem(null)

@@ -164,7 +164,7 @@ export default function index() {
         console.log(response);
         let lastItems = [...posts];
         const index = lastItems.findIndex((el) => el.id === item.id);
-        lastItems[index] = item;
+        lastItems[index] = response.data;
         setPosts(lastItems);
         setEditVisible(false);
         setSelectedItem(null);
