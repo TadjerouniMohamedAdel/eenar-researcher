@@ -40,8 +40,8 @@ import axios from "axios";
 import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
 import moment from "moment";
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Alert from '@material-ui/lab/Alert';
 
 
 
@@ -50,6 +50,8 @@ export const getStaticProps = async ({ locale }) => ({
       ...await serverSideTranslations(locale, ["sidebar"]),
     },
   })
+
+
 
 export default function index() {
   const [articles, setArticles] = useState(dataarticles);
@@ -65,6 +67,7 @@ export default function index() {
   const [pages,setPages] = useState(0)
   const [page,setPage] = useState(1)
   const [research,setResearch] = useState("")
+  const [showAddAlert,setShowAddAlert] = useState(false)
   moment.locale("ar-dz");
 
 
@@ -138,6 +141,7 @@ export default function index() {
         console.log("response add", response.data);
         setPosts([...posts, response.data]);
         setAddVisible(false);
+        setShowAddAlert(true)
       })
       .catch((error) => console.log(error));
   };
@@ -224,6 +228,7 @@ export default function index() {
             <div className={classes.buttonSection}>
               <Button
                 className={classes.addButton}
+                onClick={()=>setAddVisible(true)}
               >
                 <span className={classes.text}>أضف منشور</span>
                 <AddIcon className={classes.addIcon} />
@@ -237,6 +242,14 @@ export default function index() {
             </div>
           ) : (
             <div className={classes.tableContainer}>
+              {
+                showAddAlert && (
+                    <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={()=>setShowAddAlert(false)}>
+                            تم إضافة المنشور، سيتم دراسته لتحقق من صحته  
+                    </Alert>
+
+                )
+              }
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>

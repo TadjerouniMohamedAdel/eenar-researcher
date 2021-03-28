@@ -87,3 +87,10 @@ input{
     border-top-color: #fff !important;
     border-left-color: #fff !important;
 }
+.MuiAlert-root{
+    background-color: var(--active-color) !important;
+}
+.MuiAlert-message{
+    font-family: var(--primary-font) !important;
+    font-weight: 600;
+}
