@@ -55,9 +55,13 @@ export default function index() {
   const [badges,setBadges] = useState([])
   const [users,setUsers] = useState(datausers)
   const [educations,setEducations] = useState([])
+  const [isLoadingEducation,setIsLoadingEducation] = useState(true)
   const [experiences,setExperiences] = useState([])
+  const [isLoadingExperince,setIsLoadingExperience] = useState(true)
   const [certifications,setCertifications] = useState([])
+  const [isLoadingCertification,setIsLoadingCertification] = useState(true)
   const [volunteerings,setVolunteerings] = useState([])
+  const [isLoadingVolunteering,setIsLoadingVolunteering] = useState(true)
   const [projects,setProjects] = useState([])
   const [languages,setLanguages] = useState([])
   const [activities,setActivities] = useState([])
@@ -73,7 +77,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/education?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setEducations(response.data))
+          .then(response=>{setEducations(response.data);setIsLoadingEducation(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -81,7 +85,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/experience?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setExperiences(response.data))
+          .then(response=>{setExperiences(response.data);setIsLoadingExperience(false)})
           .catch(error=>console.log(error))
         ;
         
@@ -98,7 +102,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/volunteering?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setVolunteerings(response.data))
+          .then(response=>{setVolunteerings(response.data);setIsLoadingVolunteering(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -106,7 +110,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/certification?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setCertifications(response.data))
+          .then(response=>{setCertifications(response.data);setIsLoadingCertification(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -160,6 +164,7 @@ export default function index() {
                 icon={<SchoolOutlinedIcon />}
                 label="المؤهلات الاكاديمية"
                 collections={educations}
+                isLoading={isLoadingEducation}
                 collectionName="education"
                 setCollections={setEducations}
                 validationSchema={educationSchema}
@@ -170,6 +175,7 @@ export default function index() {
                 icon={<WorkOutlineOutlinedIcon />}
                 label="الخبرة المهنية"
                 collections={experiences}
+                isLoading={isLoadingExperince}
                 collectionName="experience"
                 setCollections={setExperiences}
                 validationSchema={experienceSchema}
@@ -180,6 +186,7 @@ export default function index() {
                 icon={<CardMembershipOutlinedIcon />}
                 label="الشهادات"
                 collections={certifications}
+                isLoading={isLoadingCertification}
                 collectionName="certification"
                 setCollections={setCertifications}
                 validationSchema={certificationSchema}
@@ -197,6 +204,7 @@ export default function index() {
                 collectionName="volunteering"
                 collections={volunteerings}
                 setCollections={setVolunteerings}
+                isLoading={isLoadingVolunteering}
                 validationSchema={VolunteeringSchema}
                 fields={volunteeringFields}
             />
