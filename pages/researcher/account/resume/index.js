@@ -63,10 +63,15 @@ export default function index() {
   const [volunteerings,setVolunteerings] = useState([])
   const [isLoadingVolunteering,setIsLoadingVolunteering] = useState(true)
   const [projects,setProjects] = useState([])
+  const [isLoadingProjects,setIsLoadingProjects] = useState(true)
   const [languages,setLanguages] = useState([])
+  const [isLoadingLanguage,setIsLoadingLanguage] = useState(true)
   const [activities,setActivities] = useState([])
+  const [isLoadingActivity,setIsLoadingActivity] = useState(true)
   const [patents,setPatents] = useState([])
+  const [isLoadingPatent,setIsLoadingPatent] = useState(true)
   const [honors,setHonors] = useState([])
+  const [isLoadingHonor,setIsLoadingHonor] = useState(true)
   const [articles,setArticles] = useState(dataarticles)
   const [groups,setGroups] = useState(datagroups)
   const user = useSelector((state) => state.user)
@@ -94,7 +99,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/activity?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setActivities(response.data))
+          .then(response=>{setActivities(response.data),setIsLoadingActivity(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -118,7 +123,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/honor?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setHonors(response.data))
+          .then(response=>{setHonors(response.data);setIsLoadingHonor(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -126,7 +131,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/project?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setProjects(response.data))
+          .then(response=>{setProjects(response.data);setIsLoadingProjects(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -134,7 +139,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/patent?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setPatents(response.data))
+          .then(response=>{setPatents(response.data);setIsLoadingPatent(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -142,7 +147,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/language?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setLanguages(response.data))
+          .then(response=>{setLanguages(response.data);setIsLoadingLanguage(false)})
           .catch(error=>console.log(error))
         ;
       },[])   
@@ -212,7 +217,7 @@ export default function index() {
                 <ResumeSuccessItem
                     label="المشاريع"
                     items={projects}
-  
+                    isLoading={isLoadingProjects}
                     collectionName="project"
                     setItems={setProjects}
                     validationSchema={projectSchema}
@@ -221,7 +226,7 @@ export default function index() {
                 <ResumeSuccessItem
                     label="اللغات"
                     items={languages}
-  
+                    isLoading={isLoadingLanguage}
                     collectionName="language"
                     setItems={setLanguages}
                     validationSchema={languageSchema}
@@ -229,7 +234,7 @@ export default function index() {
                 />
                 <ResumeSuccessItem
                     label="النشاطات و الفعاليات"
-  
+                    isLoading={isLoadingActivity}
                     collectionName="activity"
                     validationSchema={activitySchema}
                     fields={activityFields}
@@ -238,7 +243,7 @@ export default function index() {
                 />
                 <ResumeSuccessItem
                     label="براءات الاختراع"
-  
+                    isLoading={isLoadingPatent}
                     collectionName="patent"
                     setItems={setPatents}
                     items={patents}
@@ -248,7 +253,7 @@ export default function index() {
                 <ResumeSuccessItem
                     last
                     label="التكريمات"
-  
+                    isLoading={isLoadingHonor}
                     collectionName="honor"
                     setItems={setHonors}
                     items={honors}
