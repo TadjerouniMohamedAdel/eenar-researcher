@@ -12,7 +12,6 @@ export default function ResearchView({research}) {
         </div>
     )
     
-    
     return (
         <div className={classes.researchView}>
             <div className={classes.researchImage}>
@@ -21,11 +20,18 @@ export default function ResearchView({research}) {
                 <div className={classes.researchHeader}>
                     <div className={classes.researchAuthor}>
                             <div className={classes.researchAuthorImage}>
-                                <Circles />
+                                {
+                                 research.researcherPost.userResearcher.image ?(
+                                        <img src={research.researcherPost.userResearcher.image} alt="" className={classes.circleWhite}/>
+                                 )
+                                    :(
+                                        <Circles />
+                                    )
+                                }
                             </div>
                             <div className={classes.researchAuthorInfo}>
-                                <h2>{research.primaryAuthor}</h2>
-                                <span>باحث ومحاضر في الدراسات الإسلامية </span>
+                                <h2>{research.researcherPost.userResearcher.firstname} {research.researcherPost.userResearcher.lastname}</h2>
+                                <span>{research.researcherPost.userResearcher.job}</span>
                             </div>
                     </div>
                     <div className={classes.researchDownload}>
@@ -36,7 +42,6 @@ export default function ResearchView({research}) {
                             >
                                     <span className={classes.downloadLabel}> تحميل البحث</span> 
                             </Button>
-
                         </a>
                     </div>
                 </div>
