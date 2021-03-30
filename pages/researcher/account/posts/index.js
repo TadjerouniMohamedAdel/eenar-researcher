@@ -22,6 +22,7 @@ import {
   TableRow,
   TextField,
   Hidden,
+  Chip,
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
@@ -171,6 +172,26 @@ export default function index() {
       })
       .catch((error) => console.log(error));
   };
+
+
+  const renderStatusBadge =(postStatus)=>{
+    if(!postStatus) return (<Chip className={classes.pendingBadge} variant="outlined"  label="قيد الإنتظار" />)
+    switch (postStatus.status) {
+      case "assigned":
+        return (<Chip className={classes.assignedBadge} variant="outlined"  label="قيد المراجعة" />)
+        break;
+      case "rejected":
+        return (<Chip className={classes.rejectedBadge} variant="outlined"  label="مرفوض" />)
+        break;
+      case "validated":
+        return (<Chip className={classes.validatedBadge} variant="outlined"  label="مقبول" />)
+        break;
+    
+      default:
+        break;
+    }
+  }
+
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - منشوراتي" />
@@ -264,6 +285,11 @@ export default function index() {
                         المؤلف
                       </TableCell>
                     </Hidden>
+                    <Hidden only="xs">
+                      <TableCell className={classes.cellHeader} align="center">
+                      الحالة
+                      </TableCell>
+                    </Hidden>
                     <TableCell className={classes.cellHeader} align="center">
                       إجراأت
                     </TableCell>
@@ -285,6 +311,11 @@ export default function index() {
                         >
                           <Skeleton animation="wave" variant="rect" />
                         </TableCell>
+                        <Hidden only="xs">
+                          <TableCell className={classes.cellBody} align="center">
+                            <Skeleton animation="wave" variant="rect" />
+                          </TableCell>
+                        </Hidden>
                         <Hidden only="xs">
                           <TableCell className={classes.cellBody} align="center">
                             <Skeleton animation="wave" variant="rect" />
@@ -321,6 +352,14 @@ export default function index() {
                               align="center"
                             >
                               {row.primaryAuthor}
+                            </TableCell>
+                          </Hidden>
+                          <Hidden only="xs">
+                            <TableCell
+                              className={classes.cellBody}
+                              align="center"
+                            >
+                              {renderStatusBadge(row.postStatus)}
                             </TableCell>
                           </Hidden>
                           <TableCell

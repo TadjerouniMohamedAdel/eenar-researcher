@@ -10,6 +10,27 @@
     flex-direction: column;
     align-items: center;
 }
+
+.pendingBadge{
+    border-color: var(--secondary-color) !important;
+    color:  var(--secondary-color)  !important;
+    font-family: var(--primary-font) !important;
+}
+.assignedBadge{
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color)  !important;
+    font-family: var(--primary-font) !important;
+}
+.validatedBadge{
+    border-color: var(--active-color) !important;
+    color:  var(--active-color)  !important;
+    font-family: var(--primary-font) !important;   
+}
+.rejectedBadge{
+    border-color: var(--danger-color) !important;
+    color:  var(--danger-color)  !important;
+    font-family: var(--primary-font) !important;     
+}
 .myPostsContainer .sideSection{
     display: flex;
     flex-direction: column;
