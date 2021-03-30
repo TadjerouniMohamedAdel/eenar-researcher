@@ -1,0 +1,16 @@
+{
+    "overviews":{
+        "posts":"المنشورات",
+        "friends":"الأصدقاء",
+        "views":"الزيارات"
+    },
+    "menu":{
+        "home":"الواجهة الرئيسية",
+        "account":"الملف الشخصي",
+        "research-store":"مجمع الأبحاث",
+        "research-services":"الخدمات البحثية",
+        "messages":"الرسائل",
+        "library":"المكتبة",
+        "discussions-forum":"منتدى النقاشات"
+    }
+}

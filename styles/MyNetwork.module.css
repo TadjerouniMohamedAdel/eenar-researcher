@@ -1,0 +1,127 @@
+.myNetworkContainer{
+    display: flex;
+    margin-top: 32px;
+    flex-direction: column;
+}
+.myNetworkContainer > h1{
+    font-family: var(--primary-font);
+    font-size: 26px;
+    font-weight: bold;
+    font-stretch: normal;
+    margin-top: 34.2px;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.myNetworkContainer .content{
+    display: flex;
+    margin-top: 32px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.myNetworkContainer .content .mainSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.myNetworkContainer .content .mainSection .filterSection {
+    width: 100%;
+    height: 100px;
+    margin-top: 26px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    align-items: center !important;
+    justify-content: space-between;
+    padding-right: 28px;
+    padding-left: 28px;
+}
+.myNetworkContainer .content .mainSection  .filterSection .groupedActions{
+    display: flex;
+    width: 45%;
+    align-items: center;
+    justify-content: space-between;
+}
+.myNetworkContainer .content .mainSection  .filterSection .input{
+    width: 349px !important;
+    border-radius: 10px !important;
+    border: solid 1px transparent !important;
+    background-color: #ffffff;
+    margin-top: 6px;
+}
+.myNetworkContainer .content .mainSection  .input > div{
+    border-radius: 10px !important;
+    border-color: transparent;
+}
+.myNetworkContainer .content .mainSection .select{
+    width: 143px;
+    /* height: 48px !important; */
+    border-radius: 8px;
+    border: solid 1px #dedeea;
+    background-color: #ffffff;
+}
+
+.myNetworkContainer .content .mainSection  .filterSection .searchButton{
+    width: 64px !important;
+    height: 48px !important;
+    padding: 12px 20px;
+    border-radius: 8px !important;
+    box-shadow: 3px 5.2px 10px 0 rgba(255, 209, 102, 0.3);
+    background-color: #ffd166 !important;
+}
+.myNetworkContainer .content .mainSection  .filterSection .searchButton .searchIcon{
+    font-size: 30px !important;
+    color: #ffffff;   
+}
+.myNetworkContainer .content .mainSection  .filterSection .searchButton .searchIcon.right{
+    transform: rotate(100deg) !important;
+}
+.myNetworkContainer .content .mainSection  .filterSection .addButton{
+    width: 140px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
+    background-color: var(--active-color);
+}
+.myNetworkContainer .content .mainSection  .filterSection .addButton span.text{
+    /* width: 81px; */
+    font-family: var(--primary-font);
+    font-size: 13.9px;
+    color: #ffffff;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+}
+.myNetworkContainer .content .mainSection  .filterSection .addButton .addIcon{
+    font-size: 19px;
+    color: #ffffff;
+}
+.myNetworkContainer .content .mainSection .groupsContainer{
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.myNetworkContainer .content .mainSection .groupsContainer > *{
+    margin: 16px
+}
+.myNetworkContainer .content .sideSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.myNetworkContainer .content .mainSection{
+    flex:2;
+}
+
+.myNetworkContainer  .sideSection > div{
+    width: 90%;
+}

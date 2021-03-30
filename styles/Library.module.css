@@ -12,7 +12,7 @@
     font-style: normal;
     line-height: 0.92;
     letter-spacing: normal;
-    text-align: right;
+    /* text-align: right; */
     color: #3e3f5e;
 }
 
@@ -389,7 +389,23 @@
     margin-top: 10px;
     border-radius: 8px;
 }
-
+.libraryItemContainer .notFound{
+    width: 100%;
+    position: relative;
+    top: -80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.libraryItemContainer .notFound >img{
+    width: 70%;
+}
+.libraryItemContainer .notFound > h1{
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+    position: relative;
+    top: -180px;
+}
 @media(max-width:1400px){
     .bookContainer .bookDetails .bookPageContent .bookPageImage{
         width: 182px;

@@ -8,6 +8,8 @@
   }
   .accountBanner .bondeau{
     height: 304px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     background-color: #073b4c;
 }
 .accountBanner .accountBannerContent{

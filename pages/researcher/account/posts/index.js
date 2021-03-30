@@ -22,6 +22,7 @@ import {
   TableRow,
   TextField,
   Hidden,
+  Chip,
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
@@ -40,6 +41,18 @@ import axios from "axios";
 import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
 import moment from "moment";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Alert from '@material-ui/lab/Alert';
+
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
+
+
 
 export default function index() {
   const [articles, setArticles] = useState(dataarticles);
@@ -50,24 +63,48 @@ export default function index() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [offset,setOffset] = useState(0)
+  const [limit,setLimit] = useState(10)
+  const [pages,setPages] = useState(0)
+  const [page,setPage] = useState(1)
+  const [research,setResearch] = useState("")
+  const [showAddAlert,setShowAddAlert] = useState(false)
   moment.locale("ar-dz");
 
-  useEffect(() => {
+
+  const getNextData = ()=>{
+    setIsLoading(true)
     const user = JSON.parse(
       JSON.parse(localStorage.getItem("persist:primary")).user
     );
     axios({
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post?researcherId=${user.researchers.id}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}&title=${research}`,
     })
       .then((response) => {
+        console.log("response",response.data)
         setIsLoading(false)
-        setPosts(response.data);
+        setPosts(response.data.posts);
+        setPages(response.data.maxPages)
       })
       .catch((error) => {
         console.log(error);
-      });
-  }, []);
+      })
+  }
+
+  useEffect(() => {
+    setPage(offset/limit+1)
+    getNextData()
+  }, [offset]);
+
+  const handleResearch = ()=>{
+      setOffset(0)
+      getNextData()
+  }
+
+  useEffect(()=>{
+    console.log(page)
+  },[page])
 
   const handleDeleteItem = (item) => {
     const user = JSON.parse(
@@ -105,6 +142,7 @@ export default function index() {
         console.log("response add", response.data);
         setPosts([...posts, response.data]);
         setAddVisible(false);
+        setShowAddAlert(true)
       })
       .catch((error) => console.log(error));
   };
@@ -127,13 +165,33 @@ export default function index() {
         console.log(response);
         let lastItems = [...posts];
         const index = lastItems.findIndex((el) => el.id === item.id);
-        lastItems[index] = item;
+        lastItems[index] = response.data;
         setPosts(lastItems);
         setEditVisible(false);
         setSelectedItem(null);
       })
       .catch((error) => console.log(error));
   };
+
+
+  const renderStatusBadge =(postStatus)=>{
+    if(!postStatus) return (<Chip className={classes.pendingBadge} variant="outlined"  label="قيد الإنتظار" />)
+    switch (postStatus.status) {
+      case "assigned":
+        return (<Chip className={classes.assignedBadge} variant="outlined"  label="قيد المراجعة" />)
+        break;
+      case "rejected":
+        return (<Chip className={classes.rejectedBadge} variant="outlined"  label="مرفوض" />)
+        break;
+      case "validated":
+        return (<Chip className={classes.validatedBadge} variant="outlined"  label="مقبول" />)
+        break;
+    
+      default:
+        break;
+    }
+  }
+
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - منشوراتي" />
@@ -172,6 +230,7 @@ export default function index() {
               <TextField
                 variant="outlined"
                 label="العنوان"
+                onChange={(e)=>setResearch(e.target.value)}
                 className={classes.input}
               />
               {/* <FormControl  variant="outlined" className={classes.select}>
@@ -181,7 +240,7 @@ export default function index() {
                                 >   
                                 </Select>
                             </FormControl> */}
-              <Button className={classes.searchButton}>
+              <Button className={classes.searchButton} onClick={() => handleResearch()}>
                 <SearchIcon
                   className={`${classes.searchIcon} ${classes.right}`}
                 />
@@ -190,7 +249,7 @@ export default function index() {
             <div className={classes.buttonSection}>
               <Button
                 className={classes.addButton}
-                onClick={() => setAddVisible(true)}
+                onClick={()=>setAddVisible(true)}
               >
                 <span className={classes.text}>أضف منشور</span>
                 <AddIcon className={classes.addIcon} />
@@ -204,6 +263,14 @@ export default function index() {
             </div>
           ) : (
             <div className={classes.tableContainer}>
+              {
+                showAddAlert && (
+                    <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={()=>setShowAddAlert(false)}>
+                            تم إضافة المنشور، سيتم دراسته لتحقق من صحته  
+                    </Alert>
+
+                )
+              }
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
@@ -218,6 +285,11 @@ export default function index() {
                         المؤلف
                       </TableCell>
                     </Hidden>
+                    <Hidden only="xs">
+                      <TableCell className={classes.cellHeader} align="center">
+                      الحالة
+                      </TableCell>
+                    </Hidden>
                     <TableCell className={classes.cellHeader} align="center">
                       إجراأت
                     </TableCell>
@@ -226,49 +298,40 @@ export default function index() {
                 <TableBody className={classes.tableBody}>
                   {isLoading ? (
                     <>
-                    <TableRow>
-                      <TableCell className={classes.cellBody} align="center">
-                        <Skeleton variant="rect" />
-                      </TableCell>
-                      <TableCell
-                        className={`${classes.cellBody} ${classes.title}`}
-                        align="left"
-                      >
-                        <Skeleton variant="rect" />
-                      </TableCell>
-                      <Hidden only="xs">
+                    {
+
+                    new Array(limit).fill().map((el,index)=>(
+                      <TableRow key={index} style={{height:80}}>
                         <TableCell className={classes.cellBody} align="center">
-                          <Skeleton variant="rect" />
+                          <Skeleton animation="wave" variant="rect" />
                         </TableCell>
-                      </Hidden>
-                      <TableCell className={classes.cellBody} align="center">
-                        <Skeleton variant="rect" />
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell className={classes.cellBody} align="center">
-                      <Skeleton variant="rect" />
-                    </TableCell>
-                    <TableCell
-                      className={`${classes.cellBody} ${classes.title}`}
-                      align="left"
-                    >
-                      <Skeleton variant="rect" />
-                    </TableCell>
-                    <Hidden only="xs">
-                      <TableCell className={classes.cellBody} align="center">
-                        <Skeleton variant="rect" />
-                      </TableCell>
-                    </Hidden>
-                    <TableCell className={classes.cellBody} align="center">
-                      <Skeleton variant="rect" />
-                    </TableCell>
-                  </TableRow>
+                        <TableCell
+                          className={`${classes.cellBody} ${classes.title}`}
+                          align="left"
+                        >
+                          <Skeleton animation="wave" variant="rect" />
+                        </TableCell>
+                        <Hidden only="xs">
+                          <TableCell className={classes.cellBody} align="center">
+                            <Skeleton animation="wave" variant="rect" />
+                          </TableCell>
+                        </Hidden>
+                        <Hidden only="xs">
+                          <TableCell className={classes.cellBody} align="center">
+                            <Skeleton animation="wave" variant="rect" />
+                          </TableCell>
+                        </Hidden>
+                        <TableCell className={classes.cellBody} align="center">
+                          <Skeleton animation="wave" variant="rect" />
+                        </TableCell>
+                      </TableRow>
+                      ))
+                    }
                   </>
                   ) : (
                     <>
                       {posts.map((row, index) => (
-                        <TableRow key={index}>
+                        <TableRow key={index} style={{height:20}}>
                           <TableCell
                             className={classes.cellBody}
                             align="center"
@@ -279,7 +342,9 @@ export default function index() {
                             className={`${classes.cellBody} ${classes.title}`}
                             align="left"
                           >
-                            {row.arabicTitle}
+                          <Link href={`/researcher/account/posts/${row.id}`}>
+                              {row.arabicTitle}
+                            </Link>
                           </TableCell>
                           <Hidden only="xs">
                             <TableCell
@@ -287,6 +352,14 @@ export default function index() {
                               align="center"
                             >
                               {row.primaryAuthor}
+                            </TableCell>
+                          </Hidden>
+                          <Hidden only="xs">
+                            <TableCell
+                              className={classes.cellBody}
+                              align="center"
+                            >
+                              {renderStatusBadge(row.postStatus)}
                             </TableCell>
                           </Hidden>
                           <TableCell
@@ -321,7 +394,7 @@ export default function index() {
                   )}
                 </TableBody>
               </Table>
-              {posts.length > 10 && (
+              {pages > 1 && (
                 <div
                   style={{
                     width: "100%",
@@ -329,7 +402,14 @@ export default function index() {
                     justifyContent: "flex-end",
                   }}
                 >
-                  <Pagination />
+                  <Pagination 
+                      active={page}
+                      limit={limit}
+                      pages={pages}
+                      onNext={()=>{setOffset(offset+10)}}
+                      onPrev={()=>{setOffset(offset-10)}}
+                      onNum={setOffset}
+                  />
                 </div>
               )}
             </div>

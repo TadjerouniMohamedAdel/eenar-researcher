@@ -1,0 +1,14 @@
+{
+    "title":"Sign in",
+    "welcome":"welcome to",
+    "company-name":"Kuala Lumpur Forum",
+    "company-job":"Researchers Network",
+    "description":"It is a global institution working under the umbrella of the Kuala Lumpur Forum, concerned with building research paths, coordinating, valuing and disseminating the efforts of researchers in the field of civilization and Islamic thought, and presenting them to interested people and decision-makers, and it can take a legal license of its own.",
+    "email":"Username or email",
+    "password":"Password",
+    "remember-me":"Remember me",
+    "forget-password":"Forgot your password?",
+    "login-error":"Please check account information",
+    "suggest-oauth":"Sign in via social networks",
+    "go-registration":"You do not have an account?"
+}

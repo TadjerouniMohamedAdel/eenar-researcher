@@ -40,21 +40,38 @@ import { dataaboutme,datagroups,dataarticles,datahonors,datapatents,dataactiviti
 import MyHead from '../../../../components/MyHead/MyHead';
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 
 export default function index() {
   const [aboutme,setAboutMe] = useState([])
   const [badges,setBadges] = useState([])
   const [users,setUsers] = useState(datausers)
   const [educations,setEducations] = useState([])
+  const [isLoadingEducation,setIsLoadingEducation] = useState(true)
   const [experiences,setExperiences] = useState([])
+  const [isLoadingExperince,setIsLoadingExperience] = useState(true)
   const [certifications,setCertifications] = useState([])
+  const [isLoadingCertification,setIsLoadingCertification] = useState(true)
   const [volunteerings,setVolunteerings] = useState([])
+  const [isLoadingVolunteering,setIsLoadingVolunteering] = useState(true)
   const [projects,setProjects] = useState([])
+  const [isLoadingProjects,setIsLoadingProjects] = useState(true)
   const [languages,setLanguages] = useState([])
+  const [isLoadingLanguage,setIsLoadingLanguage] = useState(true)
   const [activities,setActivities] = useState([])
+  const [isLoadingActivity,setIsLoadingActivity] = useState(true)
   const [patents,setPatents] = useState([])
+  const [isLoadingPatent,setIsLoadingPatent] = useState(true)
   const [honors,setHonors] = useState([])
+  const [isLoadingHonor,setIsLoadingHonor] = useState(true)
   const [articles,setArticles] = useState(dataarticles)
   const [groups,setGroups] = useState(datagroups)
   const user = useSelector((state) => state.user)
@@ -65,7 +82,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/education?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setEducations(response.data))
+          .then(response=>{setEducations(response.data);setIsLoadingEducation(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -73,7 +90,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/experience?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setExperiences(response.data))
+          .then(response=>{setExperiences(response.data);setIsLoadingExperience(false)})
           .catch(error=>console.log(error))
         ;
         
@@ -82,7 +99,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/activity?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setActivities(response.data))
+          .then(response=>{setActivities(response.data),setIsLoadingActivity(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -90,7 +107,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/volunteering?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setVolunteerings(response.data))
+          .then(response=>{setVolunteerings(response.data);setIsLoadingVolunteering(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -98,7 +115,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/certification?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setCertifications(response.data))
+          .then(response=>{setCertifications(response.data);setIsLoadingCertification(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -106,7 +123,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/honor?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setHonors(response.data))
+          .then(response=>{setHonors(response.data);setIsLoadingHonor(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -114,7 +131,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/project?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setProjects(response.data))
+          .then(response=>{setProjects(response.data);setIsLoadingProjects(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -122,7 +139,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/patent?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setPatents(response.data))
+          .then(response=>{setPatents(response.data);setIsLoadingPatent(false)})
           .catch(error=>console.log(error))
         ;
         axios({
@@ -130,7 +147,7 @@ export default function index() {
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/language?researcherId=${user.researchers.id}`,
           data: {}
         })
-          .then(response=>setLanguages(response.data))
+          .then(response=>{setLanguages(response.data);setIsLoadingLanguage(false)})
           .catch(error=>console.log(error))
         ;
       },[])   
@@ -152,6 +169,7 @@ export default function index() {
                 icon={<SchoolOutlinedIcon />}
                 label="المؤهلات الاكاديمية"
                 collections={educations}
+                isLoading={isLoadingEducation}
                 collectionName="education"
                 setCollections={setEducations}
                 validationSchema={educationSchema}
@@ -162,6 +180,7 @@ export default function index() {
                 icon={<WorkOutlineOutlinedIcon />}
                 label="الخبرة المهنية"
                 collections={experiences}
+                isLoading={isLoadingExperince}
                 collectionName="experience"
                 setCollections={setExperiences}
                 validationSchema={experienceSchema}
@@ -172,6 +191,7 @@ export default function index() {
                 icon={<CardMembershipOutlinedIcon />}
                 label="الشهادات"
                 collections={certifications}
+                isLoading={isLoadingCertification}
                 collectionName="certification"
                 setCollections={setCertifications}
                 validationSchema={certificationSchema}
@@ -189,6 +209,7 @@ export default function index() {
                 collectionName="volunteering"
                 collections={volunteerings}
                 setCollections={setVolunteerings}
+                isLoading={isLoadingVolunteering}
                 validationSchema={VolunteeringSchema}
                 fields={volunteeringFields}
             />
@@ -196,7 +217,7 @@ export default function index() {
                 <ResumeSuccessItem
                     label="المشاريع"
                     items={projects}
-  
+                    isLoading={isLoadingProjects}
                     collectionName="project"
                     setItems={setProjects}
                     validationSchema={projectSchema}
@@ -205,7 +226,7 @@ export default function index() {
                 <ResumeSuccessItem
                     label="اللغات"
                     items={languages}
-  
+                    isLoading={isLoadingLanguage}
                     collectionName="language"
                     setItems={setLanguages}
                     validationSchema={languageSchema}
@@ -213,7 +234,7 @@ export default function index() {
                 />
                 <ResumeSuccessItem
                     label="النشاطات و الفعاليات"
-  
+                    isLoading={isLoadingActivity}
                     collectionName="activity"
                     validationSchema={activitySchema}
                     fields={activityFields}
@@ -222,7 +243,7 @@ export default function index() {
                 />
                 <ResumeSuccessItem
                     label="براءات الاختراع"
-  
+                    isLoading={isLoadingPatent}
                     collectionName="patent"
                     setItems={setPatents}
                     items={patents}
@@ -232,7 +253,7 @@ export default function index() {
                 <ResumeSuccessItem
                     last
                     label="التكريمات"
-  
+                    isLoading={isLoadingHonor}
                     collectionName="honor"
                     setItems={setHonors}
                     items={honors}

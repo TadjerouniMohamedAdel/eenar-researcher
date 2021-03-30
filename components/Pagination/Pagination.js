@@ -1,24 +1,25 @@
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import classes from './Pagination.module.css'
-export default function Pagination() {
+export default function Pagination({onNext,onPrev,onNum,pages,active,limit}) {
     return (
             <div className={classes.paginationCustom}>
-                <div className={classes.paginationButton}><NavigateNextIcon className={classes.disableButton} /></div>
+                <div onClick={()=>active > 1 &&onPrev()} className={classes.paginationButton}><NavigateNextIcon className={`${active <= 1 && classes.disableButton}`} /></div>
                 <div className={classes.dividerPagination}></div>
-                <div className={`${classes.paginationButton} ${classes.activeButton}`}>01</div>
-                <div className={classes.dividerPagination}></div>
-                <div className={classes.paginationButton}>02</div>
-                <div className={classes.dividerPagination}></div>
-                <div className={classes.paginationButton}>03</div>
-                <div className={classes.dividerPagination}></div>
-                <div className={classes.paginationButton}>04</div>
-                <div className={classes.dividerPagination}></div>
-                <div className={classes.paginationButton}>05</div>
-                <div className={classes.dividerPagination}></div>
-                <div className={classes.paginationButton}>06</div>
-                <div className={classes.dividerPagination}></div>
-                <div className={classes.paginationButton}><NavigateBeforeIcon /></div>
+                {
+                    new Array(pages).fill().map((el,index)=>(
+                        <>
+                        <div 
+                            className={`${classes.paginationButton} ${active==index+1 && classes.activeButton}`}
+                            onClick={()=>onNum((index+1)*limit-limit)}
+                        >
+                            {index+1}
+                        </div>
+                        <div className={classes.dividerPagination}></div>
+                        </>
+                    ))
+                }
+                <div onClick={()=>active!=pages &&onNext()} className={classes.paginationButton}><NavigateBeforeIcon className={`${active==pages && classes.disableButton}`}/></div>
             </div>
         
     )

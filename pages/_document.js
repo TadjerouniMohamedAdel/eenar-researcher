@@ -1,20 +1,26 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import React from 'react'
-
+import { useRouter } from 'next/router'
 class MyDocument extends Document {
+  
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
 
+  updateDirection = ()=>{
+    return this.props.locale !== "ar" ?"ltr" : "rtl"
+  }
+  
   render() {
+    console.log("from_document",this.props.locale)
     return (
       <Html>
         <Head>
         <link rel="shortcut icon" href="/images/colored-logo.png" />
           </Head>
-        <body dir="rtl">
+        <body dir={this.updateDirection()}>
           <Main />
           <NextScript />
         </body>
@@ -54,7 +60,6 @@ MyDocument.getInitialProps = async (ctx) => {
       originalRenderPage({
         enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
       });
-  
     const initialProps = await Document.getInitialProps(ctx);
   
     return {
