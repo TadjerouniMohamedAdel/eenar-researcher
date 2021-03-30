@@ -47,7 +47,7 @@ export default function index() {
       );
       axios({
         method: "GET",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?offset=${offset}&limit=${limit}&title=${research}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?status=validated&offset=${offset}&limit=${limit}&title=${research}`,
       })
         .then((response) => {
           // setIsLoading(false)
@@ -71,7 +71,7 @@ export default function index() {
     setHasMore(true)
     axios({
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?offset=0&limit=${limit}&title=${research}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?status=validated&offset=0&limit=${limit}&title=${research}`,
     })
       .then((response) => {
         // setIsLoading(false)
