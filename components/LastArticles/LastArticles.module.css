@@ -1,5 +1,5 @@
 .articles{
-    /* width: 288px; */
+    width: 100%;
     height: auto;
     margin: 16px 0;
     padding: 21.5px 27.5px 23.1px 27px;
@@ -30,8 +30,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 25px;
-    width: 90%;
-    justify-content: space-around;
+    width: 100%;
 }
 .collectionRectangle{
     width: 44px;

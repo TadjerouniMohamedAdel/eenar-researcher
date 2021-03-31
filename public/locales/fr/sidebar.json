@@ -1,0 +1,17 @@
+{
+    "test":"test ok",
+    "overviews":{
+        "posts":"Postes",
+        "friends":"Amis",
+        "views":"Vuess"
+    },
+    "menu":{
+        "home":"Accueil",
+        "account":"Compte",
+        "research-store":"Complexe de recherche",
+        "research-services":"Services de recherche",
+        "messages":"Messages",
+        "library":"Bibliothèque",
+        "discussions-forum":"Forum de discussion"
+    }
+}

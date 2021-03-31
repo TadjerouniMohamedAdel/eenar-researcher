@@ -10,10 +10,12 @@ import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import { useRouter } from 'next/router'
 import {Link} from '@material-ui/core'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'next-i18next'
 
 
 
-const Rectongles = function(){
+const Rectangles = function(){
+
     return(
         <div className={classes.Rectangle5}>
             <div className={classes.Rectangle4}>
@@ -25,43 +27,6 @@ const Rectongles = function(){
         </div>
     )
 }
-const links =[
-    {
-        name:"الواجهة الرئيسية",
-        icon:()=>(<HomeIcon className={classes.linkIcon} />),
-        to:"/researcher/"
-    },
-    { 
-        name:"الملف الشخصي",
-        icon:()=>(<PermIdentityOutlinedIcon className={classes.linkIcon} />),
-        to:"/researcher/account"
-    },
-    { 
-        name:"مجمع الأبحاث",
-        icon:()=>(<FindInPageOutlinedIcon className={classes.linkIcon} />),
-        to:"/researcher/researchs"
-    },
-    { 
-        name:"الخدمات البحثية",
-        icon:()=>(<SettingsApplicationsOutlinedIcon className={classes.linkIcon} />),
-        to:"/researcher/research-services"
-    },
-    {
-        name:"الرسائل",
-        icon:()=>(<QuestionAnswerOutlinedIcon className={classes.linkIcon} />),
-        to:"/researcher/messages"
-    },
-    {
-        name:"المكتبة",
-        icon:()=>(<AccountBalanceWalletOutlinedIcon className={classes.linkIcon} />),
-        to:"/researcher/library"
-    },
-    {
-        name:"منتدى النقاشات",
-        icon:()=>(<SmsOutlinedIcon className={classes.linkIcon} />),
-        to:"/researcher/forums"
-    }
-]
 
 const badges =[
     // {
@@ -85,17 +50,55 @@ const badges =[
     //     srcSet:"/images/01@2x.png 2x,/images/01@3x.png 3x"
     // }
 ]
-const overviews =[
-    {name:"المنشورات",value:"0"},{name:"الأصدقاء",value:"0"},{name:"الزيارات",value:"0"}
-]
 
 export default function Sidebar() {
-    let tab = [...links]
-    const user = useSelector((state) => state.user)
-    tab.shift()
+    const { t } = useTranslation('sidebar')
+    const links =[
+        {
+            name:t("menu.home"),
+            icon:()=>(<HomeIcon className={classes.linkIcon} />),
+            to:"/researcher/"
+        },
+        { 
+            name:t("menu.account"),
+            icon:()=>(<PermIdentityOutlinedIcon className={classes.linkIcon} />),
+            to:"/researcher/account"
+        },
+        { 
+            name:t("menu.research-store"),
+            icon:()=>(<FindInPageOutlinedIcon className={classes.linkIcon} />),
+            to:"/researcher/researchs"
+        },
+        { 
+            name:t("menu.research-services"),
+            icon:()=>(<SettingsApplicationsOutlinedIcon className={classes.linkIcon} />),
+            to:"/researcher/research-services"
+        },
+        {
+            name:t("menu.messages"),
+            icon:()=>(<QuestionAnswerOutlinedIcon className={classes.linkIcon} />),
+            to:"/researcher/messages"
+        },
+        {
+            name:t("menu.library"),
+            icon:()=>(<AccountBalanceWalletOutlinedIcon className={classes.linkIcon} />),
+            to:"/researcher/library"
+        },
+        {
+            name:t("menu.discussions-forum"),
+            icon:()=>(<SmsOutlinedIcon className={classes.linkIcon} />),
+            to:"/researcher/forums"
+        }
+    ]
     const router = useRouter()
+    const overviews =[
+        {name:t("overviews.posts"),value:"0"},{name:t("overviews.friends"),value:"0"},{name:t("overviews.views"),value:"0"}
+    ]
+    let tab = [...links]
+    tab.shift()
     const [activeIndex,setActiveIndex] = useState(tab.findIndex(item=>router.pathname.includes(item.to))+1)
-   
+    const user = useSelector((state) => state.user)
+    
     return (
         <div className={classes.sidebar}>
             <div className={classes.bondeau}></div>
@@ -105,7 +108,7 @@ export default function Sidebar() {
                                     <img src={user.image} alt="" className={classes.Rectangle5} />
                             ):(
 
-                                <Rectongles />
+                                <Rectangles />
                             )
                         }
                 <h2 className={classes.profileTitle}>{user.lastname} {user.firstname}</h2>

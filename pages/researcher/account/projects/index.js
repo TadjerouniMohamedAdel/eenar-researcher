@@ -22,31 +22,60 @@ import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../..
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination'
 import moment from 'moment'
+import Link from 'next/link'
 import { Skeleton } from "@material-ui/lab";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["sidebar"]),
+    },
+  })
 export default function index() {
     const [addVisible,setAddVisible] = useState(false)
     const [editVisible,setEditVisible] = useState(false)
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [articles,setArticles] = useState(dataarticles)
     const [groups,setGroups] = useState(datagroups)
-    const [projects,setProjects] = useState([])
     const [selectedItem,setSelectedItem] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
+    const [projects,setProjects] = useState([])
+    const [offset,setOffset] = useState(0)
+    const [limit,setLimit] = useState(10)
+    const [pages,setPages] = useState(0)
+    const [page,setPage] = useState(1)
+    const [research,setResearch] = useState("")
+
     moment.locale('ar-dz')
     
-    useEffect(() => {
+    
+
+
+    const getNextData = ()=>{
+        setIsLoading(true)
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         axios({
             method:"GET",
-            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject?researcherId=${user.researchers.id}`
+            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/research?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}&title=${research}`
         }).then(response=>{
             setIsLoading(false)
-            setProjects(response.data)
+            setProjects(response.data.projects)
+            setPages(response.data.maxPages)
         }).catch(error=>{
             console.log(error)
         })
-    }, [])
+    }
+    useEffect(() => {
+        setPage(offset/limit+1)
+        getNextData()
+      }, [offset]);
+
+    const handleResearch = ()=>{
+        setOffset(0)
+        getNextData()
+    }
 
     const handleDeleteItem = (item)=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
@@ -101,7 +130,7 @@ export default function index() {
                 console.log(response)
                 let lastItems = [...projects]
                 const index = lastItems.findIndex((el)=>el.id === item.id)
-                lastItems[index] = item
+                lastItems[index] = response.data
                 setProjects(lastItems)
                 setEditVisible(false)
                 setSelectedItem(null)
@@ -147,7 +176,8 @@ export default function index() {
                             <TextField
                                 variant="outlined"
                                 label="العنوان"
-                                className={classes.input}  
+                                className={classes.input}
+                                onChange={(e)=>setResearch(e.target.value)}  
                             />
                             {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المشروع</InputLabel>
@@ -156,7 +186,7 @@ export default function index() {
                                 >   
                                 </Select>
                             </FormControl> */}
-                            <Button className={classes.searchButton}>
+                            <Button className={classes.searchButton} onClick={() => handleResearch()}>
                                 <SearchIcon className={`${classes.searchIcon} ${classes.right}`} />
                             </Button>
                         </div>
@@ -187,60 +217,45 @@ export default function index() {
                                     </TableRow>
                                     </TableHead>
                                     <TableBody className={classes.tableBody}>
-                                    {isLoading ? (
+                                    
+                        {isLoading ? (
                             <>
-                            <TableRow>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton variant="rect" />
-                            </TableCell>
-                            <TableCell
-                                className={`${classes.cellBody} ${classes.title}`}
-                                align="left"
-                            >
-                                <Skeleton variant="rect" />
-                            </TableCell>
-                            <Hidden only="xs">
+                            {
+                                
+                            new Array(limit).fill().map((el,index)=>(
+                                <TableRow key={index} style={{height:80}}>
                                 <TableCell className={classes.cellBody} align="center">
-                                <Skeleton variant="rect" />
+                                    <Skeleton animation="wave" variant="rect" />
                                 </TableCell>
-                            </Hidden>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton variant="rect" />
-                            </TableCell>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton variant="rect" />
-                            </TableCell>
-                            </TableRow>
-                            <TableRow>
-                            <TableCell className={classes.cellBody} align="center">
-                            <Skeleton variant="rect" />
-                            </TableCell>
-                            <TableCell
-                            className={`${classes.cellBody} ${classes.title}`}
-                            align="left"
-                            >
-                            <Skeleton variant="rect" />
-                            </TableCell>
-                            <Hidden only="xs">
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton variant="rect" />
-                            </TableCell>
-                            </Hidden>
-                            <TableCell className={classes.cellBody} align="center">
-                            <Skeleton variant="rect" />
-                            </TableCell>
-                            <TableCell className={classes.cellBody} align="center">
-                                <Skeleton variant="rect" />
-                            </TableCell>
-                        </TableRow>
-                        </>
-                        ) : (
+                                <TableCell
+                                    className={`${classes.cellBody} ${classes.title}`}
+                                    align="left"
+                                >
+                                    <Skeleton animation="wave" variant="rect" />
+                                </TableCell>
+                                <Hidden only="xs">
+                                    <TableCell className={classes.cellBody} align="center">
+                                    <Skeleton animation="wave" variant="rect" />
+                                    </TableCell>
+                                </Hidden>
+                                <TableCell className={classes.cellBody} align="center">
+                                    <Skeleton animation="wave" variant="rect" />
+                                </TableCell>
+                                <TableCell className={classes.cellBody} align="center">
+                                    <Skeleton animation="wave" variant="rect" />
+                                </TableCell>
+                                </TableRow>
+                                
+                              ))
+                            }
+                          </>
+                          ) : (
                             <>
                                     {projects.map((row,index) => (
                                         <TableRow key={index}>
                                         <TableCell className={classes.cellBody} align="center">
-                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}                                </TableCell>
-                                        <TableCell className={`${classes.cellBody}`} align="left">{row.arabicTitle}</TableCell>
+                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}</TableCell>
+                                        <TableCell className={`${classes.cellBody} ${classes.title}`} align="left"><Link href={`/researcher/account/projects/${row.id}`}>{row.arabicTitle}</Link></TableCell>
                                         <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
                                         <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
                                         <TableCell className={classes.cellBody} align="center">
@@ -259,14 +274,28 @@ export default function index() {
                                     </TableBody>
                                 </Table>
                             
-                                {  projects.length > 10 && (
-                                    <Pagination />
-                                )
-                                }
-                            </div>
+                                {pages > 1 && (
+                                    <div
+                                    style={{
+                                        width: "100%",
+                                        display: "flex",
+                                        justifyContent: "flex-end",
+                                    }}
+                                    >
+                                    <Pagination 
+                                        active={page}
+                                        limit={limit}
+                                        pages={pages}
+                                        onNext={()=>{setOffset(offset+10)}}
+                                        onPrev={()=>{setOffset(offset-10)}}
+                                        onNum={setOffset}
+                                    />
+                                    </div>
+                                )}
+                                                </div>
 
-                        )
-                    }
+                                            )
+                                }
                 </div>
                 <div className={classes.sideSection}>
                     <LearnNow />

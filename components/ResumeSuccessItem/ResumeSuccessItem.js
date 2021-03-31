@@ -13,13 +13,14 @@ import EditElement from '../CrudModal/EditElement'
 import DeleteElement from '../CrudModal/DeleteElement'
 import moment from 'moment'
 import axios from 'axios'
+import { Skeleton } from '@material-ui/lab'
 
 const backdropVariants = {
     visible:{opacity:1},
     hidden:{opacity:0},
 }
 
-export default function ResumeSuccessItem({setItems,collectionName,label,items,last,fields,validationSchema}) {
+export default function ResumeSuccessItem({isLoading,setItems,collectionName,label,items,last,fields,validationSchema}) {
     const [isExpanded,setIsExpanded] =useState(false)
     const [addVisible,setAddVisible] = useState(false)
     const [editVisible,setEditVisible] = useState(false)
@@ -129,6 +130,15 @@ export default function ResumeSuccessItem({setItems,collectionName,label,items,l
                             </IconButton>
                         </h3>
                         {
+                            isLoading ? (
+                                <div className={classes.successSectionItem}>
+                                <h3>
+                                    <Skeleton variant="text" width="47%"/>
+                                </h3>
+                                <h4 style={{display:"flex"}}><Skeleton variant="text" width="20%" style={{margin:5}}/> <Skeleton style={{margin:5}} variant="text" width="20%"/></h4>
+                                <h4><Skeleton variant="text" width="20%"/></h4>
+                            </div>
+                            ):
                             isExpanded ? (
                                 <motion.ul 
                                     variants={backdropVariants}

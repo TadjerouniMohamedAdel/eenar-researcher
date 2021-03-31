@@ -1,0 +1,19 @@
+.laodingContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.laodingContainer h1{
+    color: var(--secondary-color);
+    font-family: var(--primary-font);
+    position: relative;
+    font-weight: lighter;
+    text-align: center;
+    top: -180px;
+
+}

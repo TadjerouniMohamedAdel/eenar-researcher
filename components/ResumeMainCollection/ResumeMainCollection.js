@@ -12,9 +12,10 @@ import EditElement from '../CrudModal/EditElement';
 import DeleteElement from '../CrudModal/DeleteElement';
 import moment from 'moment'
 import axios from 'axios'
+import { Skeleton } from '@material-ui/lab';
 
 
-export default function ResumeMainCollection({researcherId,setCollections,collectionName,validationSchema,fields,children,collections,label,icon}){
+export default function ResumeMainCollection({isLoading,setCollections,collectionName,validationSchema,fields,children,collections,label,icon}){
     const [addVisible,setAddVisible] = useState(false)
     const [editVisible,setEditVisible] = useState(false)
     const [deleteVisible,setDeleteVisible] = useState(false)
@@ -133,7 +134,21 @@ export default function ResumeMainCollection({researcherId,setCollections,collec
                             handleSubmit={handleDeleteItem}
                         />
                     </Modal>
-                    {collections.map((collection,index)=>{
+                    {
+                    isLoading ?    
+                        (
+                            <div className={classes.collectionItem}>
+                            <Skeleton variant="rect" className={classes.collectionRectangle}/>
+                            <div className={classes.collectionContent}>
+                                <h2><Skeleton variant="text" /></h2>
+                                <h3><Skeleton variant="text" /></h3>
+                                <h3><Skeleton variant="text" /></h3>
+                                <div className={classes.line}></div>
+                            </div>
+                        </div>
+                        )
+                    :
+                    collections.map((collection,index)=>{
                         if(!viewMore && index >2) return;
                         return(
                         <div className={classes.collectionItem} key={`collection-item-${label}-${index}`}>

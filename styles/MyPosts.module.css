@@ -10,6 +10,27 @@
     flex-direction: column;
     align-items: center;
 }
+
+.pendingBadge{
+    border-color: var(--secondary-color) !important;
+    color:  var(--secondary-color)  !important;
+    font-family: var(--primary-font) !important;
+}
+.assignedBadge{
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color)  !important;
+    font-family: var(--primary-font) !important;
+}
+.validatedBadge{
+    border-color: var(--active-color) !important;
+    color:  var(--active-color)  !important;
+    font-family: var(--primary-font) !important;   
+}
+.rejectedBadge{
+    border-color: var(--danger-color) !important;
+    color:  var(--danger-color)  !important;
+    font-family: var(--primary-font) !important;     
+}
 .myPostsContainer .sideSection{
     display: flex;
     flex-direction: column;
@@ -19,9 +40,26 @@
     /* width: 1150px; */
     flex:2;
 }
+.myPostsContainer .notFound{
+    width: 100%;
+    position: relative;
+    top: -80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.myPostsContainer .notFound >img{
+    width: 75%;
+}
 
+.myPostsContainer .notFound > h1{
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+    position: relative;
+    top: -150px;
+}
 .myPostsContainer .sideSection > div{
-    flex: 1;
+    /* flex: 1; */
     width: 90%;
 }
 .myPostsContainer .mainSection .filterSection {
@@ -156,7 +194,11 @@
     font-style: normal;
     line-height: 1.43;
     letter-spacing: normal;
-    color: #118ab2;
+    color: #118ab2 !important;
+}
+.myPostsContainer a{
+    text-decoration: none !important;
+    color: unset !important;
 }
 .myPostsContainer .mainSection .table .cellBody .downloadIcon{
     font-size: 24px;

@@ -12,20 +12,29 @@ import { useFormik } from 'formik';
 import { loginSchema } from '../../utils/Validation/ValidationObjects';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useDispatch } from 'react-redux'
-
 import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ["login"]),
+    },
+  })
+
 
 export default function Login() {
     const [isLoading,setIsLoading] = useState(false)
     const [errorLogin,setErrorLogin] = useState(false)
     const router = useRouter()
+    const { t } = useTranslation('login')
+
     const dispatch = useDispatch()
     const handleSubmit = (data)=>{
         setIsLoading(true)
@@ -63,7 +72,7 @@ export default function Login() {
 	return (
 		<LoginLayout>
 			<Paper className={classes.loginMainBase}>
-            <h2 className={classes.baseTitle}>تسجيل الدخول</h2>
+            <h2 className={classes.baseTitle}>{t("title")}</h2>
             <form  onSubmit={formik.handleSubmit}>
                 <TextField
                     type="text"
@@ -74,7 +83,7 @@ export default function Login() {
                     error={formik.errors.email}
                     helperText={formik.errors.email}
                     value={formik.values.email}
-                    label="إسم المستخدم أو الإيميل"
+                    label={t("email")}
                 />
                 <TextField
                     type="password"
@@ -85,7 +94,7 @@ export default function Login() {
                     onChange={formik.handleChange}
                     error={formik.errors.password}
                     helperText={formik.errors.password}
-                    label="كلمة المرور"
+                    label={t("password")}
                 />
                 <div className={classes.basePossibleActions}>
                     <div className={classes.rememberMe}>
@@ -95,10 +104,10 @@ export default function Login() {
                             checkedIcon={<FontAwesomeIcon icon={faWindowClose} style={{color:"#06d6a0"}} />}
                             onChange={formik.handleChange}
                         />
-                        <span className={classes.rememberMeText}>تذكرني</span>
+                        <span className={classes.rememberMeText}>{t("remember-me")}</span>
                     </div>
                     <div className={classes.forgetPassword}>
-                        <span>نسيت كلمة المرور؟</span>
+                        <span>{t("forget-password")}</span>
                     </div>
                 </div>
                 <Button
@@ -111,19 +120,19 @@ export default function Login() {
                             {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
                         </div>
                     <span>
-                        تسجيل الدخول                                    
+                        {t("title")}                                    
                     </span>
                 </Button> 
                 <div style={{marginTop:-10,marginBottom:10,width:"80%"}}>
                     {
-                        errorLogin&&       <Alert severity="error">يرجى التحقق من معلومات الحساب</Alert>
+                        errorLogin&&       <Alert severity="error">{t("login-error")}</Alert>
                     }
                 </div>
                 <div className={classes.oauth}>
                     <div className={classes.suggestOauth}>
                         <div className={classes.hDivider}></div>
                         <span className={classes.suggestOauthSpan}>
-                            سجل الدخول عن طريق شبكات التواصل        
+                            {t('suggest-oauth')}
                         </span>
                         <div className={classes.hDivider}></div>
                     </div>
@@ -136,7 +145,7 @@ export default function Login() {
                 </div>
                 <Link href="/registration" >
                         <span className={classes.goRegistration}>
-                                 ليس لديك حساب؟  
+                            {t('go-registration')}
                         </span>
                 </Link>
             </form>
