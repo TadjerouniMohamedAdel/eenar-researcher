@@ -11,6 +11,7 @@ import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 import { appWithTranslation } from 'next-i18next'
 import Laoding from '../components/Loading/Laoding';
+import { AnimatePresence } from 'framer-motion';
 
 
 
@@ -40,7 +41,9 @@ function MyApp({ Component, pageProps,router }) {
           <StylesProvider jss={jss}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                    <Component {...pageProps} />
+                    <AnimatePresence exitBeforeEnter>
+                      <Component {...pageProps} key={router.route} />
+                    </AnimatePresence>
             </ThemeProvider>
           </StylesProvider>
       </PersistGate>
