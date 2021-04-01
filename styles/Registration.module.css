@@ -66,6 +66,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.5s;
+}
+.registrationContainer .registrationContent .registrationChoiceItem:hover{
+    transform: scale(1.03);
 }
 .registrationContainer .registrationContent .registrationChoiceItem .choiceImg{
     width: 90%;
