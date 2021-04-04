@@ -18,8 +18,13 @@ export default function Modal({visible,setVisible,children}) {
    
     useEffect(() => {
        console.log("changed visible",visible)
-       visible ? document.body.classList.add("no-scroll") :document.body.classList.remove("no-scroll");
-
+       if(visible){
+            document.querySelector("main").classList.add("unsetTransform")
+            document.body.classList.add("no-scroll")
+       }else{
+            document.querySelector("main").classList.remove("unsetTransform")
+            document.body.classList.remove("no-scroll");
+       }
     }, [visible])
 
     return (

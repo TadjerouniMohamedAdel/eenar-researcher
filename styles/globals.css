@@ -91,3 +91,7 @@ input{
     font-family: var(--primary-font) !important;
     font-weight: 600;
 }
+
+.unsetTransform{
+    transform: unset !important;
+}

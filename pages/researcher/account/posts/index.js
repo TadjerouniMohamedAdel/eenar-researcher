@@ -37,13 +37,17 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DeleteElement from "../../../../components/CrudModal/DeleteElement";
 import MultiStepsEditElement from "../../../../components/CrudModal/MultiStepsEditElement";
-import axios from "axios";
 import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
 import moment from "moment";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Alert from '@material-ui/lab/Alert';
 
+import { useSelector } from 'react-redux'
+import useGetList from "../../../../utils/hooks/useGetList";
+import useAddElement from "../../../../utils/hooks/useAddElement";
+import useEditElement from "../../../../utils/hooks/useEditElement";
+import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -55,97 +59,77 @@ export const getStaticProps = async ({ locale }) => ({
 
 
 export default function index() {
+  const user = useSelector((state) => state.user)
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
   const [addVisible, setAddVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
   const [offset,setOffset] = useState(0)
   const [limit,setLimit] = useState(10)
-  const [pages,setPages] = useState(0)
   const [page,setPage] = useState(1)
   const [research,setResearch] = useState("")
   const [showAddAlert,setShowAddAlert] = useState(false)
+  const {isLoading,data} = useGetList("posts","/researcher/post/research",limit,offset,research,user.researchers.id)
+  const {mutate:addPost,status:addPostStatus} = useAddElement("posts","/researcher/post/add",limit,offset,research,user.researchers.id)
+  const {mutate:editPost,status:editPostStatus} = useEditElement("posts","/researcher/post/edit",limit,offset,research,user.researchers.id)
+  const {mutate:deletePost,status:deletePostStatus} = useDeleteElement("posts",`/researcher/post/delete?id=${selectedItem?.id}`,limit,offset,research,user.researchers.id)
   moment.locale("ar-dz");
 
+  useEffect(() => {
+    setOffset(0)
+}, [research])
 
-  const getNextData = ()=>{
-    setIsLoading(true)
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
-    axios({
-      method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}&title=${research}`,
-    })
-      .then((response) => {
-        console.log("response",response.data)
-        setIsLoading(false)
-        setPosts(response.data.posts);
-        setPages(response.data.maxPages)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+
 
   useEffect(() => {
     setPage(offset/limit+1)
-    getNextData()
   }, [offset]);
 
-  const handleResearch = ()=>{
-      setOffset(0)
-      getNextData()
-  }
 
-  useEffect(()=>{
-    console.log(page)
-  },[page])
 
+  useEffect(() => {
+      console.log("add post with react query",addPostStatus)
+        if(addPostStatus ==="success"){
+            setAddVisible(false)
+        }
+    }, [addPostStatus])
+
+  useEffect(() => {
+      console.log("add post with react query",editPostStatus)
+        if(editPostStatus ==="success"){
+            setEditVisible(false)
+        }
+    }, [editPostStatus])
+
+    useEffect(() => {
+      console.log("add post with react query",deletePostStatus)
+        if(deletePostStatus ==="success"){
+            setDeleteVisible(false)
+        }
+    }, [deletePostStatus])
+
+
+  
   const handleDeleteItem = (item) => {
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
     item.researcherId = user.researchers.id;
-    console.log("delete post", item);
-    axios({
-      method: "delete",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/delete?id=${item.id}`,
-      data: item,
-    })
-      .then((response) => {
-        console.log(response);
-        setPosts(posts.filter((el) => el.id !== item.id));
-        setDeleteVisible(false);
-      })
-      .catch((error) => console.log(error));
+    deletePost(item)
   };
+  
+  
   const handleAddItem = (item) => {
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
     item.researcherId = user.researchers.id;
     let data = new FormData();
     for (const key in item) {
       data.append([key], item[key]);
     }
-    axios({
-      method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/add`,
-      data,
-    })
-      .then((response) => {
-        console.log("response add", response.data);
-        setPosts([...posts, response.data]);
-        setAddVisible(false);
-        setShowAddAlert(true)
-      })
-      .catch((error) => console.log(error));
+    addPost(data)
   };
+  
+  
+  
   const handleEditItem = (item) => {
     const user = JSON.parse(
       JSON.parse(localStorage.getItem("persist:primary")).user
@@ -156,21 +140,7 @@ export default function index() {
     for (const key in item) {
       data.append([key], item[key]);
     }
-    axios({
-      method: "put",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/edit`,
-      data,
-    })
-      .then((response) => {
-        console.log(response);
-        let lastItems = [...posts];
-        const index = lastItems.findIndex((el) => el.id === item.id);
-        lastItems[index] = response.data;
-        setPosts(lastItems);
-        setEditVisible(false);
-        setSelectedItem(null);
-      })
-      .catch((error) => console.log(error));
+    editPost(data)
   };
 
 
@@ -240,11 +210,11 @@ export default function index() {
                                 >   
                                 </Select>
                             </FormControl> */}
-              <Button className={classes.searchButton} onClick={() => handleResearch()}>
+              {/* <Button className={classes.searchButton} onClick={() => handleResearch()}>
                 <SearchIcon
                   className={`${classes.searchIcon} ${classes.right}`}
                 />
-              </Button>
+              </Button> */}
             </div>
             <div className={classes.buttonSection}>
               <Button
@@ -256,7 +226,7 @@ export default function index() {
               </Button>
             </div>
           </div>
-          {isLoading === false && posts.length == 0 ? (
+          {isLoading === false && data.posts.length == 0 ? (
             <div className={classes.empty}>
               <img src="/images/empty.png" alt="empty-list" />
               <h3>لا تحتوي هذه القائمة على بيانات</h3>
@@ -330,7 +300,7 @@ export default function index() {
                   </>
                   ) : (
                     <>
-                      {posts.map((row, index) => (
+                      {data.posts.map((row, index) => (
                         <TableRow key={index} style={{height:20}}>
                           <TableCell
                             className={classes.cellBody}
@@ -394,7 +364,7 @@ export default function index() {
                   )}
                 </TableBody>
               </Table>
-              {pages > 1 && (
+              {data && data.maxPages > 1 && (
                 <div
                   style={{
                     width: "100%",
@@ -405,7 +375,7 @@ export default function index() {
                   <Pagination 
                       active={page}
                       limit={limit}
-                      pages={pages}
+                      pages={data.maxPages}
                       onNext={()=>{setOffset(offset+10)}}
                       onPrev={()=>{setOffset(offset-10)}}
                       onNum={setOffset}

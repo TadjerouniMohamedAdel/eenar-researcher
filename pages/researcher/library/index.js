@@ -1,8 +1,6 @@
-import { ClassSharp } from '@material-ui/icons'
 import {useState ,useEffect} from 'react'
 import BannerMenu from '../../../components/BannerMenu/BannerMenu'
 import MyHead from '../../../components/MyHead/MyHead'
-import WorkInProgress from '../../../components/WorkInProgress/WorkInProgress'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
 import { Button, FormControl, IconButton, InputLabel, Select,TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -10,7 +8,6 @@ import classes from '../../../styles/Library.module.css'
 import Pagination from '../../../components/Pagination/Pagination'
 import Link from 'next/link'
 import moment from 'moment'
-import axios from 'axios'
 import { Skeleton } from '@material-ui/lab'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useGetList from '../../../utils/hooks/useGetList'
@@ -25,20 +22,6 @@ export const getStaticProps = async ({ locale }) => ({
 
 export default function index() {
     moment.locale('ar-dz')
-    const bookList=[
-        {id:1,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:2,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:3,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:4,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:5,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:6,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:7,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:8,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:9,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:10,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-        {id:11,img:"/images/book.jpg",title:"عنوان كبير خاص بالكتاب الفلاني: كما أنه طويل بعض الشيء كي نتمكن من معرفة كيف يظهر في التصميم",author:"معاذ محساس",publishedDate:"2020-05-19",publishingHouse:"دار البدر للنشر والتوزيع"},
-    ]
-    
     const [offset,setOffset] = useState(0)
     const [limit,setLimit] = useState(10)
     const [page,setPage] = useState(1)
