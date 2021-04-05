@@ -11,6 +11,7 @@
 .navbar .navbarLogo{
     display: flex;
     align-items: center;
+    cursor: pointer;
     margin-right: 20px;
     margin-left: 20px;
 }

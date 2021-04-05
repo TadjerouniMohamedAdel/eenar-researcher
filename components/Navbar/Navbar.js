@@ -33,7 +33,7 @@ export default function Navbar() {
     }
     return (
         <nav className={classes.navbar}> 
-            <div className={classes.navbarLogo}>
+            <div className={classes.navbarLogo} onClick={()=>{router.push("/researcher")}}>
                 <img src="/images/logoAdminWhite.png" height={60} />
                 <h1>منتدى كوالالمبور  <br/>شبكة الباحثين</h1>
             </div>
