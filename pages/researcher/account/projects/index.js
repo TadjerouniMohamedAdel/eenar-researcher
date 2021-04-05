@@ -135,8 +135,8 @@ export default function index() {
                             handleSubmit={handleDeleteItem}
                         />
                 </Modal>
-                <div className={classes.mainSection}>
-                    <div className={classes.filterSection}>
+                <div className={classes.mainSection} id="scroll">
+                    <div className={classes.filterSection} >
                         <div className={classes.groupedActions}>
                             <TextField
                                 variant="outlined"
@@ -171,7 +171,7 @@ export default function index() {
                             </div>
                         ):(
                             <div className={classes.tableContainer}>
-                                <Table className={classes.table} aria-label="simple table">
+                                <Table  className={classes.table} aria-label="simple table">
                                     <TableHead>
                                     <TableRow>
                                         <TableCell className={classes.cellHeader} align="center">تاريخ البدأ</TableCell>
