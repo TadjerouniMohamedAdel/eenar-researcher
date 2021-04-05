@@ -25,7 +25,11 @@ import moment from 'moment'
 import Link from 'next/link'
 import { Skeleton } from "@material-ui/lab";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
+import { useSelector } from 'react-redux'
+import useGetList from "../../../../utils/hooks/useGetList";
+import useAddElement from "../../../../utils/hooks/useAddElement";
+import useEditElement from "../../../../utils/hooks/useEditElement";
+import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -34,109 +38,70 @@ export const getStaticProps = async ({ locale }) => ({
     },
   })
 export default function index() {
+    const user = useSelector((state) => state.user)
     const [addVisible,setAddVisible] = useState(false)
     const [editVisible,setEditVisible] = useState(false)
     const [deleteVisible,setDeleteVisible] = useState(false)
     const [articles,setArticles] = useState(dataarticles)
     const [groups,setGroups] = useState(datagroups)
     const [selectedItem,setSelectedItem] = useState(null)
-    const [isLoading, setIsLoading] = useState(true);
     const [projects,setProjects] = useState([])
     const [offset,setOffset] = useState(0)
     const [limit,setLimit] = useState(10)
     const [pages,setPages] = useState(0)
     const [page,setPage] = useState(1)
     const [research,setResearch] = useState("")
-
+    const {isLoading,data} = useGetList("researchproject","/researcher/researchproject/research",limit,offset,research,user.researchers.id)
+    const {mutate:addProject,status:addProjectStatus} = useAddElement("researchproject","/researcher/researchproject/add",limit,offset,research,user.researchers.id)
+    const {mutate:editProject,status:editProjectStatus} = useEditElement("researchproject","/researcher/researchproject/edit",limit,offset,research,user.researchers.id)
+    const {mutate:deleteProject,status:deleteProjectStatus} = useDeleteElement("researchproject",`/researcher/researchproject/delete?id=${selectedItem?.id}`,limit,offset,research,user.researchers.id)
     moment.locale('ar-dz')
     
     
-
-
-    const getNextData = ()=>{
-        setIsLoading(true)
-        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
-        axios({
-            method:"GET",
-            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/research?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}&title=${research}`
-        }).then(response=>{
-            setIsLoading(false)
-            setProjects(response.data.projects)
-            setPages(response.data.maxPages)
-        }).catch(error=>{
-            console.log(error)
-        })
-    }
     useEffect(() => {
         setPage(offset/limit+1)
-        getNextData()
       }, [offset]);
+    
+
+    useEffect(() => {
+        if(addProjectStatus ==="success"){
+            setAddVisible(false)
+        }
+    }, [addProjectStatus])
+
+    useEffect(() => {
+        if(editProjectStatus ==="success"){
+            setEditVisible(false)
+        }
+    }, [editProjectStatus])
+
+    useEffect(() => {
+        if(deleteProjectStatus ==="success"){
+            setDeleteVisible(false)
+        }
+    }, [deleteProjectStatus])
 
     const handleResearch = ()=>{
         setOffset(0)
-        getNextData()
     }
 
     const handleDeleteItem = (item)=>{
-        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
-        console.log("delete post",item)
-        axios({
-            method: 'delete',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/delete?id=${item.id}`,
-            data: item
-          })
-            .then(response=>{
-                console.log(response)
-                setProjects(projects.filter((el)=>el.id!==item.id))
-                setDeleteVisible(false)
-            })
-            .catch(error=>console.log(error))
-          ;
-        
+        deleteProject(item)
     }
     const handleAddItem = (item)=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
         if(item.startDate=="") item.startDate=null
         if(item.endDate=="") item.endDate=null
-        console.log("add post",item)
-        axios({
-            method: 'post',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/add`,
-            data: item
-          })
-            .then(response=>{
-                console.log("response add",response.data)
-                setProjects([...projects,response.data])
-                setAddVisible(false)
-            })
-            .catch(error=>console.log(error))
-          ;
+        addProject(item)
     }
     const handleEditItem = (item)=>{
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
         if(item.startDate=="") item.startDate=null
         if(item.endDate=="") item.endDate=null
-
-        console.log("edit post",item)
-        axios({
-            method: 'put',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/edit`,
-            data: item
-          })
-            .then(response=>{
-                console.log(response)
-                let lastItems = [...projects]
-                const index = lastItems.findIndex((el)=>el.id === item.id)
-                lastItems[index] = response.data
-                setProjects(lastItems)
-                setEditVisible(false)
-                setSelectedItem(null)
-            })
-            .catch(error=>console.log(error))
-          ;
+        editProject(item)
     }
     const getStatus = (item)=>{
         if(item.supervisor== null || item.supervisor=="") return "بحث عن مشرف"
@@ -199,7 +164,7 @@ export default function index() {
                     
                     </div>
                     {
-                        isLoading === false && projects.length == 0 ? (
+                        isLoading === false && data.projects.length == 0 ? (
                             <div className={classes.empty}>
                                 <img src="/images/empty.png" alt="empty-list"/>
                                 <h3>لا تحتوي هذه القائمة على بيانات</h3>
@@ -251,7 +216,7 @@ export default function index() {
                           </>
                           ) : (
                             <>
-                                    {projects.map((row,index) => (
+                                    {data.projects.map((row,index) => (
                                         <TableRow key={index}>
                                         <TableCell className={classes.cellBody} align="center">
                                         {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}</TableCell>
@@ -274,7 +239,7 @@ export default function index() {
                                     </TableBody>
                                 </Table>
                             
-                                {pages > 1 && (
+                                {data && data.maxPages > 1 && (
                                     <div
                                     style={{
                                         width: "100%",
@@ -285,7 +250,7 @@ export default function index() {
                                     <Pagination 
                                         active={page}
                                         limit={limit}
-                                        pages={pages}
+                                        pages={data.maxPages}
                                         onNext={()=>{setOffset(offset+10)}}
                                         onPrev={()=>{setOffset(offset-10)}}
                                         onNum={setOffset}

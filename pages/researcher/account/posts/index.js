@@ -91,21 +91,18 @@ export default function index() {
 
 
   useEffect(() => {
-      console.log("add post with react query",addPostStatus)
         if(addPostStatus ==="success"){
             setAddVisible(false)
         }
     }, [addPostStatus])
 
   useEffect(() => {
-      console.log("add post with react query",editPostStatus)
         if(editPostStatus ==="success"){
             setEditVisible(false)
         }
     }, [editPostStatus])
 
     useEffect(() => {
-      console.log("add post with react query",deletePostStatus)
         if(deletePostStatus ==="success"){
             setDeleteVisible(false)
         }
