@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import lottie from 'lottie-web'
 import classes from './NoInternet.module.css'
 
