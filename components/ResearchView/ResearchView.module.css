@@ -172,6 +172,7 @@
     padding-right: 16px;
     padding-left: 16px;
     padding-top: 13px;
+    overflow-wrap: break-word !important;
     padding-bottom: 13px;
     border-radius: 8px;
     background-color: #f7f7fa;   
@@ -202,6 +203,7 @@
 }
 .researchView .researchBody .researchContent .researchRest >p{
     margin-bottom: 20px;
+    overflow-wrap: break-word !important;
 }
 .researchView .researchBody .researchContent .researchRest .researchImg{
     margin-top: 32px;

@@ -93,7 +93,7 @@
 .successSection .successSectionItems .successSectionItem span{
     width: 90%;
     display: block;
-
+    overflow-wrap: break-word !important;
     font-family: var(--primary-font);
     font-size: 12px;
     font-weight: normal;

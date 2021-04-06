@@ -121,13 +121,15 @@
     font-family: var(--primary-font);
     font-size: 12px;
     width: 90%;
+    overflow-wrap: break-word !important;
 }
 .collectionContainer .collectionItems .collectionItem .collectionContent .line{
     width: 90%;
     height: 0;
     margin: 8px 0px 0 0;
     opacity: 0.4;
-    border: solid 1px #9192a6
+    border: solid 1px #9192a6;
+
 }
 .collectionContainer .collectionItems .moreCollections{
     display: flex;
