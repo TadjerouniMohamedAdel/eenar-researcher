@@ -70,7 +70,7 @@ export const experienceSchema = Yup.object().shape({
 export const certificationSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     provider: Yup.string().required('يجب ملئ هذه المعلومة'),
-    sstartDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
     endDate: Yup.date().when("startDate",(startDate, certificationSchema) => startDate && certificationSchema.min(startDate)).required('يجب ملئ هذه المعلومة')
 })
 
