@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import BannerMenu from "../../../components/BannerMenu/BannerMenu";
 import LastArticles from "../../../components/LastArticles/LastArticles";
 import LearnNow from "../../../components/LearnNow/LearnNow";
@@ -23,7 +23,8 @@ import PostCard from "../../../components/PostCard/PostCard";
 import PostCardSkeleton from "../../../components/PostCard/PostCardSkeleton"; 
 import InfiniteScroll from "react-infinite-scroll-component";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
+import useGetList from "../../../utils/hooks/useGetList";
+import { useSelector } from 'react-redux'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -31,7 +32,9 @@ export const getStaticProps = async ({ locale }) => ({
       ...await serverSideTranslations(locale, ["sidebar"]),
     },
   })
+
 export default function index() {
+  const user = useSelector((state) => state.user)
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
   const [posts,setPosts] = useState([])
@@ -39,51 +42,20 @@ export default function index() {
   const [limit,setLimit] = useState(10)
   const [research,setResearch] = useState("")
   const [hasMore,setHasMore] = useState(true)
+
+  const {data,isLoading} = useGetList("posts","/researcher/post/research/all",limit,offset,research,user.researchers.id)  
   
-  const getNextData = ()=>{
-    if(hasMore){
-      const user = JSON.parse(
-        JSON.parse(localStorage.getItem("persist:primary")).user
-      );
-      axios({
-        method: "GET",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?offset=${offset}&limit=${limit}&title=${research}`,
-      })
-        .then((response) => {
-          // setIsLoading(false)
-          console.log(response.data)
-          if(response.data.posts.length == 0) setHasMore(false)
-          setPosts([...posts,...response.data.posts]);
-          setOffset(offset+10)
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  useEffect(() => {
+      if(data){
+        setPosts([...posts,...data.posts])
+        data.posts.length === 0 && setHasMore(false)
+      }
+  }, [data])
+  
 
-    }
-  }
-  useEffect(() => {  
-    getNextData()
-  }, []);
-
-  const handleResearch = ()=>{
+  useEffect(()=>{
     setOffset(0)
-    setHasMore(true)
-    axios({
-      method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research/all?offset=0&limit=${limit}&title=${research}`,
-    })
-      .then((response) => {
-        // setIsLoading(false)
-        console.log(response.data)
-        if(response.data.posts.length == 0) setHasMore(false)
-        setPosts(response.data.posts);
-        setOffset(offset+10)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-}
+  },[research])
   
   return (
     <ResearcherLayout>
@@ -103,7 +75,7 @@ export default function index() {
                   variant="outlined"
                   label="العنوان"
                   className={classes.input}
-                  onChange={(e)=>setResearch(e.target.value)}
+                  onChange={(e)=>{setPosts([]);setHasMore(true);setResearch(e.target.value)}}
                 />
                 {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المنشور</InputLabel>
@@ -131,7 +103,7 @@ export default function index() {
               <InfiniteScroll
                 dataLength={posts.length}
                 className={classes.postsContainer}
-                next={getNextData}
+                next={()=> setOffset(offset+10)}
                 inverse={false}
                 hasMore={hasMore}
                 loader={<PostCardSkeleton />}
