@@ -7,5 +7,6 @@ export default function useGetList(key,route,limit=10,offset=0,search="",researc
                     ()=>axios.get(`${process.env.NEXT_PUBLIC_API_URL}${route}?offset=${offset}&limit=${limit}&title=${search}&researcherId=${researcherId}`)
                             .then((response)=>response.data)
                     ,
-                )   
+                )
+        
 }

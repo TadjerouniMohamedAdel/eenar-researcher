@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import { useState } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -45,16 +45,21 @@ const tabs = [
 ]
 export default function AccountTab() {
     const router = useRouter()
-
     const index = tabs.findIndex(item=>item.to === router.pathname.split("/researcher/account/")[1])
     const [value, setValue] = useState(index >=0?index:0);
+    
+    
     const handleChange = (event, newValue) => {
         setValue(newValue);
       };
     
+    
+    /** Go to tab menu */
     const redirectTab = (to)=>{
         router.push(`/researcher/account/${to}`)
     }
+
+
     return (
         <Paper className={classes.accountTabs}>
             <Tabs
@@ -67,14 +72,11 @@ export default function AccountTab() {
             >
                 {
                     tabs.map((tab,index)=>(
-                            <Tab onClick={()=>redirectTab(tab.to)} icon={tab.icon()} label={<span className={classes.tabLabel}>{tab.name}</span>}/>
+                            <Tab key={tab.name} onClick={()=>redirectTab(tab.to)} icon={tab.icon()} label={<span className={classes.tabLabel}>{tab.name}</span>}/>
 
 
                     ))
                 }
-                
-                {/* <Tab onClick={()=>redirectTab("projects")} icon={<CardTravelOutlinedIcon />} label={<span className={classes.tabLabel}>مشاريعي</span>} />
-                <div className={classes.tabDivider}></div> */}
                 
             </Tabs>
     </Paper>

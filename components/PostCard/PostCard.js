@@ -1,11 +1,10 @@
 import { IconButton } from '@material-ui/core'
-import React from 'react'
 import GetAppSharpIcon from '@material-ui/icons/GetAppSharp';
 import classes from './PostCard.module.css'
-import Link from 'next/link' 
-export default function PostCard({post}) {
+import Link from 'next/link'
+export default function PostCard({ post }) {
     return (
-        <Link href={`/researcher/researchs/${post.id}`}>    
+        <Link href={`/researcher/researchs/${post.id}`}>
             <div className={classes.postCard}>
                 <div className={classes.postImg}>
                 </div>
@@ -14,7 +13,7 @@ export default function PostCard({post}) {
                         <span className={classes.postType}>كتاب</span>
                         <h2>{post.arabicTitle}</h2>
                         <p>
-                            {post.arabicDescription.substring(0,200)}...
+                            {post.arabicDescription.substring(0, 200)}...
                         </p>
                     </div>
                     <div className={classes.postFooter}>
@@ -23,8 +22,8 @@ export default function PostCard({post}) {
                             <h5>{post.primaryAuthor}</h5>
                         </div>
                         <div className={classes.postDownload}>
-                            <a href={post.file} target="_blank" style={{zIndex:100000}} onClick={(e)=>e.stopPropagation()}>
-                                <IconButton>
+                            <a href={post.file} target="_blank" style={{ zIndex: 100000 }} onClick={(e) => e.stopPropagation()}>
+                                <IconButton onClick={() => { }}>
                                     <GetAppSharpIcon />
                                 </IconButton>
                             </a>

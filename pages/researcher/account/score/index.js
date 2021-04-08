@@ -7,15 +7,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
 export const getStaticProps = async ({ locale }) => ({
-    props: {
-      ...await serverSideTranslations(locale, ["sidebar"]),
-    },
-  })
+  props: {
+    ...await serverSideTranslations(locale, ["sidebar"]),
+  },
+})
 export default function index() {
-    return (
-        <ResearcherAccountLayout>
-            <MyHead title="الملف الشخصي  - الرصيد" />
-            <WorkInProgress menu="الرصيد"/>
-        </ResearcherAccountLayout>
-    )
+  return (
+    <ResearcherAccountLayout>
+      <MyHead title="الملف الشخصي  - الرصيد" />
+      <WorkInProgress menu="الرصيد" />
+    </ResearcherAccountLayout>
+  )
 }

@@ -153,10 +153,10 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
                                             <h3>
                                                 {item.name ?? item.title}
                                                 <div className={classes.actionItem}>
-                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item), setEditVisible(true) }}>
+                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item); setEditVisible(true) }}>
                                                         <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`} />
                                                     </IconButton>
-                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item), setDeleteVisible(true) }}>
+                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item); setDeleteVisible(true) }}>
                                                         <DeleteOutlineOutlinedIcon className={`${classes.actionItemIcon} ${classes.delete}`} />
                                                     </IconButton>
                                                 </div>

@@ -140,10 +140,10 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                                 <h2>
                                                     {collection.title ?? collection.name ?? collection.role}
                                                     <div className={classes.actionItem}>
-                                                        <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(collection), setEditVisible(true) }}>
+                                                        <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(collection); setEditVisible(true) }}>
                                                             <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`} />
                                                         </IconButton>
-                                                        <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(collection), setDeleteVisible(true) }}>
+                                                        <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(collection); setDeleteVisible(true) }}>
                                                             <DeleteOutlineOutlinedIcon className={`${classes.actionItemIcon} ${classes.delete}`} />
                                                         </IconButton>
                                                     </div>
