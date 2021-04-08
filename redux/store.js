@@ -8,56 +8,14 @@ import reducer from './reducers/index'
 let store
 
 const exampleInitialState = {
-  count: 0,
   user:{},
   
 }
 
-export const actionTypes = {
-  TICK: 'TICK',
-  INCREMENT: 'INCREMENT',
-  DECREMENT: 'DECREMENT',
-  RESET: 'RESET',
-}
-
-// REDUCERS
-// export const reducer = (state = exampleInitialState, action) => {
-//   switch (action.type) {
-//     case actionTypes.INCREMENT:
-//       return {
-//         ...state,
-//         count: state.count + 1,
-//       }
-//     case actionTypes.DECREMENT:
-//       return {
-//         ...state,
-//         count: state.count - 1,
-//       }
-//     case actionTypes.RESET:
-//       return {
-//         ...state,
-//         count: exampleInitialState.count,
-//       }
-//     default:
-//       return state
-//   }
-// }
-
-// ACTIONS
 
 
 
-export const incrementCount = () => {
-  return { type: actionTypes.INCREMENT }
-}
 
-export const decrementCount = () => {
-  return { type: actionTypes.DECREMENT }
-}
-
-export const resetCount = () => {
-  return { type: actionTypes.RESET }
-}
 
 
 
