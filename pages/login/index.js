@@ -80,7 +80,7 @@ export default function Login() {
                         className={classes.baseInput}
                         name="email"
                         onChange={formik.handleChange}
-                        error={formik.errors.email}
+                        error={Boolean(formik.errors.email)}
                         helperText={formik.errors.email}
                         value={formik.values.email}
                         label={t("email")}
@@ -92,7 +92,7 @@ export default function Login() {
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
-                        error={formik.errors.password}
+                        error={Boolean(formik.errors.password)}
                         helperText={formik.errors.password}
                         label={t("password")}
                     />
