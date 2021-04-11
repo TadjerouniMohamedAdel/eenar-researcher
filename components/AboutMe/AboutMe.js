@@ -109,8 +109,8 @@ export default function AboutMe() {
       </Modal>
       <h2>
         نبذة عني
-        <IconButton onClick={() => { }} >
-          <MoreHorizOutlinedIcon className={classes.actionSectionIcon} onClick={() => setEditVisible(true)} />
+        <IconButton onClick={() => setEditVisible(true)}>
+          <MoreHorizOutlinedIcon className={classes.actionSectionIcon} />
         </IconButton>
       </h2>
       <p className={classes.resumeAboutMeDescription}>

@@ -51,10 +51,10 @@ import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 
 
 export const getStaticProps = async ({ locale }) => ({
-    props: {
-      ...await serverSideTranslations(locale, ["sidebar"]),
-    },
-  })
+  props: {
+    ...await serverSideTranslations(locale, ["sidebar"]),
+  },
+})
 
 
 
@@ -67,55 +67,55 @@ export default function index() {
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   // const [isLoading, setIsLoading] = useState(true);
-  const [offset,setOffset] = useState(0)
-  const [limit,setLimit] = useState(10)
-  const [page,setPage] = useState(1)
-  const [research,setResearch] = useState("")
-  const [showAddAlert,setShowAddAlert] = useState(false)
-  const {isLoading,data} = useGetList("posts","/researcher/post/research",limit,offset,research,user.researchers.id)
-  const {mutate:addPost,status:addPostStatus} = useAddElement("posts","/researcher/post/add",limit,offset,research,user.researchers.id)
-  const {mutate:editPost,status:editPostStatus} = useEditElement("posts","/researcher/post/edit",limit,offset,research,user.researchers.id)
-  const {mutate:deletePost,status:deletePostStatus} = useDeleteElement("posts",`/researcher/post/delete?id=${selectedItem?.id}`,limit,offset,research,user.researchers.id)
+  const [offset, setOffset] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [page, setPage] = useState(1)
+  const [research, setResearch] = useState("")
+  const [showAddAlert, setShowAddAlert] = useState(false)
+  const { isLoading, data } = useGetList("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
+  const { mutate: addPost, status: addPostStatus } = useAddElement("posts", "/researcher/post/add", limit, offset, research, user.researchers.id)
+  const { mutate: editPost, status: editPostStatus } = useEditElement("posts", "/researcher/post/edit", limit, offset, research, user.researchers.id)
+  const { mutate: deletePost, status: deletePostStatus } = useDeleteElement("posts", `/researcher/post/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
   moment.locale("ar-dz");
 
   useEffect(() => {
     setOffset(0)
-}, [research])
+  }, [research])
 
 
 
   useEffect(() => {
-    setPage(offset/limit+1)
+    setPage(offset / limit + 1)
   }, [offset]);
 
 
 
   useEffect(() => {
-        if(addPostStatus ==="success"){
-            setAddVisible(false)
-        }
-    }, [addPostStatus])
+    if (addPostStatus === "success") {
+      setAddVisible(false)
+    }
+  }, [addPostStatus])
 
   useEffect(() => {
-        if(editPostStatus ==="success"){
-            setEditVisible(false)
-        }
-    }, [editPostStatus])
+    if (editPostStatus === "success") {
+      setEditVisible(false)
+    }
+  }, [editPostStatus])
 
-    useEffect(() => {
-        if(deletePostStatus ==="success"){
-            setDeleteVisible(false)
-        }
-    }, [deletePostStatus])
+  useEffect(() => {
+    if (deletePostStatus === "success") {
+      setDeleteVisible(false)
+    }
+  }, [deletePostStatus])
 
 
-  
+
   const handleDeleteItem = (item) => {
     item.researcherId = user.researchers.id;
     deletePost(item)
   };
-  
-  
+
+
   const handleAddItem = (item) => {
     item.researcherId = user.researchers.id;
     let data = new FormData();
@@ -124,9 +124,9 @@ export default function index() {
     }
     addPost(data)
   };
-  
-  
-  
+
+
+
   const handleEditItem = (item) => {
     const user = JSON.parse(
       JSON.parse(localStorage.getItem("persist:primary")).user
@@ -141,19 +141,19 @@ export default function index() {
   };
 
 
-  const renderStatusBadge =(postStatus)=>{
-    if(!postStatus) return (<Chip className={classes.pendingBadge} variant="outlined"  label="قيد الإنتظار" />)
+  const renderStatusBadge = (postStatus) => {
+    if (!postStatus) return (<Chip className={classes.pendingBadge} variant="outlined" label="قيد الإنتظار" />)
     switch (postStatus.status) {
       case "assigned":
-        return (<Chip className={classes.assignedBadge} variant="outlined"  label="قيد المراجعة" />)
+        return (<Chip className={classes.assignedBadge} variant="outlined" label="قيد المراجعة" />)
         break;
       case "rejected":
-        return (<Chip className={classes.rejectedBadge} variant="outlined"  label="مرفوض" />)
+        return (<Chip className={classes.rejectedBadge} variant="outlined" label="مرفوض" />)
         break;
       case "validated":
-        return (<Chip className={classes.validatedBadge} variant="outlined"  label="مقبول" />)
+        return (<Chip className={classes.validatedBadge} variant="outlined" label="مقبول" />)
         break;
-    
+
       default:
         break;
     }
@@ -197,7 +197,7 @@ export default function index() {
               <TextField
                 variant="outlined"
                 label="العنوان"
-                onChange={(e)=>setResearch(e.target.value)}
+                onChange={(e) => setResearch(e.target.value)}
                 className={classes.input}
               />
               {/* <FormControl  variant="outlined" className={classes.select}>
@@ -216,7 +216,7 @@ export default function index() {
             <div className={classes.buttonSection}>
               <Button
                 className={classes.addButton}
-                onClick={()=>setAddVisible(true)}
+                onClick={() => setAddVisible(true)}
               >
                 <span className={classes.text}>أضف منشور</span>
                 <AddIcon className={classes.addIcon} />
@@ -232,9 +232,9 @@ export default function index() {
             <div className={classes.tableContainer}>
               {
                 showAddAlert && (
-                    <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={()=>setShowAddAlert(false)}>
-                            تم إضافة المنشور، سيتم دراسته لتحقق من صحته  
-                    </Alert>
+                  <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={() => setShowAddAlert(false)}>
+                    تم إضافة المنشور، سيتم دراسته لتحقق من صحته
+                  </Alert>
 
                 )
               }
@@ -254,7 +254,7 @@ export default function index() {
                     </Hidden>
                     <Hidden only="xs">
                       <TableCell className={classes.cellHeader} align="center">
-                      الحالة
+                        الحالة
                       </TableCell>
                     </Hidden>
                     <TableCell className={classes.cellHeader} align="center">
@@ -265,40 +265,40 @@ export default function index() {
                 <TableBody className={classes.tableBody}>
                   {isLoading ? (
                     <>
-                    {
+                      {
 
-                    new Array(limit).fill().map((el,index)=>(
-                      <TableRow key={index} style={{height:80}}>
-                        <TableCell className={classes.cellBody} align="center">
-                          <Skeleton animation="wave" variant="rect" />
-                        </TableCell>
-                        <TableCell
-                          className={`${classes.cellBody} ${classes.title}`}
-                          align="left"
-                        >
-                          <Skeleton animation="wave" variant="rect" />
-                        </TableCell>
-                        <Hidden only="xs">
-                          <TableCell className={classes.cellBody} align="center">
-                            <Skeleton animation="wave" variant="rect" />
-                          </TableCell>
-                        </Hidden>
-                        <Hidden only="xs">
-                          <TableCell className={classes.cellBody} align="center">
-                            <Skeleton animation="wave" variant="rect" />
-                          </TableCell>
-                        </Hidden>
-                        <TableCell className={classes.cellBody} align="center">
-                          <Skeleton animation="wave" variant="rect" />
-                        </TableCell>
-                      </TableRow>
-                      ))
-                    }
-                  </>
+                        new Array(limit).fill().map((el, index) => (
+                          <TableRow key={index} style={{ height: 80 }}>
+                            <TableCell className={classes.cellBody} align="center">
+                              <Skeleton animation="wave" variant="rect" />
+                            </TableCell>
+                            <TableCell
+                              className={`${classes.cellBody} ${classes.title}`}
+                              align="left"
+                            >
+                              <Skeleton animation="wave" variant="rect" />
+                            </TableCell>
+                            <Hidden only="xs">
+                              <TableCell className={classes.cellBody} align="center">
+                                <Skeleton animation="wave" variant="rect" />
+                              </TableCell>
+                            </Hidden>
+                            <Hidden only="xs">
+                              <TableCell className={classes.cellBody} align="center">
+                                <Skeleton animation="wave" variant="rect" />
+                              </TableCell>
+                            </Hidden>
+                            <TableCell className={classes.cellBody} align="center">
+                              <Skeleton animation="wave" variant="rect" />
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      }
+                    </>
                   ) : (
                     <>
                       {data.posts.map((row, index) => (
-                        <TableRow key={index} style={{height:20}}>
+                        <TableRow key={index} style={{ height: 20 }} key={`row-${index}`}>
                           <TableCell
                             className={classes.cellBody}
                             align="center"
@@ -309,7 +309,7 @@ export default function index() {
                             className={`${classes.cellBody} ${classes.title}`}
                             align="left"
                           >
-                          <Link href={`/researcher/account/posts/${row.id}`}>
+                            <Link href={`/researcher/account/posts/${row.id}`}>
                               {row.arabicTitle}
                             </Link>
                           </TableCell>
@@ -369,13 +369,13 @@ export default function index() {
                     justifyContent: "flex-end",
                   }}
                 >
-                  <Pagination 
-                      active={page}
-                      limit={limit}
-                      pages={data.maxPages}
-                      onNext={()=>{setOffset(offset+10)}}
-                      onPrev={()=>{setOffset(offset-10)}}
-                      onNum={setOffset}
+                  <Pagination
+                    active={page}
+                    limit={limit}
+                    pages={data.maxPages}
+                    onNext={() => { setOffset(offset + 10) }}
+                    onPrev={() => { setOffset(offset - 10) }}
+                    onNum={setOffset}
                   />
                 </div>
               )}
