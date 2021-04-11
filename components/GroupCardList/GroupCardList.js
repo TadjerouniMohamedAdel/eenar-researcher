@@ -1,10 +1,10 @@
-import { Button, IconButton } from '@material-ui/core'
+import classes from './GroupCardList.module.css'
 import PublicIcon from '@material-ui/icons/Public';
-import classes from './GroupCard.module.css'
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { IconButton } from '@material-ui/core';
 
-export default function GroupCard({ group }) {
-
+export default function GroupCardList({ group }) {
     const Circle = () => (
         <div className={classes.circleWhite}>
             <div className={classes.circleBlue}>
@@ -19,17 +19,17 @@ export default function GroupCard({ group }) {
     )
 
     return (
-        <div className={classes.groupCard}>
+        <div className={classes.card}>
+            <div className={classes.groupInfo}>
             <div className={classes.bondeau}></div>
-            <div className={classes.images}>
-                <div className={classes.typeGroup}>
-                    {group.privacy === "public" ? <PublicIcon /> : <LockOutlinedIcon />}
+            <Circle />
+                <div className={classes.info}>
+                <h2>{group.name}</h2>
+                <h3>{group.title}</h3>
+
                 </div>
-                <Circle />
             </div>
-            <h2>{group.name}</h2>
-            <h3>{group.title}</h3>
-            <div className={classes.stats}>
+            <div className={classes.groupStats}>
                 <div className={classes.statItem}>
                     <div className={classes.statValue}>{group.stats.views}</div>
                     <div className={classes.statLabel}>الزيارات</div>
@@ -55,11 +55,16 @@ export default function GroupCard({ group }) {
                 <MemberCircle />
                 <MemberCircle />
             </div>
-            <Button className={classes.joinGroup} >
-                <span>
-                    إنضم للمجموعة
-                </span>
-            </Button>
+            <div className={classes.groupActions}>
+                <div className={classes.groupPrivacy}>
+                    { group.privacy ==="public" ? <PublicIcon /> :<LockOutlinedIcon />}
+                    
+                </div>
+                <IconButton onClick={()=>{}} className={classes.joinButton}>
+                    <AddCircleOutlineOutlinedIcon />
+                </IconButton>
+            </div>
+
         </div>
     )
 }

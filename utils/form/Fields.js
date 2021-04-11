@@ -137,3 +137,9 @@ export const projectStep4=[
     {name:"materials",label:"المراجع والمصادر",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"steps",label:"مراحل البحث",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
+
+export const groupFields = [
+    {name:"title",label:"عنوان المجموعة",type:"text",defaultValue:"",className:""},
+    {name:"slogan",label:"شعار المجموعة",type:"text",defaultValue:"",className:""},
+    {name:"privacy",label:"خصوصية",type:"select",choices:[{label:"عام",value:"public"},{label:"سري",value:"private"}],defaultValue:"",className:""},  
+]

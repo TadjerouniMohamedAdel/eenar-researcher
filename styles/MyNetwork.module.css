@@ -40,6 +40,13 @@
     padding-right: 28px;
     padding-left: 28px;
 }
+.myNetworkContainer .content .mainSection  .filterSection .buttonSection{
+    display: flex;
+}
+.myNetworkContainer .content .mainSection  .filterSection .buttonSection .viewChoices{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 .myNetworkContainer .content .mainSection  .filterSection .groupedActions{
     display: flex;
     width: 45%;
@@ -56,6 +63,9 @@
 .myNetworkContainer .content .mainSection  .input > div{
     border-radius: 10px !important;
     border-color: transparent;
+}
+.scrollableDivResearchs{
+    width: 100%;
 }
 .myNetworkContainer .content .mainSection .select{
     width: 143px;

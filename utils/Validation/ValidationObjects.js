@@ -178,4 +178,8 @@ export const centerRegistrationStep2 = Yup.object().shape({
     password: Yup.string().required('يجب ملئ هذه المعلومة'),
     retypedPassword: Yup.string().oneOf([Yup.ref('password'), null], 'الكلمات السرية يجب ان تتطابق').required('يجب ملئ هذه المعلومة'),
 })
-
+export const groupSchema =  Yup.object().shape({
+    title: Yup.string().required('يجب ملئ هذه المعلومة'),
+    slogan: Yup.string().required('يجب ملئ هذه المعلومة'),
+    privacy: Yup.string().oneOf(["public","private"]).required('يجب ملئ هذه المعلومة'),
+})

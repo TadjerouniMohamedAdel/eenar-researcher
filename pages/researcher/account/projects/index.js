@@ -151,9 +151,9 @@ export default function index() {
                                 >   
                                 </Select>
                             </FormControl> */}
-                            <Button className={classes.searchButton} onClick={() => handleResearch()}>
+                            {/* <Button className={classes.searchButton} onClick={() => handleResearch()}>
                                 <SearchIcon className={`${classes.searchIcon} ${classes.right}`} />
-                            </Button>
+                            </Button> */}
                         </div>
                         <div className={classes.buttonSection}>
                             <Button className={classes.addButton} onClick={()=> setAddVisible(true)}>
