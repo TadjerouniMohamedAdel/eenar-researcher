@@ -1,6 +1,6 @@
 import { Button, IconButton } from '@material-ui/core'
-import PublicIcon from '@material-ui/icons/Public';
 import classes from './GroupCard.module.css'
+import PublicIcon from '@material-ui/icons/Public';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 export default function GroupCard({ group }) {

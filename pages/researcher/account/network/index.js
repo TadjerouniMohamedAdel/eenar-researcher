@@ -105,10 +105,10 @@ export default function index() {
               </div>
               <div className={classes.buttonSection}>
                 <div className={classes.viewChoices}>
-                  <IconButton onClick={() => { setView("list") }}>
+                  <IconButton onClick={() => { setView("list") }} disabled={view==="list"}>
                     <ViewListRoundedIcon />
                   </IconButton>
-                  <IconButton onClick={() => { setView("grid") }}>
+                  <IconButton onClick={() => { setView("grid") }} disabled={view==="grid"}>
                     <ViewComfyRoundedIcon />
                   </IconButton>
                 </div>
