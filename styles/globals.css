@@ -95,3 +95,6 @@ input{
 .unsetTransform{
     transform: unset !important;
 }
+ .MuiTabs-indicator{
+    height: 4px !important;
+}

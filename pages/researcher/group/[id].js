@@ -11,6 +11,7 @@ import MyNetwork from "../../../components/MyNetwork/MyNetwork";
 import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout";
 import classes from '../../../styles/GroupItem.module.css'
 import { dataarticles, datagroups, datausers } from "../../../utils/fixtures/DevData";
+import PostWriter from '../../../components/PostWriter/PostWriter';
 
 export async function getStaticPaths() {
   return {
@@ -36,7 +37,7 @@ export default function GroupItem() {
   return (
     <ResearcherLayout>
       <GroupBanner />
-      <MyHead title="الملف الشخصي  - السيرة الذاتية" />
+      <MyHead title=" المجموعات  - السيرة الذاتية" />
       <div className={classes.groupItemContainer}>
 
         <div className={classes.sideSection}>
@@ -45,7 +46,9 @@ export default function GroupItem() {
           <MyNetwork users={users} />
         </div>
 
-        <div className={classes.mainSection}></div>
+        <div className={classes.mainSection}>
+            <PostWriter />
+        </div>
         <div className={classes.sideSection}>
           <LearnNow />
           <LastArticles articles={articles} />
