@@ -15,6 +15,8 @@
     background-color: #073b4c;
     display: flex;
     width: 100%;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
     justify-content: center;
     align-items: center;
 }

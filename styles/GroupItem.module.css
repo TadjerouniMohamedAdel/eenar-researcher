@@ -1,0 +1,30 @@
+.groupItemContainer{
+    display: flex;
+    margin-top: 32px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.groupItemContainer .mainSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.groupItemContainer .sideSection{
+    display: flex;
+    flex-direction: column;
+}
+.groupItemContainer .mainSection > div{
+    width: 730px;
+}
+.groupItemContainer .sideSection > div{
+    width: 300px;
+}
+.groupItemContainer .sideSection:nth-child(3) > div{
+    width: 350px;
+}
+
+.moreCollectionIcon{
+    color: #3e3f5e;
+    font-size: 13px;
+}
