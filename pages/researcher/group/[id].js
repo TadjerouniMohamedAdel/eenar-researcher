@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import AboutMe from "../../../components/AboutMe/AboutMe";
+import AboutGroup from "../../../components/AboutGroup/AboutGroup";
 import BadgesCard from "../../../components/BadgesCard/BadgesCard";
 import GroupBanner from "../../../components/GroupBanner/GroupBanner";
 import LastArticles from "../../../components/LastArticles/LastArticles";
@@ -28,7 +28,7 @@ export async function getStaticProps(context) {
   }
 }
 export default function GroupItem() {
-  const [aboutme, setAboutMe] = useState([])
+  const [aboutGroup, setAboutGroup] = useState([])
   const [badges, setBadges] = useState([])
   const [users, setUsers] = useState(datausers)
   const [articles, setArticles] = useState(dataarticles)
@@ -41,7 +41,7 @@ export default function GroupItem() {
       <div className={classes.groupItemContainer}>
 
         <div className={classes.sideSection}>
-          <AboutMe aboutme={aboutme} />
+          <AboutGroup aboutGroup={aboutGroup} />
           <BadgesCard badges={badges} />
           <MyNetwork users={users} />
         </div>
