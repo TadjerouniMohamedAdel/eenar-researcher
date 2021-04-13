@@ -3,6 +3,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { IconButton } from '@material-ui/core';
+import Link from 'next/link'
 
 export default function GroupCardList({ group }) {
     const Circle = () => (
@@ -19,6 +20,8 @@ export default function GroupCardList({ group }) {
     )
 
     return (
+        <Link href="/researcher/group/423">
+
         <div className={classes.card}>
             <div className={classes.groupInfo}>
             <div className={classes.bondeau}></div>
@@ -66,5 +69,7 @@ export default function GroupCardList({ group }) {
             </div>
 
         </div>
+        </Link>
+
     )
 }

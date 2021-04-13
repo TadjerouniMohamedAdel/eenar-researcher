@@ -38,7 +38,7 @@ export default function GroupItem() {
   return (
     <ResearcherLayout>
       <GroupBanner />
-      <MyHead title=" المجموعات  - السيرة الذاتية" />
+      <MyHead title="المجموعات  - المجموعة الفلانية" />
       <div className={classes.groupItemContainer}>
 
         <div className={classes.sideSection}>
