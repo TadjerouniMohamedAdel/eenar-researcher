@@ -12,6 +12,7 @@ import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout
 import classes from '../../../styles/GroupItem.module.css'
 import { dataarticles, datagroups, datausers } from "../../../utils/fixtures/DevData";
 import PostWriter from '../../../components/PostWriter/PostWriter';
+import PostViewer from '../../../components/PostViewer/PostViewer';
 
 export async function getStaticPaths() {
   return {
@@ -48,6 +49,7 @@ export default function GroupItem() {
 
         <div className={classes.mainSection}>
             <PostWriter />
+            <PostViewer />
         </div>
         <div className={classes.sideSection}>
           <LearnNow />

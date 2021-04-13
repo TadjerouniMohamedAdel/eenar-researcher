@@ -19,7 +19,7 @@ export default function WorkInProgress(props) {
             <div id="anim-teamwork"></div>
             </div>
             <h2>
-                {`${props.menu} في قيد الإنجاز`}
+                {`${props.menu}  قيد الإنجاز`}
 
                 
             </h2>
