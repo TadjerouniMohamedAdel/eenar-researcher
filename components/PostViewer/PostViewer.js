@@ -35,6 +35,8 @@ export default function PostViewer() {
         </div>
     )
 
+
+    
     return (
         <div className={classes.postViewer}>
             <div className={classes.postHeader}>
