@@ -54,7 +54,7 @@
     top: -35px;
     left: 10px;
 }
-.postViewer .postHeader .postHeaderAction .actionPostIcon{
+.actionPostIcon{
     color:#dfdfe6;
 }
 
@@ -171,6 +171,7 @@
     width: 100%;
     position: relative;
     align-items: center;
+    background-color: #fcfcfd;
     justify-content: space-evenly;
 }
 .postViewer .postActions .postActionItem{
@@ -270,4 +271,126 @@
     height:40px;
     margin-left: 4px;
     margin-right: 4px;
+}
+
+.postViewer .postComments{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.postViewer .postComments .commentItem{
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    min-height: 50px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+}
+
+.postViewer .postComments .commentItem .rectangle{
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+}
+
+.postViewer .postComments .commentItem .commentInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.postViewer .postComments .commentItem .commentInfo .commentContent p{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.postViewer .postComments .commentItem .commentInfo .commentContent p span{
+    font-weight: bold;
+}
+.postViewer .postComments .commentItem .commentInfo .commentActions{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}
+.postViewer .postComments .commentItem .commentInfo .commentActions .likeComment{
+    margin-left: 22px !important;
+    margin-right: 22px !important;
+}
+.postViewer .postComments .commentItem .commentInfo .commentActions .likeComment > span{
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: right;
+    color: #afb0c0
+}
+.postViewer .postComments .commentItem .commentInfo .commentActions .commentFrom{
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: right;
+    color: #9192a6;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.postViewer .postComments .commentItem .commentInfo .commentActions .commentReactions{
+    display: flex;
+    align-items: center;
+}
+.postViewer .postComments .commentItem .commentInfo .commentActions .commentReactions span{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.postViewer .postComments .commentItem .commentInfo .commentActions .commentReactions .mostReactionsComment img{
+    width: 17px;
+    height: 17px;
+}
+.postViewer .postComments .loadMoreComment{
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--primary-font);
+
+}
+.postViewer .postComments .loadMoreComment .loadMoreButton > span{
+    font-family: var(--primary-font);
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.postViewer .postComments .loadMoreComment .loadMoreButton .moreCommentIcon{
+    color: var(--active-color);
+    font-size: 16px;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.moreCommentNumber{
+    color:var(--active-color)
 }

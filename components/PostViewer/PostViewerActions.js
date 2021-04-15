@@ -7,7 +7,7 @@ import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import PostViewerHeader from './PostViewerHeader';
 import PostViewerStats from './PostViewerStats';
 
-export default function PostViewerActions() {
+export default function PostViewerActions({activeComment,setActiveComment}) {
     return (
         <div className={classes.postActions}>
             <Button onClick={() => { }} className={`${classes.postActionItem} ${classes.likeButton}`}>
@@ -23,7 +23,7 @@ export default function PostViewerActions() {
                 <li><IconButton><img src="/images/reactions/angry.png" alt="" /></IconButton></li>
                 <li><IconButton><img src="/images/reactions/sad.png" alt="" /></IconButton></li>
             </ul>
-            <Button onClick={() => { }} className={classes.postActionItem}>
+            <Button onClick={() => { setActiveComment(!activeComment)}} className={`${classes.postActionItem} ${activeComment && classes.postActionActive}`}>
                 <MessageOutlinedIcon className={classes.buttonIcon} />
                 <span className={classes.buttonLabel}>تعليق</span>
             </Button>
