@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Button, IconButton } from '@material-ui/core';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import classes from './PostViewer.module.css'
@@ -5,8 +6,29 @@ import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutline
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import MessageOutlinedIcon from '@material-ui/icons/MessageOutlined';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+const options = [
+    'تعديل المنشور',
+    'حذف المنشور',
+    'وضع مميز',
+    'إبلاغ عن المنشور',
+    'إبلاغ عن الناشر'
+];
 
 export default function PostViewer() {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     const MemberCircle = () => (
         <div className={classes.memberCircleWhite}>
             <div className={classes.memberCircleBlue}></div>
@@ -29,9 +51,22 @@ export default function PostViewer() {
                     <IconButton onClick={() => { }} className={classes.saveButton}>
                         <BookmarkBorderOutlinedIcon />
                     </IconButton>
-                    <IconButton onClick={() => { }}>
+                    <IconButton onClick={handleClick} >
                         <MoreHorizOutlinedIcon className={classes.actionPostIcon} />
                     </IconButton>
+                    <Menu
+                        id="post-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={open}
+                        onClose={handleClose}
+                    >
+                        {options.map((option) => (
+                            <MenuItem key={option}  onClick={handleClose}>
+                                {option}
+                            </MenuItem>
+                        ))}
+                    </Menu>
                 </div>
             </div>
             <div className={classes.postContent}>
