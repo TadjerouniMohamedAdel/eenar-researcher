@@ -6,13 +6,13 @@ import PostViewerActions from './PostViewerActions';
 import PostViewerContent from './PostViewerContent';
 import PostViewerComments from './PostViewerComments';
 
-export default function PostViewer() {
+export default function PostViewer({post}) {
     const [activeComment,setActiveComment] = useState(false)
 
     return (
         <div className={classes.postViewer}>
             <PostViewerHeader />
-            <PostViewerContent />
+            <PostViewerContent post={post}/>
             <div className={classes.postSectionDivider}></div>
             <PostViewerStats />
             <div className={classes.postSectionDivider}></div>

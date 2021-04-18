@@ -104,6 +104,13 @@
 }
 .postViewer .postContent{
     min-height: 300px;
+    margin-top: 24px;
+    margin-bottom: 29px;
+    width: 100%;
+}
+.postViewer .postContent > div{
+    min-height: 300px;
+    width: 100% !important;
 }
 .postViewer .postSectionDivider{
     height: 1px;

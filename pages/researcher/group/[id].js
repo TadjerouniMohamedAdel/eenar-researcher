@@ -14,6 +14,11 @@ import { dataarticles, datagroups, datausers } from "../../../utils/fixtures/Dev
 import PostWriter from '../../../components/PostWriter/PostWriter';
 import PostViewer from '../../../components/PostViewer/PostViewer';
 
+const posts = [
+  {
+    link:"https://www.youtube.com/watch?v=R105J9XGKdM"
+  }
+]
 export async function getStaticPaths() {
   return {
     paths: [],
@@ -49,7 +54,7 @@ export default function GroupItem() {
 
         <div className={classes.mainSection}>
             <PostWriter />
-            <PostViewer />
+            <PostViewer post={posts[0]}/>
         </div>
         <div className={classes.sideSection}>
           <LearnNow />
