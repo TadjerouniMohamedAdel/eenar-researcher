@@ -20,10 +20,15 @@ export default function PostViewer() {
                 activeComment={activeComment}
                 setActiveComment={setActiveComment}
             />
-            <>
-                <div className={classes.postSectionDivider}></div>
-                <PostViewerComments />
-            </>
+            {
+                activeComment && (
+                    <>
+                        <div className={classes.postSectionDivider}></div>
+                        <PostViewerComments />
+                    </>
+
+                )
+            }
         </div>
     )
 }

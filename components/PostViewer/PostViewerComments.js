@@ -29,7 +29,46 @@ const comments = [
 
     }
 ]
+const likes = [
+    `NekoBebop`,
+    `Nick Grissom`,
+    `Sarah Diamond`,
+    `Jett Spiegel`,
+    `Marcus Jhonson`,
+    `Jane Rodgers`,
+]
 
+const angry = [
+    "Chester Sawayn",
+    "Marion Crona",
+    "Rose Murray",
+    "Jean Miller",
+    "Elvira Anderson"
+]
+const wows = [
+    "Joan McClure",
+    "Bryant Reilly",
+    "Donna Heaney",
+    "Annette Bruen",
+    "Marcus Lindgren"
+]
+
+const ReactionList = ({ list, title, icon }) => (
+    <div className={classes.mostReactionList}>
+        <div className={`${classes.mostReactionListPerson} ${classes.mostReactionListTitle}`}>
+            {icon}
+            <span>
+                {title}
+            </span>
+        </div>
+        {
+            list.map((reaction, index) => (
+                <div className={classes.mostReactionListPerson} key={`${reaction}-${index}`}>{reaction}</div>
+            ))
+        }
+        <div className={classes.morePerson}></div>
+    </div>
+)
 export default function PostViewerComments() {
 
 
@@ -52,9 +91,31 @@ export default function PostViewerComments() {
                                 <div className={classes.commentActions}>
                                     <div className={classes.commentReactions}>
                                         <div className={classes.mostReactionsComment}>
-                                            <img src="/images/reactions/angry.png" alt="" />
-                                            <img src="/images/reactions/wow.png" alt="" />
-                                            <img src="/images/reactions/like.png" alt="" />
+                                            <div className={classes.mostReactionElement}>
+                                                <img src="/images/reactions/angry.png" alt="" />
+                                                <ReactionList
+                                                    title="غاضب"
+                                                    list={angry}
+                                                    icon={<img src="/images/reactions/angry.png" alt="" />}
+                                                />
+                                            </div>
+                                            <div className={classes.mostReactionElement}>
+                                                <img src="/images/reactions/wow.png" alt="" />
+                                                <ReactionList
+                                                    title="مندهش"
+                                                    list={wows}
+                                                    icon={<img src="/images/reactions/wow.png" alt="" />}
+                                                />
+                                            </div>
+                                            <div className={classes.mostReactionElement}>
+                                                <img src="/images/reactions/like.png" alt="" />
+                                                <ReactionList
+                                                    title="إعجاب"
+                                                    list={likes}
+                                                    icon={<img src="/images/reactions/like.png" alt="" />}
+                                                />
+
+                                            </div>
                                         </div>
                                         <span>{comment.reactions.number}</span>
                                     </div>
