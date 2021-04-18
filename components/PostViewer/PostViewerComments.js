@@ -1,4 +1,4 @@
-import { Button, IconButton } from '@material-ui/core'
+import { Button, IconButton, TextField } from '@material-ui/core'
 import classes from './PostViewer.module.css'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import AddIcon from '@material-ui/icons/Add';
@@ -85,7 +85,15 @@ export default function PostViewerComments() {
             </div>
             <div className={classes.postSectionDivider}></div>
             <div className={classes.writeCommnt}>
-
+                <div className={classes.rectangle}></div>
+                <form action="">
+                    <TextField
+                        variant="outlined"
+                        className={classes.writeCommntInput}
+                        label="ردك"
+                        multiline
+                    />
+                </form>
             </div>
         </div>
     )

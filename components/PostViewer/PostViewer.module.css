@@ -391,6 +391,30 @@
     margin-right: 2px;
     margin-left: 2px;
 }
-.moreCommentNumber{
+.postViewer .postComments .loadMoreComment .loadMoreButton .moreCommentNumber{
     color:var(--active-color)
+}
+
+.postViewer .postComments .writeCommnt{
+    min-height: 100px;
+    width: 100%;
+    display: flex;
+    padding-left: 27px;
+    padding-right: 27px;
+    align-items: center;
+}
+.postViewer .postComments .writeCommnt  form{
+    width: 100%
+}
+.postViewer .postComments .writeCommnt .writeCommntInput{
+    border-radius: 20px !important;
+    width: 100% !important;
+    border: solid 1px #dedeea;
+    margin-left: 8px;
+    margin-right: 8px;
+    background-color: #ffffff;
+}
+.postViewer .postComments .writeCommnt .writeCommntInput > div{
+    border-radius: 20px !important;
+    border-color: transparent !important;
 }
