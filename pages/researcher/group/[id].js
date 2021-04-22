@@ -55,6 +55,8 @@ export default function GroupItem() {
         <div className={classes.mainSection}>
             <PostWriter />
             <PostViewer post={posts[0]}/>
+            <PostViewer />
+            <PostViewer />
         </div>
         <div className={classes.sideSection}>
           <LearnNow />

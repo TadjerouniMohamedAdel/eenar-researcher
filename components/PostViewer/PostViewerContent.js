@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 
 
 export default function PostViewerContent({ post }) {
-    const [isVideo, setIsVideo] = useState(ReactPlayer.canPlay(post.link))
+    const [isVideo, setIsVideo] = useState(ReactPlayer.canPlay(post?.link))
     return (
         <div className={classes.postContent}>
             {
