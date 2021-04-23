@@ -104,11 +104,27 @@
 }
 .postViewer .postContent{
     min-height: 300px;
+    display: flex;
+    flex-direction: column;
     margin-top: 24px;
     margin-bottom: 29px;
     width: 100%;
 }
-.postViewer .postContent > div{
+.postViewer .postContent .postContentText{
+    width: 100%;
+    padding-left: 27px;
+    padding-right: 27px;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.postViewer .postContent .postPlayer > div{
     min-height: 300px;
     width: 100% !important;
 }

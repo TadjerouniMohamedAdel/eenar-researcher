@@ -16,8 +16,9 @@ import PostViewer from '../../../components/PostViewer/PostViewer';
 
 const posts = [
   {
-    link:"https://www.youtube.com/watch?v=R105J9XGKdM"
-  }
+    content:"https://www.youtube.com/watch?v=E6Coo3YF68o لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على .",
+    keywords:[],
+  },
 ]
 export async function getStaticPaths() {
   return {
@@ -55,8 +56,6 @@ export default function GroupItem() {
         <div className={classes.mainSection}>
             <PostWriter />
             <PostViewer post={posts[0]}/>
-            <PostViewer />
-            <PostViewer />
         </div>
         <div className={classes.sideSection}>
           <LearnNow />
