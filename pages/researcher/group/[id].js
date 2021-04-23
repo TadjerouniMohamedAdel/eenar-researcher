@@ -17,7 +17,7 @@ import PostViewer from '../../../components/PostViewer/PostViewer';
 const posts = [
   {
     content:"https://www.youtube.com/watch?v=E6Coo3YF68o لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على .",
-    keywords:[],
+    keywords:["keyword 1","keyword 2","keyword 3","keyword 4"],
   },
 ]
 export async function getStaticPaths() {

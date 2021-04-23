@@ -107,7 +107,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 24px;
-    margin-bottom: 29px;
     width: 100%;
 }
 .postViewer .postContent .postContentText{
@@ -124,6 +123,32 @@
     letter-spacing: normal;
     text-align: right;
     color: #3e3f5e;
+}
+.postViewer .postContent .postContentKeywords{
+    display: flex;
+    min-height: 81px;
+    flex-direction: row;
+    align-items: center;
+}
+.postViewer .postContent .postContentKeywords .keywordItem{
+    width: auto;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 12px;
+    border-radius: 12px;
+    background-color: #44344f;
+    padding: 5.6px 11.5px 3.4px 14.5px;
+    font-family: var(--primary-font);
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3;
+    letter-spacing: -0.1px;
+    text-align: right;
+    color: #ffffff;
 }
 .postViewer .postContent .postPlayer > div{
     min-height: 300px;
