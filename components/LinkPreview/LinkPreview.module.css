@@ -1,0 +1,59 @@
+.linkPreviewCard{
+    width: 92%;
+    height: 180px;
+    border-radius: 8px;
+    box-shadow: 3px 5.2px 40px 0 rgba(94, 92, 154, 0.1);
+    background-color: #ffffff;
+    display: flex;
+}
+.linkPreviewCard .linkPreviewImage{
+    width: 180px;
+    height: 180px;
+    background-color: var(--primary-color);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.linkPreviewCard .linkContent{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 180px);
+    align-items: center;
+    justify-content: center;
+}
+.linkPreviewCard .linkContent h2{
+    width: 292px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.linkPreviewCard .linkContent p {
+    width: 292px;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    text-align: right;
+    letter-spacing: normal;
+    color: #9192a6;
+}
+.linkPreviewCard .linkContent span{
+    width: 292px;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: right;
+    color: #afb0c0;
+    margin-top: 16px;
+}

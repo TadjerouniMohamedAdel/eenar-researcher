@@ -103,7 +103,7 @@
     color: #3e3f5e;
 }
 .postViewer .postContent{
-    min-height: 300px;
+    /* min-height: 300px; */
     display: flex;
     flex-direction: column;
     margin-top: 24px;
@@ -153,6 +153,12 @@
 .postViewer .postContent .postPlayer > div{
     min-height: 300px;
     width: 100% !important;
+}
+.linkPreviewContainer{
+    width:100%;
+    display: flex;
+    flex: row;
+    justify-content: center;
 }
 .postViewer .postSectionDivider{
     height: 1px;
