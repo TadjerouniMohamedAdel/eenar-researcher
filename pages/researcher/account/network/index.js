@@ -47,9 +47,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GolfCourseSharp } from '@material-ui/icons';
 import GroupCardList from '../../../../components/GroupCardList/GroupCardList';
 import AddElement from '../../../../components/CrudModal/AddElement';
+import EditElement from '../../../../components/CrudModal/EditElement';
+import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import { groupSchema } from '../../../../utils/Validation/ValidationObjects';
 import Modal from '../../../../components/Modal/Modal';
 import { groupFields } from '../../../../utils/form/Fields';
+import { useSelector } from 'react-redux'
+import useGetList from '../../../../utils/hooks/useGetList';
+import useAddElement from '../../../../utils/hooks/useAddElement';
 
 
 
@@ -60,25 +65,45 @@ export const getStaticProps = async ({ locale }) => ({
 })
 
 export default function index() {
+  const user = useSelector((state) => state.user)
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
-  const [groups, setGroups] = useState([])
   const [articles, setArticles] = useState(dataarticles);
   const [sideGroups, setSideGroups] = useState(datagroups);
   const [hasMore, setHasMore] = useState(true)
   const [view, setView] = useState("grid")
   const [addVisible, setAddVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [search, setSearch] = useState("")
+  const [groups, setGroups] = useState([])
+  const { isLoading, data } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
+  const { mutate: addElement, status: addElementStatus } = useAddElement("groups", `/groups/add`, limit, offset, search, user.researchers.id) 
 
 
-
-
-  const getNextData = () => {
-    if (groups.length < groupsHardCoded.length * 2) setGroups([...groups, ...groupsHardCoded])
-  }
+ 
 
   useEffect(() => {
-    getNextData()
-  }, [])
+    if (data) {
+      setGroups([...groups, ...data.groups])
+      data.groups.length === 0 && setHasMore(false)
+    }
+  }, [data])
+
+  useEffect(() => {
+      setOffset(0)
+  }, [view])
+
+  useEffect(() => {
+    if (addElementStatus === "success") {
+        setAddVisible(false)
+    }
+}, [addElementStatus])
+
+  const handleAddItem = (data) => {
+      data.createdBy = user.id
+      addElement(data)
+  }
+
 
   return (
     <ResearcherAccountLayout>
@@ -89,9 +114,8 @@ export default function index() {
             title="مجموعة"
             validationSchema={groupSchema}
             fields={groupFields}
-            handleSubmit={() => { setAddVisible(false)}}
+            handleSubmit={handleAddItem}
           />
-
         </Modal>
         <div className={classes.content}>
           <div className={classes.mainSection}>
@@ -105,10 +129,10 @@ export default function index() {
               </div>
               <div className={classes.buttonSection}>
                 <div className={classes.viewChoices}>
-                  <IconButton onClick={() => { setView("list") }} disabled={view==="list"}>
+                  <IconButton onClick={() => { setView("list") }} disabled={view === "list"}>
                     <ViewListRoundedIcon />
                   </IconButton>
-                  <IconButton onClick={() => { setView("grid") }} disabled={view==="grid"}>
+                  <IconButton onClick={() => { setView("grid") }} disabled={view === "grid"}>
                     <ViewComfyRoundedIcon />
                   </IconButton>
                 </div>
@@ -127,7 +151,7 @@ export default function index() {
                   <InfiniteScroll
                     dataLength={groups.length}
                     className={classes.groupsContainer}
-                    next={getNextData}
+                    next={()=> setOffset(offset+10)}
                     inverse={false}
                     hasMore={hasMore}
                     loader={<GroupCardSkeleton />}
@@ -141,7 +165,7 @@ export default function index() {
               ) : (
                 <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
                   {
-                    groups.map((group, index) => (
+                    data.groups.map((group, index) => (
                       <GroupCardList group={group} key={`group-${index}`} />
                     ))
                   }

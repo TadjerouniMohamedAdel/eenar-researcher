@@ -29,23 +29,23 @@ export default function GroupCard({ group }) {
                     </div>
                     <Circle />
                 </div>
-                <h2>{group.name}</h2>
-                <h3>{group.title}</h3>
+                <h2>{group.title}</h2>
+                <h3>{group.slogan}</h3>
                 <div className={classes.stats}>
                     <div className={classes.statItem}>
-                        <div className={classes.statValue}>{group.stats.views}</div>
+                        <div className={classes.statValue}>7.3K</div>
                         <div className={classes.statLabel}>الزيارات</div>
                     </div>
 
                     <div className={classes.divider}></div>
 
                     <div className={classes.statItem}>
-                        <div className={classes.statValue}>{group.stats.posts}</div>
+                        <div className={classes.statValue}>123</div>
                         <div className={classes.statLabel}>المنشورات</div>
                     </div>
                     <div className={classes.divider}></div>
                     <div className={classes.statItem}>
-                        <div className={classes.statValue}>{group.stats.members}</div>
+                        <div className={classes.statValue}>5K</div>
                         <div className={classes.statLabel}>الأعضاء</div>
                     </div>
                 </div>
