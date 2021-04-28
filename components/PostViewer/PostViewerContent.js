@@ -15,14 +15,22 @@ export default function PostViewerContent({ post }) {
     return (
         <div className={classes.postContent}>
             <div className={classes.postContentText}>{post.content}</div>
-            {isVideo ? (
+            {post.images.length > 0 ?
+            <div className={classes.postContentImages}>
+                {post.images.slice(0,5).map((img,index)=>(
+                    <div className={`${post.images.length === 1 ? classes.fullImg :index <= 1 ?classes.bigImg:classes.smallImg} ${index ===4 && classes.lastImg}`}>
+                        { index === 4 && <div className={classes.otherImgNumber}>{post.images.length - 5}+</div>}
+                    </div>
+                ))}
+            </div>
+            :isVideo ? (
                 <div className={classes.postPlayer}>
                     <ReactPlayer url={firstLink} controls={true} />
                 </div>
 
             ) : firstLink!=="" &&(
                 <div className={classes.linkPreviewContainer}>
-                    <LinkPreview />
+                    <LinkPreview link={firstLink}/>
                 </div>
 
             )}

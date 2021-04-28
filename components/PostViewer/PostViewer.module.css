@@ -154,6 +154,52 @@
     min-height: 300px;
     width: 100% !important;
 }
+
+.postViewer .postContent .postContentImages{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.postViewer .postContent .postContentImages .fullImg{
+    width: 90%;
+    margin: 6px;
+    height: 350px;
+    border-radius: 12.3px;
+    background-color: var(--primary-color);
+}
+.postViewer .postContent .postContentImages .bigImg{
+    width: 45%;
+    margin: 6px;
+    height: 350px;
+    border-radius: 12.3px;
+    background-color: var(--primary-color);
+}
+.postViewer .postContent .postContentImages .smallImg{
+    width: 30%;
+    height: 250px;
+    margin: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background-color: var(--primary-color);
+}
+.postViewer .postContent .postContentImages .smallImg.lastImg{
+    background-color: var(--active-color);
+}
+.postViewer .postContent .postContentImages .smallImg .otherImgNumber{
+    font-family: var(--primary-font);
+    font-size: 27px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
 .linkPreviewContainer{
     width:100%;
     display: flex;
