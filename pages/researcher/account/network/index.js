@@ -55,6 +55,7 @@ import { groupFields } from '../../../../utils/form/Fields';
 import { useSelector } from 'react-redux'
 import useGetList from '../../../../utils/hooks/useGetList';
 import useAddElement from '../../../../utils/hooks/useAddElement';
+import Pagination from '../../../../components/Pagination/Pagination';
 
 
 
@@ -77,31 +78,35 @@ export default function index() {
   const [search, setSearch] = useState("")
   const [groups, setGroups] = useState([])
   const { isLoading, data } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
-  const { mutate: addElement, status: addElementStatus } = useAddElement("groups", `/groups/add`, limit, offset, search, user.researchers.id) 
+  const { mutate: addElement, status: addElementStatus } = useAddElement("groups", `/groups/add`, limit, offset, search, user.researchers.id)
+  const [page, setPage] = useState(1)
 
 
- 
 
   useEffect(() => {
-    if (data) {
+    if (data && view=="grid") {
       setGroups([...groups, ...data.groups])
       data.groups.length === 0 && setHasMore(false)
     }
   }, [data])
 
   useEffect(() => {
-      setOffset(0)
+    setOffset(0)
   }, [view])
 
   useEffect(() => {
     if (addElementStatus === "success") {
-        setAddVisible(false)
+      setAddVisible(false)
     }
-}, [addElementStatus])
+  }, [addElementStatus])
+
+  useEffect(() => {
+    setPage(offset / limit + 1)
+  }, [offset]);
 
   const handleAddItem = (data) => {
-      data.createdBy = user.id
-      addElement(data)
+    data.createdBy = user.id
+    addElement(data)
   }
 
 
@@ -128,7 +133,7 @@ export default function index() {
                 />
               </div>
               <div className={classes.buttonSection}>
-                <div className={classes.viewChoices}>
+                <div className={classes.viewChoices} id="scroll">
                   <IconButton onClick={() => { setView("list") }} disabled={view === "list"}>
                     <ViewListRoundedIcon />
                   </IconButton>
@@ -151,7 +156,7 @@ export default function index() {
                   <InfiniteScroll
                     dataLength={groups.length}
                     className={classes.groupsContainer}
-                    next={()=> setOffset(offset+10)}
+                    next={() => setOffset(offset + 10)}
                     inverse={false}
                     hasMore={hasMore}
                     loader={<GroupCardSkeleton />}
@@ -165,10 +170,37 @@ export default function index() {
               ) : (
                 <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
                   {
-                    data.groups.map((group, index) => (
-                      <GroupCardList group={group} key={`group-${index}`} />
-                    ))
+                    !isLoading &&
+                    (
+                      <>
+                      {
+                        data.groups.map((group, index) => (
+                          <GroupCardList group={group} key={`group-${index}`} />
+                        ))
+                      }
+                       {data && data.maxPages > 1 && (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                  >
+                    <Pagination
+                      active={page}
+                      limit={limit}
+                      pages={data.maxPages}
+                      onNext={() => { setOffset(offset + 10) }}
+                      onPrev={() => { setOffset(offset - 10) }}
+                      onNum={setOffset}
+                    />
+
+                  </div>
+                  )}
+                      </>
+                    )
                   }
+
                 </div>
               )
             }
