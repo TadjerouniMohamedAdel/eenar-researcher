@@ -327,6 +327,8 @@
     align-items: center;
     background-color: #fcfcfd;
     justify-content: space-evenly;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 .postViewer .postActions .postActionItem{
     transition: 0.5s;
