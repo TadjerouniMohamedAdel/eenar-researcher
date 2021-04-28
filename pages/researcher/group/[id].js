@@ -13,7 +13,7 @@ import classes from '../../../styles/GroupItem.module.css'
 import { dataarticles, datagroups, datausers } from "../../../utils/fixtures/DevData";
 import PostWriter from '../../../components/PostWriter/PostWriter';
 import PostViewer from '../../../components/PostViewer/PostViewer';
-
+import axios from 'axios'
 const posts = [
   {
     images:[],
@@ -33,20 +33,53 @@ const posts = [
 
 ]
 export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking'
-  }
+  let paths = []
+  await  axios({
+              method: "get",
+              url: `${process.env.NEXT_PUBLIC_API_URL}/groups/all`,
+      })
+      .then((response) => {
+         paths = response.data.map((item)=>{
+              return {
+                  params:{id:item.id.toString()}
+              }
+          })
+      })
+      .catch((error) => console.log(error));
+  
+  
+    return {
+      paths,
+      fallback: 'blocking' // See the "fallback" section below
+    };
 }
 
+
 export async function getStaticProps(context) {
+  let group = null
+  console.log(context)
+  await axios({
+        method: "get",
+        url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params.id}`,
+      })
+        .then((response) => {
+            group = response.data
+        })
+        .catch((error) => console.log(error));
+  return {
+    props: {
+      group,
+      ...await serverSideTranslations(context.locale, ["sidebar"]),
+    }, 
+  }
   return {
     props: {
       ...await serverSideTranslations(context.locale, ["sidebar"]),
     },
   }
 }
-export default function GroupItem() {
+export default function GroupItem({group}) {
+  console.log(group)
   const [aboutGroup, setAboutGroup] = useState([])
   const [badges, setBadges] = useState([])
   const [users, setUsers] = useState(datausers)
@@ -55,7 +88,7 @@ export default function GroupItem() {
 
   return (
     <ResearcherLayout>
-      <GroupBanner />
+      <GroupBanner group={group}/>
       <MyHead title="المجموعات  - المجموعة الفلانية" />
       <div className={classes.groupItemContainer}>
 

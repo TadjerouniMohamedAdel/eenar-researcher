@@ -19,7 +19,7 @@ export default function GroupCard({ group }) {
     )
 
     return (
-        <Link href="/researcher/group/24234">
+        <Link href={`/researcher/group/${group.id}`}>
 
             <div className={classes.groupCard}>
                 <div className={classes.bondeau}></div>
@@ -33,19 +33,19 @@ export default function GroupCard({ group }) {
                 <h3>{group.slogan}</h3>
                 <div className={classes.stats}>
                     <div className={classes.statItem}>
-                        <div className={classes.statValue}>7.3K</div>
+                        <div className={classes.statValue}>0</div>
                         <div className={classes.statLabel}>الزيارات</div>
                     </div>
 
                     <div className={classes.divider}></div>
 
                     <div className={classes.statItem}>
-                        <div className={classes.statValue}>123</div>
+                        <div className={classes.statValue}>0</div>
                         <div className={classes.statLabel}>المنشورات</div>
                     </div>
                     <div className={classes.divider}></div>
                     <div className={classes.statItem}>
-                        <div className={classes.statValue}>5K</div>
+                        <div className={classes.statValue}>0</div>
                         <div className={classes.statLabel}>الأعضاء</div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ const Rectangles = () => (
     </div>
 )
 
-export default function GroupBanner() {
+export default function GroupBanner({group}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -33,37 +33,37 @@ export default function GroupBanner() {
                 <Rectangles />
                 <div className={classes.infoRow}>
                     <div className={classes.info}>
-                        <h1>المجموعة الفلانية</h1>
-                        <h3>أهلا بالباحثين في المجال الفلاني</h3>
+                        <h1>{group.title}</h1>
+                        <h3>{group.slogan}</h3>
                     </div>
                     <div className={classes.statsAndActions}>
 
                         <div className={classes.stats}>
                             <div className={classes.statItem}>
                                 <div className={classes.statValue}>
-                                    {/* {group.privacy === "public" ? <PublicIcon /> : <LockOutlinedIcon />} */}
-                                    <PublicIcon className={classes.statTypeIcon} />
+                                    {group.privacy === "public" ? <PublicIcon className={classes.statTypeIcon} /> : <LockOutlinedIcon className={classes.statTypeIcon} />}
+                                    {/* <PublicIcon className={classes.statTypeIcon} /> */}
                                 </div>
                                 <div className={classes.statLabel}>
-                                    {/* {group.privacy === "public" ? <PublicIcon /> : <LockOutlinedIcon />} */}
-                                    عام
+                                    {group.privacy === "public" ? "عام" : "سري" }
+                                    
                                 </div>
                             </div>
                             <div className={classes.divider}></div>
                             <div className={classes.statItem}>
-                                <div className={classes.statValue}>123</div>
+                                <div className={classes.statValue}>0</div>
                                 <div className={classes.statLabel}>الزيارات</div>
                             </div>
 
                             <div className={classes.divider}></div>
 
                             <div className={classes.statItem}>
-                                <div className={classes.statValue}>54</div>
+                                <div className={classes.statValue}>0</div>
                                 <div className={classes.statLabel}>المنشورات</div>
                             </div>
                             <div className={classes.divider}></div>
                             <div className={classes.statItem}>
-                                <div className={classes.statValue}>152</div>
+                                <div className={classes.statValue}>0</div>
                                 <div className={classes.statLabel}>الأعضاء</div>
                             </div>
                         </div>

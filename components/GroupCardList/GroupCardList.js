@@ -20,7 +20,7 @@ export default function GroupCardList({ group }) {
     )
 
     return (
-        <Link href="/researcher/group/423">
+        <Link href={`/researcher/group/${group.id}`}>
 
         <div className={classes.card}>
             <div className={classes.groupInfo}>
@@ -34,19 +34,19 @@ export default function GroupCardList({ group }) {
             </div>
             <div className={classes.groupStats}>
                 <div className={classes.statItem}>
-                    <div className={classes.statValue}>7.3K</div>
+                    <div className={classes.statValue}>0</div>
                     <div className={classes.statLabel}>الزيارات</div>
                 </div>
 
                 <div className={classes.divider}></div>
 
                 <div className={classes.statItem}>
-                    <div className={classes.statValue}>123</div>
+                    <div className={classes.statValue}>0</div>
                     <div className={classes.statLabel}>المنشورات</div>
                 </div>
                 <div className={classes.divider}></div>
                 <div className={classes.statItem}>
-                    <div className={classes.statValue}>5K</div>
+                    <div className={classes.statValue}>0</div>
                     <div className={classes.statLabel}>الأعضاء</div>
                 </div>
             </div>
