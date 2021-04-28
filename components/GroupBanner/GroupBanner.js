@@ -76,6 +76,7 @@ export default function GroupBanner() {
                             </IconButton>
                             <Menu
                                 id="group-menu"
+                                className={classes.groupMenu}
                                 anchorEl={anchorEl}
                                 keepMounted
                                 open={open}
@@ -84,7 +85,7 @@ export default function GroupBanner() {
                                 <MenuItem  onClick={handleClose}>
                                     تعديل المنشور
                                     </MenuItem>
-                                <MenuItem  onClick={handleClose}>
+                                <MenuItem  onClick={handleClose} className={classes.deleteGroup}>
                                     حذف المنشور
                                     </MenuItem>
 

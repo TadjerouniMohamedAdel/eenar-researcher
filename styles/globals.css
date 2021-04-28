@@ -107,6 +107,12 @@ input{
     background-color: #ffffff;
 
 }
+#group-menu .MuiMenu-paper{
+    margin-top: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.12);
+    background-color: #ffffff;
+}
 #post-menu .MuiMenu-paper .MuiMenuItem-root{
     font-family: var(--primary-font);
     font-size: 10px !important;
