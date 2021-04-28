@@ -13,7 +13,20 @@
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
-
+.groupBanner .editGroupImage{
+    background-color: var(--active-color);
+    color: #ffffff;
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 35px;
+    left: 10px;
+    z-index: 10;
+}
 .groupBanner .rectangleWhite{
     width: 164px;
     height: 164px;
