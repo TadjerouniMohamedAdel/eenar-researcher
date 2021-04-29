@@ -17,7 +17,7 @@ const Rectangles = () => (
     </div>
 )
 
-export default function GroupBanner({group,OpenEditGroup,editGroup,editGroupStatus}) {
+export default function GroupBanner({group,openEditGroup,editGroup,editGroupStatus,openDeleteGroup}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isLoadingImage,setIsLoadingImage] = useState(false)
     const open = Boolean(anchorEl);
@@ -137,10 +137,10 @@ export default function GroupBanner({group,OpenEditGroup,editGroup,editGroupStat
                                 open={open}
                                 onClose={handleClose}
                             >
-                                <MenuItem  onClick={()=>{OpenEditGroup(true);handleClose()}}>
+                                <MenuItem  onClick={()=>{openEditGroup(true);handleClose()}}>
                                     تعديل المنشور
                                     </MenuItem>
-                                <MenuItem  onClick={()=>{handleClose()}} className={classes.deleteGroup}>
+                                <MenuItem  onClick={()=>{openDeleteGroup(true);handleClose()}} className={classes.deleteGroup}>
                                     حذف المنشور
                                     </MenuItem>
 

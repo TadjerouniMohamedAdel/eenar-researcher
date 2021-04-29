@@ -19,6 +19,8 @@ import { groupSchema } from '../../../utils/Validation/ValidationObjects';
 import { groupFields } from '../../../utils/form/Fields';
 import EditElement from '../../../components/CrudModal/EditElement';
 import { useMutation, useQueryClient } from 'react-query'
+import DeleteElement from '../../../components/CrudModal/DeleteElement';
+import { useRouter } from 'next/router'
 const posts = [
   {
     images: [],
@@ -84,6 +86,7 @@ export async function getStaticProps(context) {
   }
 }
 export default function GroupItem({ group:groupProp }) {
+  const router = useRouter()
   const queryClient = useQueryClient()
   const [group,setGroup] = useState(groupProp)
   const [aboutGroup, setAboutGroup] = useState([])
@@ -92,8 +95,18 @@ export default function GroupItem({ group:groupProp }) {
   const [articles, setArticles] = useState(dataarticles)
   const [groups, setGroups] = useState(datagroups)
   const [editVisible, setEditVisible] = useState(false)
+  const [deleteVisible,setDeleteVisible] = useState(false)
   const { data,mutate: editGroup, status: editGroupStatus } = useMutation(
     (values) => axios.put(`${process.env.NEXT_PUBLIC_API_URL}/groups/edit`, values).then((res) => res.data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("groups")
+      }
+    }
+
+  )
+  const {mutate: deleteGroup, status: deleteGroupStatus } = useMutation(
+    (values) => axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/groups/delete?id=${group.id}`, values).then((res) => res.data),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("groups")
@@ -107,15 +120,25 @@ export default function GroupItem({ group:groupProp }) {
     editGroup(data)
   }
 
+  const handleDeleteItem = ()=>{
+    deleteGroup() 
+  }
   useEffect(() => {
     if(editGroupStatus === "success"){
       setEditVisible(false)
       setGroup(data)
     }
     }, [editGroupStatus])
+
+    useEffect(() => {
+      if(deleteGroupStatus === "success"){
+        setDeleteVisible(false)
+        router.push("/researcher/account/network")
+      }
+      }, [deleteGroupStatus])
   return (
     <ResearcherLayout>
-      <GroupBanner group={group} editGroupStatus={editGroupStatus} OpenEditGroup={setEditVisible} editGroup={editGroup}/>
+      <GroupBanner group={group} openDeleteGroup={setDeleteVisible} editGroupStatus={editGroupStatus} openEditGroup={setEditVisible} editGroup={editGroup}/>
       <MyHead title="المجموعات  - المجموعة الفلانية" />
       <div className={classes.groupItemContainer}>
         <Modal visible={editVisible} setVisible={setEditVisible}>
@@ -125,6 +148,15 @@ export default function GroupItem({ group:groupProp }) {
             validationSchema={groupSchema}
             fields={groupFields}
             handleSubmit={handleEditItem}
+          />
+        </Modal>
+        <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
+          <DeleteElement
+            item={group}
+            title="مجموعة"
+            validationSchema={groupSchema}
+            fields={groupFields}
+            handleSubmit={handleDeleteItem}
           />
         </Modal>
         <div className={classes.sideSection}>
