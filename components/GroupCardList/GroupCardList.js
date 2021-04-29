@@ -25,7 +25,7 @@ export default function GroupCardList({ group }) {
         <div className={classes.card}>
             <div className={classes.groupInfo}>
             <div className={classes.bondeau}></div>
-            <Circle />
+            {group.image ? <div  className={classes.circleWhite}><img src={group.image} className={classes.circleBlue}/></div> :<Circle />}
                 <div className={classes.info}>
                 <h2>{group.title}</h2>
                 <h3>{group.slogan}</h3>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import AboutGroup from "../../../components/AboutGroup/AboutGroup";
 import BadgesCard from "../../../components/BadgesCard/BadgesCard";
@@ -14,44 +14,49 @@ import { dataarticles, datagroups, datausers } from "../../../utils/fixtures/Dev
 import PostWriter from '../../../components/PostWriter/PostWriter';
 import PostViewer from '../../../components/PostViewer/PostViewer';
 import axios from 'axios'
+import Modal from '../../../components/Modal/Modal';
+import { groupSchema } from '../../../utils/Validation/ValidationObjects';
+import { groupFields } from '../../../utils/form/Fields';
+import EditElement from '../../../components/CrudModal/EditElement';
+import { useMutation, useQueryClient } from 'react-query'
 const posts = [
   {
-    images:[],
-    content:"https://www.youtube.com/watch?v=E-znxPIeTOE لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على .",
-    keywords:["keyword 1","keyword 2","keyword 3","keyword 4"],
+    images: [],
+    content: "https://www.youtube.com/watch?v=E-znxPIeTOE لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على .",
+    keywords: ["keyword 1", "keyword 2", "keyword 3", "keyword 4"],
   },
   {
-    images:[],
-    content:"لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على . https://app.zeplin.io/project/5fcfab653cb9004a0bbf267e/screen/5fe5211dc4783e9cf2e1e678",
-    keywords:["keyword 1","keyword 2","keyword 3","keyword 4"],
+    images: [],
+    content: "لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على . https://app.zeplin.io/project/5fcfab653cb9004a0bbf267e/screen/5fe5211dc4783e9cf2e1e678",
+    keywords: ["keyword 1", "keyword 2", "keyword 3", "keyword 4"],
   },
   {
-    images:["sdfsdsd","sdfsdsd","sdfsdsd","sdfsdsd","sdfsdsd","sdfsdsd","sdfsdsd"],
-    content:"لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على .",
-    keywords:["keyword 1","keyword 2","keyword 3","keyword 4"],
+    images: ["sdfsdsd", "sdfsdsd", "sdfsdsd", "sdfsdsd", "sdfsdsd", "sdfsdsd", "sdfsdsd"],
+    content: "لوريم ايبسوم هو @نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على .",
+    keywords: ["keyword 1", "keyword 2", "keyword 3", "keyword 4"],
   },
 
 ]
 export async function getStaticPaths() {
   let paths = []
-  await  axios({
-              method: "get",
-              url: `${process.env.NEXT_PUBLIC_API_URL}/groups/all`,
+  await axios({
+    method: "get",
+    url: `${process.env.NEXT_PUBLIC_API_URL}/groups/all`,
+  })
+    .then((response) => {
+      paths = response.data.map((item) => {
+        return {
+          params: { id: item.id.toString() }
+        }
       })
-      .then((response) => {
-         paths = response.data.map((item)=>{
-              return {
-                  params:{id:item.id.toString()}
-              }
-          })
-      })
-      .catch((error) => console.log(error));
-  
-  
-    return {
-      paths,
-      fallback: 'blocking' // See the "fallback" section below
-    };
+    })
+    .catch((error) => console.log(error));
+
+
+  return {
+    paths,
+    fallback: 'blocking' // See the "fallback" section below
+  };
 }
 
 
@@ -59,18 +64,18 @@ export async function getStaticProps(context) {
   let group = null
   console.log(context)
   await axios({
-        method: "get",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params.id}`,
-      })
-        .then((response) => {
-            group = response.data
-        })
-        .catch((error) => console.log(error));
+    method: "get",
+    url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params.id}`,
+  })
+    .then((response) => {
+      group = response.data
+    })
+    .catch((error) => console.log(error));
   return {
     props: {
       group,
       ...await serverSideTranslations(context.locale, ["sidebar"]),
-    }, 
+    },
   }
   return {
     props: {
@@ -78,20 +83,50 @@ export async function getStaticProps(context) {
     },
   }
 }
-export default function GroupItem({group}) {
-  console.log(group)
+export default function GroupItem({ group:groupProp }) {
+  const queryClient = useQueryClient()
+  const [group,setGroup] = useState(groupProp)
   const [aboutGroup, setAboutGroup] = useState([])
   const [badges, setBadges] = useState([])
   const [users, setUsers] = useState(datausers)
   const [articles, setArticles] = useState(dataarticles)
   const [groups, setGroups] = useState(datagroups)
+  const [editVisible, setEditVisible] = useState(false)
+  const { data,mutate: editGroup, status: editGroupStatus } = useMutation(
+    (values) => axios.put(`${process.env.NEXT_PUBLIC_API_URL}/groups/edit`, values).then((res) => res.data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("groups")
+      }
+    }
 
+  )
+
+  const handleEditItem = (data) => {
+    console.log("edit group",data)
+    editGroup(data)
+  }
+
+  useEffect(() => {
+    if(editGroupStatus === "success"){
+      setEditVisible(false)
+      setGroup(data)
+    }
+    }, [editGroupStatus])
   return (
     <ResearcherLayout>
-      <GroupBanner group={group}/>
+      <GroupBanner group={group} editGroupStatus={editGroupStatus} OpenEditGroup={setEditVisible} editGroup={editGroup}/>
       <MyHead title="المجموعات  - المجموعة الفلانية" />
       <div className={classes.groupItemContainer}>
-
+        <Modal visible={editVisible} setVisible={setEditVisible}>
+          <EditElement
+            item={group}
+            title="مجموعة"
+            validationSchema={groupSchema}
+            fields={groupFields}
+            handleSubmit={handleEditItem}
+          />
+        </Modal>
         <div className={classes.sideSection}>
           <AboutGroup aboutGroup={aboutGroup} />
           <BadgesCard badges={badges} />
@@ -99,10 +134,10 @@ export default function GroupItem({group}) {
         </div>
 
         <div className={classes.mainSection}>
-            <PostWriter />
-            <PostViewer post={posts[0]}/>
-            <PostViewer post={posts[1]}/>
-            <PostViewer post={posts[2]}/>
+          <PostWriter />
+          <PostViewer post={posts[0]} />
+          <PostViewer post={posts[1]} />
+          <PostViewer post={posts[2]} />
         </div>
         <div className={classes.sideSection}>
           <LearnNow />
@@ -110,6 +145,6 @@ export default function GroupItem({group}) {
           <MyGroups groups={groups} />
         </div>
       </div>
-        </ResearcherLayout>
-    )
+    </ResearcherLayout>
+  )
 }

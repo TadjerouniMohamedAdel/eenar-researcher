@@ -85,15 +85,15 @@ export default function index() {
 
 
   useEffect(() => {
-    if (data && view=="grid") {
-      console.log("changed",groups,offset,data)
+    if (data && view == "grid") {
+      console.log("changed", groups, offset, data)
       setGroups([...groups, ...data.groups])
       data.groups.length === 0 && setHasMore(false)
     }
   }, [data])
 
   useEffect(() => {
-      console.log("change offset")
+    console.log("change offset")
   }, [offset])
 
   useEffect(() => {
@@ -181,38 +181,38 @@ export default function index() {
                         {
                           new Array(limit).fill().map((el, index) => (
                             <GroupCardListSkeleton key={el} />
-                            ))
+                          ))
                         }
                       </>
-                    ):
-                    (
-                      <>
-                      {
-                        data.groups.map((group, index) => (
-                          <GroupCardList group={group} key={`group-${index}`} />
-                        ))
-                      }
-                       {data && data.maxPages > 1 && (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "flex-end",
-                  }}
-                  >
-                    <Pagination
-                      active={page}
-                      limit={limit}
-                      pages={data.maxPages}
-                      onNext={() => { setOffset(offset + 10) }}
-                      onPrev={() => { setOffset(offset - 10) }}
-                      onNum={setOffset}
-                    />
+                    ) :
+                      (
+                        <>
+                          {
+                            data.groups.map((group, index) => (
+                              <GroupCardList group={group} key={`group-${index}`} />
+                            ))
+                          }
+                          {data && data.maxPages > 1 && (
+                            <div
+                              style={{
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "flex-end",
+                              }}
+                            >
+                              <Pagination
+                                active={page}
+                                limit={limit}
+                                pages={data.maxPages}
+                                onNext={() => { setOffset(offset + 10) }}
+                                onPrev={() => { setOffset(offset - 10) }}
+                                onNum={setOffset}
+                              />
 
-                  </div>
-                  )}
-                      </>
-                    )
+                            </div>
+                          )}
+                        </>
+                      )
                   }
 
                 </div>

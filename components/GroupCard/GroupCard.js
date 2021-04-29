@@ -27,7 +27,8 @@ export default function GroupCard({ group }) {
                     <div className={classes.typeGroup}>
                         {group.privacy === "public" ? <PublicIcon /> : <LockOutlinedIcon />}
                     </div>
-                    <Circle />
+
+                    {group.image ? <div  className={classes.circleWhite}><img src={group.image} className={classes.circleBlue}/></div> :<Circle />}
                 </div>
                 <h2>{group.title}</h2>
                 <h3>{group.slogan}</h3>

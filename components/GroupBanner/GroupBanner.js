@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import classes from './GroupBanner.module.css'
 import PublicIcon from '@material-ui/icons/Public';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -8,6 +8,8 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
+import Compressor from 'compressorjs'
+import { Skeleton } from '@material-ui/lab';
 
 const Rectangles = () => (
     <div className={classes.rectangleWhite}>
@@ -15,7 +17,7 @@ const Rectangles = () => (
     </div>
 )
 
-export default function GroupBanner({group}) {
+export default function GroupBanner({group,OpenEditGroup,editGroup,editGroupStatus}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isLoadingImage,setIsLoadingImage] = useState(false)
     const open = Boolean(anchorEl);
@@ -27,6 +29,10 @@ export default function GroupBanner({group}) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    useEffect(() => {
+        editGroupStatus === "success" && setIsLoadingImage(false)
+    }, [editGroupStatus])
 
     /** edit image group     */
     const editGroupImage = (e) => {
@@ -42,16 +48,7 @@ export default function GroupBanner({group}) {
                 reader.readAsDataURL(result)
                 reader.onloadend = function () {
                     const base64data = reader.result
-                    axios({
-                        method: 'put',
-                        url: `${process.env.NEXT_PUBLIC_API_URL}/user/edit`,
-                        data: { ...user, image: base64data }
-                    }).then(response => {
-                        setIsLoadingImage(false)
-                    }).catch(error => {
-                        console.log(error)
-                        setIsLoadingImage(false)
-                    })
+                    editGroup({ ...group, image: base64data })
                 }
             },
             error(err) {
@@ -65,7 +62,20 @@ export default function GroupBanner({group}) {
         <div className={classes.groupBanner}>
             <div className={classes.bondeau}></div>
             <div className={classes.groupInfo}>
-                <Rectangles />
+            {
+                        isLoadingImage ? (
+                            <Skeleton variant="rect" className={classes.rectangleWhite} />
+
+                        )
+
+
+                            : group.image ? (
+                                <img src={group.image} alt="" className={classes.rectangleWhite} />
+                            ) : (
+
+                                <Rectangles />
+                            )
+                    }
                 <IconButton className={classes.editGroupImage} onClick={() => { document.getElementById(`edit-image-group`).click() }}>
                         <EditIcon  style={{ fontSize: 21 }} />
                 </IconButton>
@@ -127,10 +137,10 @@ export default function GroupBanner({group}) {
                                 open={open}
                                 onClose={handleClose}
                             >
-                                <MenuItem  onClick={handleClose}>
+                                <MenuItem  onClick={()=>{OpenEditGroup(true);handleClose()}}>
                                     تعديل المنشور
                                     </MenuItem>
-                                <MenuItem  onClick={handleClose} className={classes.deleteGroup}>
+                                <MenuItem  onClick={()=>{handleClose()}} className={classes.deleteGroup}>
                                     حذف المنشور
                                     </MenuItem>
 
