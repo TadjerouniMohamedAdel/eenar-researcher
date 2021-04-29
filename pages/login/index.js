@@ -54,7 +54,7 @@ export default function Login() {
             .catch(error => {
                 setIsLoading(false)
                 setErrorLogin(true)
-                console.log(error.response.message)
+                console.log(error.response?.message)
             })
             ;
 

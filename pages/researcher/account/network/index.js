@@ -56,6 +56,7 @@ import { useSelector } from 'react-redux'
 import useGetList from '../../../../utils/hooks/useGetList';
 import useAddElement from '../../../../utils/hooks/useAddElement';
 import Pagination from '../../../../components/Pagination/Pagination';
+import GroupCardListSkeleton from '../../../../components/GroupCardList/GroupCardListSkeleton';
 
 
 
@@ -85,10 +86,15 @@ export default function index() {
 
   useEffect(() => {
     if (data && view=="grid") {
+      console.log("changed",groups,offset,data)
       setGroups([...groups, ...data.groups])
       data.groups.length === 0 && setHasMore(false)
     }
   }, [data])
+
+  useEffect(() => {
+      console.log("change offset")
+  }, [offset])
 
   useEffect(() => {
     setOffset(0)
@@ -156,7 +162,7 @@ export default function index() {
                   <InfiniteScroll
                     dataLength={groups.length}
                     className={classes.groupsContainer}
-                    next={() => setOffset(offset + 10)}
+                    next={() => !isLoading && setOffset(offset + 10)}
                     inverse={false}
                     hasMore={hasMore}
                     loader={<GroupCardSkeleton />}
@@ -170,7 +176,15 @@ export default function index() {
               ) : (
                 <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
                   {
-                    !isLoading &&
+                    isLoading ? (
+                      <>
+                        {
+                          new Array(limit).fill().map((el, index) => (
+                            <GroupCardListSkeleton key={el} />
+                            ))
+                        }
+                      </>
+                    ):
                     (
                       <>
                       {

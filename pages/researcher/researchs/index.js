@@ -103,7 +103,7 @@ export default function index() {
               <InfiniteScroll
                 dataLength={posts.length}
                 className={classes.postsContainer}
-                next={()=> setOffset(offset+10)}
+                next={()=>!isLoading && setOffset(offset+10)}
                 inverse={false}
                 hasMore={hasMore}
                 loader={<PostCardSkeleton />}
