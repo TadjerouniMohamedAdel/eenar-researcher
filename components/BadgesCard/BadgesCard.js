@@ -1,7 +1,8 @@
 import { IconButton } from '@material-ui/core';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import classes from './BadgesCard.module.css'
-export default function BadgesCard({ badges }) {
+export default function BadgesCard() {
+    const badges = []
     return (
         <div className={classes.resumeBadges}>
             <h2>

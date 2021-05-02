@@ -3,8 +3,9 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import classes from './MyNetwork.module.css'
-export default function MyNetwork({ users }) {
-
+import { datausers } from '../../utils/fixtures/DevData';
+export default function MyNetwork() {
+    const users = datausers
     return (
         <div className={classes.myNetwork}>
             <h2>

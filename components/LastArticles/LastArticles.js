@@ -1,8 +1,10 @@
 import { IconButton } from '@material-ui/core'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
+import { dataarticles } from '../../utils/fixtures/DevData';
 import classes from './LastArticles.module.css'
 
-export default function LastArticles({ articles }) {
+export default function LastArticles() {
+    const articles = dataarticles
     return (
         <div className={classes.articles}>
             <h2>

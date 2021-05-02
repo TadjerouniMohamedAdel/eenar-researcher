@@ -3,8 +3,10 @@ import { Button, IconButton, Tab, Tabs } from '@material-ui/core'
 import classes from './MyGroups.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
+import { datagroups } from '../../utils/fixtures/DevData';
 
-export default function MyGroups({ groups }) {
+export default function MyGroups() {
+    const groups = datagroups
     const [value, setValue] = useState(0)
 
     /** switch group tab */
