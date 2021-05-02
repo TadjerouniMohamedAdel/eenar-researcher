@@ -160,7 +160,7 @@ export default function GroupItem({ group:groupProp }) {
           />
         </Modal>
         <div className={classes.sideSection}>
-          <AboutGroup aboutGroup={aboutGroup} />
+          <AboutGroup group={group} />
           <BadgesCard badges={badges} />
           <MyNetwork users={users} />
         </div>

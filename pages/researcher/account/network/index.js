@@ -73,7 +73,7 @@ export default function index() {
   const [articles, setArticles] = useState(dataarticles);
   const [sideGroups, setSideGroups] = useState(datagroups);
   const [hasMore, setHasMore] = useState(true)
-  const [view, setView] = useState("grid")
+  const [view, setView] = useState("list")
   const [addVisible, setAddVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
   const [search, setSearch] = useState("")

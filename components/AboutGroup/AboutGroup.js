@@ -8,7 +8,7 @@ import moment from 'moment'
 
 
 
-export default function AboutGroup() {
+export default function AboutGroup({group}) {
     const [aboutme, setAboutme] = useState(dataaboutme)
     moment.locale('ar-dz')
 
@@ -21,10 +21,10 @@ export default function AboutGroup() {
                 </IconButton>
             </h2>
             <p className={classes.aboutGroupDescription}>
-            لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل.
+                {group.description}
             </p>
             <ul className={classes.aboutGroupInfo}>
-                <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={aboutme.website} target="_blank">www.mouadh.com</a></span></li>
+                <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={aboutme.website} target="_blank">{group.website}</a></span></li>
                     <div className={classes.divider}></div>
                 <li><span className={classes.infoLabel}> الإنضمام للمجموع</span><span className={classes.infoValue}>{moment(new Date()).format('DD MMM YYYY')}</span></li>
             </ul>

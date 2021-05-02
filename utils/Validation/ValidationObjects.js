@@ -182,4 +182,6 @@ export const groupSchema =  Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     slogan: Yup.string().required('يجب ملئ هذه المعلومة'),
     privacy: Yup.string().oneOf(["public","private"]).required('يجب ملئ هذه المعلومة'),
+    website: Yup.string(),
+    description: Yup.string(),
 })
