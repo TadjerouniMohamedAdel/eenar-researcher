@@ -57,6 +57,7 @@ import useGetList from '../../../../utils/hooks/useGetList';
 import useAddElement from '../../../../utils/hooks/useAddElement';
 import Pagination from '../../../../components/Pagination/Pagination';
 import GroupCardListSkeleton from '../../../../components/GroupCardList/GroupCardListSkeleton';
+import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout';
 
 
 
@@ -119,113 +120,107 @@ export default function index() {
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - شبكتي" />
-      <div className={classes.myNetworkContainer}>
-        <Modal visible={addVisible} setVisible={setAddVisible}>
-          <AddElement
-            title="مجموعة"
-            validationSchema={groupSchema}
-            fields={groupFields}
-            handleSubmit={handleAddItem}
-          />
-        </Modal>
-        <div className={classes.content}>
-          <div className={classes.mainSection}>
-            <div className={classes.filterSection}>
-              <div className={classes.groupedActions}>
-                <TextField
-                  variant="outlined"
-                  label="العنوان"
-                  className={classes.input}
-                />
-              </div>
-              <div className={classes.buttonSection}>
-                <div className={classes.viewChoices} id="scroll">
-                  <IconButton onClick={() => { setView("list") }} disabled={view === "list"}>
-                    <ViewListRoundedIcon />
-                  </IconButton>
-                  <IconButton onClick={() => { setView("grid") }} disabled={view === "grid"}>
-                    <ViewComfyRoundedIcon />
-                  </IconButton>
-                </div>
-                <Button
-                  className={classes.addButton}
-                  onClick={() => { setAddVisible(true) }}
-                >
-                  <span className={classes.text}>أضف مجموعة</span>
-                  <AddIcon className={classes.addIcon} />
-                </Button>
-              </div>
-            </div>
-            {
-              view === "grid" ? (
-                <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
-                  <InfiniteScroll
-                    dataLength={groups.length}
-                    className={classes.groupsContainer}
-                    next={() => !isLoading && setOffset(offset + 10)}
-                    inverse={false}
-                    hasMore={hasMore}
-                    loader={<GroupCardSkeleton />}
-                  >
-                    {groups.map((group, id) => (
-                      <GroupCard key={`group-card-${id}`} group={group} />
-                    ))}
-                  </InfiniteScroll>
-                </div>
+      <Modal visible={addVisible} setVisible={setAddVisible}>
+        <AddElement
+          title="مجموعة"
+          validationSchema={groupSchema}
+          fields={groupFields}
+          handleSubmit={handleAddItem}
+        />
+      </Modal>
+      <MultiSectionLayout
+        hasTwoSection={false}
+      >
 
-              ) : (
-                <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
-                  {
-                    isLoading ? (
-                      <>
-                        {
-                          new Array(limit).fill().map((el, index) => (
-                            <GroupCardListSkeleton key={el} />
-                          ))
-                        }
-                      </>
-                    ) :
-                      (
-                        <>
-                          {
-                            data.groups.map((group, index) => (
-                              <GroupCardList group={group} key={`group-${index}`} />
-                            ))
-                          }
-                          {data && data.maxPages > 1 && (
-                            <div
-                              style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "flex-end",
-                              }}
-                            >
-                              <Pagination
-                                active={page}
-                                limit={limit}
-                                pages={data.maxPages}
-                                onNext={() => { setOffset(offset + 10) }}
-                                onPrev={() => { setOffset(offset - 10) }}
-                                onNum={setOffset}
-                              />
-
-                            </div>
-                          )}
-                        </>
-                      )
-                  }
-
-                </div>
-              )
-            }
+        <div className={classes.filterSection}>
+          <div className={classes.groupedActions}>
+            <TextField
+              variant="outlined"
+              label="العنوان"
+              className={classes.input}
+            />
           </div>
-          <div className={classes.sideSection}>
-            <LearnNow />
-            <LastArticles articles={articles} />
-            <MyGroups groups={sideGroups} />
+          <div className={classes.buttonSection}>
+            <div className={classes.viewChoices} id="scroll">
+              <IconButton onClick={() => { setView("list") }} disabled={view === "list"}>
+                <ViewListRoundedIcon />
+              </IconButton>
+              <IconButton onClick={() => { setView("grid") }} disabled={view === "grid"}>
+                <ViewComfyRoundedIcon />
+              </IconButton>
+            </div>
+            <Button
+              className={classes.addButton}
+              onClick={() => { setAddVisible(true) }}
+            >
+              <span className={classes.text}>أضف مجموعة</span>
+              <AddIcon className={classes.addIcon} />
+            </Button>
           </div>
         </div>
-      </div>
+        {
+          view === "grid" ? (
+            <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
+              <InfiniteScroll
+                dataLength={groups.length}
+                className={classes.groupsContainer}
+                next={() => !isLoading && setOffset(offset + 10)}
+                inverse={false}
+                hasMore={hasMore}
+                loader={<GroupCardSkeleton />}
+              >
+                {groups.map((group, id) => (
+                  <GroupCard key={`group-card-${id}`} group={group} />
+                ))}
+              </InfiniteScroll>
+            </div>
+
+          ) : (
+            <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
+              {
+                isLoading ? (
+                  <>
+                    {
+                      new Array(limit).fill().map((el, index) => (
+                        <GroupCardListSkeleton key={el} />
+                      ))
+                    }
+                  </>
+                ) :
+                  (
+                    <>
+                      {
+                        data.groups.map((group, index) => (
+                          <GroupCardList group={group} key={`group-${index}`} />
+                        ))
+                      }
+                      {data && data.maxPages > 1 && (
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "flex-end",
+                          }}
+                        >
+                          <Pagination
+                            active={page}
+                            limit={limit}
+                            pages={data.maxPages}
+                            onNext={() => { setOffset(offset + 10) }}
+                            onPrev={() => { setOffset(offset - 10) }}
+                            onNum={setOffset}
+                          />
+
+                        </div>
+                      )}
+                    </>
+                  )
+              }
+
+            </div>
+          )
+        }
+      </MultiSectionLayout>
     </ResearcherAccountLayout>
   )
 }
