@@ -25,6 +25,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useGetList from "../../../utils/hooks/useGetList";
 import { useSelector } from 'react-redux'
+import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSectionLayout";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -67,8 +68,11 @@ export default function index() {
           imgSrc="/images/researchs-banner.png"
         />
         <h1>مجمع الأبحاث</h1>
-        <div className={classes.content}>
-          <div className={classes.mainSection}>
+            <MultiSectionLayout
+              hasTwoSection={false}
+            >
+
+           
             <div className={classes.filterSection}>
               <div className={classes.groupedActions}>
                 <TextField
@@ -113,14 +117,9 @@ export default function index() {
                 ))}
               </InfiniteScroll>
             </div>
+            </MultiSectionLayout>
           </div>
-          <div className={classes.sideSection}>
-            <LearnNow />
-            <LastArticles articles={articles} />
-            <MyGroups groups={groups} />
-          </div>
-        </div>
-      </div>
+         
     </ResearcherLayout>
   );
 }
