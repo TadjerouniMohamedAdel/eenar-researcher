@@ -9,7 +9,10 @@
 input{
     font-family: var(--primary-font) !important;
 }
-
+a{
+    text-decoration: none !important;
+    color: unset !important;
+}
 :root {
     /* colors */
     --primary-color: #118ab2; 

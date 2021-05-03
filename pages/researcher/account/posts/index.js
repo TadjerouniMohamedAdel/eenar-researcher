@@ -48,6 +48,7 @@ import useGetList from "../../../../utils/hooks/useGetList";
 import useAddElement from "../../../../utils/hooks/useAddElement";
 import useEditElement from "../../../../utils/hooks/useEditElement";
 import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
+import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSectionLayout";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -162,232 +163,230 @@ export default function index() {
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - منشوراتي" />
-      <div className={classes.myPostsContainer}>
-        <Modal visible={addVisible} setVisible={setAddVisible}>
-          <MultiStepsAddElement
-            title="منشور"
-            handleSubmit={handleAddItem}
-            steps={[
-              { fields: postStep1, validationSchema: postSchemaStep1 },
-              { fields: postStep2, validationSchema: postSchemaStep2 },
-            ]}
-          />
-        </Modal>
-        <Modal visible={editVisible} setVisible={setEditVisible}>
-          <MultiStepsEditElement
-            item={selectedItem}
-            handleSubmit={handleEditItem}
-            title="منشور"
-            steps={[
-              { fields: postStep1, validationSchema: postSchemaStep1 },
-              { fields: postStep2, validationSchema: postSchemaStep2 },
-            ]}
-          />
-        </Modal>
-        <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
-          <DeleteElement
-            item={selectedItem}
-            title="منشور"
-            handleSubmit={handleDeleteItem}
-          />
-        </Modal>
-        <div className={classes.mainSection} id="scroll">
-          <div className={classes.filterSection} >
-            <div className={classes.groupedActions}>
-              <TextField
-                variant="outlined"
-                label="العنوان"
-                onChange={(e) => setResearch(e.target.value)}
-                className={classes.input}
-              />
-              {/* <FormControl  variant="outlined" className={classes.select}>
+      <Modal visible={addVisible} setVisible={setAddVisible}>
+        <MultiStepsAddElement
+          title="منشور"
+          handleSubmit={handleAddItem}
+          steps={[
+            { fields: postStep1, validationSchema: postSchemaStep1 },
+            { fields: postStep2, validationSchema: postSchemaStep2 },
+          ]}
+        />
+      </Modal>
+      <Modal visible={editVisible} setVisible={setEditVisible}>
+        <MultiStepsEditElement
+          item={selectedItem}
+          handleSubmit={handleEditItem}
+          title="منشور"
+          steps={[
+            { fields: postStep1, validationSchema: postSchemaStep1 },
+            { fields: postStep2, validationSchema: postSchemaStep2 },
+          ]}
+        />
+      </Modal>
+      <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
+        <DeleteElement
+          item={selectedItem}
+          title="منشور"
+          handleSubmit={handleDeleteItem}
+        />
+      </Modal>
+      <MultiSectionLayout
+        hasTwoSection={false}
+      >
+
+        <div className={classes.filterSection} id="scroll">
+          <div className={classes.groupedActions}>
+            <TextField
+              variant="outlined"
+              label="العنوان"
+              onChange={(e) => setResearch(e.target.value)}
+              className={classes.input}
+            />
+            {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المنشور</InputLabel>
                                 <Select
                                     label="نوع المنشور"
                                 >   
                                 </Select>
                             </FormControl> */}
-              {/* <Button className={classes.searchButton} onClick={() => handleResearch()}>
+            {/* <Button className={classes.searchButton} onClick={() => handleResearch()}>
                 <SearchIcon
                   className={`${classes.searchIcon} ${classes.right}`}
                 />
               </Button> */}
-            </div>
-            <div className={classes.buttonSection}>
-              <Button
-                className={classes.addButton}
-                onClick={() => setAddVisible(true)}
-              >
-                <span className={classes.text}>أضف منشور</span>
-                <AddIcon className={classes.addIcon} />
-              </Button>
-            </div>
           </div>
-          {isLoading === false && data.posts.length == 0 ? (
-            <div className={classes.empty}>
-              <img src="/images/empty.png" alt="empty-list" />
-              <h3>لا تحتوي هذه القائمة على بيانات</h3>
-            </div>
-          ) : (
-            <div className={classes.tableContainer}>
-              {
-                showAddAlert && (
-                  <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={() => setShowAddAlert(false)}>
-                    تم إضافة المنشور، سيتم دراسته لتحقق من صحته
-                  </Alert>
+          <div className={classes.buttonSection}>
+            <Button
+              className={classes.addButton}
+              onClick={() => setAddVisible(true)}
+            >
+              <span className={classes.text}>أضف منشور</span>
+              <AddIcon className={classes.addIcon} />
+            </Button>
+          </div>
+        </div>
+        {isLoading === false && data.posts.length == 0 ? (
+          <div className={classes.empty}>
+            <img src="/images/empty.png" alt="empty-list" />
+            <h3>لا تحتوي هذه القائمة على بيانات</h3>
+          </div>
+        ) : (
+          <div className={classes.tableContainer}>
+            {
+              showAddAlert && (
+                <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={() => setShowAddAlert(false)}>
+                  تم إضافة المنشور، سيتم دراسته لتحقق من صحته
+                </Alert>
 
-                )
-              }
-              <Table className={classes.table} aria-label="simple table" >
-                <TableHead>
-                  <TableRow>
+              )
+            }
+            <Table className={classes.table} aria-label="simple table" >
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.cellHeader} align="center">
+                    تاريخ النشر
+                    </TableCell>
+                  <TableCell className={classes.cellHeader} align="left">
+                    العنوان
+                    </TableCell>
+                  <Hidden only="xs">
                     <TableCell className={classes.cellHeader} align="center">
-                      تاريخ النشر
-                    </TableCell>
-                    <TableCell className={classes.cellHeader} align="left">
-                      العنوان
-                    </TableCell>
-                    <Hidden only="xs">
-                      <TableCell className={classes.cellHeader} align="center">
-                        المؤلف
+                      المؤلف
                       </TableCell>
-                    </Hidden>
-                    <Hidden only="xs">
-                      <TableCell className={classes.cellHeader} align="center">
-                        الحالة
-                      </TableCell>
-                    </Hidden>
+                  </Hidden>
+                  <Hidden only="xs">
                     <TableCell className={classes.cellHeader} align="center">
-                      إجراأت
+                      الحالة
+                      </TableCell>
+                  </Hidden>
+                  <TableCell className={classes.cellHeader} align="center">
+                    إجراأت
                     </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody className={classes.tableBody}>
-                  {isLoading ? (
-                    <>
-                      {
+                </TableRow>
+              </TableHead>
+              <TableBody className={classes.tableBody}>
+                {isLoading ? (
+                  <>
+                    {
 
-                        new Array(limit).fill().map((el, index) => (
-                          <TableRow key={index} style={{ height: 80 }}>
-                            <TableCell className={classes.cellBody} align="center">
-                              <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <TableCell
-                              className={`${classes.cellBody} ${classes.title}`}
-                              align="left"
-                            >
-                              <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                            <Hidden only="xs">
-                              <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
-                              </TableCell>
-                            </Hidden>
-                            <Hidden only="xs">
-                              <TableCell className={classes.cellBody} align="center">
-                                <Skeleton animation="wave" variant="rect" />
-                              </TableCell>
-                            </Hidden>
-                            <TableCell className={classes.cellBody} align="center">
-                              <Skeleton animation="wave" variant="rect" />
-                            </TableCell>
-                          </TableRow>
-                        ))
-                      }
-                    </>
-                  ) : (
-                    <>
-                      {data.posts.map((row, index) => (
-                        <TableRow key={index} style={{ height: 20 }} key={`row-${index}`}>
-                          <TableCell
-                            className={classes.cellBody}
-                            align="center"
-                          >
-                            {moment(row.publishedDate).format("DD MMM YYYY")}
+                      new Array(limit).fill().map((el, index) => (
+                        <TableRow key={index} style={{ height: 80 }}>
+                          <TableCell className={classes.cellBody} align="center">
+                            <Skeleton animation="wave" variant="rect" />
                           </TableCell>
                           <TableCell
                             className={`${classes.cellBody} ${classes.title}`}
                             align="left"
                           >
-                            <Link href={`/researcher/account/posts/${row.id}`}>
-                              {row.arabicTitle}
-                            </Link>
+                            <Skeleton animation="wave" variant="rect" />
                           </TableCell>
                           <Hidden only="xs">
-                            <TableCell
-                              className={classes.cellBody}
-                              align="center"
-                            >
-                              {row.primaryAuthor}
+                            <TableCell className={classes.cellBody} align="center">
+                              <Skeleton animation="wave" variant="rect" />
                             </TableCell>
                           </Hidden>
                           <Hidden only="xs">
-                            <TableCell
-                              className={classes.cellBody}
-                              align="center"
-                            >
-                              {renderStatusBadge(row.postStatus)}
+                            <TableCell className={classes.cellBody} align="center">
+                              <Skeleton animation="wave" variant="rect" />
                             </TableCell>
                           </Hidden>
+                          <TableCell className={classes.cellBody} align="center">
+                            <Skeleton animation="wave" variant="rect" />
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    }
+                  </>
+                ) : (
+                  <>
+                    {data.posts.map((row, index) => (
+                      <TableRow key={index} style={{ height: 20 }} key={`row-${index}`}>
+                        <TableCell
+                          className={classes.cellBody}
+                          align="center"
+                        >
+                          {moment(row.publishedDate).format("DD MMM YYYY")}
+                        </TableCell>
+                        <TableCell
+                          className={`${classes.cellBody} ${classes.title}`}
+                          align="left"
+                        >
+                          <Link href={`/researcher/account/posts/${row.id}`}>
+                            {row.arabicTitle}
+                          </Link>
+                        </TableCell>
+                        <Hidden only="xs">
                           <TableCell
                             className={classes.cellBody}
                             align="center"
                           >
-                            <a href={row.file} target="_blank">
-                              <IconButton>
-                                <GetAppIcon className={classes.downloadIcon} />
-                              </IconButton>
-                            </a>
-                            <IconButton
-                              onClick={() => {
-                                setSelectedItem(row);
-                                setEditVisible(true);
-                              }}
-                            >
-                              <EditIcon className={classes.downloadIcon} />
-                            </IconButton>
-                            <IconButton
-                              onClick={() => {
-                                setSelectedItem(row);
-                                setDeleteVisible(true);
-                              }}
-                            >
-                              <DeleteIcon className={classes.downloadIcon} />
-                            </IconButton>
+                            {row.primaryAuthor}
                           </TableCell>
-                        </TableRow>
-                      ))}
-                    </>
-                  )}
-                </TableBody>
-              </Table>
-              {data && data.maxPages > 1 && (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "flex-end",
-                  }}
-                >
-                  <Pagination
-                    active={page}
-                    limit={limit}
-                    pages={data.maxPages}
-                    onNext={() => { setOffset(offset + 10) }}
-                    onPrev={() => { setOffset(offset - 10) }}
-                    onNum={setOffset}
-                  />
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-        <div className={classes.sideSection}>
-          <LearnNow />
-          <LastArticles articles={articles} />
-          <MyGroups groups={groups} />
-        </div>
-      </div>
+                        </Hidden>
+                        <Hidden only="xs">
+                          <TableCell
+                            className={classes.cellBody}
+                            align="center"
+                          >
+                            {renderStatusBadge(row.postStatus)}
+                          </TableCell>
+                        </Hidden>
+                        <TableCell
+                          className={classes.cellBody}
+                          align="center"
+                        >
+                          <a href={row.file} target="_blank">
+                            <IconButton>
+                              <GetAppIcon className={classes.downloadIcon} />
+                            </IconButton>
+                          </a>
+                          <IconButton
+                            onClick={() => {
+                              setSelectedItem(row);
+                              setEditVisible(true);
+                            }}
+                          >
+                            <EditIcon className={classes.downloadIcon} />
+                          </IconButton>
+                          <IconButton
+                            onClick={() => {
+                              setSelectedItem(row);
+                              setDeleteVisible(true);
+                            }}
+                          >
+                            <DeleteIcon className={classes.downloadIcon} />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </>
+                )}
+              </TableBody>
+            </Table>
+            {data && data.maxPages > 1 && (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Pagination
+                  active={page}
+                  limit={limit}
+                  pages={data.maxPages}
+                  onNext={() => { setOffset(offset + 10) }}
+                  onPrev={() => { setOffset(offset - 10) }}
+                  onNum={setOffset}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </MultiSectionLayout>
+
+
     </ResearcherAccountLayout>
   );
 }
