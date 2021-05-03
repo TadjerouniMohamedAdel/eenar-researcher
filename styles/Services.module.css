@@ -1,0 +1,26 @@
+.servicesContainer{
+    display: flex;
+    flex-direction: column;
+}
+.servicesContainer > h1{
+    font-family: var(--primary-font);
+    font-size: 26px;
+    font-weight: bold;
+    font-stretch: normal;
+    margin-top: 34.2px;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: normal;
+    /* text-align: right; */
+    color: #3e3f5e;
+}
+.servicesList{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.servicesContainer .servicesList > *{
+    margin: 16px
+}

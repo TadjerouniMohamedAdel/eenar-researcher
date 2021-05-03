@@ -1,4 +1,4 @@
-import { useState,useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import BannerMenu from "../../../components/BannerMenu/BannerMenu";
 import LastArticles from "../../../components/LastArticles/LastArticles";
 import LearnNow from "../../../components/LearnNow/LearnNow";
@@ -20,7 +20,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import PostCard from "../../../components/PostCard/PostCard";
-import PostCardSkeleton from "../../../components/PostCard/PostCardSkeleton"; 
+import PostCardSkeleton from "../../../components/PostCard/PostCardSkeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useGetList from "../../../utils/hooks/useGetList";
@@ -29,35 +29,35 @@ import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSection
 
 
 export const getStaticProps = async ({ locale }) => ({
-    props: {
-      ...await serverSideTranslations(locale, ["sidebar"]),
-    },
-  })
+  props: {
+    ...await serverSideTranslations(locale, ["sidebar"]),
+  },
+})
 
 export default function index() {
   const user = useSelector((state) => state.user)
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
-  const [posts,setPosts] = useState([])
-  const [offset,setOffset] = useState(0)
-  const [limit,setLimit] = useState(10)
-  const [research,setResearch] = useState("")
-  const [hasMore,setHasMore] = useState(true)
+  const [posts, setPosts] = useState([])
+  const [offset, setOffset] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [research, setResearch] = useState("")
+  const [hasMore, setHasMore] = useState(true)
 
-  const {data,isLoading} = useGetList("posts","/researcher/post/research/all",limit,offset,research,user.researchers.id)  
-  
+  const { data, isLoading } = useGetList("posts", "/researcher/post/research/all", limit, offset, research, user.researchers.id)
+
   useEffect(() => {
-      if(data){
-        setPosts([...posts,...data.posts])
-        data.posts.length === 0 && setHasMore(false)
-      }
+    if (data) {
+      setPosts([...posts, ...data.posts])
+      data.posts.length === 0 && setHasMore(false)
+    }
   }, [data])
-  
 
-  useEffect(()=>{
+
+  useEffect(() => {
     setOffset(0)
-  },[research])
-  
+  }, [research])
+
   return (
     <ResearcherLayout>
       <MyHead title="مجمع الأبحاث" />
@@ -68,33 +68,33 @@ export default function index() {
           imgSrc="/images/researchs-banner.png"
         />
         <h1>مجمع الأبحاث</h1>
-            <MultiSectionLayout
-              hasTwoSection={false}
-            >
+        <MultiSectionLayout
+          hasTwoSection={false}
+        >
 
-           
-            <div className={classes.filterSection}>
-              <div className={classes.groupedActions}>
-                <TextField
-                  variant="outlined"
-                  label="العنوان"
-                  className={classes.input}
-                  onChange={(e)=>{setPosts([]);setHasMore(true);setResearch(e.target.value)}}
-                />
-                {/* <FormControl  variant="outlined" className={classes.select}>
+
+          <div className={classes.filterSection}>
+            <div className={classes.groupedActions}>
+              <TextField
+                variant="outlined"
+                label="العنوان"
+                className={classes.input}
+                onChange={(e) => { setPosts([]); setHasMore(true); setResearch(e.target.value) }}
+              />
+              {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المنشور</InputLabel>
                                 <Select
                                     label="نوع المنشور"
                                 >   
                                 </Select>
                             </FormControl> */}
-                {/* <Button className={classes.searchButton} onClick={()=>handleResearch()}>
+              {/* <Button className={classes.searchButton} onClick={()=>handleResearch()}>
                   <SearchIcon
                     className={`${classes.searchIcon} ${classes.right}`}
                   />
                 </Button> */}
-              </div>
-              {/* <div className={classes.buttonSection}>
+            </div>
+            {/* <div className={classes.buttonSection}>
                 <Button
                   className={classes.addButton}
                 >
@@ -102,24 +102,24 @@ export default function index() {
                   <AddIcon className={classes.addIcon} />
                 </Button>
               </div> */}
-            </div>
-            <div id="scrollableDivResearchs">
-              <InfiniteScroll
-                dataLength={posts.length}
-                className={classes.postsContainer}
-                next={()=>!isLoading && setOffset(offset+10)}
-                inverse={false}
-                hasMore={hasMore}
-                loader={<PostCardSkeleton />}
-              >
-                {posts.map((post, id) => (
-                  <PostCard post={post} key={`post-${id}`} />
-                ))}
-              </InfiniteScroll>
-            </div>
-            </MultiSectionLayout>
           </div>
-         
+          <div id="scrollableDivResearchs">
+            <InfiniteScroll
+              dataLength={posts.length}
+              className={classes.postsContainer}
+              next={() => !isLoading && setOffset(offset + 10)}
+              inverse={false}
+              hasMore={hasMore}
+              loader={<PostCardSkeleton />}
+            >
+              {posts.map((post, id) => (
+                <PostCard post={post} key={`post-${id}`} />
+              ))}
+            </InfiniteScroll>
+          </div>
+        </MultiSectionLayout>
+      </div>
+
     </ResearcherLayout>
   );
 }

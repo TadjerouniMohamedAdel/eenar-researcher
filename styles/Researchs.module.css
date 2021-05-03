@@ -1,6 +1,5 @@
 .researchsContainer{
     display: flex;
-    margin-top: 32px;
     flex-direction: column;
 }
 .researchsContainer > h1{
