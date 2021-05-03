@@ -11,7 +11,9 @@
 .serviceCard:hover{
     transform: scale(1.05);
 }
-
+.serviceCardSkeleton:hover{
+    transform: scale(1);
+}
 .serviceCard .serviceImg{
     width: 100%;
     height: 184px;
@@ -51,6 +53,12 @@
     height:100px;
     text-align: center;
     color: #9192a6;
+}
+.serviceCardSkeleton .serviceContent p {
+    width:250px;
+}
+.serviceCardSkeleton .serviceContent h2 {
+    width:200px;
 }
 .serviceCard .serviceContent .divider{
     width: 100%;

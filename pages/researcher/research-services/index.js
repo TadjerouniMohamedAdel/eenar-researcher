@@ -7,6 +7,7 @@ import BannerMenu from '../../../components/BannerMenu/BannerMenu'
 import classes from '../../../styles/Services.module.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ServiceCard from '../../../components/ServiceCard/ServiceCard'
+import ServiceCardSkeleton from '../../../components/ServiceCard/ServiceCardSkeleton'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -40,6 +41,7 @@ export default function index() {
               <ServiceCard />
               <ServiceCard />
               <ServiceCard />
+              <ServiceCardSkeleton />
             </InfiniteScroll>
           </div>
         </MultiSectionLayout>
