@@ -10,6 +10,7 @@ import moment from "moment";
 import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
 import ResearchView from "../../../../components/ResearchView/ResearchView";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSectionLayout";
 
 
 export async function getStaticPaths() {
@@ -61,23 +62,19 @@ export default function post({research}) {
   return (
     <ResearcherLayout>
       <MyHead title={`${research.arabicTitle}   - منشوراتي`} />
-      <div className={classes.myPostsContainer}>
-        <div className={classes.mainSection}>
-          {research ?   <ResearchView  research={research}/> :
-              (
-                <div className={classes.notFound}>
-                  <img src="/images/404.png" alt="" />
-                  <h1>هذا المنشور غير موجود</h1>
-                </div>
-          )}
+          <MultiSectionLayout
+            hasTwoSection={false}
+            >
+              {research ?   <ResearchView  research={research}/> :
+                  (
+                    <div className={classes.notFound}>
+                      <img src="/images/404.png" alt="" />
+                      <h1>هذا المنشور غير موجود</h1>
+                    </div>
+              )}
+          </MultiSectionLayout>
               
-        </div>
-        <div className={classes.sideSection}>
-          <LearnNow />
-          <LastArticles articles={articles} />
-          <MyGroups groups={groups} />
-        </div>
-      </div>
+        
     </ResearcherLayout>
   );
 }

@@ -9,7 +9,6 @@ import MyGroups from "../../../components/MyGroups/MyGroups";
 import MyHead from "../../../components/MyHead/MyHead";
 import MyNetwork from "../../../components/MyNetwork/MyNetwork";
 import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout";
-import classes from '../../../styles/GroupItem.module.css'
 import PostWriter from '../../../components/PostWriter/PostWriter';
 import PostViewer from '../../../components/PostViewer/PostViewer';
 import axios from 'axios'
