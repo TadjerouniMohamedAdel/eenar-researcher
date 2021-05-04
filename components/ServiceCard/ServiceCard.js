@@ -1,8 +1,9 @@
 import { Button } from '@material-ui/core'
 import classes from './ServiceCard.module.css'
-
+import Link from 'next/link'
 export default function ServiceCard() {
     return (
+        <Link href="/researcher/research-services/54ssf">
         <div className={classes.serviceCard}>
             <div className={classes.serviceImg}></div>
             <div className={classes.serviceContent}>
@@ -12,12 +13,13 @@ export default function ServiceCard() {
                     </p>
                 <div className={classes.divider}></div>
                 <div className={classes.serviceFooter}>
-                    <Button className={classes.getServiceButton}>
+                    <Button className={classes.getServiceButton} variant="contained">
                         أطلب الخدمة
                     </Button>
                 </div>
 
             </div>
         </div>
+        </Link>
     )
 }

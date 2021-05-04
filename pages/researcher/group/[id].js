@@ -38,30 +38,9 @@ const posts = [
   },
 
 ]
-export async function getStaticPaths() {
-  let paths = []
-  await axios({
-    method: "get",
-    url: `${process.env.NEXT_PUBLIC_API_URL}/groups/all`,
-  })
-    .then((response) => {
-      paths = response.data.map((item) => {
-        return {
-          params: { id: item.id.toString() }
-        }
-      })
-    })
-    .catch((error) => console.log(error));
 
 
-  return {
-    paths,
-    fallback: 'blocking' // See the "fallback" section below
-  };
-}
-
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let group = null
   console.log(context)
   await axios({

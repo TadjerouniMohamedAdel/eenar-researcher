@@ -238,7 +238,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #118ab2;
+    background-color: var(--primary-color);
     font-family: var(--primary-font);
     font-size: 10px;
     font-weight: bold;
