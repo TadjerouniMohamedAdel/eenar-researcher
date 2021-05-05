@@ -17,7 +17,7 @@ function Alert(props) {
 export default function Registration() {
     const [step, setStep] = useState(0)
     const [showAlertSuccess, setShowAlertSuccess] = useState(false)
-    const [user, setUser] = useState({ image: "", type: "researcher", firstname: "", gender: "", lastname: "", center: "", address: "", job: "", region: "", city: "", email: '', password: "", retypedPassword: "", isAgree: false })
+    const [user, setUser] = useState({type: "researcher", firstname: "", gender: "", lastname: "", center: "", address: "", job: "", region: "", city: "", email: '', password: "", retypedPassword: "", isAgree: false })
     const [isLoading, setIsLoading] = useState(false)
     const [errorRegistration, setErrorRegistration] = useState(null)
     const router = useRouter()

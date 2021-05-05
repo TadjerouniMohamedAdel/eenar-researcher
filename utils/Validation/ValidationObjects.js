@@ -171,9 +171,9 @@ export const centerRegistrationStep1 = Yup.object().shape({
 })
 
 export const centerRegistrationStep2 = Yup.object().shape({
-    email: Yup.string().email("هذا البريد الإلكتروني غير صحيح").required('يجب ملئ هذه المعلومة'),
     firstname: Yup.string().required('يجب ملئ هذه المعلومة'),
     email: Yup.string().email("هذا البريد الإلكتروني غير صحيح").required('يجب ملئ هذه المعلومة'),
+    gender: Yup.string().oneOf(["male","female"]).required('يجب ملئ هذه المعلومة'),
     lastname: Yup.string().required('يجب ملئ هذه المعلومة'),
     password: Yup.string().required('يجب ملئ هذه المعلومة'),
     retypedPassword: Yup.string().oneOf([Yup.ref('password'), null], 'الكلمات السرية يجب ان تتطابق').required('يجب ملئ هذه المعلومة'),
