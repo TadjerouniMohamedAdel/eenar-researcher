@@ -1,35 +1,38 @@
-import React,{useState} from 'react'
-import { TextField,Button, FormControl, Select, MenuItem, InputLabel } from '@material-ui/core'
+import React, { useState } from 'react'
+import { TextField, Button, FormControl, Select, MenuItem, InputLabel, Checkbox } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 import { CircularProgress } from '@material-ui/core';
 import Chip from "@material-ui/core/Chip";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 
 
 
-export default function AddElement({fields,handleSubmit,validationSchema,title}) {
-    const [isLoading,setIsLoading] = useState(false)
+export default function AddElement({ fields, handleSubmit, validationSchema, title }) {
+    const [isLoading, setIsLoading] = useState(false)
     let values = {}
-    fields.map((el,index)=>{values[el.name]=el.defaultValue})
+    fields.map((el, index) => { values[el.name] = el.defaultValue })
     console.log(values)
-    
-    const submit = (data)=>{
+
+    const submit = (data) => {
         setIsLoading(true)
         handleSubmit(data)
     }
-    
+
     const formik = useFormik({
-        initialValues:values,
-        validateOnChange:false,
+        initialValues: values,
+        validateOnChange: false,
         onSubmit: submit,
         validationSchema,
-      });    
-    
+    });
+
+
     return (
         <div className={classes.crudElement}>
             <h1>
-            إضافة   
+                إضافة
                 {` ${title}`}
             </h1>
             <div className={classes.divider}></div>
@@ -38,48 +41,48 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
             </div>
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 {
-                    fields.map((field,index)=>{
+                    fields.map((field, index) => {
                         switch (field.type) {
                             case "array":
                                 let values = formik.values[field.name]
                                 return (
-                                        <Autocomplete
-                                            style={{marginTop:28,borderRadius:12}}
-                                            multiple
-                                            autoSelect
-                                            key={`crud-add-element-${index}-${step}`}
-                                            onChange={(e,values)=>{
-                                                formik.values[field.name] = values
-                                            }}
-                                            freeSolo
-                                            name={field.name}
-                                            defaultValue={values}
-                                            id={`crud-add-element-${index}-${step}`}
-                                            options={[]}
-                                            renderTags={(value, getTagProps) =>
-                                                value.map((option, index) => (
+                                    <Autocomplete
+                                        style={{ marginTop: 28, borderRadius: 12 }}
+                                        multiple
+                                        autoSelect
+                                        key={`crud-add-element-${index}-${step}`}
+                                        onChange={(e, values) => {
+                                            formik.values[field.name] = values
+                                        }}
+                                        freeSolo
+                                        name={field.name}
+                                        defaultValue={values}
+                                        id={`crud-add-element-${index}-${step}`}
+                                        options={[]}
+                                        renderTags={(value, getTagProps) =>
+                                            value.map((option, index) => (
                                                 <Chip
                                                     variant="outlined"
                                                     label={option}
                                                     {...getTagProps({ index })}
                                                 />
-                                                ))
-                                            }
-                                            renderInput={(params) => (
-                                                <TextField  
-                                                    className={`${field.className}`} 
-                                                    {...params}
-                                                    label={field.label} 
-                                                    variant="outlined" 
-                                                    />
-                                            )}
-                                        />
+                                            ))
+                                        }
+                                        renderInput={(params) => (
+                                            <TextField
+                                                className={`${field.className}`}
+                                                {...params}
+                                                label={field.label}
+                                                variant="outlined"
+                                            />
+                                        )}
+                                    />
                                 );
                                 break;
-                            
+
                             case "select":
-                                return(
-                                    <FormControl  variant="outlined"  className={`${classes.formInput} ${field.className}`}>
+                                return (
+                                    <FormControl variant="outlined" className={`${classes.formInput} ${field.className}`}>
                                         <InputLabel id="demo-simple-select-outlined-label">{field.label}</InputLabel>
                                         <Select
                                             value={formik.values[field.name]}
@@ -91,19 +94,32 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
 
                                         >
                                             {
-                                                field.choices.map((choice,index)=>(
+                                                field.choices.map((choice, index) => (
                                                     <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
                                                 ))
                                             }
-                                            
+
                                         </Select>
                                     </FormControl>
                                 )
                                 break;
-                        
+                            case "checkbox":
+                                return (
+                                    <div className={`${classes.formCheckbox} ${field.className}`}>
+                                        <Checkbox
+                                            value={formik.values[field.name]}
+                                            name={field.name}
+                                            onChange={formik.handleChange}
+                                            checkedIcon={<FontAwesomeIcon style={{ fontSize: 24, color: "#118ab2" }} icon={faWindowClose} />}
+                                        />
+                                        <span>{field.label}</span>
+                                    </div>
+                                )
+                                break;
+
                             default:
-                                return(
-                                    <div 
+                                return (
+                                    <div
                                         key={`crud-add-element-${index}`}
                                     >
                                         <TextField
@@ -129,7 +145,7 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
                 <div className={classes.submitContainer}>
                     <Button className={classes.submit} type="submit" disabled={isLoading} >
                         <div>
-                            {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
+                            {isLoading && <CircularProgress style={{ color: "#fff", width: 19, height: 19, marginLeft: 5, marginRight: 5 }} />}
                         </div>
                         <span className="submitLabel">حفظ</span>
                     </Button>
@@ -137,6 +153,6 @@ export default function AddElement({fields,handleSubmit,validationSchema,title})
             </form>
 
         </div>
-        
+
     )
 }

@@ -185,3 +185,9 @@ export const groupSchema =  Yup.object().shape({
     website: Yup.string(),
     description: Yup.string(),
 })
+export const serviceRequestSchema =  Yup.object().shape({
+    title: Yup.string().required('يجب ملئ هذه المعلومة'),
+    primarySpeciality: Yup.string().required('يجب ملئ هذه المعلومة'),
+    secondarySpeciality: Yup.string().required('يجب ملئ هذه المعلومة'),
+    description: Yup.string().required('يجب ملئ هذه المعلومة'),
+})

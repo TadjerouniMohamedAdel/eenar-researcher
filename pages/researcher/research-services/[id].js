@@ -1,9 +1,14 @@
-
+import { useState } from 'react'
 import { Button } from '@material-ui/core';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import AddElement from '../../../components/CrudModal/AddElement';
+import Modal from '../../../components/Modal/Modal';
 import MultiSectionLayout from '../../../layouts/MultiSectionLayout/MultiSectionLayout';
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout';
 import classes from '../../../styles/Services.module.css'
+import { serviceRequestFields } from '../../../utils/form/Fields';
+import { serviceRequestSchema } from '../../../utils/Validation/ValidationObjects';
+import MyHead from '../../../components/MyHead/MyHead';
 
 export async function getStaticPaths() {
     let paths = []
@@ -25,8 +30,23 @@ export async function getStaticProps(context) {
     }
 }
 export default function researchServiceItem() {
+    const [addVisible,setAddVisible] = useState(false)
+    const AddServiceRequest = (data)=>{
+        console.log("add service request",data)
+        setAddVisible(false)
+    }
+    
     return (
         <ResearcherLayout>
+            <MyHead title="الخدمات البحثية" />
+            <Modal visible={addVisible} setVisible={setAddVisible}>
+                <AddElement
+                    title="طلب خدمة"
+                    handleSubmit={AddServiceRequest}
+                    validationSchema={serviceRequestSchema}
+                    fields={serviceRequestFields}
+                />
+            </Modal>
             <MultiSectionLayout hasTwoSection={false}>
                 <div className={classes.serviceViewContainer}>
                     <h1 >الخدمات البحثية</h1>
@@ -64,13 +84,13 @@ export default function researchServiceItem() {
                                 كيو أوفيسيا ديسيريونتموليت انيم أيدي ايست لابوريوم
                            </p>
                             <div className={classes.serviceKeywords}>
-                                <span  className={classes.serviceKeyword}>Keyword 1</span>
-                                <span  className={classes.serviceKeyword}>Keyword 1</span>
-                                <span  className={classes.serviceKeyword}>Keyword 1</span>
-                                <span  className={classes.serviceKeyword}>Keyword 1</span>
+                                <span className={classes.serviceKeyword}>Keyword 1</span>
+                                <span className={classes.serviceKeyword}>Keyword 1</span>
+                                <span className={classes.serviceKeyword}>Keyword 1</span>
+                                <span className={classes.serviceKeyword}>Keyword 1</span>
                             </div>
                             <div className={classes.getService}>
-                                <Button className={classes.getServiceButton} onClick={()=>{}}>
+                                <Button className={classes.getServiceButton} onClick={() => { setAddVisible(true)}}>
                                     أطلب الخدمة
                                 </Button>
                             </div>

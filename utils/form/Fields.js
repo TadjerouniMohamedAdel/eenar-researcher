@@ -145,3 +145,12 @@ export const groupFields = [
     {name:"website",label:"الموقع",type:"text",defaultValue:"",className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
+
+export const serviceRequestFields = [
+    {name:"title",label:"عنوان الطلب",type:"text",defaultValue:"",className:""},
+    {name:"primarySpeciality",label:"التخصص الأساسي",type:"select",choices:[{label:"عام",value:"public"},{label:"سري",value:"private"}],defaultValue:"",className:""},
+    {name:"secondarySpeciality",label:"التخصص الفرعي",type:"text",defaultValue:"",className:""},
+    {name:"description",label:"تفاصيل الطلب",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},   
+    {name:"urgentRequest",label:"طلب عاجل؟",defaultValue:false,type:"checkbox"},
+    {name:"file",label:"تحميل ملف المقال",type:"file",props:{accept:"application/pdf",InputLabelProps:{shrink:true}},defaultValue:null,className:"fileInput"},
+]

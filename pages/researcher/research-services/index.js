@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import MyHead from '../../../components/MyHead/MyHead'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -8,6 +8,10 @@ import classes from '../../../styles/Services.module.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ServiceCard from '../../../components/ServiceCard/ServiceCard'
 import ServiceCardSkeleton from '../../../components/ServiceCard/ServiceCardSkeleton'
+import AddElement from '../../../components/CrudModal/AddElement'
+import Modal from '../../../components/Modal/Modal'
+import { serviceRequestFields } from '../../../utils/form/Fields'
+import { serviceRequestSchema } from '../../../utils/Validation/ValidationObjects'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -16,9 +20,19 @@ export const getStaticProps = async ({ locale }) => ({
   },
 })
 export default function index() {
+  const [addVisible, setAddVisible] = useState(false);
+
   return (
     <ResearcherLayout>
       <MyHead title="الخدمات البحثية" />
+      <Modal visible={addVisible} setVisible={setAddVisible}>
+        <AddElement
+          title="طلب خدمة"
+          handleSubmit={()=>{}}
+          validationSchema={serviceRequestSchema}
+          fields={serviceRequestFields}
+        />
+      </Modal>
       <div className={classes.servicesContainer}>
         <BannerMenu
           title="الخدمات البحثية"
@@ -33,11 +47,11 @@ export default function index() {
             <InfiniteScroll
               dataLength={10}
               className={classes.servicesList}
-              next={() => {}}
+              next={() => { }}
               inverse={false}
               hasMore={false}
             >
-              <ServiceCard />
+              <ServiceCard setAddVisible={setAddVisible}/>
               <ServiceCard />
               <ServiceCard />
               <ServiceCard />

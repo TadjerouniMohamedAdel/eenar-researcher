@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core'
 import classes from './ServiceCard.module.css'
 import Link from 'next/link'
-export default function ServiceCard() {
+export default function ServiceCard({setAddVisible}) {
     return (
         <Link href="/researcher/research-services/54ssf">
         <div className={classes.serviceCard}>
@@ -13,7 +13,7 @@ export default function ServiceCard() {
                     </p>
                 <div className={classes.divider}></div>
                 <div className={classes.serviceFooter}>
-                    <Button className={classes.getServiceButton} variant="contained">
+                    <Button className={classes.getServiceButton} variant="contained" onClick={(event)=>{event.stopPropagation();setAddVisible(true)}}>
                         أطلب الخدمة
                     </Button>
                 </div>
