@@ -103,6 +103,24 @@
     border: solid 1px #dedeea;
     background-color: #ffffff;
 }
+.formCheckbox{
+    height: 54px;
+    width: 100% !important;
+    margin-top: 28px !important;
+    margin: 11px 0 0;
+    background-color: #ffffff;
+}
+.formCheckbox span{
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
 .fileValue {
     position: relative;
     width: 90%;

@@ -1,6 +1,5 @@
 .researchsContainer{
     display: flex;
-    margin-top: 32px;
     flex-direction: column;
 }
 .researchsContainer > h1{
@@ -15,19 +14,9 @@
     text-align: right;
     color: #3e3f5e;
 }
-.researchsContainer .content{
-    display: flex;
-    margin-top: 32px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.researchsContainer .content .mainSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.researchsContainer .content .mainSection .filterSection {
+
+
+.researchsContainer .filterSection {
     width: 100%;
     height: 100px;
     margin-top: 26px;
@@ -40,24 +29,24 @@
     padding-right: 28px;
     padding-left: 28px;
 }
-.researchsContainer .content .mainSection  .filterSection .groupedActions{
+.researchsContainer  .filterSection .groupedActions{
     display: flex;
     width: 45%;
     align-items: center;
     justify-content: space-between;
 }
-.researchsContainer .content .mainSection  .filterSection .input{
+.researchsContainer  .filterSection .input{
     width: 349px !important;
     border-radius: 10px !important;
     border: solid 1px transparent !important;
     background-color: #ffffff;
     margin-top: 6px;
 }
-.researchsContainer .content .mainSection  .input > div{
+.researchsContainer  .input > div{
     border-radius: 10px !important;
     border-color: transparent;
 }
-.researchsContainer .content .mainSection .select{
+.researchsContainer .select{
     width: 143px;
     /* height: 48px !important; */
     border-radius: 8px;
@@ -65,7 +54,7 @@
     background-color: #ffffff;
 }
 
-.researchsContainer .content .mainSection  .filterSection .searchButton{
+.researchsContainer  .filterSection .searchButton{
     width: 64px !important;
     height: 48px !important;
     padding: 12px 20px;
@@ -73,21 +62,21 @@
     box-shadow: 3px 5.2px 10px 0 rgba(255, 209, 102, 0.3);
     background-color: #ffd166 !important;
 }
-.researchsContainer .content .mainSection  .filterSection .searchButton .searchIcon{
+.researchsContainer  .filterSection .searchButton .searchIcon{
     font-size: 30px !important;
     color: #ffffff;   
 }
-.researchsContainer .content .mainSection  .filterSection .searchButton .searchIcon.right{
+.researchsContainer  .filterSection .searchButton .searchIcon.right{
     transform: rotate(100deg) !important;
 }
-.researchsContainer .content .mainSection  .filterSection .addButton{
+.researchsContainer  .filterSection .addButton{
     width: 140px;
     height: 48px;
     border-radius: 8px;
     box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
     background-color: var(--active-color);
 }
-.researchsContainer .content .mainSection  .filterSection .addButton span.text{
+.researchsContainer  .filterSection .addButton span.text{
     /* width: 81px; */
     font-family: var(--primary-font);
     font-size: 13.9px;
@@ -99,29 +88,17 @@
     letter-spacing: normal;
     text-align: center;
 }
-.researchsContainer .content .mainSection  .filterSection .addButton .addIcon{
+.researchsContainer  .filterSection .addButton .addIcon{
     font-size: 19px;
     color: #ffffff;
 }
-.researchsContainer .content .mainSection .postsContainer{
+.researchsContainer .postsContainer{
     margin-top: 16px;
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-.researchsContainer .content .mainSection .postsContainer > *{
+.researchsContainer .postsContainer > *{
     margin: 16px
-}
-.researchsContainer .content .sideSection{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-.researchsContainer .content .mainSection{
-    flex:2;
-}
-
-.researchsContainer  .sideSection > div{
-    width: 90%;
 }

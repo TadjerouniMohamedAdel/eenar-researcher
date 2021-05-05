@@ -8,7 +8,7 @@ export default function Laoding() {
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: '/anim1.json' // the path to the animation json
+            path: '/animations/loading.json' // the path to the animation json
           });
         
       }, [])

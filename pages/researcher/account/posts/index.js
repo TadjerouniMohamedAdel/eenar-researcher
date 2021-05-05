@@ -37,115 +37,97 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DeleteElement from "../../../../components/CrudModal/DeleteElement";
 import MultiStepsEditElement from "../../../../components/CrudModal/MultiStepsEditElement";
-import axios from "axios";
 import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
 import moment from "moment";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Alert from '@material-ui/lab/Alert';
 
+import { useSelector } from 'react-redux'
+import useGetList from "../../../../utils/hooks/useGetList";
+import useAddElement from "../../../../utils/hooks/useAddElement";
+import useEditElement from "../../../../utils/hooks/useEditElement";
+import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
+import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSectionLayout";
 
 
 export const getStaticProps = async ({ locale }) => ({
-    props: {
-      ...await serverSideTranslations(locale, ["sidebar"]),
-    },
-  })
+  props: {
+    ...await serverSideTranslations(locale, ["sidebar"]),
+  },
+})
 
 
 
 export default function index() {
+  const user = useSelector((state) => state.user)
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
   const [addVisible, setAddVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
-  const [offset,setOffset] = useState(0)
-  const [limit,setLimit] = useState(10)
-  const [pages,setPages] = useState(0)
-  const [page,setPage] = useState(1)
-  const [research,setResearch] = useState("")
-  const [showAddAlert,setShowAddAlert] = useState(false)
+  // const [isLoading, setIsLoading] = useState(true);
+  const [offset, setOffset] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [page, setPage] = useState(1)
+  const [research, setResearch] = useState("")
+  const [showAddAlert, setShowAddAlert] = useState(false)
+  const { isLoading, data } = useGetList("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
+  const { mutate: addPost, status: addPostStatus } = useAddElement("posts", "/researcher/post/add", limit, offset, research, user.researchers.id)
+  const { mutate: editPost, status: editPostStatus } = useEditElement("posts", "/researcher/post/edit", limit, offset, research, user.researchers.id)
+  const { mutate: deletePost, status: deletePostStatus } = useDeleteElement("posts", `/researcher/post/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
   moment.locale("ar-dz");
 
+  useEffect(() => {
+    setOffset(0)
+  }, [research])
 
-  const getNextData = ()=>{
-    setIsLoading(true)
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
-    axios({
-      method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/research?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}&title=${research}`,
-    })
-      .then((response) => {
-        console.log("response",response.data)
-        setIsLoading(false)
-        setPosts(response.data.posts);
-        setPages(response.data.maxPages)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+
 
   useEffect(() => {
-    setPage(offset/limit+1)
-    getNextData()
+    setPage(offset / limit + 1)
   }, [offset]);
 
-  const handleResearch = ()=>{
-      setOffset(0)
-      getNextData()
-  }
 
-  useEffect(()=>{
-    console.log(page)
-  },[page])
+
+  useEffect(() => {
+    if (addPostStatus === "success") {
+      setAddVisible(false)
+    }
+  }, [addPostStatus])
+
+  useEffect(() => {
+    if (editPostStatus === "success") {
+      setEditVisible(false)
+    }
+  }, [editPostStatus])
+
+  useEffect(() => {
+    if (deletePostStatus === "success") {
+      setDeleteVisible(false)
+    }
+  }, [deletePostStatus])
+
+
 
   const handleDeleteItem = (item) => {
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
     item.researcherId = user.researchers.id;
-    console.log("delete post", item);
-    axios({
-      method: "delete",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/delete?id=${item.id}`,
-      data: item,
-    })
-      .then((response) => {
-        console.log(response);
-        setPosts(posts.filter((el) => el.id !== item.id));
-        setDeleteVisible(false);
-      })
-      .catch((error) => console.log(error));
+    deletePost(item)
   };
+
+
   const handleAddItem = (item) => {
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
     item.researcherId = user.researchers.id;
     let data = new FormData();
     for (const key in item) {
       data.append([key], item[key]);
     }
-    axios({
-      method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/add`,
-      data,
-    })
-      .then((response) => {
-        console.log("response add", response.data);
-        setPosts([...posts, response.data]);
-        setAddVisible(false);
-        setShowAddAlert(true)
-      })
-      .catch((error) => console.log(error));
+    addPost(data)
   };
+
+
+
   const handleEditItem = (item) => {
     const user = JSON.parse(
       JSON.parse(localStorage.getItem("persist:primary")).user
@@ -156,37 +138,23 @@ export default function index() {
     for (const key in item) {
       data.append([key], item[key]);
     }
-    axios({
-      method: "put",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/edit`,
-      data,
-    })
-      .then((response) => {
-        console.log(response);
-        let lastItems = [...posts];
-        const index = lastItems.findIndex((el) => el.id === item.id);
-        lastItems[index] = response.data;
-        setPosts(lastItems);
-        setEditVisible(false);
-        setSelectedItem(null);
-      })
-      .catch((error) => console.log(error));
+    editPost(data)
   };
 
 
-  const renderStatusBadge =(postStatus)=>{
-    if(!postStatus) return (<Chip className={classes.pendingBadge} variant="outlined"  label="قيد الإنتظار" />)
+  const renderStatusBadge = (postStatus) => {
+    if (!postStatus) return (<Chip className={classes.pendingBadge} variant="outlined" label="قيد الإنتظار" />)
     switch (postStatus.status) {
       case "assigned":
-        return (<Chip className={classes.assignedBadge} variant="outlined"  label="قيد المراجعة" />)
+        return (<Chip className={classes.assignedBadge} variant="outlined" label="قيد المراجعة" />)
         break;
       case "rejected":
-        return (<Chip className={classes.rejectedBadge} variant="outlined"  label="مرفوض" />)
+        return (<Chip className={classes.rejectedBadge} variant="outlined" label="مرفوض" />)
         break;
       case "validated":
-        return (<Chip className={classes.validatedBadge} variant="outlined"  label="مقبول" />)
+        return (<Chip className={classes.validatedBadge} variant="outlined" label="مقبول" />)
         break;
-    
+
       default:
         break;
     }
@@ -195,232 +163,230 @@ export default function index() {
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - منشوراتي" />
-      <div className={classes.myPostsContainer}>
-        <Modal visible={addVisible} setVisible={setAddVisible}>
-          <MultiStepsAddElement
-            title="منشور"
-            handleSubmit={handleAddItem}
-            steps={[
-              { fields: postStep1, validationSchema: postSchemaStep1 },
-              { fields: postStep2, validationSchema: postSchemaStep2 },
-            ]}
-          />
-        </Modal>
-        <Modal visible={editVisible} setVisible={setEditVisible}>
-          <MultiStepsEditElement
-            item={selectedItem}
-            handleSubmit={handleEditItem}
-            title="منشور"
-            steps={[
-              { fields: postStep1, validationSchema: postSchemaStep1 },
-              { fields: postStep2, validationSchema: postSchemaStep2 },
-            ]}
-          />
-        </Modal>
-        <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
-          <DeleteElement
-            item={selectedItem}
-            title="منشور"
-            handleSubmit={handleDeleteItem}
-          />
-        </Modal>
-        <div className={classes.mainSection}>
-          <div className={classes.filterSection}>
-            <div className={classes.groupedActions}>
-              <TextField
-                variant="outlined"
-                label="العنوان"
-                onChange={(e)=>setResearch(e.target.value)}
-                className={classes.input}
-              />
-              {/* <FormControl  variant="outlined" className={classes.select}>
+      <Modal visible={addVisible} setVisible={setAddVisible}>
+        <MultiStepsAddElement
+          title="منشور"
+          handleSubmit={handleAddItem}
+          steps={[
+            { fields: postStep1, validationSchema: postSchemaStep1 },
+            { fields: postStep2, validationSchema: postSchemaStep2 },
+          ]}
+        />
+      </Modal>
+      <Modal visible={editVisible} setVisible={setEditVisible}>
+        <MultiStepsEditElement
+          item={selectedItem}
+          handleSubmit={handleEditItem}
+          title="منشور"
+          steps={[
+            { fields: postStep1, validationSchema: postSchemaStep1 },
+            { fields: postStep2, validationSchema: postSchemaStep2 },
+          ]}
+        />
+      </Modal>
+      <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
+        <DeleteElement
+          item={selectedItem}
+          title="منشور"
+          handleSubmit={handleDeleteItem}
+        />
+      </Modal>
+      <MultiSectionLayout
+        hasTwoSection={false}
+      >
+
+        <div className={classes.filterSection} id="scroll">
+          <div className={classes.groupedActions}>
+            <TextField
+              variant="outlined"
+              label="العنوان"
+              onChange={(e) => setResearch(e.target.value)}
+              className={classes.input}
+            />
+            {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المنشور</InputLabel>
                                 <Select
                                     label="نوع المنشور"
                                 >   
                                 </Select>
                             </FormControl> */}
-              <Button className={classes.searchButton} onClick={() => handleResearch()}>
+            {/* <Button className={classes.searchButton} onClick={() => handleResearch()}>
                 <SearchIcon
                   className={`${classes.searchIcon} ${classes.right}`}
                 />
-              </Button>
-            </div>
-            <div className={classes.buttonSection}>
-              <Button
-                className={classes.addButton}
-                onClick={()=>setAddVisible(true)}
-              >
-                <span className={classes.text}>أضف منشور</span>
-                <AddIcon className={classes.addIcon} />
-              </Button>
-            </div>
+              </Button> */}
           </div>
-          {isLoading === false && posts.length == 0 ? (
-            <div className={classes.empty}>
-              <img src="/images/empty.png" alt="empty-list" />
-              <h3>لا تحتوي هذه القائمة على بيانات</h3>
-            </div>
-          ) : (
-            <div className={classes.tableContainer}>
-              {
-                showAddAlert && (
-                    <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={()=>setShowAddAlert(false)}>
-                            تم إضافة المنشور، سيتم دراسته لتحقق من صحته  
-                    </Alert>
+          <div className={classes.buttonSection}>
+            <Button
+              className={classes.addButton}
+              onClick={() => setAddVisible(true)}
+            >
+              <span className={classes.text}>أضف منشور</span>
+              <AddIcon className={classes.addIcon} />
+            </Button>
+          </div>
+        </div>
+        {isLoading === false && data.posts.length == 0 ? (
+          <div className={classes.empty}>
+            <img src="/images/empty.png" alt="empty-list" />
+            <h3>لا تحتوي هذه القائمة على بيانات</h3>
+          </div>
+        ) : (
+          <div className={classes.tableContainer}>
+            {
+              showAddAlert && (
+                <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={() => setShowAddAlert(false)}>
+                  تم إضافة المنشور، سيتم دراسته لتحقق من صحته
+                </Alert>
 
-                )
-              }
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
+              )
+            }
+            <Table className={classes.table} aria-label="simple table" >
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.cellHeader} align="center">
+                    تاريخ النشر
+                    </TableCell>
+                  <TableCell className={classes.cellHeader} align="left">
+                    العنوان
+                    </TableCell>
+                  <Hidden only="xs">
                     <TableCell className={classes.cellHeader} align="center">
-                      تاريخ النشر
-                    </TableCell>
-                    <TableCell className={classes.cellHeader} align="left">
-                      العنوان
-                    </TableCell>
-                    <Hidden only="xs">
-                      <TableCell className={classes.cellHeader} align="center">
-                        المؤلف
+                      المؤلف
                       </TableCell>
-                    </Hidden>
-                    <Hidden only="xs">
-                      <TableCell className={classes.cellHeader} align="center">
+                  </Hidden>
+                  <Hidden only="xs">
+                    <TableCell className={classes.cellHeader} align="center">
                       الحالة
                       </TableCell>
-                    </Hidden>
-                    <TableCell className={classes.cellHeader} align="center">
-                      إجراأت
+                  </Hidden>
+                  <TableCell className={classes.cellHeader} align="center">
+                    إجراأت
                     </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody className={classes.tableBody}>
-                  {isLoading ? (
-                    <>
+                </TableRow>
+              </TableHead>
+              <TableBody className={classes.tableBody}>
+                {isLoading ? (
+                  <>
                     {
 
-                    new Array(limit).fill().map((el,index)=>(
-                      <TableRow key={index} style={{height:80}}>
-                        <TableCell className={classes.cellBody} align="center">
-                          <Skeleton animation="wave" variant="rect" />
-                        </TableCell>
-                        <TableCell
-                          className={`${classes.cellBody} ${classes.title}`}
-                          align="left"
-                        >
-                          <Skeleton animation="wave" variant="rect" />
-                        </TableCell>
-                        <Hidden only="xs">
+                      new Array(limit).fill().map((el, index) => (
+                        <TableRow key={index} style={{ height: 80 }}>
                           <TableCell className={classes.cellBody} align="center">
                             <Skeleton animation="wave" variant="rect" />
-                          </TableCell>
-                        </Hidden>
-                        <Hidden only="xs">
-                          <TableCell className={classes.cellBody} align="center">
-                            <Skeleton animation="wave" variant="rect" />
-                          </TableCell>
-                        </Hidden>
-                        <TableCell className={classes.cellBody} align="center">
-                          <Skeleton animation="wave" variant="rect" />
-                        </TableCell>
-                      </TableRow>
-                      ))
-                    }
-                  </>
-                  ) : (
-                    <>
-                      {posts.map((row, index) => (
-                        <TableRow key={index} style={{height:20}}>
-                          <TableCell
-                            className={classes.cellBody}
-                            align="center"
-                          >
-                            {moment(row.publishedDate).format("DD MMM YYYY")}
                           </TableCell>
                           <TableCell
                             className={`${classes.cellBody} ${classes.title}`}
                             align="left"
                           >
-                          <Link href={`/researcher/account/posts/${row.id}`}>
-                              {row.arabicTitle}
-                            </Link>
+                            <Skeleton animation="wave" variant="rect" />
                           </TableCell>
                           <Hidden only="xs">
-                            <TableCell
-                              className={classes.cellBody}
-                              align="center"
-                            >
-                              {row.primaryAuthor}
+                            <TableCell className={classes.cellBody} align="center">
+                              <Skeleton animation="wave" variant="rect" />
                             </TableCell>
                           </Hidden>
                           <Hidden only="xs">
-                            <TableCell
-                              className={classes.cellBody}
-                              align="center"
-                            >
-                              {renderStatusBadge(row.postStatus)}
+                            <TableCell className={classes.cellBody} align="center">
+                              <Skeleton animation="wave" variant="rect" />
                             </TableCell>
                           </Hidden>
+                          <TableCell className={classes.cellBody} align="center">
+                            <Skeleton animation="wave" variant="rect" />
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    }
+                  </>
+                ) : (
+                  <>
+                    {data.posts.map((row, index) => (
+                      <TableRow key={index} style={{ height: 20 }} key={`row-${index}`}>
+                        <TableCell
+                          className={classes.cellBody}
+                          align="center"
+                        >
+                          {moment(row.publishedDate).format("DD MMM YYYY")}
+                        </TableCell>
+                        <TableCell
+                          className={`${classes.cellBody} ${classes.title}`}
+                          align="left"
+                        >
+                          <Link href={`/researcher/account/posts/${row.id}`}>
+                            {row.arabicTitle}
+                          </Link>
+                        </TableCell>
+                        <Hidden only="xs">
                           <TableCell
                             className={classes.cellBody}
                             align="center"
                           >
-                            <a href={row.file} target="_blank">
-                              <IconButton>
-                                <GetAppIcon className={classes.downloadIcon} />
-                              </IconButton>
-                            </a>
-                            <IconButton
-                              onClick={() => {
-                                setSelectedItem(row);
-                                setEditVisible(true);
-                              }}
-                            >
-                              <EditIcon className={classes.downloadIcon} />
-                            </IconButton>
-                            <IconButton
-                              onClick={() => {
-                                setSelectedItem(row);
-                                setDeleteVisible(true);
-                              }}
-                            >
-                              <DeleteIcon className={classes.downloadIcon} />
-                            </IconButton>
+                            {row.primaryAuthor}
                           </TableCell>
-                        </TableRow>
-                      ))}
-                    </>
-                  )}
-                </TableBody>
-              </Table>
-              {pages > 1 && (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "flex-end",
-                  }}
-                >
-                  <Pagination 
-                      active={page}
-                      limit={limit}
-                      pages={pages}
-                      onNext={()=>{setOffset(offset+10)}}
-                      onPrev={()=>{setOffset(offset-10)}}
-                      onNum={setOffset}
-                  />
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-        <div className={classes.sideSection}>
-          <LearnNow />
-          <LastArticles articles={articles} />
-          <MyGroups groups={groups} />
-        </div>
-      </div>
+                        </Hidden>
+                        <Hidden only="xs">
+                          <TableCell
+                            className={classes.cellBody}
+                            align="center"
+                          >
+                            {renderStatusBadge(row.postStatus)}
+                          </TableCell>
+                        </Hidden>
+                        <TableCell
+                          className={classes.cellBody}
+                          align="center"
+                        >
+                          <a href={row.file} target="_blank">
+                            <IconButton>
+                              <GetAppIcon className={classes.downloadIcon} />
+                            </IconButton>
+                          </a>
+                          <IconButton
+                            onClick={() => {
+                              setSelectedItem(row);
+                              setEditVisible(true);
+                            }}
+                          >
+                            <EditIcon className={classes.downloadIcon} />
+                          </IconButton>
+                          <IconButton
+                            onClick={() => {
+                              setSelectedItem(row);
+                              setDeleteVisible(true);
+                            }}
+                          >
+                            <DeleteIcon className={classes.downloadIcon} />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </>
+                )}
+              </TableBody>
+            </Table>
+            {data && data.maxPages > 1 && (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Pagination
+                  active={page}
+                  limit={limit}
+                  pages={data.maxPages}
+                  onNext={() => { setOffset(offset + 10) }}
+                  onPrev={() => { setOffset(offset - 10) }}
+                  onNum={setOffset}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </MultiSectionLayout>
+
+
     </ResearcherAccountLayout>
   );
 }

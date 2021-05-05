@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
 import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 import MyHead from '../../../../components/MyHead/MyHead'
@@ -25,189 +25,156 @@ import moment from 'moment'
 import Link from 'next/link'
 import { Skeleton } from "@material-ui/lab";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
+import { useSelector } from 'react-redux'
+import useGetList from "../../../../utils/hooks/useGetList";
+import useAddElement from "../../../../utils/hooks/useAddElement";
+import useEditElement from "../../../../utils/hooks/useEditElement";
+import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
+import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
 
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
-      ...await serverSideTranslations(locale, ["sidebar"]),
+        ...await serverSideTranslations(locale, ["sidebar"]),
     },
-  })
+})
 export default function index() {
-    const [addVisible,setAddVisible] = useState(false)
-    const [editVisible,setEditVisible] = useState(false)
-    const [deleteVisible,setDeleteVisible] = useState(false)
-    const [articles,setArticles] = useState(dataarticles)
-    const [groups,setGroups] = useState(datagroups)
-    const [selectedItem,setSelectedItem] = useState(null)
-    const [isLoading, setIsLoading] = useState(true);
-    const [projects,setProjects] = useState([])
-    const [offset,setOffset] = useState(0)
-    const [limit,setLimit] = useState(10)
-    const [pages,setPages] = useState(0)
-    const [page,setPage] = useState(1)
-    const [research,setResearch] = useState("")
-
+    const user = useSelector((state) => state.user)
+    const [addVisible, setAddVisible] = useState(false)
+    const [editVisible, setEditVisible] = useState(false)
+    const [deleteVisible, setDeleteVisible] = useState(false)
+    const [articles, setArticles] = useState(dataarticles)
+    const [groups, setGroups] = useState(datagroups)
+    const [selectedItem, setSelectedItem] = useState(null)
+    const [projects, setProjects] = useState([])
+    const [offset, setOffset] = useState(0)
+    const [limit, setLimit] = useState(10)
+    const [pages, setPages] = useState(0)
+    const [page, setPage] = useState(1)
+    const [research, setResearch] = useState("")
+    const { isLoading, data } = useGetList("researchproject", "/researcher/researchproject/research", limit, offset, research, user.researchers.id)
+    const { mutate: addProject, status: addProjectStatus } = useAddElement("researchproject", "/researcher/researchproject/add", limit, offset, research, user.researchers.id)
+    const { mutate: editProject, status: editProjectStatus } = useEditElement("researchproject", "/researcher/researchproject/edit", limit, offset, research, user.researchers.id)
+    const { mutate: deleteProject, status: deleteProjectStatus } = useDeleteElement("researchproject", `/researcher/researchproject/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
     moment.locale('ar-dz')
-    
-    
 
 
-    const getNextData = ()=>{
-        setIsLoading(true)
-        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
-        axios({
-            method:"GET",
-            url:`${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/research?researcherId=${user.researchers.id}&offset=${offset}&limit=${limit}&title=${research}`
-        }).then(response=>{
-            setIsLoading(false)
-            setProjects(response.data.projects)
-            setPages(response.data.maxPages)
-        }).catch(error=>{
-            console.log(error)
-        })
-    }
     useEffect(() => {
-        setPage(offset/limit+1)
-        getNextData()
-      }, [offset]);
+        setPage(offset / limit + 1)
+    }, [offset]);
 
-    const handleResearch = ()=>{
+
+    useEffect(() => {
+        if (addProjectStatus === "success") {
+            setAddVisible(false)
+        }
+    }, [addProjectStatus])
+
+    useEffect(() => {
+        if (editProjectStatus === "success") {
+            setEditVisible(false)
+        }
+    }, [editProjectStatus])
+
+    useEffect(() => {
+        if (deleteProjectStatus === "success") {
+            setDeleteVisible(false)
+        }
+    }, [deleteProjectStatus])
+
+    const handleResearch = () => {
         setOffset(0)
-        getNextData()
     }
 
-    const handleDeleteItem = (item)=>{
+    const handleDeleteItem = (item) => {
+        item.researcherId = user.researchers.id
+        deleteProject(item)
+    }
+    const handleAddItem = (item) => {
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
-        console.log("delete post",item)
-        axios({
-            method: 'delete',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/delete?id=${item.id}`,
-            data: item
-          })
-            .then(response=>{
-                console.log(response)
-                setProjects(projects.filter((el)=>el.id!==item.id))
-                setDeleteVisible(false)
-            })
-            .catch(error=>console.log(error))
-          ;
-        
+        if (item.startDate == "") item.startDate = null
+        if (item.endDate == "") item.endDate = null
+        addProject(item)
     }
-    const handleAddItem = (item)=>{
+    const handleEditItem = (item) => {
         const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
         item.researcherId = user.researchers.id
-        if(item.startDate=="") item.startDate=null
-        if(item.endDate=="") item.endDate=null
-        console.log("add post",item)
-        axios({
-            method: 'post',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/add`,
-            data: item
-          })
-            .then(response=>{
-                console.log("response add",response.data)
-                setProjects([...projects,response.data])
-                setAddVisible(false)
-            })
-            .catch(error=>console.log(error))
-          ;
+        if (item.startDate == "") item.startDate = null
+        if (item.endDate == "") item.endDate = null
+        editProject(item)
     }
-    const handleEditItem = (item)=>{
-        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
-        item.researcherId = user.researchers.id
-        if(item.startDate=="") item.startDate=null
-        if(item.endDate=="") item.endDate=null
-
-        console.log("edit post",item)
-        axios({
-            method: 'put',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchproject/edit`,
-            data: item
-          })
-            .then(response=>{
-                console.log(response)
-                let lastItems = [...projects]
-                const index = lastItems.findIndex((el)=>el.id === item.id)
-                lastItems[index] = response.data
-                setProjects(lastItems)
-                setEditVisible(false)
-                setSelectedItem(null)
-            })
-            .catch(error=>console.log(error))
-          ;
-    }
-    const getStatus = (item)=>{
-        if(item.supervisor== null || item.supervisor=="") return "بحث عن مشرف"
-        if(item.startDate== null || item.startDate=="") return "قيد التحضير"
-        if(item.endDate== null || item.endDate=="") return "معلق"
+    const getStatus = (item) => {
+        if (item.supervisor == null || item.supervisor == "") return "بحث عن مشرف"
+        if (item.startDate == null || item.startDate == "") return "قيد التحضير"
+        if (item.endDate == null || item.endDate == "") return "معلق"
         return "تم الانتهاء منه"
     }
     return (
         <ResearcherAccountLayout>
             <MyHead title="الملف الشخصي  - مشاريعي" />
-           <div className={classes.myProjectsContainer}>
-           <Modal visible={addVisible} setVisible={setAddVisible}>
-                        <MultiStepsAddElement
-                            title="مشروع"
-                            handleSubmit={handleAddItem}
-                            steps={[{fields:projectStep1,validationSchema:projectSchemaStep1},{fields:projectStep2,validationSchema:projectSchemaStep2},{fields:projectStep3,validationSchema:projectSchemaStep3},{fields:projectStep4,validationSchema:projectSchemaStep4}]}
+            <Modal visible={addVisible} setVisible={setAddVisible}>
+                <MultiStepsAddElement
+                    title="مشروع"
+                    handleSubmit={handleAddItem}
+                    steps={[{ fields: projectStep1, validationSchema: projectSchemaStep1 }, { fields: projectStep2, validationSchema: projectSchemaStep2 }, { fields: projectStep3, validationSchema: projectSchemaStep3 }, { fields: projectStep4, validationSchema: projectSchemaStep4 }]}
+                />
+            </Modal>
+            <Modal visible={editVisible} setVisible={setEditVisible}>
+                <MultiStepsEditElement
+                    item={selectedItem}
+                    handleSubmit={handleEditItem}
+                    title="مشروع"
+                    steps={[{ fields: projectStep1, validationSchema: projectSchemaStep1 }, { fields: projectStep2, validationSchema: projectSchemaStep2 }, { fields: projectStep3, validationSchema: projectSchemaStep3 }, { fields: projectStep4, validationSchema: projectSchemaStep4 }]}
+                />
+            </Modal>
+            <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
+                <DeleteElement
+                    item={selectedItem}
+                    title="مشروع"
+                    handleSubmit={handleDeleteItem}
+                />
+            </Modal>
+            <MultiSectionLayout
+                hasTwoSection={false}>
+
+                <div className={classes.filterSection} id="scroll">
+                    <div className={classes.groupedActions}>
+                        <TextField
+                            variant="outlined"
+                            label="العنوان"
+                            className={classes.input}
+                            onChange={(e) => setResearch(e.target.value)}
                         />
-                </Modal>
-                <Modal visible={editVisible} setVisible={setEditVisible}>
-                        <MultiStepsEditElement
-                            item={selectedItem}
-                            handleSubmit={handleEditItem}
-                            title="مشروع"
-                            steps={[{fields:projectStep1,validationSchema:projectSchemaStep1},{fields:projectStep2,validationSchema:projectSchemaStep2},{fields:projectStep3,validationSchema:projectSchemaStep3},{fields:projectStep4,validationSchema:projectSchemaStep4}]}
-                        />
-                </Modal>
-                <Modal visible={deleteVisible} setVisible={setDeleteVisible}>
-                        <DeleteElement
-                            item={selectedItem} 
-                            title="مشروع" 
-                            handleSubmit={handleDeleteItem}
-                        />
-                </Modal>
-                <div className={classes.mainSection}>
-                    <div className={classes.filterSection}>
-                        <div className={classes.groupedActions}>
-                            <TextField
-                                variant="outlined"
-                                label="العنوان"
-                                className={classes.input}
-                                onChange={(e)=>setResearch(e.target.value)}  
-                            />
-                            {/* <FormControl  variant="outlined" className={classes.select}>
+                        {/* <FormControl  variant="outlined" className={classes.select}>
                                 <InputLabel id="demo-simple-select-outlined-label">نوع المشروع</InputLabel>
                                 <Select
                                     label="نوع المشروع"
                                 >   
                                 </Select>
                             </FormControl> */}
-                            <Button className={classes.searchButton} onClick={() => handleResearch()}>
+                        {/* <Button className={classes.searchButton} onClick={() => handleResearch()}>
                                 <SearchIcon className={`${classes.searchIcon} ${classes.right}`} />
-                            </Button>
-                        </div>
-                        <div className={classes.buttonSection}>
-                            <Button className={classes.addButton} onClick={()=> setAddVisible(true)}>
-                                <span className={classes.text}>أضف مشروع</span>  
-                                <AddIcon  className={classes.addIcon}/>
-                            </Button>
-                        </div>
-                    
+                            </Button> */}
                     </div>
-                    {
-                        isLoading === false && projects.length == 0 ? (
-                            <div className={classes.empty}>
-                                <img src="/images/empty.png" alt="empty-list"/>
-                                <h3>لا تحتوي هذه القائمة على بيانات</h3>
-                            </div>
-                        ):(
-                            <div className={classes.tableContainer}>
-                                <Table className={classes.table} aria-label="simple table">
-                                    <TableHead>
+                    <div className={classes.buttonSection}>
+                        <Button className={classes.addButton} onClick={() => setAddVisible(true)}>
+                            <span className={classes.text}>أضف مشروع</span>
+                            <AddIcon className={classes.addIcon} />
+                        </Button>
+                    </div>
+
+                </div>
+                {
+                    isLoading === false && data.projects.length == 0 ? (
+                        <div className={classes.empty}>
+                            <img src="/images/empty.png" alt="empty-list" />
+                            <h3>لا تحتوي هذه القائمة على بيانات</h3>
+                        </div>
+                    ) : (
+                        <div className={classes.tableContainer}>
+                            <Table className={classes.table} aria-label="simple table">
+                                <TableHead>
                                     <TableRow>
                                         <TableCell className={classes.cellHeader} align="center">تاريخ البدأ</TableCell>
                                         <TableCell className={classes.cellHeader} align="left">المشروع</TableCell>
@@ -215,95 +182,89 @@ export default function index() {
                                         <TableCell className={classes.cellHeader} align="center">الحالة </TableCell>
                                         <TableCell className={classes.cellHeader} align="center">إجراأت</TableCell>
                                     </TableRow>
-                                    </TableHead>
-                                    <TableBody className={classes.tableBody}>
-                                    
-                        {isLoading ? (
-                            <>
-                            {
-                                
-                            new Array(limit).fill().map((el,index)=>(
-                                <TableRow key={index} style={{height:80}}>
-                                <TableCell className={classes.cellBody} align="center">
-                                    <Skeleton animation="wave" variant="rect" />
-                                </TableCell>
-                                <TableCell
-                                    className={`${classes.cellBody} ${classes.title}`}
-                                    align="left"
-                                >
-                                    <Skeleton animation="wave" variant="rect" />
-                                </TableCell>
-                                <Hidden only="xs">
-                                    <TableCell className={classes.cellBody} align="center">
-                                    <Skeleton animation="wave" variant="rect" />
-                                    </TableCell>
-                                </Hidden>
-                                <TableCell className={classes.cellBody} align="center">
-                                    <Skeleton animation="wave" variant="rect" />
-                                </TableCell>
-                                <TableCell className={classes.cellBody} align="center">
-                                    <Skeleton animation="wave" variant="rect" />
-                                </TableCell>
-                                </TableRow>
-                                
-                              ))
-                            }
-                          </>
-                          ) : (
-                            <>
-                                    {projects.map((row,index) => (
-                                        <TableRow key={index}>
-                                        <TableCell className={classes.cellBody} align="center">
-                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY'):""}</TableCell>
-                                        <TableCell className={`${classes.cellBody} ${classes.title}`} align="left"><Link href={`/researcher/account/projects/${row.id}`}>{row.arabicTitle}</Link></TableCell>
-                                        <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
-                                        <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
-                                        <TableCell className={classes.cellBody} align="center">
-                                            
-                                            <IconButton onClick={()=>{setSelectedItem(row);setEditVisible(true)}}>
-                                                <EditIcon  className={classes.downloadIcon} />
-                                            </IconButton>
-                                            <IconButton onClick={()=>{setSelectedItem(row);setDeleteVisible(true)}}>
-                                                <DeleteIcon  className={classes.downloadIcon} />
-                                            </IconButton>
-                                        </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </>
-                        )}
-                                    </TableBody>
-                                </Table>
-                            
-                                {pages > 1 && (
-                                    <div
+                                </TableHead>
+                                <TableBody className={classes.tableBody}>
+
+                                    {isLoading ? (
+                                        <>
+                                            {
+
+                                                new Array(limit).fill().map((el, index) => (
+                                                    <TableRow key={index} style={{ height: 80 }}>
+                                                        <TableCell className={classes.cellBody} align="center">
+                                                            <Skeleton animation="wave" variant="rect" />
+                                                        </TableCell>
+                                                        <TableCell
+                                                            className={`${classes.cellBody} ${classes.title}`}
+                                                            align="left"
+                                                        >
+                                                            <Skeleton animation="wave" variant="rect" />
+                                                        </TableCell>
+                                                        <Hidden only="xs">
+                                                            <TableCell className={classes.cellBody} align="center">
+                                                                <Skeleton animation="wave" variant="rect" />
+                                                            </TableCell>
+                                                        </Hidden>
+                                                        <TableCell className={classes.cellBody} align="center">
+                                                            <Skeleton animation="wave" variant="rect" />
+                                                        </TableCell>
+                                                        <TableCell className={classes.cellBody} align="center">
+                                                            <Skeleton animation="wave" variant="rect" />
+                                                        </TableCell>
+                                                    </TableRow>
+
+                                                ))
+                                            }
+                                        </>
+                                    ) : (
+                                        <>
+                                            {data.projects.map((row, index) => (
+                                                <TableRow key={index}>
+                                                    <TableCell className={classes.cellBody} align="center">
+                                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY') : ""}</TableCell>
+                                                    <TableCell className={`${classes.cellBody} ${classes.title}`} align="left"><Link href={`/researcher/account/projects/${row.id}`}>{row.arabicTitle}</Link></TableCell>
+                                                    <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
+                                                    <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
+                                                    <TableCell className={classes.cellBody} align="center">
+
+                                                        <IconButton onClick={() => { setSelectedItem(row); setEditVisible(true) }}>
+                                                            <EditIcon className={classes.downloadIcon} />
+                                                        </IconButton>
+                                                        <IconButton onClick={() => { setSelectedItem(row); setDeleteVisible(true) }}>
+                                                            <DeleteIcon className={classes.downloadIcon} />
+                                                        </IconButton>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </>
+                                    )}
+                                </TableBody>
+                            </Table>
+
+                            {data && data.maxPages > 1 && (
+                                <div
                                     style={{
                                         width: "100%",
                                         display: "flex",
                                         justifyContent: "flex-end",
                                     }}
-                                    >
-                                    <Pagination 
+                                >
+                                    <Pagination
                                         active={page}
                                         limit={limit}
-                                        pages={pages}
-                                        onNext={()=>{setOffset(offset+10)}}
-                                        onPrev={()=>{setOffset(offset-10)}}
+                                        pages={data.maxPages}
+                                        onNext={() => { setOffset(offset + 10) }}
+                                        onPrev={() => { setOffset(offset - 10) }}
                                         onNum={setOffset}
                                     />
-                                    </div>
-                                )}
-                                                </div>
+                                </div>
+                            )}
+                        </div>
 
-                                            )
-                                }
-                </div>
-                <div className={classes.sideSection}>
-                    <LearnNow />
-                    <LastArticles articles={articles} />
-                    <MyGroups groups={groups} />
-                </div>
+                    )
+                }
+            </MultiSectionLayout>
 
-           </div>
         </ResearcherAccountLayout>
     )
 }

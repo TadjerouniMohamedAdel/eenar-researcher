@@ -9,6 +9,7 @@ import LastArticles from "../../../components/LastArticles/LastArticles";
 import MyGroups from "../../../components/MyGroups/MyGroups";
 import ResearchView from "../../../components/ResearchView/ResearchView";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSectionLayout";
 
 
 export async function getStaticPaths() {
@@ -58,8 +59,10 @@ export default function research({research}) {
   const [groups, setGroups] = useState(datagroups);
   return (
     <ResearcherLayout>
-      <div className={classes.myPostsContainer}>
-        <div className={classes.mainSection}>
+      
+        <MultiSectionLayout
+          hasTwoSection={false}
+        >
 
               {research ?   (
 
@@ -75,14 +78,8 @@ export default function research({research}) {
                   <h1>هذا البحث غير موجود</h1>
                 </div>
               )}
+        </MultiSectionLayout>
               
-        </div>
-        <div className={classes.sideSection}>
-          <LearnNow />
-          <LastArticles articles={articles} />
-          <MyGroups groups={groups} />
-        </div>
-      </div>
     </ResearcherLayout>
   );
 }

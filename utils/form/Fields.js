@@ -29,31 +29,31 @@ export const profileFields3= [
 export const  educationFields = [
     {name:"university",label:"جامعة",type:"text",defaultValue:"",className:""},
     {name:"title",label:"عنوان",type:"text",defaultValue:"",className:""},
-    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
 ]
 
 export const expericenceFields = [
     {name:"company",label:"شركة",type:"text",defaultValue:"",className:""},
     {name:"title",label:"عنوان",type:"text",defaultValue:"",className:""},
-    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
 ]
 
 
 export const certificationFields = [
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
     {name:"provider",label:"مزود",type:"text",defaultValue:"",className:""},
-    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
 ]
 
 
 export const volunteeringFields = [
     {name:"organization",label:"منظمة",type:"text",defaultValue:"",className:""},
     {name:"role",label:"دور",type:"text",defaultValue:"",className:""},
-    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
@@ -66,30 +66,30 @@ export const activityFields = [
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
     {name:"role",label:"دور",type:"text",defaultValue:"",className:""},
     {name:"location",label:"موقع",type:"text",defaultValue:"",className:""},
-    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
 ]
 
 export const patentFields = [
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
     {name:"status",label:"الحالة",type:"text",defaultValue:"",className:""},
     {name:"code",label:"رمز",type:"text",defaultValue:"",className:""},
-    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
 export const honorFields =[
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
     {name:"center",label:"center",type:"text",defaultValue:"",className:""},
-    {name:"date",label:"date",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"date",label:"date",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
 export const projectFields = [
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
-    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
@@ -105,7 +105,7 @@ export const postStep1=[
 export const postStep2=[
     {name:"arabicDescription",label:"الملخص بالعربية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
-    {name:"publishedDate",label:"تاريخ النشر",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"2020-12-31",className:""},
+    {name:"publishedDate",label:"تاريخ النشر",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
     {name:"file",label:"تحميل ملف المقال",type:"file",props:{accept:"application/pdf",InputLabelProps:{shrink:true}},defaultValue:null,className:"fileInput"},
     {name:"keywords",label:"الكلمات المفتاحية",type:"array",defaultValue:[],className:""},
 ]
@@ -122,8 +122,8 @@ export const projectStep1=[
 export const projectStep2=[
     {name:"arabicDescription",label:"الملخص بالعربية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"englishDescription",label:"الملخص بالإنجليزية",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
-    {name:"startDate",label:"تاريخ البدأ",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
+    {name:"startDate",label:"تاريخ البدأ",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
 ]
 export const projectStep3=[
     {name:"justifications",label:"المبررات",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
@@ -136,4 +136,21 @@ export const projectStep4=[
     {name:"methodology",label:"منهج البحث ووسائله",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"materials",label:"المراجع والمصادر",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
     {name:"steps",label:"مراحل البحث",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+]
+
+export const groupFields = [
+    {name:"title",label:"عنوان المجموعة",type:"text",defaultValue:"",className:""},
+    {name:"slogan",label:"شعار المجموعة",type:"text",defaultValue:"",className:""},
+    {name:"privacy",label:"خصوصية",type:"select",choices:[{label:"عام",value:"public"},{label:"سري",value:"private"}],defaultValue:"",className:""},
+    {name:"website",label:"الموقع",type:"text",defaultValue:"",className:""},
+    {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
+]
+
+export const serviceRequestFields = [
+    {name:"title",label:"عنوان الطلب",type:"text",defaultValue:"",className:""},
+    {name:"primarySpeciality",label:"التخصص الأساسي",type:"select",choices:[{label:"عام",value:"public"},{label:"سري",value:"private"}],defaultValue:"",className:""},
+    {name:"secondarySpeciality",label:"التخصص الفرعي",type:"text",defaultValue:"",className:""},
+    {name:"description",label:"تفاصيل الطلب",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},   
+    {name:"urgentRequest",label:"طلب عاجل؟",defaultValue:false,type:"checkbox"},
+    {name:"file",label:"تحميل ملف المقال",type:"file",props:{accept:"application/pdf",InputLabelProps:{shrink:true}},defaultValue:null,className:"fileInput"},
 ]

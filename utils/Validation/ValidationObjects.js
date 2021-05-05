@@ -42,8 +42,8 @@ export const profileSchema1 = Yup.object().shape({
     birthday: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 export const profileSchema2 = Yup.object().shape({
-    phone: Yup.string().required('يجب ملئ هذه المعلومة'),
-    country: Yup.string().required('يجب ملئ هذه المعلومة'),
+    phone: Yup.string(),
+    country: Yup.string(),
     address: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 export const profileSchema3 = Yup.object().shape({
@@ -56,30 +56,30 @@ export const profileSchema3 = Yup.object().shape({
 export const educationSchema = Yup.object().shape({
     university: Yup.string().required('يجب ملئ هذه المعلومة'),
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate, educationSchema) => startDate && educationSchema.min(startDate)).required('يجب ملئ هذه المعلومة'),
 })
 
 export const experienceSchema = Yup.object().shape({
     company: Yup.string().required('يجب ملئ هذه المعلومة'),
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate, experienceSchema) => startDate && experienceSchema.min(startDate)).required('يجب ملئ هذه المعلومة')
 })
 
 export const certificationSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     provider: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate, certificationSchema) => startDate && certificationSchema.min(startDate)).required('يجب ملئ هذه المعلومة')
 })
 
 export const VolunteeringSchema = Yup.object().shape({
     organization: Yup.string().required('يجب ملئ هذه المعلومة'),
     role: Yup.string().required('يجب ملئ هذه المعلومة'),
     description: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate, VolunteeringSchema) => startDate && VolunteeringSchema.min(startDate)).required('يجب ملئ هذه المعلومة')
 })
 
 export const languageSchema =  Yup.object().shape({
@@ -91,14 +91,14 @@ export const activitySchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     role: Yup.string().required('يجب ملئ هذه المعلومة'),
     location: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate, activitySchema) => startDate && activitySchema.min(startDate)).required('يجب ملئ هذه المعلومة')
 })
 
 export const patentSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate, patentSchema) => startDate && patentSchema.min(startDate)).required('يجب ملئ هذه المعلومة'),
     status: Yup.string().required('يجب ملئ هذه المعلومة'),
     code:   Yup.string().required('يجب ملئ هذه المعلومة'),
     description: Yup.string().required('يجب ملئ هذه المعلومة'),
@@ -112,8 +112,8 @@ export const honorSchema = Yup.object().shape({
 })
 export const projectSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.string().required('يجب ملئ هذه المعلومة'),
+    startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate, projectSchema) => startDate && projectSchema.min(startDate)).required('يجب ملئ هذه المعلومة'),
     description: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
@@ -144,8 +144,8 @@ export const projectSchemaStep1 = Yup.object().shape({
 export const projectSchemaStep2 = Yup.object().shape({
     arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
     englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
-    startDate: Yup.date().nullable().default(null),
-    endDate: Yup.date().nullable().default(null),
+    startDate: Yup.date(),
+    endDate: Yup.date().when("startDate",(startDate, projectSchemaStep2) => startDate && projectSchemaStep2.min(startDate))
 })
 
 export const projectSchemaStep3 = Yup.object().shape({
@@ -178,4 +178,16 @@ export const centerRegistrationStep2 = Yup.object().shape({
     password: Yup.string().required('يجب ملئ هذه المعلومة'),
     retypedPassword: Yup.string().oneOf([Yup.ref('password'), null], 'الكلمات السرية يجب ان تتطابق').required('يجب ملئ هذه المعلومة'),
 })
-
+export const groupSchema =  Yup.object().shape({
+    title: Yup.string().required('يجب ملئ هذه المعلومة'),
+    slogan: Yup.string().required('يجب ملئ هذه المعلومة'),
+    privacy: Yup.string().oneOf(["public","private"]).required('يجب ملئ هذه المعلومة'),
+    website: Yup.string(),
+    description: Yup.string(),
+})
+export const serviceRequestSchema =  Yup.object().shape({
+    title: Yup.string().required('يجب ملئ هذه المعلومة'),
+    primarySpeciality: Yup.string().required('يجب ملئ هذه المعلومة'),
+    secondarySpeciality: Yup.string().required('يجب ملئ هذه المعلومة'),
+    description: Yup.string().required('يجب ملئ هذه المعلومة'),
+})

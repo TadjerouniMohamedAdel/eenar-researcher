@@ -1,5 +1,5 @@
 .accountBanner {
-    height: auto;
+    height: 500px;
     border-radius: 8px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
     background-color: #ffffff;
@@ -102,7 +102,7 @@
 }
 .accountBanner .bannerProfile{
     position: relative;
-    top:-80px;
+    margin-top:-190px;
     display: flex;
     flex-direction: column;
     align-items: center;

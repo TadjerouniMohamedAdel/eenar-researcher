@@ -9,7 +9,10 @@
 input{
     font-family: var(--primary-font) !important;
 }
-
+a{
+    text-decoration: none !important;
+    color: unset !important;
+}
 :root {
     /* colors */
     --primary-color: #118ab2; 
@@ -91,3 +94,40 @@ input{
     font-family: var(--primary-font) !important;
     font-weight: 600;
 }
+
+.unsetTransform{
+    transform: unset !important;
+}
+ .MuiTabs-indicator{
+    height: 4px !important;
+}
+#post-menu .MuiMenu-paper	{
+    margin-top: 40px;
+    margin-left: 80px;
+    margin-right: 80px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.12);
+    background-color: #ffffff;
+
+}
+#group-menu .MuiMenu-paper{
+    margin-top: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.12);
+    background-color: #ffffff;
+}
+#post-menu .MuiMenu-paper .MuiMenuItem-root{
+    font-family: var(--primary-font);
+    font-size: 10px !important;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    /* line-height: 3; */
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+    transition: 0.5s;
+}
+#post-menu .MuiMenu-paper .MuiMenuItem-root:hover{
+    color: var(--active-color);
+} 

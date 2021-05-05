@@ -11,7 +11,7 @@ export default function ResearchView({research}) {
             <div className={classes.circleBlue}></div>
         </div>
     )
-    
+    const researcher = research.researcherPost ?? research.researchProjectsResearcher
     return (
         <div className={classes.researchView}>
             <div className={classes.researchImage}>
@@ -21,8 +21,8 @@ export default function ResearchView({research}) {
                     <div className={classes.researchAuthor}>
                             <div className={classes.researchAuthorImage}>
                                 {
-                                 research.researcherPost.userResearcher.image ?(
-                                        <img src={research.researcherPost.userResearcher.image} alt="" className={classes.circleWhite}/>
+                                 researcher.userResearcher.image ?(
+                                        <img src={researcher.userResearcher.image} alt="" className={classes.circleWhite}/>
                                  )
                                     :(
                                         <Circles />
@@ -30,8 +30,8 @@ export default function ResearchView({research}) {
                                 }
                             </div>
                             <div className={classes.researchAuthorInfo}>
-                                <h2>{research.researcherPost.userResearcher.firstname} {research.researcherPost.userResearcher.lastname}</h2>
-                                <span>{research.researcherPost.userResearcher.job}</span>
+                                <h2>{researcher.userResearcher.firstname} {researcher.userResearcher.lastname}</h2>
+                                <span>{researcher.userResearcher.job}</span>
                             </div>
                     </div>
                     <div className={classes.researchDownload}>
