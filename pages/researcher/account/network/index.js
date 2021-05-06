@@ -58,6 +58,7 @@ import useAddElement from '../../../../utils/hooks/useAddElement';
 import Pagination from '../../../../components/Pagination/Pagination';
 import GroupCardListSkeleton from '../../../../components/GroupCardList/GroupCardListSkeleton';
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout';
+import InfiniteList from '../../../../components/InfiniteList/InfiniteList';
 
 
 
@@ -73,8 +74,7 @@ export default function index() {
   const [limit, setLimit] = useState(10)
   const [articles, setArticles] = useState(dataarticles);
   const [sideGroups, setSideGroups] = useState(datagroups);
-  const [hasMore, setHasMore] = useState(true)
-  const [view, setView] = useState("list")
+  const [view, setView] = useState("grid")
   const [addVisible, setAddVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
   const [search, setSearch] = useState("")
@@ -161,18 +161,7 @@ export default function index() {
         {
           view === "grid" ? (
             <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
-              <InfiniteScroll
-                dataLength={groups.length}
-                className={classes.groupsContainer}
-                next={() => !isLoading && setOffset(offset + 10)}
-                inverse={false}
-                hasMore={hasMore}
-                loader={<GroupCardSkeleton />}
-              >
-                {groups.map((group, id) => (
-                  <GroupCard key={`group-card-${id}`} group={group} />
-                ))}
-              </InfiniteScroll>
+              <InfiniteList />
             </div>
 
           ) : (

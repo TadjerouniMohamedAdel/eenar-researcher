@@ -73,7 +73,7 @@ export default function GroupItem({ group: groupProp }) {
     (values) => axios.put(`${process.env.NEXT_PUBLIC_API_URL}/groups/edit`, values).then((res) => res.data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("groups")
+        queryClient.removeQueries(["groups"])
       }
     }
 
@@ -82,7 +82,7 @@ export default function GroupItem({ group: groupProp }) {
     (values) => axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/groups/delete?id=${group.id}`, values).then((res) => res.data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("groups")
+        queryClient.removeQueries(["groups"])
       }
     }
 
