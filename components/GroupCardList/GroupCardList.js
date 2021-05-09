@@ -4,6 +4,7 @@ import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOut
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { IconButton } from '@material-ui/core';
 import Link from 'next/link'
+import PropTypes from 'prop-types';
 
 export default function GroupCardList({ group }) {
     const Circle = () => (
@@ -72,4 +73,8 @@ export default function GroupCardList({ group }) {
         </Link>
 
     )
+}
+
+GroupCardList.propTypes = {
+    group:PropTypes.object.isRequired
 }

@@ -18,7 +18,7 @@ import useEditElement from '../../utils/hooks/useEditElement'
 import useGetList from '../../utils/hooks/useGetList';
 import useDeleteElement from '../../utils/hooks/useDeleteElement'
 import { useSelector } from 'react-redux'
-
+import PropTypes from 'prop-types'
 
 const backdropVariants = {
     visible: { opacity: 1 },
@@ -178,4 +178,12 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
             </div>
         </AnimatePresence>
     )
+}
+
+ResumeSuccessItem.propTypes = {
+    collectionName : PropTypes.string.isRequired,
+    label:PropTypes.string, 
+    last:PropTypes.bool, 
+    fields:PropTypes.array, 
+    validationSchema:PropTypes.object
 }

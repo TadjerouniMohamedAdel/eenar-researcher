@@ -5,6 +5,7 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import classes from './AboutGroup.module.css'
 import { dataaboutme } from '../../utils/fixtures/DevData'
 import moment from 'moment'
+import PropTypes from 'prop-types';
 
 
 
@@ -30,4 +31,8 @@ export default function AboutGroup({group}) {
             </ul>
         </div>
     )
+}
+
+AboutGroup.propTypes = {
+    group:PropTypes.object.isRequired
 }

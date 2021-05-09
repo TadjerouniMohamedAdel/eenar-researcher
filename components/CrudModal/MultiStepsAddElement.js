@@ -8,6 +8,8 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Hidden } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types';
+
 
 export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
     const [isLoading, setIsLoading] = useState(false)
@@ -217,4 +219,10 @@ export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
         </div>
 
     )
+}
+
+MultiStepsAddElement.propTypes={
+    title:PropTypes.string.isRequired,
+    handleSubmit:PropTypes.func.isRequired,
+    steps:PropTypes.array.isRequired
 }

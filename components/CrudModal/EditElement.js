@@ -6,6 +6,7 @@ import Chip from "@material-ui/core/Chip";
 import Autocomplete from "@material-ui/lab/Autocomplete"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types';
 
 export default function EditElement({item,fields,handleSubmit,validationSchema,title}) {
     const [isLoading,setIsLoading] = useState(false)
@@ -145,4 +146,11 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
         </div>
         
     )
+}
+
+EditElement.propTypes = {
+    title:PropTypes.string.isRequired,
+    handleSubmit:PropTypes.func.isRequired, 
+    fields:PropTypes.array.isRequired,
+    validationSchema:PropTypes.object.isRequired, 
 }

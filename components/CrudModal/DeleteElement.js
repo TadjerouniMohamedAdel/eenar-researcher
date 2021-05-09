@@ -2,6 +2,7 @@ import { useState } from 'react'
 import classes from './CrudModal.module.css'
 import { Button, CircularProgress } from '@material-ui/core'
 import moment from 'moment'
+import PropTypes from 'prop-types';
 
 export default function DeleteElement({item,title,handleSubmit}) {
     moment.locale('ar-dz')
@@ -47,4 +48,10 @@ export default function DeleteElement({item,title,handleSubmit}) {
             </div>
         </div>
     )
+}
+
+DeleteElement.propTypes = {
+    item:PropTypes.object,
+    title:PropTypes.string.isRequired,
+    handleSubmit:PropTypes.func.isRequired
 }

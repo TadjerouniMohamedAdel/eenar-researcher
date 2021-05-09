@@ -4,6 +4,8 @@ import {motion, AnimatePresence} from 'framer-motion'
 import classes from './Modal.module.css'
 import { IconButton } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
+import PropTypes from 'prop-types';
+
 
 const backdropVariants = {
     visible:{opacity:1},
@@ -56,4 +58,10 @@ export default function Modal({visible,setVisible,children}) {
             )}
         </AnimatePresence>
     )
+}
+
+Modal.propTypes = {
+    visible:PropTypes.bool.isRequired,
+    setVisible:PropTypes.func.isRequired,
+    children:PropTypes.node.isRequired
 }

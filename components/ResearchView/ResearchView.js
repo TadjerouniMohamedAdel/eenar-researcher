@@ -3,7 +3,7 @@ import React from 'react'
 import classes from './ResearchView.module.css'
 import GetAppIcon from '@material-ui/icons/GetApp';
 import moment from "moment";
-
+import PropTypes from 'prop-types'
 export default function ResearchView({research}) {
     moment.locale("ar-dz");
     const Circles = ()=>(
@@ -109,4 +109,8 @@ export default function ResearchView({research}) {
             </div>
         </div>
     )
+}
+
+ResearchView.propTypes = {
+    research:PropTypes.object.isRequired
 }

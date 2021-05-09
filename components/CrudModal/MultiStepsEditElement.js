@@ -7,6 +7,7 @@ import Chip from "@material-ui/core/Chip";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types';
 
 export default function MultiStepsEditElement({ item, steps, handleSubmit, title }) {
     const [isLoading, setIsLoading] = useState(false)
@@ -207,4 +208,10 @@ export default function MultiStepsEditElement({ item, steps, handleSubmit, title
         </div>
 
     )
+}
+
+MultiStepsEditElement.propTypes={
+    title:PropTypes.string.isRequired,
+    handleSubmit:PropTypes.func.isRequired,
+    steps:PropTypes.array.isRequired
 }

@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux'
 import useAddElement from '../../utils/hooks/useAddElement';
 import useEditElement from '../../utils/hooks/useEditElement';
 import useDeleteElement from '../../utils/hooks/useDeleteElement';
+import PropTypes from 'prop-types'
 
 export default function ResumeMainCollection({ collectionName, validationSchema, fields, children, label, icon }) {
     const user = useSelector((state) => state.user)
@@ -177,4 +178,14 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
             }
         </div>
     )
+}
+
+ResumeMainCollection.propTypes = {
+    collectionName:PropTypes.string,
+    validationSchema:PropTypes.object,
+    fields:PropTypes.array,
+    children:PropTypes.node,
+    label:PropTypes.string,
+    icon:PropTypes.node
+
 }

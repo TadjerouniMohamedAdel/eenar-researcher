@@ -1,6 +1,8 @@
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import classes from './Pagination.module.css'
+import PropTypes from 'prop-types'
+
 export default function Pagination({ onNext, onPrev, onNum, pages, active, limit }) {
     const list = document.querySelector("#scroll")
     const prev = () => {
@@ -34,4 +36,13 @@ export default function Pagination({ onNext, onPrev, onNum, pages, active, limit
         </div>
 
     )
+}
+
+Pagination.propTypes = {
+    onNext:PropTypes.func.isRequired,
+    onPrev:PropTypes.func.isRequired,
+    onNum:PropTypes.func.isRequired,
+    pages:PropTypes.number.isRequired,
+    limit:PropTypes.number.isRequired,
+    active:PropTypes.number.isRequired
 }
