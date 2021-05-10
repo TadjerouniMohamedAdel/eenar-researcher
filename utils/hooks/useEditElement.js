@@ -11,6 +11,7 @@ export default function useEditElement(key,route,limit=10,offset=0,search="",res
             {
                 onSuccess:()=>{
                     queryClient.invalidateQueries([key,limit,offset,search])
+                    queryClient.invalidateQueries(`${key}_infinite`)
                 }
             }
             

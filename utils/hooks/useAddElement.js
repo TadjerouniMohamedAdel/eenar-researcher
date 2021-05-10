@@ -11,6 +11,7 @@ export default function useAddElement(key,route,limit=10,offset=0,search="",rese
             {
                 onSuccess:()=>{
                     queryClient.invalidateQueries([key,limit,offset,search])
+                    queryClient.invalidateQueries(`${key}_infinite`)
                 }
             }
             

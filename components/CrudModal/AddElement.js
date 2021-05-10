@@ -15,7 +15,6 @@ export default function AddElement({ fields, handleSubmit, validationSchema, tit
     const [isLoading, setIsLoading] = useState(false)
     let values = {}
     fields.map((el, index) => { values[el.name] = el.defaultValue })
-    console.log(values)
 
     const submit = (data) => {
         setIsLoading(true)

@@ -1,36 +1,53 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import useGetList from '../../utils/hooks/useGetList'
 import { useSelector } from 'react-redux'
 import classes from "../../styles/MyNetwork.module.css";
 import GroupCardSkeleton from '../GroupCard/GroupCardSkeleton';
 import GroupCard from '../GroupCard/GroupCard';
+import { useInfiniteQuery } from 'react-query'
+import axios from 'axios'
+
 export default function InfiniteList() {
     const user = useSelector((state) => state.user)
     const [offset, setOffset] = useState(0)
     const [limit, setLimit] = useState(10)
     const [hasMore, setHasMore] = useState(true)
     const [search, setSearch] = useState("")
-    const { isLoading, data } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
-    const [groups, setGroups] = useState([])
+    const {
+        fetchNextPage,
+        fetchPreviousPage,
+        data,
+        hasNextPage,
+        hasPreviousPage,
+        isFetchingNextPage,
+        isFetchingPreviousPage,
+    } = useInfiniteQuery("groups_infinite", ({ pageParam = 1 }) => axios.get(`${process.env.NEXT_PUBLIC_API_URL}/groups/all?offset=${(pageParam-1)*limit}&limit=${limit}&title=${search}`)
+        .then((response) => response.data), {
+        getNextPageParam: (lastPage, allPages) =>{
+            return lastPage.groups.length < limit? undefined :allPages.length+1
+        },
+        getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
+    })
+    
     useEffect(() => {
-        if (data) {
-            setGroups([...groups, ...data.groups])
-            data.groups.length === 0 && setHasMore(false)
-        }
+        console.log("data change infinite list",data,hasNextPage)
     }, [data])
     return (
         <InfiniteScroll
-            dataLength={groups.length}
+            dataLength={limit}
             className={classes.groupsContainer}
-            next={() => !isLoading && setOffset(offset + 10)}
+            next={() => fetchNextPage()}
             inverse={false}
-            hasMore={hasMore}
+            hasMore={hasNextPage}
             loader={<GroupCardSkeleton />}
         >
-            {groups.map((group, id) => (
-                <GroupCard key={`group-card-${id}`} group={group} />
-            ))}
+            {data && data.pages.map((page, id) => {
+                console.log("page",page)
+                    return page.groups.map((group)=>(
+                        <GroupCard key={`group-card-${group.id}`} group={group} />
+                    ))
+                })
+            }
         </InfiniteScroll>
     )
 }

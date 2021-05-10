@@ -138,10 +138,10 @@ export default function GroupBanner({group,openEditGroup,editGroup,editGroupStat
                                 onClose={handleClose}
                             >
                                 <MenuItem  onClick={()=>{openEditGroup(true);handleClose()}}>
-                                    تعديل المنشور
+                                    تعديل المجموعة
                                     </MenuItem>
                                 <MenuItem  onClick={()=>{openDeleteGroup(true);handleClose()}} className={classes.deleteGroup}>
-                                    حذف المنشور
+                                    حذف المجموعة
                                     </MenuItem>
 
                             </Menu>

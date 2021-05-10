@@ -134,7 +134,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                     )
                 }
                 <div className={classes.submitContainer}>
-                    <Button onClick={()=>console.log(formik.errors)} className={classes.submit} type="submit" disabled={isLoading}>
+                    <Button className={classes.submit} type="submit" disabled={isLoading}>
                         <div>
                             {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
                         </div>

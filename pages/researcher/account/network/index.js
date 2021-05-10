@@ -74,7 +74,7 @@ export default function index() {
   const [limit, setLimit] = useState(10)
   const [articles, setArticles] = useState(dataarticles);
   const [sideGroups, setSideGroups] = useState(datagroups);
-  const [view, setView] = useState("list")
+  const [view, setView] = useState("grid")
   const [addVisible, setAddVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
   const [search, setSearch] = useState("")
@@ -179,7 +179,7 @@ export default function index() {
                   (
                     <>
                       {
-                        data.groups.map((group, index) => (
+                        data?.groups?.map((group, index) => (
                           <GroupCardList group={group} key={`group-${index}`} />
                         ))
                       }
