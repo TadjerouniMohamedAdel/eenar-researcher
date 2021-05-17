@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import MyHead from '../../../components/MyHead/MyHead'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -21,6 +21,7 @@ export const getStaticProps = async ({ locale }) => ({
 })
 export default function index() {
   const [addVisible, setAddVisible] = useState(false);
+  const services = ["","","","",""]
 
   return (
     <ResearcherLayout>
@@ -28,7 +29,7 @@ export default function index() {
       <Modal visible={addVisible} setVisible={setAddVisible}>
         <AddElement
           title="طلب خدمة"
-          handleSubmit={()=>{}}
+          handleSubmit={() => { }}
           validationSchema={serviceRequestSchema}
           fields={serviceRequestFields}
         />
@@ -51,11 +52,21 @@ export default function index() {
               inverse={false}
               hasMore={false}
             >
-              <ServiceCard setAddVisible={setAddVisible}/>
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCardSkeleton />
+              {
+                services.length === 0 ? (
+                  <div className={classes.empty}>
+                    <img src="/images/empty.png" alt="empty-list" />
+                    <h3>لا تحتوي هذه القائمة على بيانات</h3>
+                  </div>
+                )
+
+                  :
+                  services.map((service, index) => (
+                    <ServiceCard setAddVisible={setAddVisible} key={index} />
+                    
+                    ))
+                  }
+                  <ServiceCardSkeleton />
             </InfiniteScroll>
           </div>
         </MultiSectionLayout>
