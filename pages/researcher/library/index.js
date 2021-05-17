@@ -12,6 +12,8 @@ import { Skeleton } from '@material-ui/lab'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useGetList from '../../../utils/hooks/useGetList'
 import EmptyList from '../../../components/EmptyList/EmptyList';
+import Error500 from '../../../components/Error500/Error500';
+import ErrorUnreachable from '../../../components/ErrorUnreachable/ErrorUnreachable';
 
 
 
@@ -27,7 +29,7 @@ export default function index() {
     const [limit,setLimit] = useState(10)
     const [page,setPage] = useState(1)
     const [research,setResearch] = useState("")
-    const {isLoading,data} = useGetList("books","/researcher/library/book/research",limit,offset,research)
+    const {isLoading,data,isError,error} = useGetList("books","/researcher/library/book/research",limit,offset,research)
 
     useEffect(()=>{
         setPage(offset/limit+1)
@@ -37,6 +39,10 @@ export default function index() {
             setOffset(0)
     }, [research])
 
+
+    useEffect(()=>{
+        console.log({...error})
+    },[error])
     
     return (
         <ResearcherLayout>
@@ -71,7 +77,12 @@ export default function index() {
                 <div className={classes.bookList}>
 
                     {
-                        isLoading ? (
+                        isError ?(
+                            <div>
+                                <ErrorUnreachable />
+                            </div>
+                        )
+                        :isLoading ? (
                             <div className={classes.bookItem} key={`book`}>
                                 <Skeleton className={classes.bookCoverSkeleton}/>
                             <div className={classes.bookContent}>
