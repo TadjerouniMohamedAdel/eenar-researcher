@@ -26,7 +26,7 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
     const [deleteVisible, setDeleteVisible] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
     const [viewMore, setViewMore] = useState(false)
-    const { isLoading, data } = useGetList(collectionName, `/researcher/${collectionName}`, null, null, null, user.researchers.id)
+    const { isLoading, data } = useGetList(collectionName, collectionName? `/researcher/${collectionName}`:null, null, null, null, user.researchers.id)
     const { mutate: addElement, status: addElementStatus } = useAddElement(collectionName, `/researcher/${collectionName}/add`, null, null, null, user.researchers.id)
     const { mutate: editElement, status: editElementStatus } = useEditElement(collectionName, `/researcher/${collectionName}/edit`, null, null, null, user.researchers.id)
     const { mutate: deleteElement, status: deleteElementStatus } = useDeleteElement(collectionName, `/researcher/${collectionName}/delete?id=${selectedItem?.id}`, null, null, null, user.researchers.id)

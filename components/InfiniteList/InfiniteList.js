@@ -6,6 +6,7 @@ import GroupCardSkeleton from '../GroupCard/GroupCardSkeleton';
 import GroupCard from '../GroupCard/GroupCard';
 import { useInfiniteQuery } from 'react-query'
 import axios from 'axios'
+import EmptyList from '../EmptyList/EmptyList';
 
 export default function InfiniteList() {
     const user = useSelector((state) => state.user)
@@ -17,6 +18,7 @@ export default function InfiniteList() {
         fetchNextPage,
         fetchPreviousPage,
         data,
+        isLoading,
         hasNextPage,
         hasPreviousPage,
         isFetchingNextPage,
@@ -41,7 +43,10 @@ export default function InfiniteList() {
             hasMore={hasNextPage}
             loader={<GroupCardSkeleton />}
         >
-            {data && data.pages.map((page, id) => {
+            {isLoading === false && data.pages[0].groups.length == 0 ? (
+                        <EmptyList />
+                    ) :
+            data && data.pages.map((page, id) => {
                 console.log("page",page)
                     return page.groups.map((group)=>(
                         <GroupCard key={`group-card-${group.id}`} group={group} />

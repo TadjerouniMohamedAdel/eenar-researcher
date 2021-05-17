@@ -11,6 +11,7 @@ import moment from 'moment'
 import { Skeleton } from '@material-ui/lab'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useGetList from '../../../utils/hooks/useGetList'
+import EmptyList from '../../../components/EmptyList/EmptyList';
 
 
 
@@ -84,10 +85,7 @@ export default function index() {
                         
                         :data.books.length == 0 ?
                             (
-                                    <div className={classes.empty}>
-                                      <img src="/images/empty.png" alt="empty-list" />
-                                      <h3>لا تحتوي هذه القائمة على بيانات</h3>
-                                    </div>
+                                    <EmptyList />
                             )
                         :data.books.map((book,index)=>(
                             <Link href={{pathname:"/researcher/library/[id]",query:{id:book.id}}} key={`book-link-${index}`} className={classes.bookLink}>

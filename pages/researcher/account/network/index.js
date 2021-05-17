@@ -36,6 +36,7 @@ import GroupCardListSkeleton from '../../../../components/GroupCardList/GroupCar
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout';
 import InfiniteList from '../../../../components/InfiniteList/InfiniteList';
 import { motion,AnimatePresence } from 'framer-motion'
+import EmptyList from '../../../../components/EmptyList/EmptyList';
 
 const groupsHardCoded = [
   { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
@@ -88,7 +89,6 @@ export default function index() {
     if (data && view == "grid") {
       console.log("changed", groups, offset, data)
       setGroups([...groups, ...data.groups])
-      data.groups.length === 0 && setHasMore(false)
     }
   }, [data])
 
@@ -160,12 +160,12 @@ export default function index() {
         <AnimatePresence exitBeforeEnter>
         {
           view === "grid" ? (
-            <motion.div key="sdfd" id="scrollableDivResearchs" className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
+            <motion.div key="card-list" id="scrollableDivResearchs" className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
               <InfiniteList />
             </motion.div>
 
           ) : (
-            <motion.div key="dsfsdf"  className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
+            <motion.div key="item-list"  className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
               {
                 isLoading ? (
                   <>
@@ -175,7 +175,9 @@ export default function index() {
                       ))
                     }
                   </>
-                ) :
+                ) :isLoading === false && data.groups.length == 0 ? (
+                  <EmptyList />
+              ) :
                   (
                     <>
                       {

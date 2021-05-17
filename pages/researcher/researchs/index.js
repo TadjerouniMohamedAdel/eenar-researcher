@@ -26,6 +26,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useGetList from "../../../utils/hooks/useGetList";
 import { useSelector } from 'react-redux'
 import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSectionLayout";
+import EmptyList from "../../../components/EmptyList/EmptyList";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -103,6 +104,10 @@ export default function index() {
                 </Button>
               </div> */}
           </div>
+          {
+                    isLoading === false && posts.length == 0 ? (
+                        <EmptyList />
+                    ) : (
           <div id="scrollableDivResearchs">
             <InfiniteScroll
               dataLength={posts.length}
@@ -117,6 +122,7 @@ export default function index() {
               ))}
             </InfiniteScroll>
           </div>
+                    )}
         </MultiSectionLayout>
       </div>
 

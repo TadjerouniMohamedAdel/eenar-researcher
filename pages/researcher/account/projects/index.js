@@ -31,6 +31,7 @@ import useAddElement from "../../../../utils/hooks/useAddElement";
 import useEditElement from "../../../../utils/hooks/useEditElement";
 import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
+import EmptyList from '../../../../components/EmptyList/EmptyList'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -167,10 +168,7 @@ export default function index() {
                 </div>
                 {
                     isLoading === false && data.projects.length == 0 ? (
-                        <div className={classes.empty}>
-                            <img src="/images/empty.png" alt="empty-list" />
-                            <h3>لا تحتوي هذه القائمة على بيانات</h3>
-                        </div>
+                        <EmptyList />
                     ) : (
                         <div className={classes.tableContainer}>
                             <Table className={classes.table} aria-label="simple table">

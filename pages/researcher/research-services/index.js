@@ -12,6 +12,7 @@ import AddElement from '../../../components/CrudModal/AddElement'
 import Modal from '../../../components/Modal/Modal'
 import { serviceRequestFields } from '../../../utils/form/Fields'
 import { serviceRequestSchema } from '../../../utils/Validation/ValidationObjects'
+import EmptyList from '../../../components/EmptyList/EmptyList'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -54,10 +55,7 @@ export default function index() {
             >
               {
                 services.length === 0 ? (
-                  <div className={classes.empty}>
-                    <img src="/images/empty.png" alt="empty-list" />
-                    <h3>لا تحتوي هذه القائمة على بيانات</h3>
-                  </div>
+                  <EmptyList />
                 )
 
                   :
