@@ -12,6 +12,7 @@ export async function getStaticPaths() {
   await  axios({
               method: "get",
               url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/all`,
+              withCredentials:true
       })
       .then((response) => {
          paths = response.data.map((item)=>{
@@ -36,6 +37,7 @@ export async function getStaticProps(context) {
   await axios({
         method: "get",
         url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params.id}`,
+        withCredentials:true
       })
         .then((response) => {
             research = response.data

@@ -18,6 +18,7 @@ export async function getStaticPaths() {
     await  axios({
                 method: "get",
                 url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book`,
+                withCredentials:true
         })
         .then((response) => {
            paths = response.data.map((item)=>{
@@ -42,6 +43,7 @@ export async function getStaticPaths() {
     await axios({
           method: "get",
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${context.params.id}`,
+          withCredentials:true
         })
           .then((response) => {
               book = response.data
