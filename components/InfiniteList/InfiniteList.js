@@ -7,6 +7,7 @@ import GroupCard from '../GroupCard/GroupCard';
 import { useInfiniteQuery } from 'react-query'
 import axios from 'axios'
 import EmptyList from '../EmptyList/EmptyList';
+import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable';
 
 export default function InfiniteList() {
     const user = useSelector((state) => state.user)
@@ -18,6 +19,8 @@ export default function InfiniteList() {
         fetchNextPage,
         fetchPreviousPage,
         data,
+        isError,
+        error,
         isLoading,
         hasNextPage,
         hasPreviousPage,
@@ -43,7 +46,11 @@ export default function InfiniteList() {
             hasMore={hasNextPage}
             loader={<GroupCardSkeleton />}
         >
-            {isLoading === false && data.pages[0].groups.length == 0 ? (
+            {
+                isError?(
+                    <ErrorUnreachable />
+                )
+            :isLoading === false && data.pages[0].groups.length == 0 ? (
                         <EmptyList />
                     ) :
             data && data.pages.map((page, id) => {

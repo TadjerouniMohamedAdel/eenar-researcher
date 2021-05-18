@@ -37,21 +37,7 @@ import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSect
 import InfiniteList from '../../../../components/InfiniteList/InfiniteList';
 import { motion,AnimatePresence } from 'framer-motion'
 import EmptyList from '../../../../components/EmptyList/EmptyList';
-
-const groupsHardCoded = [
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "private", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "private", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-]
-
+import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnreachable';
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -79,7 +65,7 @@ export default function index() {
   const [selectedItem, setSelectedItem] = useState(null)
   const [search, setSearch] = useState("")
   const [groups, setGroups] = useState([])
-  const { isLoading, data } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
+  const { isLoading, data,isError,error } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
   const { mutate: addElement, status: addElementStatus } = useAddElement("groups", `/groups/add`, limit, offset, search, user.researchers.id)
   const [page, setPage] = useState(1)
 
@@ -167,6 +153,9 @@ export default function index() {
           ) : (
             <motion.div key="item-list"  className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
               {
+                isError? (
+                  <ErrorUnreachable />
+                ):
                 isLoading ? (
                   <>
                     {

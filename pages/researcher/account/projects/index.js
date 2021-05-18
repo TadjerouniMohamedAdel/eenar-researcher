@@ -32,6 +32,7 @@ import useEditElement from "../../../../utils/hooks/useEditElement";
 import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
 import EmptyList from '../../../../components/EmptyList/EmptyList'
+import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnreachable'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -53,7 +54,7 @@ export default function index() {
     const [pages, setPages] = useState(0)
     const [page, setPage] = useState(1)
     const [research, setResearch] = useState("")
-    const { isLoading, data } = useGetList("researchproject", "/researcher/researchproject/research", limit, offset, research, user.researchers.id)
+    const { isLoading, data ,isError,error } = useGetList("researchproject", "/researcher/researchproject/research", limit, offset, research, user.researchers.id)
     const { mutate: addProject, status: addProjectStatus } = useAddElement("researchproject", "/researcher/researchproject/add", limit, offset, research, user.researchers.id)
     const { mutate: editProject, status: editProjectStatus } = useEditElement("researchproject", "/researcher/researchproject/edit", limit, offset, research, user.researchers.id)
     const { mutate: deleteProject, status: deleteProjectStatus } = useDeleteElement("researchproject", `/researcher/researchproject/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
@@ -167,6 +168,9 @@ export default function index() {
 
                 </div>
                 {
+                    isError ? (
+                        <ErrorUnreachable />
+                    ):
                     isLoading === false && data.projects.length == 0 ? (
                         <EmptyList />
                     ) : (

@@ -2,10 +2,11 @@ import React,{ useEffect } from 'react'
 import lottie from 'lottie-web'
 import classes from './ErrorUnreachable.module.css'
 
-export default function ErrorUnreachable(props) {
+export default function ErrorUnreachable() {
+    const id =Math.random();
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById("anim-unreachable"), // the dom element that will contain the animation
+            container: document.getElementById(`anim-unreachable-${id}`), // the dom element that will contain the animation
             renderer: 'svg',
             loop: true,
             autoplay: true,
@@ -18,7 +19,7 @@ export default function ErrorUnreachable(props) {
     return (
         <div className={classes.errorUnreachableContainer}>
             <div className={classes.errorUnreachableAnim}>
-                <div id="anim-unreachable"></div>
+                <div id={`anim-unreachable-${id}`}></div>
             </div>
             <h2>
             لا يمكن الوصول إلى هذه المعلومة

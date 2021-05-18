@@ -50,6 +50,7 @@ import useEditElement from "../../../../utils/hooks/useEditElement";
 import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSectionLayout";
 import EmptyList from "../../../../components/EmptyList/EmptyList";
+import ErrorUnreachable from "../../../../components/ErrorUnreachable/ErrorUnreachable";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -74,7 +75,7 @@ export default function index() {
   const [page, setPage] = useState(1)
   const [research, setResearch] = useState("")
   const [showAddAlert, setShowAddAlert] = useState(false)
-  const { isLoading, data } = useGetList("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
+  const { isLoading, data,isError,error } = useGetList("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
   const { mutate: addPost, status: addPostStatus } = useAddElement("posts", "/researcher/post/add", limit, offset, research, user.researchers.id)
   const { mutate: editPost, status: editPostStatus } = useEditElement("posts", "/researcher/post/edit", limit, offset, research, user.researchers.id)
   const { mutate: deletePost, status: deletePostStatus } = useDeleteElement("posts", `/researcher/post/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
@@ -227,7 +228,12 @@ export default function index() {
             </Button>
           </div>
         </div>
-        {isLoading === false && data.posts.length == 0 ? (
+        {
+          isError ?(
+            <ErrorUnreachable />
+          )
+          : 
+        isLoading === false && data.posts.length == 0 ? (
           <EmptyList />
         ) : (
           <div className={classes.tableContainer}>

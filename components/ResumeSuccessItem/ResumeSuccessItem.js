@@ -19,6 +19,7 @@ import useGetList from '../../utils/hooks/useGetList';
 import useDeleteElement from '../../utils/hooks/useDeleteElement'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable'
 
 const backdropVariants = {
     visible: { opacity: 1 },
@@ -32,7 +33,7 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
     const [editVisible, setEditVisible] = useState(false)
     const [deleteVisible, setDeleteVisible] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
-    const { isLoading, data } = useGetList(collectionName, `/researcher/${collectionName}`, null, null, null, user.researchers.id)
+    const { isLoading, data,isError,error } = useGetList(collectionName, `/researcher/${collectionName}`, null, null, null, user.researchers.id)
     const { mutate: addElement, status: addElementStatus } = useAddElement(collectionName, `/researcher/${collectionName}/add`, null, null, null, user.researchers.id)
     const { mutate: editElement, status: editElementStatus } = useEditElement(collectionName, `/researcher/${collectionName}/edit`, null, null, null, user.researchers.id)
     const { mutate: deleteElement, status: deleteElementStatus } = useDeleteElement(collectionName, `/researcher/${collectionName}/delete?id=${selectedItem?.id}`, null, null, null, user.researchers.id)
@@ -125,6 +126,10 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
                             <h4><Skeleton variant="text" width="20%" /></h4>
                         </div>
                     ) :
+                        isError ? (
+                                <ErrorUnreachable />
+                        )
+                        :
                         isExpanded ? (
                             <motion.ul
                                 variants={backdropVariants}

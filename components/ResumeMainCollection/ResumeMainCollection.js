@@ -18,6 +18,7 @@ import useAddElement from '../../utils/hooks/useAddElement';
 import useEditElement from '../../utils/hooks/useEditElement';
 import useDeleteElement from '../../utils/hooks/useDeleteElement';
 import PropTypes from 'prop-types'
+import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable';
 
 export default function ResumeMainCollection({ collectionName, validationSchema, fields, children, label, icon }) {
     const user = useSelector((state) => state.user)
@@ -26,7 +27,7 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
     const [deleteVisible, setDeleteVisible] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
     const [viewMore, setViewMore] = useState(false)
-    const { isLoading, data } = useGetList(collectionName, collectionName? `/researcher/${collectionName}`:null, null, null, null, user.researchers.id)
+    const { isLoading, data,isError,error } = useGetList(collectionName, collectionName? `/researcher/${collectionName}`:null, null, null, null, user.researchers.id)
     const { mutate: addElement, status: addElementStatus } = useAddElement(collectionName, `/researcher/${collectionName}/add`, null, null, null, user.researchers.id)
     const { mutate: editElement, status: editElementStatus } = useEditElement(collectionName, `/researcher/${collectionName}/edit`, null, null, null, user.researchers.id)
     const { mutate: deleteElement, status: deleteElementStatus } = useDeleteElement(collectionName, `/researcher/${collectionName}/delete?id=${selectedItem?.id}`, null, null, null, user.researchers.id)
@@ -131,8 +132,11 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                         </div>
                                     </div>
                                 )
-                                :
-                                data.map((collection, index) => {
+                                :isError ? (
+                                    <ErrorUnreachable />
+                                )
+
+                                :data.map((collection, index) => {
                                     if (!viewMore && index > 2) return;
                                     return (
                                         <div className={classes.collectionItem} key={`collection-item-${label}-${index}`}>
