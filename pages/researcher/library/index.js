@@ -42,6 +42,7 @@ export default function index() {
 
     useEffect(()=>{
         console.log({...error})
+        console.log(process.env.NEXT_PUBLIC_API_URL)
     },[error])
     
     return (
@@ -78,10 +79,21 @@ export default function index() {
 
                     {
                         isError ?(
-                            <div>
-                                <ErrorUnreachable />
-                            </div>
+                                error.response && error.response.status===500?(
+                                    <Error500 />
+                                ):(
+                                    
+                                        <ErrorUnreachable />
+                                    
+        
+                                )
+
+                            
                         )
+                    
+                        
+                        
+                        
                         :isLoading ? (
                             <div className={classes.bookItem} key={`book`}>
                                 <Skeleton className={classes.bookCoverSkeleton}/>

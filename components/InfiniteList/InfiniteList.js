@@ -8,6 +8,7 @@ import { useInfiniteQuery } from 'react-query'
 import axios from 'axios'
 import EmptyList from '../EmptyList/EmptyList';
 import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable';
+import Error500 from '../Error500/Error500';
 
 export default function InfiniteList() {
     const user = useSelector((state) => state.user)
@@ -37,6 +38,10 @@ export default function InfiniteList() {
     useEffect(() => {
         console.log("data change infinite list",data,hasNextPage)
     }, [data])
+
+    useEffect(() => {
+        console.log("error",{...error})
+    }, [error])
     return (
         <InfiniteScroll
             dataLength={limit}
@@ -47,9 +52,18 @@ export default function InfiniteList() {
             loader={<GroupCardSkeleton />}
         >
             {
-                isError?(
-                    <ErrorUnreachable />
-                )
+                isError ?(
+                    error.response && error.response.status===500?(
+                        <Error500 />
+                    ):(
+                        
+                            <ErrorUnreachable />
+                        
+
+                    )
+
+                
+            )
             :isLoading === false && data.pages[0].groups.length == 0 ? (
                         <EmptyList />
                     ) :

@@ -33,6 +33,7 @@ import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
 import EmptyList from '../../../../components/EmptyList/EmptyList'
 import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnreachable'
+import Error500 from '../../../../components/Error500/Error500'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -168,9 +169,18 @@ export default function index() {
 
                 </div>
                 {
-                    isError ? (
-                        <ErrorUnreachable />
-                    ):
+                    isError ?(
+                        error.response && error.response.status===500?(
+                            <Error500 />
+                        ):(
+                            
+                                <ErrorUnreachable />
+                            
+
+                        )
+
+                    
+                ):
                     isLoading === false && data.projects.length == 0 ? (
                         <EmptyList />
                     ) : (

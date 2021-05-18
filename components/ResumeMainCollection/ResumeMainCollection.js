@@ -19,6 +19,7 @@ import useEditElement from '../../utils/hooks/useEditElement';
 import useDeleteElement from '../../utils/hooks/useDeleteElement';
 import PropTypes from 'prop-types'
 import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable';
+import Error500 from '../Error500/Error500';
 
 export default function ResumeMainCollection({ collectionName, validationSchema, fields, children, label, icon }) {
     const user = useSelector((state) => state.user)
@@ -132,9 +133,18 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                         </div>
                                     </div>
                                 )
-                                :isError ? (
-                                    <ErrorUnreachable />
-                                )
+                                :isError ?(
+                                    error.response && error.response.status===500?(
+                                        <Error500 />
+                                    ):(
+                                        
+                                            <ErrorUnreachable />
+                                        
+            
+                                    )
+    
+                                
+                            )
 
                                 :data.map((collection, index) => {
                                     if (!viewMore && index > 2) return;

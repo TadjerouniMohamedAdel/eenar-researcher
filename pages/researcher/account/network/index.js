@@ -38,6 +38,7 @@ import InfiniteList from '../../../../components/InfiniteList/InfiniteList';
 import { motion,AnimatePresence } from 'framer-motion'
 import EmptyList from '../../../../components/EmptyList/EmptyList';
 import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnreachable';
+import Error500 from '../../../../components/Error500/Error500';
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -153,9 +154,18 @@ export default function index() {
           ) : (
             <motion.div key="item-list"  className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
               {
-                isError? (
-                  <ErrorUnreachable />
-                ):
+                isError ?(
+                  error.response && error.response.status===500?(
+                      <Error500 />
+                  ):(
+                      
+                          <ErrorUnreachable />
+                      
+
+                  )
+
+              
+          ):
                 isLoading ? (
                   <>
                     {

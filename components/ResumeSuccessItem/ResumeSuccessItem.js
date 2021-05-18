@@ -20,6 +20,7 @@ import useDeleteElement from '../../utils/hooks/useDeleteElement'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable'
+import Error500 from '../Error500/Error500'
 
 const backdropVariants = {
     visible: { opacity: 1 },
@@ -126,9 +127,18 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
                             <h4><Skeleton variant="text" width="20%" /></h4>
                         </div>
                     ) :
-                        isError ? (
+                    isError ?(
+                        error.response && error.response.status===500?(
+                            <Error500 />
+                        ):(
+                            
                                 <ErrorUnreachable />
+                            
+
                         )
+
+                    
+                )
                         :
                         isExpanded ? (
                             <motion.ul
