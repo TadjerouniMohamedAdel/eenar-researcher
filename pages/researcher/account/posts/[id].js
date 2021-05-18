@@ -1,10 +1,5 @@
-import { useState } from "react";
-import { datagroups, dataarticles } from "../../../../utils/fixtures/DevData";
 import MyHead from "../../../../components/MyHead/MyHead";
 import classes from "../../../../styles/MyPosts.module.css";
-import LearnNow from "../../../../components/LearnNow/LearnNow";
-import LastArticles from "../../../../components/LastArticles/LastArticles";
-import MyGroups from "../../../../components/MyGroups/MyGroups";
 import axios from "axios";
 import moment from "moment";
 import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
@@ -51,13 +46,12 @@ export async function getStaticProps(context) {
     props: {
       research,
       ...await serverSideTranslations(context.locale, ["sidebar"]),
-    }, 
+    },
+    revalidate: 1, 
   }
 }
 
 export default function post({research}) {
-  const [articles, setArticles] = useState(dataarticles);
-  const [groups, setGroups] = useState(datagroups);
   moment.locale("ar-dz");
   return (
     <ResearcherLayout>
