@@ -7,7 +7,7 @@ import BannerMenu from '../../../components/BannerMenu/BannerMenu'
 import classes from '../../../styles/Messages.module.css'
 
 
-const lastMesages = [
+const lastMessages = [
   {
     "sender":"زوبير ولقبو",
     "from":"منذ 29 دقيقة",
@@ -55,18 +55,26 @@ export default function index() {
               <h1>الرسائل</h1>
               <div className={classes.messagesBox}>
                 <div className={classes.lastMessages}>
-                      <div className={classes.lastMessage}>
-                          <div className={classes.lastMessageSenderImage}></div>
-                          <div className={classes.messageInfo}>
-                              <h2>
-                                زوبير ولقبو
-                                <span>
-                                منذ 29 دقيقة
-                                </span>
-                              </h2>
+                {
+                  lastMessages.map((message,index)=>(
+                          <div className={classes.lastMessage}>
+                              <div className={classes.lastMessageSenderImage}></div>
+                              <div className={classes.messageInfo}>
+                                  <h2>
+                                   {message.sender}
+                                    <span>
+                                      {message.from}
+                                    </span>
+                                  </h2>
+                                  <h3>
+                                  جيد جدا، سنقوم بعقد اجتماع معهم في المكان..
+                                  </h3>
+                              </div>
                           </div>
-                      </div>
-                </div>
+
+))
+}
+</div>
                 <div className={classes.divider}></div>
                 <div className={classes.discussion}>
                 </div>

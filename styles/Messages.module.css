@@ -19,6 +19,7 @@
 .messagesContainer .messagesBox{
     height: 721px;
     margin-top: 28px;
+    width: 100%;
     display: flex;
     border-radius: 12px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
@@ -53,10 +54,39 @@
     object-fit: cover;
 
 }
+.messagesContainer .messagesBox .lastMessages .lastMessage .messageInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.messagesContainer .messagesBox .lastMessages .lastMessage .messageInfo h2,.messagesContainer .messagesBox .lastMessages .lastMessage .messageInfo h3{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.messagesContainer .messagesBox .lastMessages .lastMessage .messageInfo h2 span{
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+    text-align: left;
+    color: #9192a6;
+}
 .messagesContainer .messagesBox .divider{
     width: 1px;
     height: 100%;
-    margin: 0 400px 0 863px;
     background-color: #eaeaf5;
 }
 .messagesContainer .messagesBox .discussion{
