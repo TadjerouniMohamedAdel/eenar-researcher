@@ -10,7 +10,6 @@ import Modal from '../Modal/Modal'
 import AddElement from '../CrudModal/AddElement'
 import EditElement from '../CrudModal/EditElement';
 import DeleteElement from '../CrudModal/DeleteElement';
-import moment from 'moment'
 import { Skeleton } from '@material-ui/lab';
 import useGetList from '../../utils/hooks/useGetList';
 import { useSelector } from 'react-redux'
@@ -20,6 +19,8 @@ import useDeleteElement from '../../utils/hooks/useDeleteElement';
 import PropTypes from 'prop-types'
 import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable';
 import Error500 from '../Error500/Error500';
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 
 export default function ResumeMainCollection({ collectionName, validationSchema, fields, children, label, icon }) {
     const user = useSelector((state) => state.user)
@@ -32,10 +33,6 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
     const { mutate: addElement, status: addElementStatus } = useAddElement(collectionName, `/researcher/${collectionName}/add`, null, null, null, user.researchers.id)
     const { mutate: editElement, status: editElementStatus } = useEditElement(collectionName, `/researcher/${collectionName}/edit`, null, null, null, user.researchers.id)
     const { mutate: deleteElement, status: deleteElementStatus } = useDeleteElement(collectionName, `/researcher/${collectionName}/delete?id=${selectedItem?.id}`, null, null, null, user.researchers.id)
-
-    moment.locale('ar-dz')
-
-
 
     useEffect(() => {
         if (addElementStatus === "success") {
@@ -165,7 +162,7 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                                 </h2>
                                                 <h3>{collection.university ?? collection.company ?? collection.organization}</h3>
                                                 <h3>{collection.provider}</h3>
-                                                <h3>{`${moment(collection.startDate).format('DD MMM YYYY')} - ${collection.endDate !== "" ? moment(collection.endDate).format('DD MMM YYYY') : "لا تاريخ انتهاء الصلاحية"}`}</h3>
+                                                <h3>{`${format(new Date(collection.startDate),"dd MMMM yyyy",{locale:arLocale })} - ${collection.endDate !== "" ? format(new Date(collection.endDate),"dd MMMM yyyy",{locale:arLocale }) : "لا تاريخ انتهاء الصلاحية"}`}</h3>
                                                 <span>{collection.link && collection.link.label}</span>
                                                 <span>{collection.description}
                                                 </span>

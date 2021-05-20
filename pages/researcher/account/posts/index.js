@@ -39,7 +39,8 @@ import DeleteElement from "../../../../components/CrudModal/DeleteElement";
 import MultiStepsEditElement from "../../../../components/CrudModal/MultiStepsEditElement";
 import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
-import moment from "moment";
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Alert from '@material-ui/lab/Alert';
 
@@ -80,7 +81,6 @@ export default function index() {
   const { mutate: addPost, status: addPostStatus } = useAddElement("posts", "/researcher/post/add", limit, offset, research, user.researchers.id)
   const { mutate: editPost, status: editPostStatus } = useEditElement("posts", "/researcher/post/edit", limit, offset, research, user.researchers.id)
   const { mutate: deletePost, status: deletePostStatus } = useDeleteElement("posts", `/researcher/post/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
-  moment.locale("ar-dz");
 
   useEffect(() => {
     setOffset(0)
@@ -320,7 +320,7 @@ export default function index() {
                           className={classes.cellBody}
                           align="center"
                         >
-                          {moment(row.publishedDate).format("DD MMM YYYY")}
+                          {format(new Date(row.publishedDate),"dd MMMM yyyy",{locale:arLocale })}
                         </TableCell>
                         <TableCell
                           className={`${classes.cellBody} ${classes.title}`}

@@ -2,10 +2,10 @@ import { Button } from '@material-ui/core'
 import React from 'react'
 import classes from './ResearchView.module.css'
 import GetAppIcon from '@material-ui/icons/GetApp';
-import moment from "moment";
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 import PropTypes from 'prop-types'
 export default function ResearchView({research}) {
-    moment.locale("ar-dz");
     const Circles = ()=>(
         <div className={classes.circleWhite}>
             <div className={classes.circleBlue}></div>
@@ -48,8 +48,8 @@ export default function ResearchView({research}) {
                 <div className={classes.researchHeaderDivider}>
                     <div className={classes.line}></div>
                     <span className={classes.date}>
-                        {research.publishedDate && moment(research.publishedDate?.split("T")[0]).format("DD MMM YYYY")}
-                        {research.startDate && moment(research.startDate?.split("T")[0]).format("DD MMM YYYY")}
+                        {research.publishedDate && format(new Date(research.publishedDate),"dd MMMM yyyy",{locale:arLocale })}
+                        {research.startDate && format(new Date(research.startDate),"dd MMMM yyyy",{locale:arLocale })}
                     </span>
                 </div>
                 <div className={classes.researchContent}>

@@ -1,7 +1,6 @@
 import MyHead from "../../../../components/MyHead/MyHead";
 import classes from "../../../../styles/MyPosts.module.css";
 import axios from "axios";
-import moment from "moment";
 import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLayout";
 import ResearchView from "../../../../components/ResearchView/ResearchView";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -54,7 +53,6 @@ export async function getStaticProps(context) {
 }
 
 export default function project({research}) {
-  moment.locale("ar-dz");
   return (
     <ResearcherLayout>
       <MyHead title={`${research.arabicTitle}  - مشاريعي`} />

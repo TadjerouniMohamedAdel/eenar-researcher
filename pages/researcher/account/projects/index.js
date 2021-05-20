@@ -21,7 +21,6 @@ import { projectSchemaStep1, projectSchemaStep2, projectSchemaStep3, projectSche
 import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../../../utils/form/Fields'
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination'
-import moment from 'moment'
 import Link from 'next/link'
 import { Skeleton } from "@material-ui/lab";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -34,7 +33,8 @@ import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSect
 import EmptyList from '../../../../components/EmptyList/EmptyList'
 import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnreachable'
 import Error500 from '../../../../components/Error500/Error500'
-
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -59,7 +59,6 @@ export default function index() {
     const { mutate: addProject, status: addProjectStatus } = useAddElement("researchproject", "/researcher/researchproject/add", limit, offset, research, user.researchers.id)
     const { mutate: editProject, status: editProjectStatus } = useEditElement("researchproject", "/researcher/researchproject/edit", limit, offset, research, user.researchers.id)
     const { mutate: deleteProject, status: deleteProjectStatus } = useDeleteElement("researchproject", `/researcher/researchproject/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
-    moment.locale('ar-dz')
 
 
     useEffect(() => {
@@ -233,7 +232,7 @@ export default function index() {
                                             {data.projects.map((row, index) => (
                                                 <TableRow key={index}>
                                                     <TableCell className={classes.cellBody} align="center">
-                                                        {row.startDate ? moment(row.startDate).format('DD MMM YYYY') : ""}</TableCell>
+                                                        {row.startDate ? format(new Date(row.startDate),"dd MMMM yyyy",{locale:arLocale }) : ""}</TableCell>
                                                     <TableCell className={`${classes.cellBody} ${classes.title}`} align="left"><Link href={`/researcher/account/projects/${row.id}`}>{row.arabicTitle}</Link></TableCell>
                                                     <Hidden only="xs"><TableCell className={classes.cellBody} align="center">{row.center}</TableCell></Hidden>
                                                     <TableCell className={classes.cellBody} align="center">{getStatus(row)}</TableCell>
