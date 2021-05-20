@@ -1,0 +1,64 @@
+.messagesContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.messagesContainer > h1{
+    font-family: var(--primary-font);
+    font-size: 26px;
+    font-weight: bold;
+    font-stretch: normal;
+    margin-top: 34.2px;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: normal;
+    /* text-align: right; */
+    color: #3e3f5e;
+}
+
+.messagesContainer .messagesBox{
+    height: 721px;
+    margin-top: 28px;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;   
+}
+
+.messagesContainer .messagesBox .lastMessages{
+    width: 32%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;    
+}
+.messagesContainer .messagesBox .lastMessages .lastMessage{
+    padding:25px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+.messagesContainer .messagesBox .lastMessages .lastMessage .lastMessageSenderImage{
+    width: 44px;
+    position: relative;
+    height: 44px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+}
+.messagesContainer .messagesBox .lastMessages .lastMessage .lastMessageSenderImage img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+.messagesContainer .messagesBox .divider{
+    width: 1px;
+    height: 100%;
+    margin: 0 400px 0 863px;
+    background-color: #eaeaf5;
+}
+.messagesContainer .messagesBox .discussion{
+    width: calc(100% - 32% - 1px);
+}
