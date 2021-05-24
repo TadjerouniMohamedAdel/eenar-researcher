@@ -29,8 +29,19 @@
 .messagesContainer .messagesBox .lastMessages{
     width: 32%;
     height: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;    
+}
+.messagesContainer .messagesBox .lastMessages .lastMessagesFilter{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.1);
 }
 .messagesContainer .messagesBox .lastMessages .lastMessage{
     padding:30px;
@@ -114,6 +125,8 @@
 .messagesContainer .messagesBox .discussion{
     width: calc(100% - 32% - 1px);
     display: flex;
+    height: 100%;
+    position: relative;
     flex-direction: column;
 }
 .messagesContainer .messagesBox .discussion .senderHeader{
@@ -181,9 +194,14 @@
 .messagesContainer .messagesBox .discussion .messages{
     padding: 32px;
     position: relative;
+    width: 100%;
 }
 .messagesContainer .messagesBox .discussion .messages .message{
     display: flex;
+    width: 100%;
+}
+.messagesContainer .messagesBox .discussion .messages .message.myMessage{
+    flex-direction: row-reverse;
 }
 .messagesContainer .messagesBox .discussion .messages .message .senderImage{
     width: 26px;
@@ -222,4 +240,30 @@
     letter-spacing: normal;
     text-align: right;
     color: #3e3f5e;
+}
+.messagesContainer .messagesBox .discussion .messages .message .messageContent.myMessage{
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+}
+.messagesContainer .messagesBox .discussion  .writeMessage{
+    height: 100px;
+    width: 100%;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.1);
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sendMessageButton{
+    width: 64px !important;
+    height: 48px !important;
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+    border-radius: 8px !important;
+    box-shadow: 3px 5.2px 10px 0 rgba(35, 210, 226, 0.2) !important;
+    background-color: var(--active-color) !important;   
 }
