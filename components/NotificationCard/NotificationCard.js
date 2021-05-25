@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classes from './NotificationCard.module.css'
 import { faCommentDots,faThumbsUp } from '@fortawesome/free-regular-svg-icons'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes,faHeart } from '@fortawesome/free-solid-svg-icons'
 import { IconButton } from '@material-ui/core'
+
 export default function NotificationCard({ notification }) {
     return (
         <div className={classes.notificationCardContainer}>
@@ -11,9 +12,10 @@ export default function NotificationCard({ notification }) {
                 <div className={classes.notificationInfo}>
                     <p>{notification.sender}
                     &nbsp;
-                        {notification.action === "comment" ? "علّق" : "تفاعل"}
+                        {notification.action === "comment" ? "علّق" : "تفاعل بـ"}
                         &nbsp;
-                      على منشورك
+                        {notification.action !== "comment" && <><FontAwesomeIcon icon={faHeart} className={classes.closeIcon} />&nbsp;</>}
+                        على منشورك
                      </p>
                     <span>{notification.from}</span>
                 </div>
