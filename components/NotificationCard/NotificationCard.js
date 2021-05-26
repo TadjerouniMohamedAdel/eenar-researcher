@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classes from './NotificationCard.module.css'
-import { faCommentDots,faThumbsUp } from '@fortawesome/free-regular-svg-icons'
-import { faTimes,faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faCommentDots, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { faTimes, faHeart, faThumbsUp as faLike } from '@fortawesome/free-solid-svg-icons'
 import { IconButton } from '@material-ui/core'
 
 export default function NotificationCard({ notification }) {
@@ -14,14 +14,17 @@ export default function NotificationCard({ notification }) {
                     &nbsp;
                         {notification.action === "comment" ? "علّق" : "تفاعل بـ"}
                         &nbsp;
-                        {notification.action !== "comment" && <><FontAwesomeIcon icon={faHeart} className={classes.closeIcon} />&nbsp;</>}
-                        على منشورك
-                     </p>
+                        {notification.action !== "comment" && <div className={classes.notificationReaction}><FontAwesomeIcon icon={notification.action === "like" ? faLike : faHeart} className={classes.notificationReactionIcon} />&nbsp;</div>}
+                        على 
+                        <span>
+                             منشورك
+                        </span>
+                    </p>
                     <span>{notification.from}</span>
                 </div>
             </div>
             <div className={classes.notificationAction}>
-                <FontAwesomeIcon icon={notification.action === "comment" ? faCommentDots : faThumbsUp } className={classes.notificationIcon} />
+                <FontAwesomeIcon icon={notification.action === "comment" ? faCommentDots : faThumbsUp} className={classes.notificationIcon} />
             </div>
             <div className={classes.closeButton}>
                 <IconButton onClick={() => { }} >

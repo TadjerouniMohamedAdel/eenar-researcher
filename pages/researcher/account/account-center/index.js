@@ -4,7 +4,10 @@ import MyHead from "../../../../components/MyHead/MyHead";
 import classes from '../../../../styles/Notifications.module.css'
 import BannerMenu from "../../../../components/BannerMenu/BannerMenu";
 import NotificationCard from "../../../../components/NotificationCard/NotificationCard";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinus, faPlus, faUsers, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
+import { IconButton } from "@material-ui/core";
 export const getStaticProps = async ({ locale }) => ({
     props: {
         ...await serverSideTranslations(locale, ["sidebar"]),
@@ -63,6 +66,53 @@ export default function index() {
                 />
                 <div className={classes.main}>
                     <div className={classes.menus}>
+                        <div className={classes.menuItem}>
+                            <div className={classes.menuItemHeader}>
+                                <h2>
+                                    <FontAwesomeIcon className={classes.menuItemIcon} icon={faUserCircle} />
+                                    حسابي الشخصي
+                                </h2>
+                                <IconButton onClick={() => { }} className={classes.menuExpendedButton}>
+                                    <FontAwesomeIcon icon={faPlus} style={{fontSize:10}}  />
+                                </IconButton>
+                            </div>
+                            <p>
+                                لوريم ايبسوم هو نموذج افتراضي يوضع
+                                في التصاميم لتعرض على
+                            </p>
+                        </div>
+                        <div className={classes.menuItem}>
+                            <div className={classes.menuItemHeader}>
+                                <h2>
+                                    <FontAwesomeIcon className={classes.menuItemIcon} icon={faCog} />
+                                    الإعدادات
+                                </h2>
+                                <IconButton onClick={() => { }} className={classes.menuExpendedButton}>
+                                    <FontAwesomeIcon icon={faPlus} style={{fontSize:10}} />
+                                </IconButton>
+
+                            </div>
+                            <p>
+                                لوريم ايبسوم هو نموذج افتراضي يوضع
+                                في التصاميم لتعرض على
+                            </p>
+                        </div>
+                        <div className={classes.menuItem}>
+                            <div className={classes.menuItemHeader}>
+                                <h2>
+                                    <FontAwesomeIcon className={classes.menuItemIcon} icon={faUsers} />
+                                    المجموعات
+                                </h2>
+                                <IconButton onClick={() => { }} className={classes.menuExpendedButton}>
+                                    <FontAwesomeIcon icon={faPlus} style={{fontSize:10}} />
+                                </IconButton>
+
+                            </div>
+                            <p>
+                                لوريم ايبسوم هو نموذج افتراضي يوضع
+                                في التصاميم لتعرض على
+                            </p>
+                        </div>
                     </div>
                     <div className={classes.menuContent}>
                         <h1>الإشعارات</h1>

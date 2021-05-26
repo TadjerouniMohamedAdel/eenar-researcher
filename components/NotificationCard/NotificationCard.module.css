@@ -25,6 +25,7 @@
 }
 .notificationContent .notificationInfo p{
         font-family: var(--primary-font);
+        display: flex;
         font-size: 12px;
         font-weight: normal;
         font-stretch: normal;
@@ -32,7 +33,13 @@
         line-height: 1.17;
         letter-spacing: normal;
         text-align: right;
-        color: #3e3f5e
+        color: #3e3f5e;
+}
+.notificationContent .notificationInfo p span{
+    color: var(--active-color);
+    font-size: 13px;
+    margin-left: 3px;
+    margin-right: 3px;
 }
 .notificationContent .notificationInfo span{
     font-family: var(--primary-font);
@@ -79,4 +86,22 @@
 .closeIcon{
     font-size: 10px;
     color: #3e3f5e;
+}
+.notificationReaction{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 50%;
+    background: #23d2e2;
+}
+.notificationReactionIcon{
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    margin-bottom: 1px;
+    color: #ffffff;
 }
