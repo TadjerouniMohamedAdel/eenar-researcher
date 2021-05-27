@@ -22,7 +22,8 @@ import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable'
 import Error500 from '../Error500/Error500'
 import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEdit, faTrashAlt as faTrashAlt2} from '@fortawesome/free-regular-svg-icons';
 const backdropVariants = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
@@ -167,20 +168,20 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
                                         <div key={`item=${label}-${index}`} className={classes.successSectionItem}>
                                             <h3>
                                                 {item.name ?? item.title}
-                                                <div className={classes.actionItem}>
-                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item); setEditVisible(true) }}>
-                                                        <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`} />
-                                                    </IconButton>
-                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item); setDeleteVisible(true) }}>
-                                                        <DeleteOutlineOutlinedIcon className={`${classes.actionItemIcon} ${classes.delete}`} />
-                                                    </IconButton>
-                                                </div>
                                             </h3>
                                             {item.startDate && <h4>{`${format(new Date(item.startDate),"dd MMMM yyyy",{locale:arLocale })} - ${item.endDate !== "" ? format(new Date(item.endDate),"dd MMMM yyyy",{locale:arLocale }) : "مستمر"}`} {item.role} {item.status}</h4>}
                                             {item.level && <h4>{item.level}</h4>}
                                             {item.date && <h4>{format(new Date(item.date),"dd MMMM yyyy",{locale:arLocale })}</h4>}
                                             {item.center && <h4>{item.center} {item.location ?? item.code}</h4>}
                                             {item.description && <span>{item.description}</span>}
+                                                <div className={classes.actionItem}>
+                                                    <IconButton  onClick={() => { setSelectedItem(item); setEditVisible(true) }}>
+                                                        <FontAwesomeIcon icon={faEdit} className={`${classes.actionItemIcon} ${classes.edit}`} />
+                                                    </IconButton>
+                                                    <IconButton  onClick={() => { setSelectedItem(item); setDeleteVisible(true) }}>
+                                                        <FontAwesomeIcon icon={faTrashAlt2} className={`${classes.actionItemIcon} ${classes.delete}`}/>
+                                                    </IconButton>
+                                                </div>
                                         </div>
 
                                     ))

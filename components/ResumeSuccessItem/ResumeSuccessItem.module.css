@@ -53,15 +53,22 @@
 .successSection .successSectionItems .successSectionItem{
     cursor: pointer;
     margin-bottom: 16px;
+    position: relative;
 }
-.actionItemButton{
+/* .actionItemButton{
     width: 40px;
     height: 40px;
-}
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+} */
 .successSection .successSectionItem .actionItem{
     position: relative;
     top: 30px;
     opacity: 0;
+    position: absolute;
+    left: 80px;
+    top: 0;
     transition: 0.5s;
 }
 .successSection .successSectionItem:hover   .actionItem{
@@ -71,7 +78,7 @@
 }
 
 .successSection .successSectionItem .actionItem .actionItemIcon{
-    font-size: 22px !important;
+    font-size: 18px !important;
 }
 .successSection .successSectionItem .actionItem .actionItemIcon.edit{
     color: var(--active-color);

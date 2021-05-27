@@ -42,7 +42,7 @@ export default function Modal({visible,setVisible,children}) {
                     <motion.div
                         className={classes.modal}
                         variants={modalVariants}
-                        hidden="hidden"
+                        initial="hidden"
                         visible="visible"
                     >
                         <div className={classes.closeSection}>

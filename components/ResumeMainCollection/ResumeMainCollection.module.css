@@ -54,6 +54,7 @@
 .collectionContainer .collectionItems .collectionItem{
     display: flex;
     flex-direction: row;
+    position: relative;
     margin-bottom: 5px;
     width: 100%;
 }
@@ -84,25 +85,25 @@
     letter-spacing: normal;
     color: #3e3f5e;
 }
-.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem{
-    position: relative;
-    top: 30px;
+ .actionItem{
+    position: absolute;
+    left: 80px;
     opacity: 0;
     transition: 0.5s;
 }
-.collectionContainer .collectionItems .collectionItem:hover .collectionContent h2 .actionItem{
+.collectionContainer .collectionItems .collectionItem:hover .actionItem{
     display: flex;
     opacity: 1;
     transition: 0.5s;
 }
 
-.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem .actionItemIcon{
-    font-size: 22px !important;
+ .actionItem .actionItemIcon{
+    font-size: 19px !important;
 }
-.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem .actionItemIcon.edit{
+ .actionItem .actionItemIcon.edit{
     color: var(--active-color);
 }
-.collectionContainer .collectionItems .collectionItem .collectionContent h2 .actionItem .actionItemIcon.delete{
+ .actionItem .actionItemIcon.delete{
     color: var(--danger-color);
 }
 .collectionContainer .collectionItems .collectionItem .collectionContent h3{
