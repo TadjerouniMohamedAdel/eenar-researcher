@@ -153,7 +153,7 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                                 </h2>
                                                 <h3>{collection.university ?? collection.company ?? collection.organization}</h3>
                                                 <h3>{collection.provider}</h3>
-                                                <h3>{`${format(new Date(collection.startDate),"dd MMMM yyyy",{locale:arLocale })} - ${collection.endDate !== "" ? format(new Date(collection.endDate),"dd MMMM yyyy",{locale:arLocale }) : "لا تاريخ انتهاء الصلاحية"}`}</h3>
+                                                <h3>{`${format(new Date(collection.startDate),"dd MMMM yyyy",{locale:arLocale })} - ${collection.endDate !== ""  && collection.endDate!==null ? format(new Date(collection.endDate),"dd MMMM yyyy",{locale:arLocale }) : "حالي"}`}</h3>
                                                 <span>{collection.link && collection.link.label}</span>
                                                 <span>{collection.description}
                                                 </span>

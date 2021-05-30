@@ -281,14 +281,14 @@ export const  educationFields = [
     {name:"university",label:"جامعة",type:"text",defaultValue:"",className:""},
     {name:"title",label:"عنوان",type:"text",defaultValue:"",className:""},
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
 ]
 
 export const expericenceFields = [
     {name:"company",label:"شركة",type:"text",defaultValue:"",className:""},
     {name:"title",label:"عنوان",type:"text",defaultValue:"",className:""},
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
 ]
 
 
@@ -304,7 +304,7 @@ export const volunteeringFields = [
     {name:"organization",label:"منظمة",type:"text",defaultValue:"",className:""},
     {name:"role",label:"دور",type:"text",defaultValue:"",className:""},
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 
@@ -318,7 +318,7 @@ export const activityFields = [
     {name:"role",label:"دور",type:"text",defaultValue:"",className:""},
     {name:"location",label:"موقع",type:"text",defaultValue:"",className:""},
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
 ]
 
 export const patentFields = [
@@ -340,7 +340,7 @@ export const honorFields =[
 export const projectFields = [
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
-    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
+    {name:"endDate",label:"تاريخ الانتهاء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:null,className:""},
     {name:"description",label:"وصف",type:"text",defaultValue:"",className:"autoHeight",props:{multiline:true,rowMax:4}},
 ]
 

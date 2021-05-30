@@ -55,13 +55,20 @@
     margin-bottom: 16px;
     position: relative;
 }
-/* .actionItemButton{
-    width: 40px;
-    height: 40px;
+.actionItemButton{
+    width: 40px !important;
+    height: 40px !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-} */
+    position: relative;
+}
+.actionItemButton svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 .successSection .successSectionItem .actionItem{
     position: relative;
     top: 30px;
