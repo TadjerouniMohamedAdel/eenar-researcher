@@ -172,7 +172,7 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
                                             {item.startDate && <h4>{`${format(new Date(item.startDate),"dd MMMM yyyy",{locale:arLocale })} - ${item.endDate !== "" && item.endDate!==null ? format(new Date(item.endDate),"dd MMMM yyyy",{locale:arLocale }) : "مستمر"}`} {item.role} {item.status}</h4>}
                                             {item.level && <h4>{item.level}</h4>}
                                             {item.date && <h4>{format(new Date(item.date),"dd MMMM yyyy",{locale:arLocale })}</h4>}
-                                            {item.center && <h4>{item.center} {item.location ?? item.code}</h4>}
+                                            {item.center && <h4>{item.center} &nbsp; {item.location ?? item.code}</h4>}
                                             {item.description && <span>{item.description}</span>}
                                                 <div className={classes.actionItem}>
                                                     <IconButton  onClick={() => { setSelectedItem(item); setEditVisible(true) }} className={classes.actionItemButton}> 

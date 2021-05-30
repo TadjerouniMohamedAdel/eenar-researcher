@@ -338,6 +338,7 @@ export const languageSchema =  Yup.object().shape({
 
 export const activitySchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
+	center: Yup.string().required('يجب ملئ هذه المعلومة'),
     role: Yup.string().required('يجب ملئ هذه المعلومة'),
     location: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
@@ -346,6 +347,7 @@ export const activitySchema = Yup.object().shape({
 
 export const patentSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
+	center: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
     endDate: Yup.date().when("startDate",(startDate, patentSchema) => startDate && patentSchema.min(startDate)).required('يجب ملئ هذه المعلومة'),
     status: Yup.string().required('يجب ملئ هذه المعلومة'),

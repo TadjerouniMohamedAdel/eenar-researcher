@@ -315,6 +315,7 @@ export const languageFields = [
 
 export const activityFields = [
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
+	{name:"center",label:"المؤسسة",type:"text",defaultValue:"",className:""},
     {name:"role",label:"دور",type:"text",defaultValue:"",className:""},
     {name:"location",label:"موقع",type:"text",defaultValue:"",className:""},
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
@@ -323,6 +324,7 @@ export const activityFields = [
 
 export const patentFields = [
     {name:"title",label:"اسم",type:"text",defaultValue:"",className:""},
+	{name:"center",label:"المؤسسة",type:"text",defaultValue:"",className:""},
     {name:"status",label:"الحالة",type:"text",defaultValue:"",className:""},
     {name:"code",label:"رمز",type:"text",defaultValue:"",className:""},
     {name:"startDate",label:"تاريخ البدء",type:"date",props:{InputLabelProps:{shrink:true}},defaultValue:"",className:""},
