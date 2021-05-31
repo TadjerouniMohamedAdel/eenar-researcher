@@ -1,3 +1,12 @@
+import ISO6391 from 'iso-639-1';
+
+const languagesCodes = ISO6391.getAllCodes()
+  console.log(languagesCodes)
+
+  const languages = languagesCodes.map(lan=>(
+	  {value:lan,label:ISO6391.getNativeName(lan)}
+  ))
+
 const countryListAllIsoData = [
 	{"value": "Afghanistan","label": "Afghanistan"},
 	{"value": "Albania","label": "Albania"},
@@ -309,7 +318,7 @@ export const volunteeringFields = [
 ]
 
 export const languageFields = [
-    {name:"name",label:"اللغة",type:"text",defaultValue:"",className:""},
+    {name:"name",label:"اللغة",type:"select",choices:languages,defaultValue:"",className:""},
     {name:"level",label:"المستوى",type:"select",choices:[{label:"مبتدئ",value:"beginner"},{label:"متوسط",value:"intermediate"},{label:"متقدم",value:"advanced"},{label:"اللغة الأم",value:"native"}],defaultValue:"",className:""},
 ]
 
