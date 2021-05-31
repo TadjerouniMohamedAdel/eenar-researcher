@@ -169,11 +169,12 @@
     color: #3e3f5e;   
 }
 .messagesContainer .messagesBox .discussion .senderHeader .senderInfo h1 span{
-    width: 50px;
+    width: auto;
     height: 20px;
+    padding: 8px;
     margin-top: 3px;
     border-radius: 10px;
-    background-color: #06d630;
+    background-color: var(--danger-color);
     font-family: var(--primary-font);
     font-size: 10px;
     font-weight: bold;
@@ -185,6 +186,9 @@
     line-height: 3;
     letter-spacing: -0.1px;
     color: #ffffff;
+}
+.messagesContainer .messagesBox .discussion .senderHeader .senderInfo h1 span.online{
+    background-color: #06d630;
 }
 .actionSectionIcon{
     font-size: 18px;
@@ -252,11 +256,15 @@
     width: 100%;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.1);
     background-color: #fff;
+    font-family: var(--primary-font) !important;
     position: absolute;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.messagesContainer .messagesBox .discussion  .writeMessage textarea::placeholder{
+    font-family: var(--primary-font);
 }
 .sendMessageButton{
     width: 64px !important;

@@ -22,7 +22,6 @@ export default function Navbar() {
     const { locale } = router;
     const { i18n } = useTranslation();
 
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
 
     const changeLocale = (locale) => {
@@ -95,31 +94,9 @@ export default function Navbar() {
                 </IconButton>
                 <div className={classes.navbarDivider}></div>
                 <div className={classes.myDropDown}>
-                    <IconButton className={classes.dropButton} onClick={() => setIsSettingsOpen(!isSettingsOpen)}>
+                    <IconButton className={classes.dropButton} onClick={() =>{}}>
                         <SettingsOutlinedIcon className={classes.actionIcon} />
                     </IconButton>
-                    <AnimatePresence exitBeforeEnter>
-                        {
-                            isSettingsOpen && (
-                                <motion.div
-                                    className={classes.dropDownMenu}
-                                    variants={dropdownVariant}
-                                    animate="visible"
-                                    initial="hidden"
-                                    exit="hidden"
-
-                                >
-                                    <h3>General Settings <br /><span>Website Designer</span></h3>
-                                    <ul>
-                                        <li><a href="#">Edit Credentials<LockOutlinedIcon style={{ marginLeft: 5, marginRight: 5 }} /></a></li>
-                                        <li><a href="#">Edit Language <TranslateOutlinedIcon style={{ marginLeft: 5, marginRight: 5 }} /></a></li>
-                                        <li><a href="#">Help <ContactSupportOutlinedIcon style={{ marginLeft: 5, marginRight: 5 }} /></a></li>
-                                        <li><a href="#">Log Out<ExitToAppOutlinedIcon style={{ marginLeft: 5, marginRight: 5 }} /></a></li>
-                                    </ul>
-                                </motion.div>
-                            )
-                        }
-                    </AnimatePresence>
                 </div>
             </div>
         </nav>

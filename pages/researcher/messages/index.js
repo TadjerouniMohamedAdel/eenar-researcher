@@ -11,6 +11,7 @@ import { Button, FormControl, IconButton, InputAdornment, OutlinedInput } from '
 import SearchIcon from '@material-ui/icons/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane,faImage } from '@fortawesome/free-solid-svg-icons'
+import { datamessages } from '../../../utils/fixtures/DevData'
 
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -19,68 +20,7 @@ const animLayout = {
   animate: { opacity: 1, transition: { duration: 0.6, delay: 0 } },
 };
 
-const lastMessages = [
-  {
-    "sender": "زوبير ولقبو",
-    "from": "منذ 29 دقيقة",
-    "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان.."
-  },
-  {
-    "sender": "بلال بوعيشة",
-    "from": "منذ 29 دقيقة",
-    "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان.."
-  },
-  {
-    "sender": "إلياس بوجلطية",
-    "from": "منذ 29 دقيقة",
-    "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان.."
-  },
-  {
-    "sender": "جلال الدين شعبان",
-    "from": "منذ 29 دقيقة",
-    "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان.."
-  },
-  {
-    "sender": "أسامة الديزاينر",
-    "from": "منذ 29 دقيقة",
-    "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان.."
-  },
-]
-
-const messages = [
-  {
-    fromSender: true,
-    message: "مرحبا معاذ كيف تجري الأمور مع العمل؟",
-    date: "السبت على 10:15 صباحا",
-  },
-  {
-    fromSender: false,
-    message: "أهلا إلياس",
-    date: "10:20 صباحا"
-  },
-  {
-    fromSender: false,
-    message: `العمل يجري بشكل جيد فقط
-    أواجه بعض العراقيل في بعض الأمور الفلانية والأمور الأخرى.`,
-    date: "10:20 صباحا"
-  },
-  {
-    fromSender: true,
-    message: "مرحبا معاذ كيف تجري الأمور مع العمل؟",
-    date: "10:20 صباحا"
-  },
-  {
-    fromSender: true,
-    message: `سنقوم بالأشياء الفلانية والأشياء الفلانية الأخرى والأشياء التي ليست أخرى..
-    ثم نحاول مع الأشياء التي هي أخرى لكنها ليست فلانية..`,
-    date: "10:20 صباحا"
-  },
-  {
-    fromSender: true,
-    message: "بعدها ننتقل مباشرة للشيء الفلاني.",
-    date: "10:20 صباحا"
-  },
-]
+const lastMessages = datamessages
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -147,8 +87,8 @@ export default function index() {
               <div className={classes.senderInfo}>
                 <div className={classes.senderImage}></div>
                 <h1>
-                  إلياس بوجلطية
-                  <span>متصل</span>
+                  {lastMessages[active].sender}
+                  <span className={`${lastMessages[active].active && classes.online}`}>{lastMessages[active].active ?  "متصل":"غير متصل"}</span>
                 </h1>
               </div>
               <div>
@@ -159,9 +99,9 @@ export default function index() {
             </div>
             <div className={classes.messages}>
               {
-                messages.map((message, index) => (
+                lastMessages[active].messages.map((message, index) => (
                   <div className={`${classes.message} ${!message.fromSender && classes.myMessage}`} key={`message-${index}`}>
-                    { (!messages[index - 1] || (!messages[index - 1].fromSender && messages[index].fromSender)) && <div className={classes.senderImage}></div>}
+                    { message.fromSender && ((!lastMessages[active].messages[index - 1]  || (!lastMessages[active].messages[index - 1].fromSender && lastMessages[active].messages[index].fromSender)) && <div className={classes.senderImage}></div>)}
                     <div className={`${classes.messageContent} ${!message.fromSender && classes.myMessage}`}>
                       {message.message}
                     </div>
@@ -172,7 +112,9 @@ export default function index() {
             <div className={classes.writeMessage}>
               <FormControl variant="outlined" style={{width:"80%"}}>
                 <OutlinedInput
-                  placeholder="إبحث في الرسائل"
+                  placeholder="أكتب رسالة.."
+                  multiline
+                  rowsMax={2}
                   onChange={() => { }}
                   style={{ borderRadius: 8 }}
                   endAdornment={<InputAdornment position="end"><IconButton ><FontAwesomeIcon icon={faImage} style={{ color: "#cfcfd9" }} /></IconButton></InputAdornment>}

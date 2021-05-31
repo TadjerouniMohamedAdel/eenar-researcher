@@ -64,6 +64,10 @@
 .postWriter .writeSection .writer > div > textarea{
     width: inherit !important;
     height: inherit !important;
+    font-size: 20px;
+}
+.postWriter .writeSection .writer > div > textarea::placeholder{
+    font-size: 16px;
 }
 .postWriter .writeSection .writer > div > fieldset{
     border-color: transparent  !important;
