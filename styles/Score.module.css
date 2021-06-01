@@ -1,0 +1,15 @@
+.scoreContainer{
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.scoreGeneralStats{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+

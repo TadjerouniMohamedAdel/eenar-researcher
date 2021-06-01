@@ -46,7 +46,6 @@
 .postWriter .writeSection{
     width: 100%;
     min-height: 160px;
-    /* background-color: #afb0c017; */
     background-color: #fcfcfc;
 }
 .postWriter .writeSection .writer{
