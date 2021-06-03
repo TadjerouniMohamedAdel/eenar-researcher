@@ -3,6 +3,8 @@ import classes from './GroupCard.module.css'
 import PublicIcon from '@material-ui/icons/Public';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from 'next/link'
+import PropTypes from 'prop-types';
+
 export default function GroupCard({ group }) {
 
     const Circle = () => (
@@ -66,4 +68,8 @@ export default function GroupCard({ group }) {
             </div>
         </Link>
     )
+}
+
+GroupCard.propTypes = {
+    group:PropTypes.object.isRequired
 }

@@ -1,0 +1,134 @@
+.scoreCard {
+    width: 240px;
+    height: 291px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: 0.5s;
+}
+.scoreCard:hover{
+    transform: scale(1.03);
+}
+.scoreCard .scoreHeader{
+    height: 20px;
+    width: 100%;
+    margin-top: 15px;
+    padding-left: 46px;
+    padding-right: 46px;
+}
+.scoreCard .scoreHeader .scoreOffset{
+    display: flex;
+    align-items: center;
+}
+.scoreCard .scoreHeader .scoreOffset .scoreOffsetValue{ 
+    font-family: var(--primary-font);
+    font-size: 10px !important;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #3e3f5e;
+}
+.scoreCard .scoreHeader .scoreOffset .scoreOffsetIcon{
+    font-size: 14px !important;
+    
+}
+.scoreCard .scoreHeader .scoreOffset .scoreOffsetIcon.scoreOffsetIconDecrease{
+    color: var(--danger-color);
+}
+.scoreCard .scoreHeader .scoreOffset .scoreOffsetIcon.scoreOffsetIconIncrease{
+    color: var(--active-color);
+}
+.scoreIconSection{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+.scoreIconSection > div{
+    background-color: var(--active-color);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+.scoreIcon{
+    font-size: 20px !important;
+    color: #ffffff;
+}
+.scoreContent{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 20px;
+}
+.scoreContentValue{
+  font-family: var(--primary-font);
+  font-size: 37px;
+  height: 49px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.35;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3e3f5e;
+}
+.socreContentTitle {
+    font-family: var(--primary-font);
+    margin-top: 6px;
+    height: 27px;
+    font-size: 13px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.scoreContent p{
+    height: 42.9px;
+    width: 192px;
+    margin: 4.7px 0 0;
+    font-family: var(--primary-font);
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+  }
+.scoreCard img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.red{
+    background-color: var(--danger-color) !important;
+}
+.black{
+    background-color: var(--secondary-color) !important;
+}
+.blue{
+    background-color: var(--primary-color) !important;
+}
+.green{
+    background-color: var(--active-color);
+}
+.orange{
+    background-color: #ffd166 !important; 
+}
+  

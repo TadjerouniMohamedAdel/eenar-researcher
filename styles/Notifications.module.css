@@ -1,0 +1,99 @@
+.accountCenterContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.accountCenterContainer .main{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 64px;
+}
+
+.accountCenterContainer .main .menus{
+    width: 284px;
+    height: auto;
+    position: relative;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+}
+.accountCenterContainer .main .menus .menuItem{
+    font-family: var(--primary-font) !important;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #eaeaf5;;
+}
+.accountCenterContainer .main .menus .menuItem:nth-child(3){
+    border-bottom: 0px;
+}
+.accountCenterContainer .main .menus .menuItem .menuItemHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.accountCenterContainer .main .menus .menuItem .menuItemHeader h2{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    /* line-height: 1.14; */
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.accountCenterContainer .main .menus .menuItem .menuItemHeader .menuItemIcon{
+    font-size: 20px;
+    color: var(--active-color);
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.accountCenterContainer .main .menus .menuItem .menuItemHeader .menuExpendedButton{
+    width: 10px;
+    height: 10px;
+}
+.accountCenterContainer .main .menus .menuItem p{
+    margin-right: 10px;
+    margin-left: 10px;
+    font-family: var(--primary-font);
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+    text-align: right;
+    color: #9192a6;
+}
+.accountCenterContainer .main .menuContent{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 320px);
+}
+.accountCenterContainer .main .menuContent > h1{
+    height: 49px;
+    margin-top: 15px;
+    font-family: var(--primary-font);
+    font-size: 26px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.85;
+    letter-spacing: normal;
+    color: #3e3f5e;   
+}
+
+.accountCenterContainer .main .menuContent .items{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

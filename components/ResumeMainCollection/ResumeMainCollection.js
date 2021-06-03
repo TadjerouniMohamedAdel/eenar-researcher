@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react'
 import classes from './ResumeMainCollection.module.css'
 import AddIcon from '@material-ui/icons/Add';
-import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { IconButton } from '@material-ui/core'
 import Modal from '../Modal/Modal'
 import AddElement from '../CrudModal/AddElement'
 import EditElement from '../CrudModal/EditElement';
 import DeleteElement from '../CrudModal/DeleteElement';
-import moment from 'moment'
 import { Skeleton } from '@material-ui/lab';
 import useGetList from '../../utils/hooks/useGetList';
 import { useSelector } from 'react-redux'
 import useAddElement from '../../utils/hooks/useAddElement';
 import useEditElement from '../../utils/hooks/useEditElement';
 import useDeleteElement from '../../utils/hooks/useDeleteElement';
-
+import PropTypes from 'prop-types'
+import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable';
+import Error500 from '../Error500/Error500';
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEdit, faTrashAlt as faTrashAlt2} from '@fortawesome/free-regular-svg-icons';
 export default function ResumeMainCollection({ collectionName, validationSchema, fields, children, label, icon }) {
     const user = useSelector((state) => state.user)
     const [addVisible, setAddVisible] = useState(false)
@@ -25,14 +28,10 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
     const [deleteVisible, setDeleteVisible] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
     const [viewMore, setViewMore] = useState(false)
-    const { isLoading, data } = useGetList(collectionName, `/researcher/${collectionName}`, null, null, null, user.researchers.id)
+    const { isLoading, data,isError,error } = useGetList(collectionName, collectionName? `/researcher/${collectionName}`:null, null, null, null, user.researchers.id)
     const { mutate: addElement, status: addElementStatus } = useAddElement(collectionName, `/researcher/${collectionName}/add`, null, null, null, user.researchers.id)
     const { mutate: editElement, status: editElementStatus } = useEditElement(collectionName, `/researcher/${collectionName}/edit`, null, null, null, user.researchers.id)
     const { mutate: deleteElement, status: deleteElementStatus } = useDeleteElement(collectionName, `/researcher/${collectionName}/delete?id=${selectedItem?.id}`, null, null, null, user.researchers.id)
-
-    moment.locale('ar-dz')
-
-
 
     useEffect(() => {
         if (addElementStatus === "success") {
@@ -130,8 +129,20 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                         </div>
                                     </div>
                                 )
-                                :
-                                data.map((collection, index) => {
+                                :isError ?(
+                                    error.response && error.response.status===500?(
+                                        <Error500 />
+                                    ):(
+                                        
+                                            <ErrorUnreachable />
+                                        
+            
+                                    )
+    
+                                
+                            )
+
+                                :data.map((collection, index) => {
                                     if (!viewMore && index > 2) return;
                                     return (
                                         <div className={classes.collectionItem} key={`collection-item-${label}-${index}`}>
@@ -139,24 +150,24 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                             <div className={classes.collectionContent}>
                                                 <h2>
                                                     {collection.title ?? collection.name ?? collection.role}
-                                                    <div className={classes.actionItem}>
-                                                        <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(collection); setEditVisible(true) }}>
-                                                            <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`} />
-                                                        </IconButton>
-                                                        <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(collection); setDeleteVisible(true) }}>
-                                                            <DeleteOutlineOutlinedIcon className={`${classes.actionItemIcon} ${classes.delete}`} />
-                                                        </IconButton>
-                                                    </div>
                                                 </h2>
                                                 <h3>{collection.university ?? collection.company ?? collection.organization}</h3>
                                                 <h3>{collection.provider}</h3>
-                                                <h3>{`${moment(collection.startDate).format('DD MMM YYYY')} - ${collection.endDate !== "" ? moment(collection.endDate).format('DD MMM YYYY') : "لا تاريخ انتهاء الصلاحية"}`}</h3>
+                                                <h3>{`${format(new Date(collection.startDate),"dd MMMM yyyy",{locale:arLocale })} - ${collection.endDate !== ""  && collection.endDate!==null ? format(new Date(collection.endDate),"dd MMMM yyyy",{locale:arLocale }) : "حالي"}`}</h3>
                                                 <span>{collection.link && collection.link.label}</span>
                                                 <span>{collection.description}
                                                 </span>
                                                 <span>{collection.location}</span>
                                                 <div className={classes.line}></div>
                                             </div>
+                                                    <div className={classes.actionItem}>
+                                                        <IconButton  onClick={() => { setSelectedItem(collection); setEditVisible(true) }}>
+                                                            <FontAwesomeIcon icon={faEdit} className={`${classes.actionItemIcon} ${classes.edit}`} />
+                                                        </IconButton>
+                                                        <IconButton  onClick={() => { setSelectedItem(collection); setDeleteVisible(true) }}>
+                                                            <FontAwesomeIcon icon={faTrashAlt2} className={`${classes.actionItemIcon} ${classes.delete}`}/>
+                                                        </IconButton>
+                                                    </div>
                                         </div>
 
                                     )
@@ -177,4 +188,14 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
             }
         </div>
     )
+}
+
+ResumeMainCollection.propTypes = {
+    collectionName:PropTypes.string,
+    validationSchema:PropTypes.object,
+    fields:PropTypes.array,
+    children:PropTypes.node,
+    label:PropTypes.string,
+    icon:PropTypes.node
+
 }

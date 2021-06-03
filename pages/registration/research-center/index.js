@@ -1,4 +1,4 @@
-import { Button, CircularProgress, TextField } from '@material-ui/core'
+import { Button, Checkbox, CircularProgress, FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup, TextField } from '@material-ui/core'
 import { useState } from 'react'
 import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout'
 import classes from '../../../styles/Registration.module.css'
@@ -14,9 +14,10 @@ function Alert(props) {
 
 export default function index() {
     const [step, setStep] = useState(0)
-    const [centerUser, setCenterUser] = useState({ type: "center", center: '', region: "", city: "", address: "", class: '', job: "", firstname: "", lastname: "", email: "", password: "", retypedPassword: "" })
+    const [centerUser, setCenterUser] = useState({ gender: "", type: "center", center: '', region: "", city: "", address: "", class: '', job: "", firstname: "", lastname: "", email: "", password: "", retypedPassword: "" })
     const [isLoading, setIsLoading] = useState(false)
     const [errorRegistration, setErrorRegistration] = useState(null)
+    const [showAlertSuccess, setShowAlertSuccess] = useState(false)
     const router = useRouter()
 
     let data = {}
@@ -44,6 +45,7 @@ export default function index() {
                 .catch(function (error) {
                     console.log(error)
                     setErrorRegistration(true)
+                    console.log("error", error, { ...error })
                     setIsLoading(false)
                 })
         }
@@ -66,6 +68,7 @@ export default function index() {
     });
 
 
+    
 
     return (
         <RegistartionLayout>
@@ -186,6 +189,21 @@ export default function index() {
                                     error={Boolean(formik2.errors.lastname)}
                                     helperText={formik2.errors.lastname}
                                 />
+                                <FormControl component="fieldset" className={classes.registrationInput} style={{ marginBottom: 10 }}>
+                                    <FormLabel component="legend">الجنس</FormLabel>
+                                    <RadioGroup
+                                        aria-label="gender"
+                                        name="gender"
+                                        value={formik2.values.gender}
+                                        onChange={formik2.handleChange}
+                                    >
+                                        <div style={{ display: "flex" }}>
+                                            <FormControlLabel value="male" control={<Radio />} label="رجل" />
+                                            <FormControlLabel value="female" control={<Radio />} label="إمرأة" />
+                                        </div>
+                                    </RadioGroup>
+                                    <FormHelperText style={{ marginTop: -5 }}>{formik2.errors.gender}</FormHelperText>
+                                </FormControl>
                                 <TextField
                                     label="إيميل المؤسسة"
                                     variant="outlined"
@@ -246,6 +264,10 @@ export default function index() {
                                     }
                                 </div>
                             </div>
+                            {showAlertSuccess && (
+                                <Alert severity="success">تم  التسجيل بنجاح ، يمكنكم إستعمال المنصة بعد قبول الحساب</Alert>
+
+                            )}
                         </form>
                     )
             }

@@ -7,6 +7,7 @@ import Chip from "@material-ui/core/Chip";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types';
 
 
 
@@ -14,7 +15,6 @@ export default function AddElement({ fields, handleSubmit, validationSchema, tit
     const [isLoading, setIsLoading] = useState(false)
     let values = {}
     fields.map((el, index) => { values[el.name] = el.defaultValue })
-    console.log(values)
 
     const submit = (data) => {
         setIsLoading(true)
@@ -155,4 +155,12 @@ export default function AddElement({ fields, handleSubmit, validationSchema, tit
         </div>
 
     )
+}
+
+
+AddElement.propTypes = {
+    title:PropTypes.string.isRequired,
+    handleSubmit:PropTypes.func.isRequired, 
+    fields:PropTypes.array.isRequired,
+    validationSchema:PropTypes.object.isRequired, 
 }

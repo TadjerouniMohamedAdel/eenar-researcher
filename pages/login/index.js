@@ -15,6 +15,7 @@ import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import { useUser } from '../../utils/hooks/useUser'
 
 
 function Alert(props) {
@@ -33,6 +34,7 @@ export default function Login() {
     const [errorLogin, setErrorLogin] = useState(false)
     const router = useRouter()
     const { t } = useTranslation('login')
+    useUser({redirectTo:null,redirectIfFound:"/researcher/"})
     const dispatch = useDispatch()
 
 

@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import { Button, IconButton } from '@material-ui/core';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import { IconButton } from '@material-ui/core';
 import classes from './AboutGroup.module.css'
 import { dataaboutme } from '../../utils/fixtures/DevData'
-import moment from 'moment'
-
+import PropTypes from 'prop-types';
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 
 
 export default function AboutGroup({group}) {
     const [aboutme, setAboutme] = useState(dataaboutme)
-    moment.locale('ar-dz')
 
     return (
         <div className={classes.aboutGroup}>
@@ -26,8 +25,12 @@ export default function AboutGroup({group}) {
             <ul className={classes.aboutGroupInfo}>
                 <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={aboutme.website} target="_blank">{group.website}</a></span></li>
                     <div className={classes.divider}></div>
-                <li><span className={classes.infoLabel}> الإنضمام للمجموع</span><span className={classes.infoValue}>{moment(new Date()).format('DD MMM YYYY')}</span></li>
+                <li><span className={classes.infoLabel}> الإنضمام للمجموع</span><span className={classes.infoValue}>{format(new Date(),"dd MMMM yyyy",{locale:arLocale })}</span></li>
             </ul>
         </div>
     )
+}
+
+AboutGroup.propTypes = {
+    group:PropTypes.object.isRequired
 }

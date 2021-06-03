@@ -9,10 +9,11 @@ import { aboutmeFields } from '../../utils/form/Fields';
 import { aboutmeSchema } from '../../utils/Validation/ValidationObjects'
 import { dataaboutme } from '../../utils/fixtures/DevData';
 import { useSelector, useDispatch } from 'react-redux'
-import moment from 'moment'
 import { Page, PDFDownloadLink, Text, Image, Font, View, Document, StyleSheet } from '@react-pdf/renderer';
 import { setUser } from '../../redux/actions/actionCreator';
 import axios from 'axios'
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 
 
 
@@ -71,7 +72,6 @@ export default function AboutMe() {
   const [aboutme, setAboutme] = useState(dataaboutme)
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
-  moment.locale('ar-dz')
 
 
   /** edit aboutme info */
@@ -117,7 +117,7 @@ export default function AboutMe() {
         {user.researchers.aboutMe}
       </p>
       <ul className={classes.resumeAboutMeInfo}>
-        <li><span className={classes.infoLabel}>الإنضمام</span><span className={classes.infoValue}>{moment(user.createdAt).format('DD MMM YYYY')}</span></li>
+        <li><span className={classes.infoLabel}>الإنضمام</span><span className={classes.infoValue}>{format(new Date(user.createdAt),"dd MMMM yyyy",{locale:arLocale })}</span></li>
         <li><span className={classes.infoLabel}>المدينة</span><span className={classes.infoValue}>{user.region} {user.city}</span></li>
         <li><span className={classes.infoLabel}>المؤسسة</span><span className={classes.infoValue}>{user.center}</span></li>
         <li><span className={classes.infoLabel}>الوظيفة</span><span className={classes.infoValue}>{user.job}</span></li>

@@ -5,13 +5,13 @@ export default function LinkPreview({link}) {
     const [data,setData] = useState(null)
     const [isLoading,setIsLoading] = useState(true)
     useEffect(() => {
-        axios({
-            url:"https://fierce-anchorage-09030.herokuapp.com/",
-            method:"POST",
-            data:{link}
-        })
-            .then(res=>console.log(res))
-            .catch(err=>console.log(err))
+        // axios({
+        //     url:"https://fierce-anchorage-09030.herokuapp.com/",
+        //     method:"POST",
+        //     data:{link}
+        // })
+        //     .then(res=>console.log(res))
+        //     .catch(err=>console.log(err))
     }, [])
 
     return (

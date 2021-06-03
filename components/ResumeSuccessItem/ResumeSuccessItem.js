@@ -11,15 +11,20 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import EditElement from '../CrudModal/EditElement'
 import DeleteElement from '../CrudModal/DeleteElement'
-import moment from 'moment'
 import { Skeleton } from '@material-ui/lab'
 import useAddElement from '../../utils/hooks/useAddElement'
 import useEditElement from '../../utils/hooks/useEditElement'
 import useGetList from '../../utils/hooks/useGetList';
 import useDeleteElement from '../../utils/hooks/useDeleteElement'
 import { useSelector } from 'react-redux'
-
-
+import PropTypes from 'prop-types'
+import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable'
+import Error500 from '../Error500/Error500'
+import { format } from 'date-fns'
+import arLocale from 'date-fns/locale/ar-DZ'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ISO6391 from 'iso-639-1';
+import { faEdit, faTrashAlt as faTrashAlt2 } from '@fortawesome/free-regular-svg-icons';
 const backdropVariants = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
@@ -32,12 +37,18 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
     const [editVisible, setEditVisible] = useState(false)
     const [deleteVisible, setDeleteVisible] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
-    const { isLoading, data } = useGetList(collectionName, `/researcher/${collectionName}`, null, null, null, user.researchers.id)
+    const { isLoading, data, isError, error } = useGetList(collectionName, `/researcher/${collectionName}`, null, null, null, user.researchers.id)
     const { mutate: addElement, status: addElementStatus } = useAddElement(collectionName, `/researcher/${collectionName}/add`, null, null, null, user.researchers.id)
     const { mutate: editElement, status: editElementStatus } = useEditElement(collectionName, `/researcher/${collectionName}/edit`, null, null, null, user.researchers.id)
     const { mutate: deleteElement, status: deleteElementStatus } = useDeleteElement(collectionName, `/researcher/${collectionName}/delete?id=${selectedItem?.id}`, null, null, null, user.researchers.id)
-    moment.locale('ar-dz')
 
+    const levels = {
+        "beginner":"مبتدئ" ,
+        "intermediate":"متوسط",
+        "advanced":"متقدم",
+        "native":"اللغة الأم"
+
+    }
     useEffect(() => {
         if (addElementStatus === "success") {
             setAddVisible(false)
@@ -125,57 +136,78 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
                             <h4><Skeleton variant="text" width="20%" /></h4>
                         </div>
                     ) :
-                        isExpanded ? (
-                            <motion.ul
-                                variants={backdropVariants}
-                                animate="visible"
-                                initial="hidden"
-                                exit="hidden"
-                                className={classes.successSectionNotExpanded}
-                            >
-                                {
-                                    data.map((item, index) => (
-                                        <li key={`item=${label}-${index}`}>{item.title ?? item.name}</li>
-                                    ))
-                                }
-                            </motion.ul>
-                        ) : (
-                            <motion.div
-                                variants={backdropVariants}
-                                animate="visible"
-                                initial="hidden"
-                                exit="hidden"
-                                className={classes.successSectionItems}
-                            >
-                                {
-                                    data.map((item, index) => (
-                                        <div key={`item=${label}-${index}`} className={classes.successSectionItem}>
-                                            <h3>
-                                                {item.name ?? item.title}
-                                                <div className={classes.actionItem}>
-                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item); setEditVisible(true) }}>
-                                                        <EditOutlinedIcon className={`${classes.actionItemIcon} ${classes.edit}`} />
-                                                    </IconButton>
-                                                    <IconButton className={classes.actionItemButton} onClick={() => { setSelectedItem(item); setDeleteVisible(true) }}>
-                                                        <DeleteOutlineOutlinedIcon className={`${classes.actionItemIcon} ${classes.delete}`} />
-                                                    </IconButton>
-                                                </div>
-                                            </h3>
-                                            {item.startDate && <h4>{`${moment(item.startDate).format('DD MMM YYYY')} - ${item.endDate !== "" ? moment(item.endDate).format('DD MMM YYYY') : "مستمر"}`} {item.role} {item.status}</h4>}
-                                            {item.level && <h4>{item.level}</h4>}
-                                            {item.date && <h4>{moment(item.date).format('DD MMM YYYY')}</h4>}
-                                            {item.center && <h4>{item.center} {item.location ?? item.code}</h4>}
-                                            {item.description && <span>{item.description}</span>}
-                                        </div>
+                        isError ? (
+                            error.response && error.response.status === 500 ? (
+                                <Error500 />
+                            ) : (
 
-                                    ))
-                                }
-                            </motion.div>
+                                <ErrorUnreachable />
+
+
+                            )
+
 
                         )
+                            :
+                            isExpanded ? (
+                                <motion.ul
+                                    variants={backdropVariants}
+                                    animate="visible"
+                                    initial="hidden"
+                                    exit="hidden"
+                                    className={classes.successSectionNotExpanded}
+                                >
+                                    {
+                                        data.map((item, index) => (
+                                            <li key={`item=${label}-${index}`}>{collectionName === "language" ? ISO6391.getNativeName(item.name) :item.title ?? item.name}</li>
+                                        ))
+                                    }
+                                </motion.ul>
+                            ) : (
+                                <motion.div
+                                    variants={backdropVariants}
+                                    animate="visible"
+                                    initial="hidden"
+                                    exit="hidden"
+                                    className={classes.successSectionItems}
+                                >
+                                    {
+                                        data.map((item, index) => (
+                                            <div key={`item=${label}-${index}`} className={classes.successSectionItem}>
+                                                <h3>
+                                                    {collectionName === "language" ? ISO6391.getNativeName(item.name) : item.name ?? item.title}
+                                                </h3>
+                                                {item.startDate && <h4>{`${format(new Date(item.startDate), "dd MMMM yyyy", { locale: arLocale })} - ${item.endDate !== "" && item.endDate !== null ? format(new Date(item.endDate), "dd MMMM yyyy", { locale: arLocale }) : "مستمر"}`} {item.role} {item.status}</h4>}
+                                                {item.level && <h4>{levels[item.level]}</h4>}
+                                                {item.date && <h4>{format(new Date(item.date), "dd MMMM yyyy", { locale: arLocale })}</h4>}
+                                                {item.center && <h4>{item.center} &nbsp; {item.location ?? item.code}</h4>}
+                                                {item.description && <span>{item.description}</span>}
+                                                <div className={classes.actionItem}>
+                                                    <IconButton onClick={() => { setSelectedItem(item); setEditVisible(true) }} className={classes.actionItemButton}>
+                                                        <FontAwesomeIcon icon={faEdit} className={`${classes.actionItemIcon} ${classes.edit}`} />
+                                                    </IconButton>
+                                                    <IconButton onClick={() => { setSelectedItem(item); setDeleteVisible(true) }} className={classes.actionItemButton}>
+                                                        <FontAwesomeIcon icon={faTrashAlt2} className={`${classes.actionItemIcon} ${classes.delete}`} />
+                                                    </IconButton>
+                                                </div>
+                                            </div>
+
+                                        ))
+                                    }
+                                </motion.div>
+
+                            )
                 }
                 {!last && <div className={classes.seccessSectionDevider}></div>}
             </div>
         </AnimatePresence>
     )
+}
+
+ResumeSuccessItem.propTypes = {
+    collectionName: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    last: PropTypes.bool,
+    fields: PropTypes.array,
+    validationSchema: PropTypes.object
 }

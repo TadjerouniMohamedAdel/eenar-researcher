@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import MyHead from '../../../components/MyHead/MyHead'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -12,6 +12,7 @@ import AddElement from '../../../components/CrudModal/AddElement'
 import Modal from '../../../components/Modal/Modal'
 import { serviceRequestFields } from '../../../utils/form/Fields'
 import { serviceRequestSchema } from '../../../utils/Validation/ValidationObjects'
+import EmptyList from '../../../components/EmptyList/EmptyList'
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -21,6 +22,7 @@ export const getStaticProps = async ({ locale }) => ({
 })
 export default function index() {
   const [addVisible, setAddVisible] = useState(false);
+  const services = ["","","","",""]
 
   return (
     <ResearcherLayout>
@@ -28,7 +30,7 @@ export default function index() {
       <Modal visible={addVisible} setVisible={setAddVisible}>
         <AddElement
           title="طلب خدمة"
-          handleSubmit={()=>{}}
+          handleSubmit={() => { }}
           validationSchema={serviceRequestSchema}
           fields={serviceRequestFields}
         />
@@ -51,11 +53,18 @@ export default function index() {
               inverse={false}
               hasMore={false}
             >
-              <ServiceCard setAddVisible={setAddVisible}/>
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCardSkeleton />
+              {
+                services.length === 0 ? (
+                  <EmptyList />
+                )
+
+                  :
+                  services.map((service, index) => (
+                    <ServiceCard setAddVisible={setAddVisible} key={index} />
+                    
+                    ))
+                  }
+                  <ServiceCardSkeleton />
             </InfiniteScroll>
           </div>
         </MultiSectionLayout>

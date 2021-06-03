@@ -9,7 +9,7 @@ export default function NoInternet(props) {
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: '/animations/no-internet.json' // the path to the animation json
+            path: '/animations/no-internet-connextion.json' // the path to the animation json
           });
         
       }, [])
@@ -20,11 +20,6 @@ export default function NoInternet(props) {
             <div className={classes.noInternetAnim}>
                 <div id="anim-no-internet"></div>
             </div>
-            <h2>
-                {`${props.menu} في قيد الإنجاز`}
-
-                
-            </h2>
         </div>
     )
 }

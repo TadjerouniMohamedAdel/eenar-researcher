@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
-import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 import MyHead from '../../../../components/MyHead/MyHead'
-import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
-import InfiniteScroll from "react-infinite-scroll-component";
 import classes from "../../../../styles/MyNetwork.module.css";
-import LastArticles from "../../../../components/LastArticles/LastArticles";
-import LearnNow from "../../../../components/LearnNow/LearnNow";
-import MyGroups from "../../../../components/MyGroups/MyGroups";
+
 import { dataarticles, datagroups } from "../../../../utils/fixtures/DevData";
 import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
 import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
@@ -27,28 +22,9 @@ import {
   TextField,
   Hidden,
 } from "@material-ui/core";
-import GroupCard from '../../../../components/GroupCard/GroupCard';
-import GroupCardSkeleton from '../../../../components/GroupCard/GroupCardSkeleton';
-
-const groupsHardCoded = [
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "private", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "private", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-  { name: "المجموعة الفلانية", title: "كليفرزون ترحب بكم", privacy: "public", stats: { views: "7.3K", posts: "105", members: "139" } },
-]
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { GolfCourseSharp } from '@material-ui/icons';
 import GroupCardList from '../../../../components/GroupCardList/GroupCardList';
 import AddElement from '../../../../components/CrudModal/AddElement';
-import EditElement from '../../../../components/CrudModal/EditElement';
-import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import { groupSchema } from '../../../../utils/Validation/ValidationObjects';
 import Modal from '../../../../components/Modal/Modal';
 import { groupFields } from '../../../../utils/form/Fields';
@@ -58,7 +34,11 @@ import useAddElement from '../../../../utils/hooks/useAddElement';
 import Pagination from '../../../../components/Pagination/Pagination';
 import GroupCardListSkeleton from '../../../../components/GroupCardList/GroupCardListSkeleton';
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout';
-
+import InfiniteList from '../../../../components/InfiniteList/InfiniteList';
+import { motion,AnimatePresence } from 'framer-motion'
+import EmptyList from '../../../../components/EmptyList/EmptyList';
+import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnreachable';
+import Error500 from '../../../../components/Error500/Error500';
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -67,19 +47,26 @@ export const getStaticProps = async ({ locale }) => ({
   },
 })
 
+const easing = [0.6, -0.05, 0.01, 0.99];
+const animLayout= {
+  initial: { scale: 0,transition:{ease:easing,duration: 0.6,delay:0.4}},
+  animate: { scale: 1,transition:{ease:easing,duration: 0.6,delay:0.4}},
+  exit: { opacity: 0,transition:{ease:easing,duration: 0.6,delay:0.4}},
+
+  };
+  
 export default function index() {
   const user = useSelector((state) => state.user)
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [articles, setArticles] = useState(dataarticles);
   const [sideGroups, setSideGroups] = useState(datagroups);
-  const [hasMore, setHasMore] = useState(true)
-  const [view, setView] = useState("list")
+  const [view, setView] = useState("grid")
   const [addVisible, setAddVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
   const [search, setSearch] = useState("")
   const [groups, setGroups] = useState([])
-  const { isLoading, data } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
+  const { isLoading, data,isError,error } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
   const { mutate: addElement, status: addElementStatus } = useAddElement("groups", `/groups/add`, limit, offset, search, user.researchers.id)
   const [page, setPage] = useState(1)
 
@@ -89,7 +76,6 @@ export default function index() {
     if (data && view == "grid") {
       console.log("changed", groups, offset, data)
       setGroups([...groups, ...data.groups])
-      data.groups.length === 0 && setHasMore(false)
     }
   }, [data])
 
@@ -158,26 +144,28 @@ export default function index() {
             </Button>
           </div>
         </div>
+        <AnimatePresence exitBeforeEnter>
         {
           view === "grid" ? (
-            <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
-              <InfiniteScroll
-                dataLength={groups.length}
-                className={classes.groupsContainer}
-                next={() => !isLoading && setOffset(offset + 10)}
-                inverse={false}
-                hasMore={hasMore}
-                loader={<GroupCardSkeleton />}
-              >
-                {groups.map((group, id) => (
-                  <GroupCard key={`group-card-${id}`} group={group} />
-                ))}
-              </InfiniteScroll>
-            </div>
+            <motion.div key="card-list" id="scrollableDivResearchs" className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
+              <InfiniteList />
+            </motion.div>
 
           ) : (
-            <div id="scrollableDivResearchs" className={classes.scrollableDivResearchs}>
+            <motion.div key="item-list"  className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
               {
+                isError ?(
+                  error.response && error.response.status===500?(
+                      <Error500 />
+                  ):(
+                      
+                          <ErrorUnreachable />
+                      
+
+                  )
+
+              
+          ):
                 isLoading ? (
                   <>
                     {
@@ -186,11 +174,13 @@ export default function index() {
                       ))
                     }
                   </>
-                ) :
+                ) :isLoading === false && data.groups.length == 0 ? (
+                  <EmptyList />
+              ) :
                   (
                     <>
                       {
-                        data.groups.map((group, index) => (
+                        data?.groups?.map((group, index) => (
                           <GroupCardList group={group} key={`group-${index}`} />
                         ))
                       }
@@ -217,9 +207,10 @@ export default function index() {
                   )
               }
 
-            </div>
+            </motion.div>
           )
         }
+        </AnimatePresence>
       </MultiSectionLayout>
     </ResearcherAccountLayout>
   )

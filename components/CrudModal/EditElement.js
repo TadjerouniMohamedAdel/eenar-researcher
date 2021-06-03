@@ -1,9 +1,12 @@
 import {useState} from 'react'
-import { TextField,Button, Select, MenuItem, FormControl, InputLabel, CircularProgress } from '@material-ui/core'
+import { TextField,Button, Select, MenuItem, FormControl, InputLabel, CircularProgress, Checkbox } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
 import Chip from "@material-ui/core/Chip";
 import Autocomplete from "@material-ui/lab/Autocomplete"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types';
 
 export default function EditElement({item,fields,handleSubmit,validationSchema,title}) {
     const [isLoading,setIsLoading] = useState(false)
@@ -87,9 +90,21 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                                     <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
                                                 ))
                                             }
-                                            
                                         </Select>
                                     </FormControl>
+                                )
+                                break;
+                                case "checkbox":
+                                return (
+                                    <div className={`${classes.formCheckbox} ${field.className}`}>
+                                        <Checkbox
+                                            value={formik.values[field.name]}
+                                            name={field.name}
+                                            onChange={formik.handleChange}
+                                            checkedIcon={<FontAwesomeIcon style={{ fontSize: 24, color: "#118ab2" }} icon={faWindowClose} />}
+                                        />
+                                        <span>{field.label}</span>
+                                    </div>
                                 )
                                 break;
                         
@@ -119,7 +134,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                     )
                 }
                 <div className={classes.submitContainer}>
-                    <Button onClick={()=>console.log(formik.errors)} className={classes.submit} type="submit" disabled={isLoading}>
+                    <Button className={classes.submit} type="submit" disabled={isLoading}>
                         <div>
                             {isLoading  && <CircularProgress style={{color:"#fff",width:19,height:19,marginLeft:5,marginRight:5}} />}
                         </div>
@@ -131,4 +146,11 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
         </div>
         
     )
+}
+
+EditElement.propTypes = {
+    title:PropTypes.string.isRequired,
+    handleSubmit:PropTypes.func.isRequired, 
+    fields:PropTypes.array.isRequired,
+    validationSchema:PropTypes.object.isRequired, 
 }

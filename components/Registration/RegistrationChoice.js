@@ -4,6 +4,7 @@ import classes from '../../styles/Registration.module.css'
 import { useRouter } from 'next/router'
 import lottie from 'lottie-web'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 
 export default function RegistrationChoice({ choice }) {
     const router = useRouter()
@@ -46,3 +47,6 @@ export default function RegistrationChoice({ choice }) {
     )
 }
 
+RegistrationChoice.propTypes = {
+    choice:PropTypes.object.isRequired
+}

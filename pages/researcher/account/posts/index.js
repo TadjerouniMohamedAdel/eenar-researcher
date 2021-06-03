@@ -39,7 +39,8 @@ import DeleteElement from "../../../../components/CrudModal/DeleteElement";
 import MultiStepsEditElement from "../../../../components/CrudModal/MultiStepsEditElement";
 import Pagination from "../../../../components/Pagination/Pagination";
 import Link from "next/link";
-import moment from "moment";
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Alert from '@material-ui/lab/Alert';
 
@@ -49,6 +50,9 @@ import useAddElement from "../../../../utils/hooks/useAddElement";
 import useEditElement from "../../../../utils/hooks/useEditElement";
 import useDeleteElement from "../../../../utils/hooks/useDeleteElement";
 import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSectionLayout";
+import EmptyList from "../../../../components/EmptyList/EmptyList";
+import ErrorUnreachable from "../../../../components/ErrorUnreachable/ErrorUnreachable";
+import Error500 from "../../../../components/Error500/Error500";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -73,11 +77,10 @@ export default function index() {
   const [page, setPage] = useState(1)
   const [research, setResearch] = useState("")
   const [showAddAlert, setShowAddAlert] = useState(false)
-  const { isLoading, data } = useGetList("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
+  const { isLoading, data,isError,error } = useGetList("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
   const { mutate: addPost, status: addPostStatus } = useAddElement("posts", "/researcher/post/add", limit, offset, research, user.researchers.id)
   const { mutate: editPost, status: editPostStatus } = useEditElement("posts", "/researcher/post/edit", limit, offset, research, user.researchers.id)
   const { mutate: deletePost, status: deletePostStatus } = useDeleteElement("posts", `/researcher/post/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
-  moment.locale("ar-dz");
 
   useEffect(() => {
     setOffset(0)
@@ -226,11 +229,22 @@ export default function index() {
             </Button>
           </div>
         </div>
-        {isLoading === false && data.posts.length == 0 ? (
-          <div className={classes.empty}>
-            <img src="/images/empty.png" alt="empty-list" />
-            <h3>لا تحتوي هذه القائمة على بيانات</h3>
-          </div>
+        {
+          isError ?(
+            error.response && error.response.status===500?(
+                <Error500 />
+            ):(
+                
+                    <ErrorUnreachable />
+                
+
+            )
+
+        
+    )
+          : 
+        isLoading === false && data.posts.length == 0 ? (
+          <EmptyList />
         ) : (
           <div className={classes.tableContainer}>
             {
@@ -306,7 +320,7 @@ export default function index() {
                           className={classes.cellBody}
                           align="center"
                         >
-                          {moment(row.publishedDate).format("DD MMM YYYY")}
+                          {format(new Date(row.publishedDate),"dd MMMM yyyy",{locale:arLocale })}
                         </TableCell>
                         <TableCell
                           className={`${classes.cellBody} ${classes.title}`}

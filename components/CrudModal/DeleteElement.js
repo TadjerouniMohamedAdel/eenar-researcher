@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import classes from './CrudModal.module.css'
 import { Button, CircularProgress } from '@material-ui/core'
-import moment from 'moment'
-
+import PropTypes from 'prop-types';
+import { format} from 'date-fns'
+import arLocale  from 'date-fns/locale/ar-DZ'
 export default function DeleteElement({item,title,handleSubmit}) {
-    moment.locale('ar-dz')
     const [isLoading,setIsLoading] = useState(false)
     return (
         <div className={classes.crudElement}>
@@ -26,9 +26,9 @@ export default function DeleteElement({item,title,handleSubmit}) {
                                 
                                 <h3>{item.provider}</h3>
                                 <h3>{item.role ?? item.university}</h3>
-                                <h3>{item.date && moment(item.date).format('DD MMM YYYY') }</h3>
-                                <h3>{item.publishedDate && moment(item.publishedDate).format('DD MMM YYYY') }</h3>
-                                <h3>{item.startDate && `${moment(item.startDate).format('DD MMM YYYY')} - ${item.endDate!==""? moment(item.endDate).format('DD MMM YYYY'):"لا تاريخ انتهاء الصلاحية"}`}</h3>
+                                <h3>{item.date && format(new Date(item.date),"dd MMMM yyyy",{locale:arLocale }) }</h3>
+                                <h3>{item.publishedDate && format(new Date(item.publishedDate),"dd MMMM yyyy",{locale:arLocale }) }</h3>
+                                <h3>{item.startDate && `${format(new Date(item.startDate),"dd MMMM yyyy",{locale:arLocale })} - ${item.endDate!==""? format(new Date(item.endDate),"dd MMMM yyyy",{locale:arLocale }):"لا تاريخ انتهاء الصلاحية"}`}</h3>
                                 <span>{item.link && item.link.label}</span>
                                 <span>{item.description ?? item.arabicDescription}
                                 </span>
@@ -47,4 +47,10 @@ export default function DeleteElement({item,title,handleSubmit}) {
             </div>
         </div>
     )
+}
+
+DeleteElement.propTypes = {
+    item:PropTypes.object,
+    title:PropTypes.string.isRequired,
+    handleSubmit:PropTypes.func.isRequired
 }

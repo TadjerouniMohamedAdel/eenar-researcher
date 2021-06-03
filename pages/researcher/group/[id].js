@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import AboutGroup from "../../../components/AboutGroup/AboutGroup";
-import BadgesCard from "../../../components/BadgesCard/BadgesCard";
 import GroupBanner from "../../../components/GroupBanner/GroupBanner";
-import LastArticles from "../../../components/LastArticles/LastArticles";
-import LearnNow from "../../../components/LearnNow/LearnNow";
-import MyGroups from "../../../components/MyGroups/MyGroups";
 import MyHead from "../../../components/MyHead/MyHead";
-import MyNetwork from "../../../components/MyNetwork/MyNetwork";
 import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout";
 import PostWriter from '../../../components/PostWriter/PostWriter';
 import PostViewer from '../../../components/PostViewer/PostViewer';
@@ -46,6 +41,7 @@ export async function getServerSideProps(context) {
   await axios({
     method: "get",
     url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params.id}`,
+    withCredentials:true
   })
     .then((response) => {
       group = response.data
@@ -54,11 +50,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       group,
-      ...await serverSideTranslations(context.locale, ["sidebar"]),
-    },
-  }
-  return {
-    props: {
       ...await serverSideTranslations(context.locale, ["sidebar"]),
     },
   }
@@ -73,7 +64,7 @@ export default function GroupItem({ group: groupProp }) {
     (values) => axios.put(`${process.env.NEXT_PUBLIC_API_URL}/groups/edit`, values).then((res) => res.data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("groups")
+        queryClient.removeQueries(["groups"])
       }
     }
 
@@ -82,7 +73,7 @@ export default function GroupItem({ group: groupProp }) {
     (values) => axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/groups/delete?id=${group.id}`, values).then((res) => res.data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("groups")
+        queryClient.removeQueries(["groups"])
       }
     }
 

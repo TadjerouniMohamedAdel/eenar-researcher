@@ -26,6 +26,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useGetList from "../../../utils/hooks/useGetList";
 import { useSelector } from 'react-redux'
 import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSectionLayout";
+import EmptyList from "../../../components/EmptyList/EmptyList";
+import ErrorUnreachable from "../../../components/ErrorUnreachable/ErrorUnreachable";
+import Error500 from "../../../components/Error500/Error500";
 
 
 export const getStaticProps = async ({ locale }) => ({
@@ -44,7 +47,7 @@ export default function index() {
   const [research, setResearch] = useState("")
   const [hasMore, setHasMore] = useState(true)
 
-  const { data, isLoading } = useGetList("posts", "/researcher/post/research/all", limit, offset, research, user.researchers.id)
+  const { data, isLoading ,isError,error } = useGetList("posts", "/researcher/post/research/all", limit, offset, research, user.researchers.id)
 
   useEffect(() => {
     if (data) {
@@ -103,6 +106,22 @@ export default function index() {
                 </Button>
               </div> */}
           </div>
+          {
+                    isError ?(
+                      error.response && error.response.status===500?(
+                          <Error500 />
+                      ):(
+                          
+                              <ErrorUnreachable />
+                          
+  
+                      )
+  
+                  
+              ):
+                    isLoading === false && posts.length == 0 ? (
+                        <EmptyList />
+                    ) : (
           <div id="scrollableDivResearchs">
             <InfiniteScroll
               dataLength={posts.length}
@@ -117,6 +136,7 @@ export default function index() {
               ))}
             </InfiniteScroll>
           </div>
+                    )}
         </MultiSectionLayout>
       </div>
 

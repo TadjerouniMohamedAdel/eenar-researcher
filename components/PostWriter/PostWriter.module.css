@@ -46,7 +46,6 @@
 .postWriter .writeSection{
     width: 100%;
     min-height: 160px;
-    /* background-color: #afb0c017; */
     background-color: #fcfcfc;
 }
 .postWriter .writeSection .writer{
@@ -64,6 +63,10 @@
 .postWriter .writeSection .writer > div > textarea{
     width: inherit !important;
     height: inherit !important;
+    font-size: 20px;
+}
+.postWriter .writeSection .writer > div > textarea::placeholder{
+    font-size: 16px;
 }
 .postWriter .writeSection .writer > div > fieldset{
     border-color: transparent  !important;

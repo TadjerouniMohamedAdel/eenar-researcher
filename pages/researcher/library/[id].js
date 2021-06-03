@@ -1,5 +1,4 @@
 import { Button, IconButton } from '@material-ui/core'
-import React,{useState,useEffect} from 'react'
 import BannerMenu from '../../../components/BannerMenu/BannerMenu'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
 import classes from '../../../styles/Library.module.css'
@@ -19,6 +18,7 @@ export async function getStaticPaths() {
     await  axios({
                 method: "get",
                 url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book`,
+                withCredentials:true
         })
         .then((response) => {
            paths = response.data.map((item)=>{
@@ -43,6 +43,7 @@ export async function getStaticPaths() {
     await axios({
           method: "get",
           url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${context.params.id}`,
+          withCredentials:true
         })
           .then((response) => {
               book = response.data
@@ -52,7 +53,8 @@ export async function getStaticPaths() {
       props: {
         book,
         ...await serverSideTranslations(context.locale, ["sidebar"]),
-      }, 
+      },
+      revalidate: 1, 
     }
   }
 

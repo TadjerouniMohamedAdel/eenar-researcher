@@ -1,12 +1,7 @@
-import { useState } from "react";
 import classes from "../../../styles/MyPosts.module.css";
 import axios from "axios";
-import { dataarticles, datagroups } from "../../../utils/fixtures/DevData";
 import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout";
 import MyHead from "../../../components/MyHead/MyHead";
-import LearnNow from "../../../components/LearnNow/LearnNow";
-import LastArticles from "../../../components/LastArticles/LastArticles";
-import MyGroups from "../../../components/MyGroups/MyGroups";
 import ResearchView from "../../../components/ResearchView/ResearchView";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSectionLayout";
@@ -17,6 +12,7 @@ export async function getStaticPaths() {
   await  axios({
               method: "get",
               url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/all`,
+              withCredentials:true
       })
       .then((response) => {
          paths = response.data.map((item)=>{
@@ -41,6 +37,7 @@ export async function getStaticProps(context) {
   await axios({
         method: "get",
         url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params.id}`,
+        withCredentials:true
       })
         .then((response) => {
             research = response.data
@@ -50,13 +47,12 @@ export async function getStaticProps(context) {
     props: {
       research,
       ...await serverSideTranslations(context.locale, ["sidebar"]),
-    }, 
+    },
+    revalidate: 1, 
   }
 }
 
 export default function research({research}) {
-  const [articles, setArticles] = useState(dataarticles);
-  const [groups, setGroups] = useState(datagroups);
   return (
     <ResearcherLayout>
       
