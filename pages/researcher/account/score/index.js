@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
 import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 import MyHead from '../../../../components/MyHead/MyHead'
@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import classes from '../../../../styles/Score.module.css'
 import ScoreStatCard from '../../../../components/ScoreStatCard/ScoreStatCard'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { PieChart, Pie,Cell, Sector,Label, ResponsiveContainer } from 'recharts';
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
@@ -65,40 +66,50 @@ const generalScoreStats = [
     }
   }
 ]
-const summarizeScoreStats=[
+const summarizeScoreStats = [
   {
-    label:"الزيارات",
-    value:1.067,
-    unit:""
+    label: "الزيارات",
+    value: 1.067,
+    unit: ""
   },
   {
-    label:"المشاهدات",
-    value:298,
-    unit:""
+    label: "المشاهدات",
+    value: 298,
+    unit: ""
   },
   {
-    label:"معدل الزيارات",
-    value:34.4,
-    unit:""
+    label: "معدل الزيارات",
+    value: 34.4,
+    unit: ""
   },
   {
-    label:"معدل المشاهدات",
-    value:9.6,
-    unit:""
+    label: "معدل المشاهدات",
+    value: 9.6,
+    unit: ""
   },
   {
-    label:"الزيارات / جويلية 2020",
-    value:26.3,
-    unit:"%"
+    label: "الزيارات / جويلية 2020",
+    value: 26.3,
+    unit: "%"
   },
   {
-    label:"المشاهدات / جويلية 2020",
-    value:4.9,
-    unit:"%"
+    label: "المشاهدات / جويلية 2020",
+    value: 4.9,
+    unit: "%"
   },
 ]
+const data = [
+  { name: 'Group B', value: 200 },
+  { name: 'Group C', value: 230 },
+];
+const COLORS = ['#615dfa', '#3ad2fe'];
+
 export default function index() {
-  
+
+  useEffect(() => {
+
+  }, [])
+
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - الرصيد" />
@@ -132,30 +143,48 @@ export default function index() {
                 <span>
                   أوت 2020
               </span>
-                <ExpandMoreIcon className={classes.switchIcon}/>
+                <ExpandMoreIcon className={classes.switchIcon} />
               </div>
             </div>
 
           </div>
-            <div className={classes.chartStat}>
-              <h1>chart Stat</h1>
-              
+          <div className={classes.chartStat}>
+            {/* <h1>chart Stat</h1> */}
+          </div>
+          <div className={classes.monthSummarize}>
+            <div key={`summarize-score-stats-${index}`} className={classes.monthSummarizeItem}>
+              <PieChart width={150} height={150}>
+                <Pie
+                  nameKey="lala"
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={30}
+                  outerRadius={50}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                <Label value="Percent" position="center" />
+                {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+          </Pie>
+              </PieChart>
             </div>
-            <div className={classes.monthSummarize}>
-              {
-                summarizeScoreStats.map((stat,index)=>(
-                  <div key={`summarize-score-stats-${index}`} className={classes.monthSummarizeItem}> 
-                      <span className={classes.monthSummarizeItemValue}>
-                          {stat.value}
-                          {stat.unit}
-                      </span>
-                      <span className={classes.monthSummarizeItemLabel}>
-                        {stat.label}
-                      </span>
-                  </div>
-                ))
-              }
-            </div>
+            {
+              summarizeScoreStats.map((stat, index) => (
+                <div key={`summarize-score-stats-${index}`} className={classes.monthSummarizeItem}>
+                  <span className={classes.monthSummarizeItemValue}>
+                    {stat.value}
+                    {stat.unit}
+                  </span>
+                  <span className={classes.monthSummarizeItemLabel}>
+                    {stat.label}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
 
         </div>
         {/* <div className={classes.rowStats}>
