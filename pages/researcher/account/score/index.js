@@ -149,7 +149,6 @@ export default function index() {
 
           </div>
           <div className={classes.chartStat}>
-            {/* <h1>chart Stat</h1> */}
           </div>
           <div className={classes.monthSummarize}>
             <div key={`summarize-score-stats-${index}`} className={classes.monthSummarizeItem}>
