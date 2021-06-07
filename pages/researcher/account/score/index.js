@@ -6,98 +6,19 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import classes from '../../../../styles/Score.module.css'
 import ScoreStatCard from '../../../../components/ScoreStatCard/ScoreStatCard'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { PieChart, Pie,Cell, Sector,Label, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Sector, Label } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { generalScoreStats, monthChartStat, summarizeScoreStats } from '../../../../utils/fixtures/DevData'
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
     ...await serverSideTranslations(locale, ["sidebar"]),
   },
 })
-const generalScoreStats = [
-  {
-    title: "المنشورات",
-    unit: "%",
-    value: 80,
-    color: "red",
-    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
-    offset: {
-      increase: true,
-      value: 8.2
-    }
-  },
-  {
-    title: "النقاشات",
-    unit: "",
-    value: "4:39",
-    color: "orange",
-    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
-    offset: {
-      increase: false,
-      value: 2.4
-    }
-  },
-  {
-    title: "القراءات",
-    unit: "",
-    value: 262,
-    color: "green",
-    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
-    offset: {
-      increase: true,
-      value: 3.6
-    }
-  },
-  {
-    title: "التحميلات",
-    unit: "",
-    value: 71,
-    color: "blue",
-    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
-  },
-  {
-    title: "التوصيات",
-    unit: "%",
-    value: 80,
-    color: "black",
-    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
-    offset: {
-      increase: true,
-      value: 8.2
-    }
-  }
-]
-const summarizeScoreStats = [
-  {
-    label: "الزيارات",
-    value: 1.067,
-    unit: ""
-  },
-  {
-    label: "المشاهدات",
-    value: 298,
-    unit: ""
-  },
-  {
-    label: "معدل الزيارات",
-    value: 34.4,
-    unit: ""
-  },
-  {
-    label: "معدل المشاهدات",
-    value: 9.6,
-    unit: ""
-  },
-  {
-    label: "الزيارات / جويلية 2020",
-    value: 26.3,
-    unit: "%"
-  },
-  {
-    label: "المشاهدات / جويلية 2020",
-    value: 4.9,
-    unit: "%"
-  },
-]
+
+
+
+
 const data = [
   { name: 'Group B', value: 200 },
   { name: 'Group C', value: 230 },
@@ -149,25 +70,45 @@ export default function index() {
 
           </div>
           <div className={classes.chartStat}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={monthChartStat}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                {/* <CartesianGrid x={4} width="10%" /> */}
+                <XAxis dataKey="name" tickLine={false} axisLine={false} />
+                <YAxis orientation="right" tickLine={false} axisLine={false} tickMargin={40} tickCount={10} />
+                <Tooltip cursor={{ fill: 'transparent' }} />
+                <Legend />
+                <Bar dataKey="المشاهدات" background={{ fill: "#e8e8ef", radius: 4 }} radius={[0, 0, 4, 4]} stackId="a" fill="#118ab2" barSize={18} />
+                <Bar dataKey="الزيارات" stackId="a" fill="#3ad2fe" radius={[4, 4, 0, 0]} barSize={18} />
+              </BarChart>
+            </ResponsiveContainer>
+
           </div>
           <div className={classes.monthSummarize}>
             <div key={`summarize-score-stats-${index}`} className={classes.monthSummarizeItem}>
               <PieChart width={150} height={150}>
                 <Pie
-                  nameKey="lala"
+                  nameKey="النسبة"
                   data={data}
-                  cx="50%"
-                  cy="50%"
                   innerRadius={30}
                   outerRadius={50}
                   fill="#8884d8"
                   dataKey="value"
                 >
-                <Label value="Percent" position="center" />
-                {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-          </Pie>
+                  <Label position="center">
+                    النسبة
+                  </Label>
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
               </PieChart>
             </div>
             {
@@ -186,9 +127,41 @@ export default function index() {
           </div>
 
         </div>
-        {/* <div className={classes.rowStats}>
-              
-          </div> */}
+        <div className={classes.rowStats}>
+            <div className={classes.rowStatScore}>
+                <h2>الرصيد</h2>
+                <div className={classes.rowStatScoreChart}>
+                <PieChart width={250} height={250}>
+                <Pie
+                  innerRadius={85}
+                  data={data}                 
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+              </PieChart>
+                </div>
+                <div className={classes.rowStatScoreChartData}>
+                    <div className={classes.rowStatDataItem}>
+                        <div className={classes.color}></div>
+                        <div className={classes.value}>5.2K</div>
+                        <div className={classes.label}>منشورات</div>
+                    </div>
+                    <div className={classes.divider}></div>
+                    <div className={classes.rowStatDataItem}>
+                        <div className={`${classes.color} ${classes.color2}`}></div>
+                        <div className={classes.value}>18.3K</div>
+                        <div className={classes.label}>قراءات</div>
+                    </div>
+                </div>
+            </div>
+            <div className={classes.friendsActivity}>
+
+            </div>
+        </div>
       </div>
     </ResearcherAccountLayout>
   )
