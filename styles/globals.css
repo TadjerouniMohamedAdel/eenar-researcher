@@ -131,3 +131,6 @@ a{
 #post-menu .MuiMenu-paper .MuiMenuItem-root:hover{
     color: var(--active-color);
 } 
+.MuiLinearProgress-barColorPrimary{
+    background-image: linear-gradient(to left, #118ab2, #06d6a0) !important;
+}

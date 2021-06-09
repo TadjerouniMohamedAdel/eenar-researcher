@@ -888,3 +888,51 @@ export const datahonors = [
       amt: 2100,
     },
   ];
+
+  export const friendsActivity = [
+    {
+      friend:"بلال بوعيشة",
+      from:"20/07/2020",
+      reactions:1569,
+      comments:750,
+      shares:109,
+      responses:223,
+      views:89,
+    },
+    {
+      friend:"بلال بوعيشة",
+      from:"20/07/2020",
+      reactions:1569,
+      comments:750,
+      shares:109,
+      responses:223,
+      views:50,
+    },
+    {
+      friend:"بلال بوعيشة",
+      from:"20/07/2020",
+      reactions:1569,
+      comments:750,
+      shares:109,
+      responses:223,
+      views:23,
+    },
+    {
+      friend:"بلال بوعيشة",
+      from:"20/07/2020",
+      reactions:1569,
+      comments:750,
+      shares:109,
+      responses:223,
+      views:70,
+    },
+    {
+      friend:"بلال بوعيشة",
+      from:"20/07/2020",
+      reactions:1569,
+      comments:750,
+      shares:109,
+      responses:223,
+      views:100,
+    },
+  ]
