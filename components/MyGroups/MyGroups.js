@@ -3,12 +3,11 @@ import { Button, IconButton, Tab, Tabs } from '@material-ui/core'
 import classes from './MyGroups.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import { datagroups } from '../../utils/fixtures/DevData';
+import useGetList from '../../utils/hooks/useGetList';
 
 export default function MyGroups() {
-    const groups = datagroups
     const [value, setValue] = useState(0)
-
+    const { isLoading, data, isError, error } = useGetList("groups", `/groups/all`, 5, 0, null, null)
     /** switch group tab */
     const handleChange = (e, value) => {
         setValue(value)
@@ -35,14 +34,16 @@ export default function MyGroups() {
             </Tabs>
             <div className={classes.groupList}>
                 {
-                    groups.map((group, index) => (
-                        <div key={`group-${index}`} className={classes.groupItem}>
-                            <div className={classes.collectionRectangle}></div>
+                    !isLoading && data.groups.map((group, index) => (
+                        <div key={`group-${group.id}`} className={classes.groupItem}>
+                            <div className={classes.collectionRectangle}>
+                                {group.image && <img src={group.image} alt={`group-${group.title}`} />}
+                            </div>
                             <div className={classes.groupDescription}>
-                                <h4>{group.name}</h4>
+                                <h4>{group.title}</h4>
                                 <span>
 
-                                    {`عضو ${group.members}`}
+                                    {`عضو 0`}
                                 </span>
                             </div>
                             <Button className={classes.groupButton} onClick={() => { }}>
