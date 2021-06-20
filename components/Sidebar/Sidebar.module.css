@@ -135,6 +135,7 @@
     cursor: pointer;
     text-decoration: none;
     height: 48px;
+    border-radius: 10px;
     margin-top: 16px;
     align-items: center;
     justify-content: flex-start;
@@ -162,10 +163,10 @@
     color: #afb0c0;
 }
 .sidebar .sidebarLinks .sidebarLinksItem.active {
-    box-shadow: 3px 5.2px 20px 0 rgba(62, 255, 205, 0.3);
-    background-color: #06d6a0;
     transition: 0.5s;
     border-radius: 10px;
+    box-shadow: 0 6px 12px 0 rgba(10, 102, 194, 0.16);
+    background-image: linear-gradient(to bottom, #df8121, #bf6202 119%);
 }
 .sidebar .sidebarLinks .sidebarLinksItem.active .linkName{
         font-family: var(--primary-font);

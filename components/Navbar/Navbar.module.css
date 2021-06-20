@@ -1,6 +1,6 @@
 .navbar{
     height: 80px;
-    background-color: var(--primary-color);
+    background-color: var(--new-primary-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -14,7 +14,7 @@
     margin-left: 20px;
 }
 .navbar .navbarLogo h1{
-    font-family: var(--primary-font);
+    font-family: var(--new-primary-font);
     font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
@@ -33,7 +33,7 @@
 .navbar .aboutUs li a{
   height: 22px;
   margin-left: 31px;
-  font-family: var(--primary-font);
+  font-family: var(--new-primary-font);
   font-size: 12px;
   font-weight: bold;
   font-stretch: normal;
@@ -60,7 +60,7 @@
     border-color: transparent;
 }
 .navbar .searchBarSection .searchIconNavbar{
-    color: var(--primary-color);
+    color: #909090;
     transform: rotateY(-180deg);
 }
 .navbar .searchBarSection .Mui-focused fieldset{
@@ -95,7 +95,7 @@
 .navbar  .navbarDivider{
     width: 1px;
     height: 32px;
-    background-color: #227c9d;
+    background-color: rgba(255, 255, 255, 0.29);
     margin: 0 26px 0 28px;
 }
 .navbar .navbarActions .actionIcon{
@@ -119,7 +119,7 @@
     .navbar .aboutUs li a{
         height: 22px;
         margin-left: 21px;
-        font-family: var(--primary-font);
+        font-family: var(--new-primary-font);
         font-size: 11px;
         font-weight: bold;
         font-stretch: normal;
@@ -133,7 +133,7 @@
     .navbar  .navbarDivider{
         width: 1px;
         height: 32px;
-        background-color: #227c9d;
+        background-color: rgba(255, 255, 255, 0.29);
         margin: 0 20px 0 20px;
     }
     .navbar .navbarActions .actionIcon{

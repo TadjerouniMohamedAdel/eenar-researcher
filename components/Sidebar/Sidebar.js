@@ -101,7 +101,9 @@ export default function Sidebar() {
 
     return (
         <div className={classes.sidebar}>
-            <div className={classes.bondeau}></div>
+            <div className={classes.bondeau}>
+                {/* <img src="/ima" */}
+            </div>
             <div className={classes.profile}>
                 {
                     user.image != "" && user.image ? (
