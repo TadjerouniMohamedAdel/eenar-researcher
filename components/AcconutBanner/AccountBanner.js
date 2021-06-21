@@ -102,10 +102,17 @@ export default function AccountBanner() {
                     steps={[{ fields: profileFields1, validationSchema: profileSchema1 }, { fields: profileFields2, validationSchema: profileSchema2 }, { fields: profileFields3, validationSchema: profileSchema3 }]}
                 />
             </Modal>
-            <div className={classes.bondeau}></div>
+            <div className={classes.bondeau}>
+                <img src="/images/account-banner-placeholder.webp" alt="" />
+            </div>
             <div className={classes.accountBannerContent}>
                 <div className={classes.accountBannerOverview}>
-
+                    <div>
+                        <div className={classes.overviewItem}>
+                            <span className={classes.overviewValue}><img src="https://www.countryflags.io/dz/flat/64.png" alt="" /></span>
+                            <span className={classes.overviewName}>الجزائر</span>
+                        </div>
+                    </div>
                     {
                         overviews.map((overview, indx) => (
                             <div key={indx}>
@@ -127,7 +134,11 @@ export default function AccountBanner() {
 
 
                             : user.image != "" && user.image ? (
-                                <img src={user.image} alt="" className={classes.Rectangle9} />
+                                <div className={classes.Rectangle9}>
+                                    <div className={classes.Path2980}>
+                                        <img src={user.image} alt="" className={classes.Rectangle9} />
+                                    </div>
+                                </div>
                             ) : (
 
                                 <Rectongles />
@@ -148,17 +159,16 @@ export default function AccountBanner() {
                     <span className={classes.profileJob}>{user.job}</span>
                 </div>
                 <div className={classes.bannerLinks}>
-                    <Button className={classes.linkEditAccount} onClick={() => setEditVisible(true)}>
-                        <span>تعديل الحساب</span>
-                    </Button>
-                    <ul className={classes.bannerSocialNetworks}>
-                        <li className={`${classes.iconItem} ${classes.linkedin}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faLinkedin} style={{ color: "white" }} /></a></li>
-                        <li className={`${classes.iconItem} ${classes.facebook}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faFacebookSquare} style={{ color: "white" }} /></a></li>
-                        <li className={`${classes.iconItem} ${classes.twitter}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faTwitter} style={{ color: "white" }} /></a></li>
-                        <li className={`${classes.iconItem} ${classes.skype}`}><a href="#" target="_blank"><FontAwesomeIcon icon={faSkype} style={{ color: "white" }} /></a></li>
+                    <ul className={classes.badges}>
+                        <li><img src="/images/badge1.png" alt="" /></li>
+                        <li><img src="/images/badge2.png" alt="" /></li>
+                        <li><img src="/images/badge4.png" alt="" /></li>
                     </ul>
                 </div>
             </div>
+            <Button className={classes.linkEditAccount} onClick={() => setEditVisible(true)}>
+                <span>تعديل الحساب</span>
+            </Button>
         </div>
     )
 }
