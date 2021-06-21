@@ -102,12 +102,16 @@ export default function Sidebar() {
     return (
         <div className={classes.sidebar}>
             <div className={classes.bondeau}>
-                {/* <img src="/ima" */}
+                <img src="/images/account-banner-placeholder.webp" alt="" />
             </div>
             <div className={classes.profile}>
                 {
                     user.image != "" && user.image ? (
-                        <img src={user.image} alt="" className={classes.Rectangle5} />
+                        <div className={classes.Rectangle5}>
+                            <div className={classes.Rectangle4}>
+                                <img src={user.image} alt=""  />
+                            </div>
+                        </div>
                     ) : (
 
                         <Rectangles />

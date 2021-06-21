@@ -1,31 +1,17 @@
-@import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
 @font-face {
     font-family: 'BCArabic';
     src: url('../public/fonts/bc-arabic-regular.ttf'); /* IE9 Compat Modes */
 }
-*{
-    margin: 0;
-    padding: 0;
-}
-.MuiFormLabel-root{
-    font-family: var(--primary-font) !important;
-}
-input{
-    font-family: var(--primary-font) !important;
-}
-a{
-    text-decoration: none !important;
-    color: unset !important;
-}
 
 :root {
+    
     /* colors */
     --primary-color: #118ab2; 
+    --new-primary-color:#df8111;
     --secondary-color:#073b4c;
     --active-color:#06d6a0;
     --danger-color:#ef476f;
 
-    --new-primary-color:#df8111;
     
     /* buttons */
     --button-1:var(--primary-color);
@@ -34,8 +20,30 @@ a{
 
     /* fonts */
     --primary-font: 'BCArabic';
-    --new-primary-font:'BCArabic'
-  }
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.MuiFormLabel-root{
+    font-family: var(--primary-font) !important;
+}
+
+
+input{
+    font-family: var(--primary-font) !important;
+}
+
+
+a{
+    text-decoration: none !important;
+    color: unset !important;
+}
+
+
 .MuiTab-textColorSecondary.Mui-selected{
     color: var(--active-color) !important;
 }
