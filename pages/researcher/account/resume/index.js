@@ -47,10 +47,11 @@ export default function index() {
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - السيرة الذاتية" />
-
       <MultiSectionLayout
+          hasTwoSection={false}
           specificSections={[<AboutMe />]}
       >
+        <AboutMe />
         <ResumeMainCollection
           icon={<SchoolOutlinedIcon />}
           label="المؤهلات الاكاديمية"

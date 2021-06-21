@@ -146,7 +146,9 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
                                     if (!viewMore && index > 2) return;
                                     return (
                                         <div className={classes.collectionItem} key={`collection-item-${label}-${index}`}>
-                                            <div className={classes.collectionRectangle}></div>
+                                            <div className={classes.collectionRectangle}>
+                                                <img src={`/images/${collectionName}-placeholder.png`} alt="" />
+                                            </div>
                                             <div className={classes.collectionContent}>
                                                 <h2>
                                                     {collection.title ?? collection.name ?? collection.role}
