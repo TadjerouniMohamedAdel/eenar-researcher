@@ -17,7 +17,9 @@ export default function LastArticles() {
                 {
                     articles.map((article, index) => (
                         <div className={classes.articlesItem} key={`articles-item-${index}`}>
-                            <div className={classes.collectionRectangle}></div>
+                            <div className={classes.collectionRectangle}>
+                                <img src="/images/article-placeholder.jpg" alt="" />
+                            </div>
                             <div className={classes.articlesContent}>
                                 <h2>{article.title}</h2>
                                 <span>{article.publishedDate}</span>

@@ -17,7 +17,9 @@ export default function MyNetwork() {
             {
                 users.map((user, ui) => (
                     <div className={classes.suggestUser} key={ui}>
-                        <div className={classes.suggestUserRectangle}></div>
+                        <div className={classes.suggestUserRectangle}>
+                            <img src={user.image} alt="" />
+                        </div>
                         <div className={classes.suggestUserContent}>
                             <h3>{user.fullName}</h3>
                             <h5>صديق مشترك {user.commonFrinedsNumber}</h5>

@@ -37,6 +37,7 @@ export default function MultiSectionLayout({ hasTwoSection = true, children, spe
         <LearnNow />
         <LastArticles />
         <MyGroups />
+        <MyNetwork />
       </div>
     </div>
   )

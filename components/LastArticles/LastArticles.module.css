@@ -29,7 +29,7 @@
 .articles .articlesItems .articlesItem{
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 25px;
+    margin-bottom: 8=5px;
     width: 100%;
 }
 .collectionRectangle{
@@ -38,8 +38,17 @@
     margin: 0 0 40px 16px;
     border-radius: 8px;
     background-color: #118ab2;     
+    position: relative
 }
-
+.collectionRectangle img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .articles .articlesItems .articlesItem .articlesContent{
     display: flex;
     flex-direction: column;

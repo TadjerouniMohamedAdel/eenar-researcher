@@ -49,7 +49,6 @@ export default function index() {
       <MyHead title="الملف الشخصي  - السيرة الذاتية" />
       <MultiSectionLayout
           hasTwoSection={false}
-          specificSections={[<AboutMe />]}
       >
         <AboutMe />
         <ResumeMainCollection
