@@ -30,7 +30,7 @@ export default function MultiSectionLayout({ hasSection = true, hasTwoSection = 
         )
       }
 
-      <div className={classes.mainSection}>
+      <div className={`${classes.mainSection} ${!hasSection && classes.onlySection}`}>
         {children}
       </div>
       {

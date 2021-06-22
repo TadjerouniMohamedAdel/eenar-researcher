@@ -13,6 +13,10 @@
     margin-right: 30px;
     flex: 3 !important;
 }
+.resumeContainer .mainSection.onlySection{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 .resumeContainer .sideSection{
     display: flex;
     flex-direction: column;
