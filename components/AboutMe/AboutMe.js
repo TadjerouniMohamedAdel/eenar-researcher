@@ -14,7 +14,8 @@ import { setUser } from '../../redux/actions/actionCreator';
 import axios from 'axios'
 import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
 
 
 /** registe fnt arabic for pdf */
@@ -108,10 +109,22 @@ export default function AboutMe() {
         />
       </Modal>
       <h2>
-        نبذة عني
-        <IconButton onClick={() => setEditVisible(true)}>
-          <MoreHorizOutlinedIcon className={classes.actionSectionIcon} />
-        </IconButton>
+        <div>
+          <FontAwesomeIcon icon={faAddressCard} className={classes.titleIcon}/>
+          <span>
+              نبذة عني
+          </span>
+        </div>
+        <div>
+          <PDFDownloadLink className={classes.noStyled} document={<MyDocument user={user} />} fileName={`resume-${user.firstname}-${user.lastname}.pdf`}>
+          <IconButton onClick={() => {}}>
+            <GetAppIcon className={classes.actionSectionIcon} />
+          </IconButton>
+            </PDFDownloadLink>
+          <IconButton onClick={() => setEditVisible(true)}>
+            <MoreHorizOutlinedIcon className={classes.actionSectionIcon} />
+          </IconButton>
+        </div>
       </h2>
       <p className={classes.resumeAboutMeDescription}>
         {user.researchers.aboutMe}
@@ -123,12 +136,6 @@ export default function AboutMe() {
         <li><span className={classes.infoLabel}>الوظيفة</span><span className={classes.infoValue}>{user.job}</span></li>
         <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={aboutme.website} target="_blank">{aboutme.website}</a></span></li>
       </ul>
-      <PDFDownloadLink className={classes.noStyled} document={<MyDocument user={user} />} fileName={`resume-${user.firstname}-${user.lastname}.pdf`}>
-        <Button className={classes.downloadResume} onClick={() => { }}>
-          <span>حمل السيرة الذاتية</span>
-          <GetAppIcon />
-        </Button>
-      </PDFDownloadLink>
     </div>
   )
 }
