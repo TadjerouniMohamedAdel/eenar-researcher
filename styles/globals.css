@@ -45,7 +45,10 @@ a{
 
 
 .MuiTab-textColorSecondary.Mui-selected{
-    color: var(--active-color) !important;
+    color: var(--new-primary-color) !important;
+}
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorSecondary.Mui-selected.MuiTab-labelIcon .MuiTab-wrapper span{
+    color: var(--new-primary-color) !important;
 }
 .Mui-selected{
     color: var(--active-color) !important;
