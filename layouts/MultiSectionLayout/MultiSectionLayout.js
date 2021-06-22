@@ -9,7 +9,7 @@ import { dataarticles, datagroups, datausers } from '../../utils/fixtures/DevDat
 import classes from './MultiSectionLayout.module.css'
 import PropTypes from 'prop-types';
 
-export default function MultiSectionLayout({ hasTwoSection = true, children, specificSections }) {
+export default function MultiSectionLayout({ hasSection = true, hasTwoSection = false, children, specificSections }) {
 
   return (
     <div className={classes.resumeContainer}>
@@ -33,17 +33,22 @@ export default function MultiSectionLayout({ hasTwoSection = true, children, spe
       <div className={classes.mainSection}>
         {children}
       </div>
-      <div className={classes.sideSection}>
-        <LearnNow />
-        <LastArticles />
-        <MyGroups />
-        <MyNetwork />
-      </div>
+      {
+        hasSection &&
+        <div className={classes.sideSection}>
+          <LearnNow />
+          <LastArticles />
+          <MyGroups />
+          <MyNetwork />
+        </div>
+
+      }
     </div>
   )
 }
 MultiSectionLayout.prototype = {
   hasTwoSection: PropTypes.bool,
+  hasSection: PropTypes.bool,
   children: PropTypes.node.isRequired,
   specificSections: PropTypes.node
 }
