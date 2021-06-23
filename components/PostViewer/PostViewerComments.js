@@ -4,23 +4,33 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import AddIcon from '@material-ui/icons/Add';
 const comments = [
     {
-        "user": "Neko Bebop",
-        "content": "It’s always a pleasure to do this streams with you! If we have at least half the fun than last time it will be an incredible success!",
+        "user": {
+            fullName:"Neko Bebop",
+            image:"/images/user-placeholder5.png"
+        },
+        
+        "content": "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع ",
         "from": "منذ 15 دقيقة",
         "reactions": {
             "number": 4
         }
     },
     {
-        "user": "Neko Bebop",
-        "content": "It’s always a pleasure to do this streams with you! If we have at least half the fun than last time it will be an incredible success!",
+        "user": {
+            fullName:"Neko Bebop",
+            image:"/images/user-placeholder5.png"
+        },
+        "content": "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم تصاميم مطبوعه … بروشور او فلاير على سبيل المثال … او نماذج مواقع انترنت …",
         "from": "منذ 15 دقيقة",
         "reactions": {
             "number": 4
         }
     },
     {
-        "user": "Neko Bebop",
+        "user": {
+            fullName:"Neko Bebop",
+            image:"/images/user-placeholder5.png"
+        },
         "content": "It’s always a pleasure to do this streams with you! If we have at least half the fun than last time it will be an incredible success!",
         "from": "منذ 15 دقيقة",
         "reactions": {
@@ -79,12 +89,14 @@ export default function PostViewerComments() {
                     <>
                         <div className={classes.commentItem}>
                             <div className={classes.userImage}>
-                                <div className={classes.rectangle}></div>
+                                <div className={classes.rectangle}>
+                                    <img src={comment.user.image} alt="" />
+                                </div>
                             </div>
                             <div className={classes.commentInfo}>
                                 <div className={classes.commentContent}>
                                     <p>
-                                        <span>{comment.user}</span> &nbsp;
+                                        <span>{comment.user.fullName}</span> &nbsp;
                                         {comment.content}
                                     </p>
                                 </div>

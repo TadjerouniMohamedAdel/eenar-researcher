@@ -35,7 +35,6 @@ export default function index() {
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - الحائط" />
         <MultiSectionLayout
-          specificSections={[<AboutMe />]}
         >
           <PostWriter />
           <PostViewer post={posts[0]} />
