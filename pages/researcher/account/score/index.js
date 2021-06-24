@@ -177,7 +177,9 @@ export default function index() {
                     <TableRow key={`activity-friend-${index}`}>
                         <TableCell>
                           <div className={classes.friendInfo}>
-                              <div className={classes.friendImageContainer}></div>
+                              <div className={classes.friendImageContainer}>
+                                <img src={activity.image} alt="" />
+                              </div>
                               <div className={classes.friendInfoContent}>
                                 <h4>{activity.friend}</h4> 
                                 <span>

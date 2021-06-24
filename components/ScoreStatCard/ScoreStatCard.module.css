@@ -131,4 +131,6 @@
 .orange{
     background-color: #ffd166 !important; 
 }
-  
+.orange-2{
+    background-color: var(--new-primary-color) !important; 
+} 
