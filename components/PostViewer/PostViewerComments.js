@@ -2,13 +2,14 @@ import { Button, IconButton, TextField } from '@material-ui/core'
 import classes from './PostViewer.module.css'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import AddIcon from '@material-ui/icons/Add';
+import { useSelector } from 'react-redux'
 const comments = [
     {
         "user": {
-            fullName:"Neko Bebop",
-            image:"/images/user-placeholder5.png"
+            fullName: "أنس مايستر",
+            image: "/images/user-placeholder5.png"
         },
-        
+
         "content": "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع ",
         "from": "منذ 15 دقيقة",
         "reactions": {
@@ -17,8 +18,8 @@ const comments = [
     },
     {
         "user": {
-            fullName:"Neko Bebop",
-            image:"/images/user-placeholder5.png"
+            fullName: "أنس مايستر",
+            image: "/images/user-placeholder5.png"
         },
         "content": "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم تصاميم مطبوعه … بروشور او فلاير على سبيل المثال … او نماذج مواقع انترنت …",
         "from": "منذ 15 دقيقة",
@@ -28,8 +29,8 @@ const comments = [
     },
     {
         "user": {
-            fullName:"Neko Bebop",
-            image:"/images/user-placeholder5.png"
+            fullName: "أنس مايستر",
+            image: "/images/user-placeholder5.png"
         },
         "content": "It’s always a pleasure to do this streams with you! If we have at least half the fun than last time it will be an incredible success!",
         "from": "منذ 15 دقيقة",
@@ -80,7 +81,7 @@ const ReactionList = ({ list, title, icon }) => (
     </div>
 )
 export default function PostViewerComments() {
-
+    const user = useSelector(state => state.user)
 
     return (
         <div className={classes.postComments}>
@@ -149,16 +150,19 @@ export default function PostViewerComments() {
             }
             <div className={classes.loadMoreComment}>
                 <Button onClick={() => { }} variant="text" className={classes.loadMoreButton}>
-                    &nbsp;
-                        <AddIcon className={classes.moreCommentIcon} />
-                        المزيد من التعليقات
-                        &nbsp;
-                        <span className={classes.moreCommentNumber}>9</span>
+                    المزيد من التعليقات
+                    &nbsp; &nbsp; &nbsp;
+                    <span className={classes.moreCommentNumber}>
+                        9
+                        +
+                    </span>
                 </Button>
             </div>
             <div className={classes.postSectionDivider}></div>
             <div className={classes.writeCommnt}>
-                <div className={classes.rectangle}></div>
+                <div className={classes.rectangle}>
+                    <img src={user.image} alt="" />
+                </div>
                 <form action="">
                     <TextField
                         variant="outlined"
