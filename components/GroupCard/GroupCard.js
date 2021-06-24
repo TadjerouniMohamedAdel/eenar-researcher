@@ -4,6 +4,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from 'next/link'
 import PropTypes from 'prop-types';
+import AddIcon from '@material-ui/icons/Add';
 
 export default function GroupCard({ group }) {
 
@@ -14,9 +15,12 @@ export default function GroupCard({ group }) {
         </div>
     )
 
-    const MemberCircle = () => (
+    const MemberCircle = ({img,last}) => (
         <div className={classes.memberCircleWhite}>
-            <div className={classes.memberCircleBlue}></div>
+            <div className={classes.memberCircleBlue}>
+                <img src={img} alt="" />
+                {last && <div className={classes.lastMember}>+124</div>}
+            </div>
         </div>
     )
 
@@ -24,13 +28,19 @@ export default function GroupCard({ group }) {
         <Link href={`/researcher/group/${group.id}`}>
 
             <div className={classes.groupCard}>
-                <div className={classes.bondeau}></div>
+                <div className={classes.bondeau}>
+                    <img src="/images/account-banner-placeholder.webp" alt="" />
+                </div>
                 <div className={classes.images}>
                     <div className={classes.typeGroup}>
                         {group.privacy === "public" ? <PublicIcon /> : <LockOutlinedIcon />}
                     </div>
 
-                    {group.image ? <div  className={classes.circleWhite}><img src={group.image} className={classes.circleBlue}/></div> :<Circle />}
+                    <div className={classes.circleWhite}>
+                        <div className={classes.circleBlue}>
+                            <img src={group.image} alt="" />
+                        </div>
+                    </div>
                 </div>
                 <h2>{group.title}</h2>
                 <h3>{group.slogan}</h3>
@@ -53,17 +63,17 @@ export default function GroupCard({ group }) {
                     </div>
                 </div>
                 <div className={classes.members}>
-                    <MemberCircle />
-                    <MemberCircle />
-                    <MemberCircle />
-                    <MemberCircle />
-                    <MemberCircle />
-                    <MemberCircle />
+                    <MemberCircle img={"/images/user-placeholder1.jpeg"}/>
+                    <MemberCircle img={"/images/user-placeholder2.jpeg"}/>
+                    <MemberCircle img={"/images/user-placeholder3.jpeg"}/>
+                    <MemberCircle img={"/images/user-placeholder4.jpeg"}/>
+                    <MemberCircle img={"/images/user-placeholder5.png"}/>
+                    <MemberCircle img={"/images/user-placeholder6.webp"} last/>
                 </div>
                 <Button className={classes.joinGroup} >
-                    <span>
                         إنضم للمجموعة
-                </span>
+                        &nbsp;
+                        <AddIcon />
                 </Button>
             </div>
         </Link>
@@ -71,5 +81,5 @@ export default function GroupCard({ group }) {
 }
 
 GroupCard.propTypes = {
-    group:PropTypes.object.isRequired
+    group: PropTypes.object.isRequired
 }

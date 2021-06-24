@@ -1,22 +1,18 @@
 import classes from './GroupCardList.module.css'
 import PublicIcon from '@material-ui/icons/Public';
-import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import AddIcon from '@material-ui/icons/Add';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { IconButton } from '@material-ui/core';
 import Link from 'next/link'
 import PropTypes from 'prop-types';
 
 export default function GroupCardList({ group }) {
-    const Circle = () => (
-        <div className={classes.circleWhite}>
-            <div className={classes.circleBlue}>
-            </div>
-        </div>
-    )
-
-    const MemberCircle = () => (
+    const MemberCircle = ({img,last}) => (
         <div className={classes.memberCircleWhite}>
-            <div className={classes.memberCircleBlue}></div>
+            <div className={classes.memberCircleBlue}>
+                <img src={img} alt="" />
+                {last && <div className={classes.lastMember}>+124</div>}
+            </div>
         </div>
     )
 
@@ -25,8 +21,7 @@ export default function GroupCardList({ group }) {
 
         <div className={classes.card}>
             <div className={classes.groupInfo}>
-            <div className={classes.bondeau}></div>
-            {group.image ? <div  className={classes.circleWhite}><img src={group.image} className={classes.circleBlue}/></div> :<Circle />}
+               <div  className={classes.groupImage}><img src={group.image} /></div>
                 <div className={classes.info}>
                 <h2>{group.title}</h2>
                 <h3>{group.slogan}</h3>
@@ -52,12 +47,12 @@ export default function GroupCardList({ group }) {
                 </div>
             </div>
             <div className={classes.members}>
-                <MemberCircle />
-                <MemberCircle />
-                <MemberCircle />
-                <MemberCircle />
-                <MemberCircle />
-                <MemberCircle />
+                <MemberCircle img="/images/user-placeholder1.jpeg" />
+                <MemberCircle img="/images/user-placeholder2.jpeg" />
+                <MemberCircle img="/images/user-placeholder3.jpeg" />
+                <MemberCircle img="/images/user-placeholder4.jpeg" />
+                <MemberCircle img="/images/user-placeholder5.png" />
+                <MemberCircle img="/images/user-placeholder6.webp" last/>
             </div>
             <div className={classes.groupActions}>
                 <div className={classes.groupPrivacy}>
@@ -65,7 +60,7 @@ export default function GroupCardList({ group }) {
                     
                 </div>
                 <IconButton onClick={()=>{}} className={classes.joinButton}>
-                    <AddCircleOutlineOutlinedIcon />
+                    <AddIcon />
                 </IconButton>
             </div>
 
