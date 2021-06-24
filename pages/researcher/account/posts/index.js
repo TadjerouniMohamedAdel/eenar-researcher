@@ -196,6 +196,7 @@ export default function index() {
       </Modal>
       <MultiSectionLayout
         hasTwoSection={false}
+        hasSection={false}
       >
 
         <div className={classes.filterSection} id="scroll">

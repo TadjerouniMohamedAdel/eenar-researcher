@@ -25,7 +25,7 @@
     color: #afb0c0;
 }
  .paginationCustom .paginationButton.activeButton{
-    color: var(--primary-color);
+    color: var(--new-primary-color);
 }
  .paginationCustom .dividerPagination{
     width: 1px;

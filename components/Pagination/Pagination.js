@@ -26,7 +26,7 @@ export default function Pagination({ onNext, onPrev, onNum, pages, active, limit
                             className={`${classes.paginationButton} ${active == index + 1 && classes.activeButton}`}
                             onClick={() => { onNum((index + 1) * limit - limit); list.scrollIntoView({ block: "start", behavior: 'smooth' }) }}
                         >
-                            {index + 1}
+                            {index + 1 < 10 ? `0${index + 1}`:index + 1}
                         </div>
                         <div className={classes.dividerPagination}></div>
                     </div>
