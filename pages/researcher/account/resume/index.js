@@ -33,6 +33,7 @@ import MyHead from '../../../../components/MyHead/MyHead';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout';
 import AboutMe from "../../../../components/AboutMe/AboutMe";
+import { useSelector } from "react-redux";
 
 
 
@@ -43,6 +44,7 @@ export const getStaticProps = async ({ locale }) => ({
 })
 
 export default function index() {
+  const user = useSelector(state => state.user)
 
   return (
     <ResearcherAccountLayout>
@@ -50,7 +52,7 @@ export default function index() {
       <MultiSectionLayout
           hasTwoSection={false}
       >
-        <AboutMe />
+        <AboutMe user={user}/>
         <ResumeMainCollection
           icon={<SchoolOutlinedIcon />}
           label="المؤهلات الاكاديمية"

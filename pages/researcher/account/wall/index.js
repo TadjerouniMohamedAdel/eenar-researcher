@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import PostWriter from '../../../../components/PostWriter/PostWriter'
 import PostViewer from '../../../../components/PostViewer/PostViewer'
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
-import AboutMe from '../../../../components/AboutMe/AboutMe'
 const posts = [
   {
     images: [],

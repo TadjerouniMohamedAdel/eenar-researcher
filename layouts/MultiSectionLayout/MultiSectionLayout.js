@@ -1,5 +1,4 @@
 import { useState, Fragment } from 'react'
-import AboutMe from '../../components/AboutMe/AboutMe'
 import BadgesCard from '../../components/BadgesCard/BadgesCard'
 import LastArticles from '../../components/LastArticles/LastArticles'
 import LearnNow from '../../components/LearnNow/LearnNow'
