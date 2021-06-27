@@ -1,14 +1,15 @@
-import { useState, Fragment } from 'react'
+import React,{ useState, Fragment } from 'react'
 import BadgesCard from '../../components/BadgesCard/BadgesCard'
 import LastArticles from '../../components/LastArticles/LastArticles'
 import LearnNow from '../../components/LearnNow/LearnNow'
 import MyGroups from '../../components/MyGroups/MyGroups'
 import MyNetwork from '../../components/MyNetwork/MyNetwork'
-import { dataarticles, datagroups, datausers } from '../../utils/fixtures/DevData'
+import { MultiSectionLayoutProps } from '../../utils/types/types'
 import classes from './MultiSectionLayout.module.css'
-import PropTypes from 'prop-types';
 
-export default function MultiSectionLayout({ hasSection = true, hasTwoSection = false, children, specificSections }) {
+
+
+const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = true, hasTwoSection = false, children, specificSections=null })=> {
 
   return (
     <div className={classes.resumeContainer}>
@@ -45,9 +46,4 @@ export default function MultiSectionLayout({ hasSection = true, hasTwoSection = 
     </div>
   )
 }
-MultiSectionLayout.prototype = {
-  hasTwoSection: PropTypes.bool,
-  hasSection: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  specificSections: PropTypes.node
-}
+export default MultiSectionLayout;

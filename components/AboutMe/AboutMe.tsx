@@ -15,7 +15,7 @@ import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
-import { NotDefineYet } from '../../utils/types/types'
+import { AboutMeProps, NotDefineYet } from '../../utils/types/types'
 
 
 /** registe fnt arabic for pdf */
@@ -68,11 +68,9 @@ const MyDocument = ({ user }:NotDefineYet) => (
   </Document>
 );
 
-const  AboutMe:React.FC<NotDefineYet>=({user})=> {
+const  AboutMe:React.FC<AboutMeProps>=({user})=> {
   const [editVisible, setEditVisible] = useState(false)
   const dispatch = useDispatch()
-
-
   /** edit aboutme info */
   const handleEditAboutme = (data:NotDefineYet) => {
     data.researchers = { ...data.researchers, aboutMe: data.aboutMe }
@@ -132,7 +130,7 @@ const  AboutMe:React.FC<NotDefineYet>=({user})=> {
         <li><span className={classes.infoLabel}>المدينة</span><span className={classes.infoValue}>{user.region} {user.city}</span></li>
         <li><span className={classes.infoLabel}>المؤسسة</span><span className={classes.infoValue}>{user.center}</span></li>
         <li><span className={classes.infoLabel}>الوظيفة</span><span className={classes.infoValue}>{user.job}</span></li>
-        <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={user.website} target="_blank">{user.website}</a></span></li>
+        <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={user.researchers.website} target="_blank">{user.researchers.website}</a></span></li>
       </ul>
     </div>
   )

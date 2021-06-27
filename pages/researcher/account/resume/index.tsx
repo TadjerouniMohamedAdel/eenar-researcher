@@ -34,23 +34,27 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout';
 import AboutMe from "../../../../components/AboutMe/AboutMe";
 import { useSelector } from "react-redux";
+import { GetStaticProps } from 'next'
+import { NotDefineYet } from "../../../../utils/types/types";
 
 
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps: GetStaticProps = async (context) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
   },
 })
 
+
 export default function index() {
-  const user = useSelector(state => state.user)
+  const user = useSelector((state:NotDefineYet) => state.user)
 
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - السيرة الذاتية" />
       <MultiSectionLayout
           hasTwoSection={false}
+          
       >
         <AboutMe user={user}/>
         <ResumeMainCollection
