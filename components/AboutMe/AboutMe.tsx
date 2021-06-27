@@ -7,8 +7,7 @@ import Modal from '../Modal/Modal';
 import EditElement from '../CrudModal/EditElement';
 import { aboutmeFields } from '../../utils/form/Fields';
 import { aboutmeSchema } from '../../utils/Validation/ValidationObjects'
-import { dataaboutme } from '../../utils/fixtures/DevData';
-import { useSelector, useDispatch } from 'react-redux'
+import {  useDispatch } from 'react-redux'
 import { Page, PDFDownloadLink, Text, Image, Font, View, Document, StyleSheet } from '@react-pdf/renderer';
 import { setUser } from '../../redux/actions/actionCreator';
 import axios from 'axios'
@@ -71,7 +70,6 @@ const MyDocument = ({ user }:NotDefineYet) => (
 
 const  AboutMe:React.FC<NotDefineYet>=({user})=> {
   const [editVisible, setEditVisible] = useState(false)
-  const [aboutme, setAboutme] = useState(dataaboutme)
   const dispatch = useDispatch()
 
 
@@ -134,7 +132,7 @@ const  AboutMe:React.FC<NotDefineYet>=({user})=> {
         <li><span className={classes.infoLabel}>المدينة</span><span className={classes.infoValue}>{user.region} {user.city}</span></li>
         <li><span className={classes.infoLabel}>المؤسسة</span><span className={classes.infoValue}>{user.center}</span></li>
         <li><span className={classes.infoLabel}>الوظيفة</span><span className={classes.infoValue}>{user.job}</span></li>
-        <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={aboutme.website} target="_blank">{aboutme.website}</a></span></li>
+        <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={user.website} target="_blank">{user.website}</a></span></li>
       </ul>
     </div>
   )

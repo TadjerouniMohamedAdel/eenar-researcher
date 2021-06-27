@@ -9,7 +9,9 @@
     "start": "next start",
     "build-docker": "docker build -t next-app .",
     "build-docker-multistage": "docker build --target production -t next-app -f ./Dockerfile.multistage .",
-    "run-docker": "docker run --rm -it -p 3000:3000 next-app"
+    "run-docker": "docker run --rm -it -p 3000:3000 next-app",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -49,8 +51,14 @@
     "yup": "^0.32.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.3.0",
+    "@storybook/addon-essentials": "^6.3.0",
+    "@storybook/addon-links": "^6.3.0",
+    "@storybook/react": "^6.3.0",
     "@types/node": "^15.12.5",
     "@types/react-redux": "^7.1.16",
+    "babel-loader": "^8.2.2",
     "typescript": "^4.3.4"
   }
 }
