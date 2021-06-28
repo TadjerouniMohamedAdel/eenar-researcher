@@ -12,7 +12,7 @@ export function useUser({ redirectTo, redirectIfFound } = {}) {
     
     
     useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/user`,{withCredentials:true}).then(res =>
+        axios.get(`/api/user/user`,{withCredentials:true}).then(res =>
             setUser(res.data)
           ).catch(err=>{
               setError(err)

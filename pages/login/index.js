@@ -43,7 +43,7 @@ export default function Login() {
         console.log(data)
         axios({
             method: 'post',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+            url: `/api/auth/login`,
             data,
             withCredentials: true
         })

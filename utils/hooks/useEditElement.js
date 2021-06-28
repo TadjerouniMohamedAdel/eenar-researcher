@@ -7,7 +7,7 @@ export default function useEditElement(key,route,limit=10,offset=0,search="",res
     const queryClient = useQueryClient()
 
     return useMutation(
-            (values)=>axios.put(`${process.env.NEXT_PUBLIC_API_URL}${route}`,values,{withCredentials:true}).then((res)=>res.data),
+            (values)=>axios.put(`/api${route}`,values,{withCredentials:true}).then((res)=>res.data),
             {
                 onSuccess:()=>{
                     queryClient.invalidateQueries([key,limit,offset,search])

@@ -7,7 +7,7 @@ export default function useAddElement(key,route,limit=10,offset=0,search="",rese
     const queryClient = useQueryClient()
 
     return useMutation(
-            (values)=>axios.post(`${process.env.NEXT_PUBLIC_API_URL}${route}`,values,{withCredentials:true}).then((res)=>res.data),
+            (values)=>axios.post(`/api${route}`,values,{withCredentials:true}).then((res)=>res.data),
             {
                 onSuccess:()=>{
                     queryClient.invalidateQueries([key,limit,offset,search])

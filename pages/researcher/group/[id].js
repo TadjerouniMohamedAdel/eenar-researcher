@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
   console.log(context)
   await axios({
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params.id}`,
+    url: `/api/groups?id=${context.params.id}`,
     withCredentials:true
   })
     .then((response) => {
@@ -61,7 +61,7 @@ export default function GroupItem({ group: groupProp }) {
   const [editVisible, setEditVisible] = useState(false)
   const [deleteVisible, setDeleteVisible] = useState(false)
   const { data, mutate: editGroup, status: editGroupStatus } = useMutation(
-    (values) => axios.put(`${process.env.NEXT_PUBLIC_API_URL}/groups/edit`, values).then((res) => res.data),
+    (values) => axios.put(`/api/groups/edit`, values).then((res) => res.data),
     {
       onSuccess: () => {
         queryClient.removeQueries(["groups"])
@@ -70,7 +70,7 @@ export default function GroupItem({ group: groupProp }) {
 
   )
   const { mutate: deleteGroup, status: deleteGroupStatus } = useMutation(
-    (values) => axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/groups/delete?id=${group.id}`, values).then((res) => res.data),
+    (values) => axios.delete(`/api/groups/delete?id=${group.id}`, values).then((res) => res.data),
     {
       onSuccess: () => {
         queryClient.removeQueries(["groups"])

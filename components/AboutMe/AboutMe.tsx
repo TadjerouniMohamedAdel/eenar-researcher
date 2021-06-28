@@ -77,7 +77,7 @@ const  AboutMe:React.FC<AboutMeProps>=({user})=> {
     console.log("data to send aboutme", data)
     axios({
       method: 'put',
-      url: `${process.env.NEXT_PUBLIC_API_URL}/user/edit`,
+      url: `/api/user/edit`,
       data
     }).then(response => {
       console.log("respnse", response.data)

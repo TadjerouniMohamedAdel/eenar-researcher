@@ -41,7 +41,7 @@ export default function AccountBanner() {
         console.log("edit profil", data)
         axios({
             method: 'put',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/user/edit`,
+            url: `/api/user/edit`,
             data
         }).then(response => {
             console.log("respnse", response.data)
@@ -69,7 +69,7 @@ export default function AccountBanner() {
                     const base64data = reader.result
                     axios({
                         method: 'put',
-                        url: `${process.env.NEXT_PUBLIC_API_URL}/user/edit`,
+                        url: `/api/user/edit`,
                         data: { ...user, image: base64data }
                     }).then(response => {
                         console.log("respnse", response.data)

@@ -32,7 +32,7 @@ export default function index() {
         else {
             setIsLoading(true)
             console.log({ ...centerUser, ...data })
-            axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/addUser`, { ...centerUser, ...data })
+            axios.post(`/api/user/addUser`, { ...centerUser, ...data })
                 .then(function (response) {
                     console.log(response);
                     setShowAlertSuccess(true)
