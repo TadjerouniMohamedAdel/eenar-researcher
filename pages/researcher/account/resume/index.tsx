@@ -54,7 +54,6 @@ export default function index() {
       <MyHead title="الملف الشخصي  - السيرة الذاتية" />
       <MultiSectionLayout
           hasTwoSection={false}
-          
       >
         <AboutMe user={user}/>
         <ResumeMainCollection

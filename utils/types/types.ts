@@ -2,7 +2,7 @@ import React from 'react'
 // pure types
 export type NotDefineYet = any
 
-export type userResearcher = {
+export type UserResearcher = {
     id:number,
     email:string,
     lastname:string,
@@ -15,6 +15,7 @@ export type userResearcher = {
     city:string,
     status:string,
     address:string,
+    hello:string,
     image:string,
     createdAt:string,
     updatedAt:string,
@@ -31,10 +32,24 @@ export type userResearcher = {
 
 }
 
+export type Group={
+    id:string,
+    title:string,
+    slogan:string,
+    privacy:string,
+    createdBy:number,
+    image:string|null,
+    description:string,
+    createdAt:string,
+    updatedAt:string,
+    webSite:string|null    
+}
+
+
 //components props types
 
 export type AboutMeProps = {
-    user: userResearcher,
+    user: UserResearcher,
 }
 
 export type MultiSectionLayoutProps = {
@@ -42,5 +57,14 @@ export type MultiSectionLayoutProps = {
     hasTwoSection?:boolean,
     children: React.ReactNode,
     specificSections ?: React.ReactNode[]
-  }
+}
+
+export type GroupBannerProps = {
+    group:Group,
+    openEditGroup:(open:boolean)=>void,
+    editGroupStatus:string,
+    editGroup:(group:NotDefineYet)=>void,
+    openDeleteGroup:(open:boolean)=>void,
+}
+
   
