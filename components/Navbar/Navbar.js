@@ -12,6 +12,7 @@ import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutline
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import axios from 'axios';
 
 const dropdownVariant = {
     hidden: { y: -20, opacity: 0 },
@@ -28,6 +29,12 @@ export default function Navbar() {
         document.body.dir = locale == "ar" ? "rtl" : "ltr"
         console.log("asPath", router.asPath)
         router.push(router.asPath, router.asPath, { locale })
+    }
+    const logout = ()=>{
+        axios.post("/auth/logout",{})
+            .then(()=>{
+                router.push("/login")
+            })
     }
     return (
         <nav className={classes.navbar}>
@@ -94,7 +101,7 @@ export default function Navbar() {
                 </IconButton>
                 <div className={classes.navbarDivider}></div>
                 <div className={classes.myDropDown}>
-                    <IconButton className={classes.dropButton} onClick={() =>{}}>
+                    <IconButton className={classes.dropButton} onClick={logout}>
                         <SettingsOutlinedIcon className={classes.actionIcon} />
                     </IconButton>
                 </div>
