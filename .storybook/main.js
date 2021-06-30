@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   "stories": [
     "../components/**/*.stories.mdx",
@@ -5,6 +7,9 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
-  ]
+    "@storybook/addon-essentials",
+    '@storybook/addon-actions'
+  ],
+  presets: [path.resolve(__dirname, './next-preset.js')]
+
 }
