@@ -38,7 +38,7 @@ export type Group={
     slogan:string,
     privacy:string,
     createdBy:number,
-    image:string|null,
+    image:string,
     description:string,
     createdAt:string,
     updatedAt:string,
@@ -67,4 +67,7 @@ export type GroupBannerProps = {
     openDeleteGroup:(open:boolean)=>void,
 }
 
-  
+
+export type GroupCardProps = {
+    group:Group
+}

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button, IconButton } from '@material-ui/core'
 import classes from './GroupCard.module.css'
 import PublicIcon from '@material-ui/icons/Public';
@@ -5,8 +6,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from 'next/link'
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
+import { GroupCardProps } from '../../utils/types/types';
 
-export default function GroupCard({ group }) {
+const GroupCard:React.FC<GroupCardProps>=({ group }) =>{
 
     const Circle = () => (
         <div className={classes.circleWhite}>
@@ -15,7 +17,7 @@ export default function GroupCard({ group }) {
         </div>
     )
 
-    const MemberCircle = ({img,last}) => (
+    const MemberCircle:React.FC<{img:string,last?:boolean}> = ({img,last}) => (
         <div className={classes.memberCircleWhite}>
             <div className={classes.memberCircleBlue}>
                 <img src={img} alt="" />
@@ -80,6 +82,4 @@ export default function GroupCard({ group }) {
     )
 }
 
-GroupCard.propTypes = {
-    group: PropTypes.object.isRequired
-}
+export default GroupCard
