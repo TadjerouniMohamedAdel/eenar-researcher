@@ -22,6 +22,7 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@pxblue/storybook-rtl-addon": "^1.0.1",
     "@react-pdf/renderer": "^1.6.13",
     "axios": "^0.21.1",
     "compressorjs": "^1.0.7",

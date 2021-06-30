@@ -8,7 +8,8 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    '@storybook/addon-actions'
+    '@storybook/addon-actions',
+    '@pxblue/storybook-rtl-addon/register'
   ],
   presets: [path.resolve(__dirname, './next-preset.js')]
 

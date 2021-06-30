@@ -2,6 +2,15 @@
     font-family: 'BCArabic';
     src: url('../public/fonts/bc-arabic-regular.ttf'); /* IE9 Compat Modes */
 }
+table.docblock-argstable,.css-14m39zm{
+    direction: ltr !important;
+}
+.css-14m39zm{
+    direction: ltr !important;
+}
+.sbdocs-title{
+    direction: ltr !important;
+}
 
 :root {
     
