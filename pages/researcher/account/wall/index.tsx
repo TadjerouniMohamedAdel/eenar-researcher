@@ -1,9 +1,12 @@
+import React from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
 import MyHead from '../../../../components/MyHead/MyHead'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import PostWriter from '../../../../components/PostWriter/PostWriter'
 import PostViewer from '../../../../components/PostViewer/PostViewer'
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
+import { GetStaticProps } from 'next'
+
 const posts = [
   {
     images: [],
@@ -23,13 +26,13 @@ const posts = [
 
 ]
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
   },
 })
 
-export default function index() {
+const ResearcherAccountWallPage:React.FC=()=> {
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - الحائط" />
@@ -45,3 +48,4 @@ export default function index() {
     </ResearcherAccountLayout>
   )
 }
+export default ResearcherAccountWallPage

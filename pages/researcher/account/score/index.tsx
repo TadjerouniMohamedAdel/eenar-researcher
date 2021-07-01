@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
 import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 import MyHead from '../../../../components/MyHead/MyHead'
@@ -8,12 +8,12 @@ import ScoreStatCard from '../../../../components/ScoreStatCard/ScoreStatCard'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { PieChart, Pie, Cell, Sector, Label } from 'recharts';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { generalScoreStats, monthChartStat, text, summarizeScoreStats,friendsActivity } from '../../../../utils/fixtures/DevData'
+import { generalScoreStats, monthChartStat, summarizeScoreStats,friendsActivity } from '../../../../utils/fixtures/DevData'
 import { LinearProgress, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
-
-export const getStaticProps = async ({ locale }) => ({
+import { GetStaticProps } from 'next'
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
   },
 })
 
@@ -25,7 +25,7 @@ const data = [
 const COLORS = ['#615dfa', '#3ad2fe'];
 
 
-export default function index() {
+const ResearcherAccountScorePage:React.FC = ()=> {
 
   return (
     <ResearcherAccountLayout>
@@ -87,7 +87,7 @@ export default function index() {
 
           </div>
           <div className={classes.monthSummarize}>
-            <div key={`summarize-score-stats-${index}`} className={classes.monthSummarizeItem}>
+            <div key={`summarize-score-stats-noindex`} className={classes.monthSummarizeItem}>
               <PieChart width={150} height={150}>
                 <Pie
                   nameKey="النسبة"
@@ -197,7 +197,7 @@ export default function index() {
                         <TableCell>{activity.responses}</TableCell>
                         <TableCell>
                             <div className={classes.friendViews}>
-                              <LinearProgress variant="determinate" value={activity.views} classes={classes.progress}/>
+                              <LinearProgress variant="determinate" value={activity.views} />
                               <span>{activity.views}%</span>
                             </div>
                         </TableCell>
@@ -213,3 +213,5 @@ export default function index() {
     </ResearcherAccountLayout>
   )
 }
+
+export default ResearcherAccountScorePage;

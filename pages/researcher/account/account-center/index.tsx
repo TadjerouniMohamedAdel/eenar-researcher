@@ -8,9 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus, faUsers, faCog } from '@fortawesome/free-solid-svg-icons'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { IconButton } from "@material-ui/core";
-export const getStaticProps = async ({ locale }) => ({
+import { GetStaticProps } from "next";
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
     props: {
-        ...await serverSideTranslations(locale, ["sidebar"]),
+        ...await serverSideTranslations(locale||"ar", ["sidebar"]),
     },
 })
 
@@ -54,7 +55,7 @@ const notifications = [
 
 ]
 
-export default function index() {
+const ResearcherAccountCenterPage:React.FC=()=> {
     return (
         <ResearcherLayout>
             <MyHead title="الإشعارات" />
@@ -130,3 +131,4 @@ export default function index() {
         </ResearcherLayout>
     )
 }
+export default ResearcherAccountCenterPage;

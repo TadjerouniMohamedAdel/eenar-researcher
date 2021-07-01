@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import MyHead from '../../../components/MyHead/MyHead'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -13,14 +13,15 @@ import Modal from '../../../components/Modal/Modal'
 import { serviceRequestFields } from '../../../utils/form/Fields'
 import { serviceRequestSchema } from '../../../utils/Validation/ValidationObjects'
 import EmptyList from '../../../components/EmptyList/EmptyList'
+import { GetStaticProps } from 'next'
 
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
   },
 })
-export default function index() {
+const ResercherResearchServicePage:React.FC=()=> {
   const [addVisible, setAddVisible] = useState(false);
   const services = ["","","","",""]
 
@@ -52,6 +53,7 @@ export default function index() {
               next={() => { }}
               inverse={false}
               hasMore={false}
+              loader={<div>Loading ...</div>}
             >
               {
                 services.length === 0 ? (
@@ -73,3 +75,4 @@ export default function index() {
     </ResearcherLayout>
   )
 }
+export default ResercherResearchServicePage;

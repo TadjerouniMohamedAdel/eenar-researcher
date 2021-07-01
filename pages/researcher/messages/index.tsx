@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import MyHead from '../../../components/MyHead/MyHead'
 import WorkInProgress from '../../../components/WorkInProgress/WorkInProgress'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
@@ -10,9 +10,9 @@ import { motion } from 'framer-motion'
 import { Button, FormControl, IconButton, InputAdornment, OutlinedInput } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane,faImage } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faImage } from '@fortawesome/free-solid-svg-icons'
 import { datamessages } from '../../../utils/fixtures/DevData'
-
+import { GetStaticProps } from 'next'
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const animLayout = {
@@ -23,12 +23,12 @@ const animLayout = {
 const lastMessages = datamessages
 
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(locale || "ar", ["sidebar"]),
   },
 })
-export default function index() {
+const ResearcherAccountMessagesPage: React.FC = () => {
   const [active, setActive] = useState(3)
   return (
     <ResearcherLayout>
@@ -88,7 +88,7 @@ export default function index() {
                 <div className={classes.senderImage}></div>
                 <h1>
                   {lastMessages[active].sender}
-                  <span className={`${lastMessages[active].active && classes.online}`}>{lastMessages[active].active ?  "متصل":"غير متصل"}</span>
+                  <span className={`${lastMessages[active].active && classes.online}`}>{lastMessages[active].active ? "متصل" : "غير متصل"}</span>
                 </h1>
               </div>
               <div>
@@ -101,7 +101,7 @@ export default function index() {
               {
                 lastMessages[active].messages.map((message, index) => (
                   <div className={`${classes.message} ${!message.fromSender && classes.myMessage}`} key={`message-${index}`}>
-                    { message.fromSender && ((!lastMessages[active].messages[index - 1]  || (!lastMessages[active].messages[index - 1].fromSender && lastMessages[active].messages[index].fromSender)) && <div className={classes.senderImage}></div>)}
+                    { message.fromSender && ((!lastMessages[active].messages[index - 1] || (!lastMessages[active].messages[index - 1].fromSender && lastMessages[active].messages[index].fromSender)) && <div className={classes.senderImage}></div>)}
                     <div className={`${classes.messageContent} ${!message.fromSender && classes.myMessage}`}>
                       {message.message}
                     </div>
@@ -110,7 +110,7 @@ export default function index() {
               }
             </div>
             <div className={classes.writeMessage}>
-              <FormControl variant="outlined" style={{width:"80%"}}>
+              <FormControl variant="outlined" style={{ width: "80%" }}>
                 <OutlinedInput
                   placeholder="أكتب رسالة.."
                   multiline
@@ -124,8 +124,11 @@ export default function index() {
                   }}
                 />
               </FormControl>
-              <IconButton onClick={() => { }} variant="contained" className={classes.sendMessageButton}>
-                <FontAwesomeIcon icon={faPaperPlane} style={{ color: "white",fontSize:20 }} />
+              <IconButton
+                onClick={() => { console.log("dsfs") }}
+                className={classes.sendMessageButton}
+              >
+                <FontAwesomeIcon icon={faPaperPlane} style={{ color: "white", fontSize: 20 }} />
               </IconButton>
             </div>
           </div>
@@ -134,3 +137,5 @@ export default function index() {
     </ResearcherLayout>
   )
 }
+
+export default ResearcherAccountMessagesPage;

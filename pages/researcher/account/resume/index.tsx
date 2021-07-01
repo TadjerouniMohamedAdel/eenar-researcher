@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async (context) => ({
 })
 
 
-export default function index() {
+const ResearcherAccountResumePage:React.FC=()=> {
   const user = useSelector((state:NotDefineYet) => state.user)
 
   return (
@@ -129,3 +129,4 @@ export default function index() {
     </ResearcherAccountLayout>
   );
 }
+export default ResearcherAccountResumePage
