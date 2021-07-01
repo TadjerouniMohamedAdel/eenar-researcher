@@ -5,7 +5,9 @@ export default function ServiceCard({setAddVisible}) {
     return (
         <Link href="/researcher/research-services/54ssf">
         <div className={classes.serviceCard}>
-            <div className={classes.serviceImg}></div>
+            <div className={classes.serviceImg}>
+                <img src="/images/service-placeholder.jpg" alt="" />
+            </div>
             <div className={classes.serviceContent}>
                 <h2>النشاطات والفعاليات العلمية</h2>
                 <p>
