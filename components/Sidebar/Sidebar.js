@@ -28,28 +28,6 @@ const Rectangles = function () {
     )
 }
 
-const badges = [
-    // {
-    //     src:"/images/more-small-badge.png",
-    //     srcSet:"/images/more-small-badge@2x.png 2x,/images/more-small-badge@3x.png 3x"
-    // },
-    // {
-    //     src:"/images/04.png",
-    //     srcSet:"/images/04@2x.png 2x,/images/04@3x.png 3x"
-    // },
-    // {
-    //     src:"/images/03.png",
-    //     srcSet:"/images/03@2x.png 2x,/images/03@3x.png 3x"
-    // },
-    // {
-    //     src:"/images/02.png",
-    //     srcSet:"/images/02@2x.png 2x,/images/02@3x.png 3x"
-    // },
-    // {
-    //     src:"/images/01.png",
-    //     srcSet:"/images/01@2x.png 2x,/images/01@3x.png 3x"
-    // }
-]
 
 export default function Sidebar() {
     const { t } = useTranslation('sidebar')
@@ -121,11 +99,6 @@ export default function Sidebar() {
                 <span className={classes.profileJob}>{user.job}</span>
             </div>
             <div className={classes.profileBadges}>
-                {
-                    badges.map((item) => (
-                        <img alt="" src={item.src} srcSet={item.srcSet} key={item.src} className={classes.profileBadgesItem} />
-                    ))
-                }
             </div>
             <div className={classes.profileOverviews}>
                 {

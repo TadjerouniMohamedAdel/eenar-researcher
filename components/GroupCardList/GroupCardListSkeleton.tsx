@@ -5,8 +5,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { IconButton } from '@material-ui/core';
 import Link from 'next/link'
 import { Skeleton } from '@material-ui/lab';
+import React from 'react'
 
-export default function GroupCardListSkeleton() {
+const GroupCardListSkeleton:React.FC= ()=> {
     const Circle = () => (
         <div className={classes.circleWhite}>
             <Skeleton  variant="circle" className={classes.circleBlue} />
@@ -69,3 +70,5 @@ export default function GroupCardListSkeleton() {
 
     )
 }
+
+export default GroupCardListSkeleton;

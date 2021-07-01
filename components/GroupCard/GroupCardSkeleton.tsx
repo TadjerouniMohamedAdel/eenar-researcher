@@ -2,7 +2,8 @@ import { Button, IconButton } from '@material-ui/core'
 import PublicIcon from '@material-ui/icons/Public';
 import { Skeleton } from '@material-ui/lab';
 import classes from './GroupCard.module.css'
-export default function GroupCardSkeleton() {
+import React from 'react'
+const GroupCardSkeleton:React.FC=()=> {
 
     const Circle = ()=>(
         <div className={classes.circleWhite}>
@@ -53,3 +54,5 @@ export default function GroupCardSkeleton() {
         </div>
     )
 }
+
+export default GroupCardSkeleton;

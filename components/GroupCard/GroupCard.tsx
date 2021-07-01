@@ -4,11 +4,10 @@ import classes from './GroupCard.module.css'
 import PublicIcon from '@material-ui/icons/Public';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from 'next/link'
-import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import { GroupCardProps } from '../../utils/types/types';
 
-const GroupCard:React.FC<GroupCardProps>=({ group }) =>{
+const GroupCard: React.FC<GroupCardProps> = ({ group }) => {
 
     const Circle = () => (
         <div className={classes.circleWhite}>
@@ -17,7 +16,7 @@ const GroupCard:React.FC<GroupCardProps>=({ group }) =>{
         </div>
     )
 
-    const MemberCircle:React.FC<{img:string,last?:boolean}> = ({img,last}) => (
+    const MemberCircle: React.FC<{ img: string, last?: boolean }> = ({ img, last }) => (
         <div className={classes.memberCircleWhite}>
             <div className={classes.memberCircleBlue}>
                 <img src={img} alt="" />
@@ -65,16 +64,16 @@ const GroupCard:React.FC<GroupCardProps>=({ group }) =>{
                     </div>
                 </div>
                 <div className={classes.members}>
-                    <MemberCircle img={"/images/user-placeholder1.jpeg"}/>
-                    <MemberCircle img={"/images/user-placeholder2.jpeg"}/>
-                    <MemberCircle img={"/images/user-placeholder3.jpeg"}/>
-                    <MemberCircle img={"/images/user-placeholder4.jpeg"}/>
-                    <MemberCircle img={"/images/user-placeholder5.png"}/>
-                    <MemberCircle img={"/images/user-placeholder6.webp"} last/>
+                    <MemberCircle img={"/images/user-placeholder1.jpeg"} />
+                    <MemberCircle img={"/images/user-placeholder2.jpeg"} />
+                    <MemberCircle img={"/images/user-placeholder3.jpeg"} />
+                    <MemberCircle img={"/images/user-placeholder4.jpeg"} />
+                    <MemberCircle img={"/images/user-placeholder5.png"} />
+                    <MemberCircle img={"/images/user-placeholder6.webp"} last />
                 </div>
                 <Button className={classes.joinGroup} >
-                        إنضم للمجموعة
-                        &nbsp;
+                    إنضم للمجموعة
+                    &nbsp;
                         <AddIcon />
                 </Button>
             </div>
