@@ -28,10 +28,21 @@
 .researchView .researchImage{
     width: 100%;
     height: 502px;
-    padding: 253px 80px 92px 104px;
+    /* padding: 253px 80px 92px 104px; */
     border-radius: 8px;
     background-color: var(--secondary-color);
+    position: relative;
 }
+.researchView .researchImage img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
 .researchView .researchBody{
     position: relative;
     top: -250px;
@@ -210,6 +221,16 @@
     width: 100%;
     height: 320px;
     background-color: #118ab2;
+    position: relative;
+}
+.researchView .researchBody .researchContent .researchRest .researchImg img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    border-radius: inherit;
 }
 .researchView .researchBody .researchContent .researchRest .researchImgLegend{
     font-family: var(--primary-font);

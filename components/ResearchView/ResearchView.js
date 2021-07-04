@@ -2,11 +2,11 @@ import { Button } from '@material-ui/core'
 import React from 'react'
 import classes from './ResearchView.module.css'
 import GetAppIcon from '@material-ui/icons/GetApp';
-import { format} from 'date-fns'
-import arLocale  from 'date-fns/locale/ar-DZ'
+import { format } from 'date-fns'
+import arLocale from 'date-fns/locale/ar-DZ'
 import PropTypes from 'prop-types'
-export default function ResearchView({research}) {
-    const Circles = ()=>(
+export default function ResearchView({ research }) {
+    const Circles = () => (
         <div className={classes.circleWhite}>
             <div className={classes.circleBlue}></div>
         </div>
@@ -15,32 +15,33 @@ export default function ResearchView({research}) {
     return (
         <div className={classes.researchView}>
             <div className={classes.researchImage}>
+                <img src="/images/post-placeholder.jpg" alt="" />
             </div>
             <div className={classes.researchBody}>
                 <div className={classes.researchHeader}>
                     <div className={classes.researchAuthor}>
-                            <div className={classes.researchAuthorImage}>
-                                {
-                                 researcher.userResearcher.image ?(
-                                        <img src={researcher.userResearcher.image} alt="" className={classes.circleWhite}/>
-                                 )
-                                    :(
+                        <div className={classes.researchAuthorImage}>
+                            {
+                                researcher.userResearcher.image ? (
+                                    <img src={researcher.userResearcher.image} alt="" className={classes.circleWhite} />
+                                )
+                                    : (
                                         <Circles />
                                     )
-                                }
-                            </div>
-                            <div className={classes.researchAuthorInfo}>
-                                <h2>{researcher.userResearcher.firstname} {researcher.userResearcher.lastname}</h2>
-                                <span>{researcher.userResearcher.job}</span>
-                            </div>
+                            }
+                        </div>
+                        <div className={classes.researchAuthorInfo}>
+                            <h2>{researcher.userResearcher.firstname} {researcher.userResearcher.lastname}</h2>
+                            <span>{researcher.userResearcher.job}</span>
+                        </div>
                     </div>
                     <div className={classes.researchDownload}>
                         <a href={research.file} target="_blink">
-                            <Button 
-                                endIcon={<GetAppIcon className={classes.downloadIcon}/>}
+                            <Button
+                                endIcon={<GetAppIcon className={classes.downloadIcon} />}
                                 variant="text"
                             >
-                                    <span className={classes.downloadLabel}> تحميل البحث</span> 
+                                <span className={classes.downloadLabel}> تحميل البحث</span>
                             </Button>
                         </a>
                     </div>
@@ -48,8 +49,8 @@ export default function ResearchView({research}) {
                 <div className={classes.researchHeaderDivider}>
                     <div className={classes.line}></div>
                     <span className={classes.date}>
-                        {research.publishedDate && format(new Date(research.publishedDate),"dd MMMM yyyy",{locale:arLocale })}
-                        {research.startDate && format(new Date(research.startDate),"dd MMMM yyyy",{locale:arLocale })}
+                        {research.publishedDate && format(new Date(research.publishedDate), "dd MMMM yyyy", { locale: arLocale })}
+                        {research.startDate && format(new Date(research.startDate), "dd MMMM yyyy", { locale: arLocale })}
                     </span>
                 </div>
                 <div className={classes.researchContent}>
@@ -69,15 +70,17 @@ export default function ResearchView({research}) {
                         <p>
                             {research.goals ?? research.arabicDescription}
                         </p>
-                        <div className={classes.researchImg}></div>
+                        <div className={classes.researchImg}>
+                            <img src="/images/post-placeholder.jpg" alt="" />
+                        </div>
                         <span className={classes.researchImgLegend}>
-                                لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت
+                            لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت
                         </span>
                         <p>
                             {research.justifications ?? research.arabicDescription}
                         </p>
                         <p>
-                            {research.materials }
+                            {research.materials}
                         </p>
                         <p>
                             {research.methodology}
@@ -87,7 +90,7 @@ export default function ResearchView({research}) {
                         </p>
                         <div className={classes.researchKeywords}>
                             {
-                                research.keywords?.map((keyword,index)=>(
+                                research.keywords?.map((keyword, index) => (
                                     <span key={`keyword-${index}`} className={classes.researchKeyword}>{keyword}</span>
 
                                 ))
@@ -97,7 +100,7 @@ export default function ResearchView({research}) {
                 </div>
                 <div className={classes.researchFooter}>
                     <a href={research.file} target="_blink">
-                        <Button 
+                        <Button
                             variant="contained"
                             className={classes.downloadResearch}
                             endIcon={<GetAppIcon />}
@@ -112,5 +115,5 @@ export default function ResearchView({research}) {
 }
 
 ResearchView.propTypes = {
-    research:PropTypes.object.isRequired
+    research: PropTypes.object.isRequired
 }
