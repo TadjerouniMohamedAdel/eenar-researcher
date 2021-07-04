@@ -31,7 +31,7 @@ export default function Navbar() {
         router.push(router.asPath, router.asPath, { locale })
     }
     const logout = ()=>{
-        axios.post("/auth/logout",{})
+        axios.post("/api/auth/logout",{})
             .then(()=>{
                 router.push("/login")
             })

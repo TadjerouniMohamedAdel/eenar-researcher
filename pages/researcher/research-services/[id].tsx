@@ -9,9 +9,11 @@ import classes from '../../../styles/Services.module.css'
 import { serviceRequestFields } from '../../../utils/form/Fields';
 import { serviceRequestSchema } from '../../../utils/Validation/ValidationObjects';
 import MyHead from '../../../components/MyHead/MyHead';
+import {GetStaticProps,GetStaticPaths} from 'next'
+import { NotDefineYet } from '../../../utils/types/types';
 
-export async function getStaticPaths() {
-    let paths = []
+export const  getStaticPaths:GetStaticPaths= async () =>{
+    let paths : NotDefineYet[]=[]
 
 
     return {
@@ -21,17 +23,17 @@ export async function getStaticPaths() {
 }
 
 
-export async function getStaticProps(context) {
+export const getStaticProps:GetStaticProps = async (context)=> {
 
     return {
         props: {
-            ...await serverSideTranslations(context.locale, ["sidebar"]),
+            ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
         },
     }
 }
 export default function researchServiceItem() {
     const [addVisible,setAddVisible] = useState(false)
-    const AddServiceRequest = (data)=>{
+    const AddServiceRequest = (data:NotDefineYet)=>{
         console.log("add service request",data)
         setAddVisible(false)
     }
@@ -51,7 +53,9 @@ export default function researchServiceItem() {
                 <div className={classes.serviceViewContainer}>
                     <h1 >الخدمات البحثية</h1>
                     <div className={classes.serviceView}>
-                        <div className={classes.serviceViewImage}></div>
+                        <div className={classes.serviceViewImage}>
+                            <img src="/images/service-placeholder.jpg" alt="" />
+                        </div>
                         <div className={classes.serviceViewContent}>
                             <h2>إعداد خطة البحث</h2>
                             <p>
@@ -67,7 +71,9 @@ export default function researchServiceItem() {
                                 فيلايت ايسسي كيوم نايهايل موليستايا كونسيكيواتيو,فيلايليوم كيواي دولوريم أيوم فيوجايات كي
                            </p>
                             <div className={classes.serviceViewImage2}>
-                                <div className={classes.serviceViewImageSrc}></div>
+                                <div className={classes.serviceViewImageSrc}>
+                                <img src="/images/service-placeholder.jpg" alt="" />
+                                </div>
                                 <h6>لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت</h6>
                             </div>
                             <p>
