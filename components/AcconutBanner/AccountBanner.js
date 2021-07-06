@@ -18,12 +18,10 @@ const overviews = [
     { name: "المنشورات", value: "0" }, { name: "الأصدقاء", value: "0" }, { name: "الزيارات", value: "0" }
 ]
 
-const Rectongles = () => (
+const Rectongles = ({img,gender}) => (
     <div className={classes.Rectangle9}>
         <div className={classes.Path2980}>
-            <div className={classes.Rectangle11}>
-                <div className={classes.Rectangle12}></div>
-            </div>
+            <img src={img !== "" && img != null ? img : `/images/${gender}-placeholder.jpg`} alt="" />
         </div>
     </div>
 )
@@ -130,19 +128,7 @@ export default function AccountBanner() {
                         isLoadingImage ? (
                             <Skeleton variant="rect" className={classes.Rectangle9} />
 
-                        )
-
-
-                            : user.image != "" && user.image ? (
-                                <div className={classes.Rectangle9}>
-                                    <div className={classes.Path2980}>
-                                        <img src={user.image} alt="" className={classes.Rectangle9} />
-                                    </div>
-                                </div>
-                            ) : (
-
-                                <Rectongles />
-                            )
+                        ): <Rectongles img={user.image} gender={user.gender} />
                     }
                     <IconButton className={classes.editProfile} onClick={() => { document.getElementById(`edit-image-user`).click() }}>
                         <EditIcon className={classes.editProfileIcon} style={{ fontSize: 21 }} />

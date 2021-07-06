@@ -14,15 +14,12 @@ import { useTranslation } from 'next-i18next'
 
 
 
-const Rectangles = function () {
+const Rectangles = function ({gender,img}) {
 
     return (
         <div className={classes.Rectangle5}>
             <div className={classes.Rectangle4}>
-                <div className={classes.Rectangle3}>
-                    <div className={classes.Rectangle2}>
-                    </div>
-                </div>
+                <img src={img!==""&& img!=null?img:`/images/${gender}-placeholder.jpg`} alt="" />
             </div>
         </div>
     )
@@ -83,18 +80,8 @@ export default function Sidebar() {
                 <img src="/images/account-banner-placeholder.webp" alt="" />
             </div>
             <div className={classes.profile}>
-                {
-                    user.image != "" && user.image ? (
-                        <div className={classes.Rectangle5}>
-                            <div className={classes.Rectangle4}>
-                                <img src={user.image} alt=""  />
-                            </div>
-                        </div>
-                    ) : (
-
-                        <Rectangles />
-                    )
-                }
+                        <Rectangles  img={user.image} gender={user.gender}/>
+                
                 <h2 className={classes.profileTitle}>{user.lastname} {user.firstname}</h2>
                 <span className={classes.profileJob}>{user.job}</span>
             </div>
