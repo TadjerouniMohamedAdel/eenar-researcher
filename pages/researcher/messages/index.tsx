@@ -48,7 +48,9 @@ const ResearcherAccountMessagesPage: React.FC = () => {
                 lastMessages.map((message, index) => (
                   <div key={`last-message-${index}`} className={`${classes.lastMessage} ${active === index && classes.active}`} onClick={() => setActive(index)}>
                     {active === index && <motion.div variants={animLayout} exit="initial" initial="initial" animate="animate" className={classes.activeIndicator}></motion.div>}
-                    <div className={classes.lastMessageSenderImage}></div>
+                    <div className={classes.lastMessageSenderImage}>
+                      <img src={message.image} alt="" />
+                    </div>
                     <div className={classes.messageInfo}>
                       <h2>
                         {message.sender}
@@ -85,7 +87,9 @@ const ResearcherAccountMessagesPage: React.FC = () => {
           <div className={classes.discussion}>
             <div className={classes.senderHeader}>
               <div className={classes.senderInfo}>
-                <div className={classes.senderImage}></div>
+                <div className={classes.senderImage}>
+                  <img src={lastMessages[active].image} alt="" />
+                </div>
                 <h1>
                   {lastMessages[active].sender}
                   <span className={`${lastMessages[active].active && classes.online}`}>{lastMessages[active].active ? "متصل" : "غير متصل"}</span>
@@ -101,7 +105,7 @@ const ResearcherAccountMessagesPage: React.FC = () => {
               {
                 lastMessages[active].messages.map((message, index) => (
                   <div className={`${classes.message} ${!message.fromSender && classes.myMessage}`} key={`message-${index}`}>
-                    { message.fromSender && ((!lastMessages[active].messages[index - 1] || (!lastMessages[active].messages[index - 1].fromSender && lastMessages[active].messages[index].fromSender)) && <div className={classes.senderImage}></div>)}
+                    { message.fromSender && ((!lastMessages[active].messages[index - 1] || (!lastMessages[active].messages[index - 1].fromSender && lastMessages[active].messages[index].fromSender)) && <div className={classes.senderImage}><img src={lastMessages[active].image} alt="" /></div>)}
                     <div className={`${classes.messageContent} ${!message.fromSender && classes.myMessage}`}>
                       {message.message}
                     </div>

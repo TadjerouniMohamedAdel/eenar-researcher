@@ -467,7 +467,8 @@ export const datahonors = [
 
   export const datamessages = [
     {
-      "sender": "زوبير ولقبو",
+      "sender": "لخضر بودينة",
+      image:"/images/user-placeholder1.jpeg",
       "active":true,
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
@@ -507,7 +508,8 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "بلال بوعيشة",
+      "sender":"نصردين والي",
+      image:"/images/user-placeholder2.jpeg",
       "active":false,
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
@@ -547,7 +549,8 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "إلياس بوجلطية",
+      "sender": "لخضر بن زاهية",
+      image:"/images/user-placeholder3.jpeg",
       "active":false,
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
@@ -587,8 +590,9 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "جلال الدين شعبان",
+      sender: "هشام بعلي",
       "active":true,
+      image:"/images/user-placeholder4.jpeg",
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
       messages : [
@@ -627,8 +631,9 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "أسامة الديزاينر",
+      "sender": "أنس مايستر",
       "active":false,
+      image:"/images/user-placeholder5.png",
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
       messages : [
