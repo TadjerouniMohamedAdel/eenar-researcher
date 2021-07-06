@@ -22,6 +22,7 @@ export type UserResearcher = {
     researchers:{
         id:number,
         aboutMe:string,
+        birthday:string
         website:string|undefined,
         createdAt:string,
         updatedAt:string,
@@ -75,4 +76,8 @@ export type BannerMenuProps={
     title:string,
     description:string,
     imgSrc:string
+}
+
+export type AccountBannerProps = {
+    user:UserResearcher
 }

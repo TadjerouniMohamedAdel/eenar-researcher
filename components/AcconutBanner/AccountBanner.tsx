@@ -1,11 +1,9 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import { Button, IconButton } from '@material-ui/core'
 import classes from './AccountBanner.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedin, faFacebookSquare, faTwitter, faSkype } from '@fortawesome/free-brands-svg-icons'
 import Modal from '../Modal/Modal'
 import { profileFields1, profileFields2, profileFields3 } from '../../utils/form/Fields'
-import { useSelector, useDispatch } from 'react-redux'
+import {  useDispatch } from 'react-redux'
 import { profileSchema1, profileSchema2, profileSchema3 } from '../../utils/Validation/ValidationObjects'
 import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator'
@@ -13,12 +11,13 @@ import MultiStepsEditElement from '../CrudModal/MultiStepsEditElement'
 import EditIcon from '@material-ui/icons/Edit';
 import Compressor from 'compressorjs'
 import { Skeleton } from '@material-ui/lab'
+import { NotDefineYet, AccountBannerProps } from '../../utils/types/types'
 
 const overviews = [
     { name: "المنشورات", value: "0" }, { name: "الأصدقاء", value: "0" }, { name: "الزيارات", value: "0" }
 ]
 
-const Rectongles = ({img,gender}) => (
+const Rectongles:React.FC<{img:string,gender:string}> = ({img,gender}) => (
     <div className={classes.Rectangle9}>
         <div className={classes.Path2980}>
             <img src={img !== "" && img != null ? img : `/images/${gender}-placeholder.jpg`} alt="" />
@@ -26,15 +25,14 @@ const Rectongles = ({img,gender}) => (
     </div>
 )
 
-export default function AccountBanner() {
+const AccountBanner:React.FC<AccountBannerProps>=({user})=> {
     const [editVisible, setEditVisible] = useState(false)
     const [isLoadingImage, setIsLoadingImage] = useState(false)
-    const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
 
     /** edit profile user info */
-    const handleEditSubmit = (data) => {
+    const handleEditSubmit = (data:NotDefineYet) => {
         data.researchers = { ...data.researchers, birthday: data.birthday }
         console.log("edit profil", data)
         axios({
@@ -52,7 +50,7 @@ export default function AccountBanner() {
 
 
     /** edit image user */
-    const editProfileImage = (e) => {
+    const editProfileImage = (e:NotDefineYet) => {
         setIsLoadingImage(true)
         let file = e.currentTarget.files[0]
         new Compressor(file, {
@@ -130,7 +128,7 @@ export default function AccountBanner() {
 
                         ): <Rectongles img={user.image} gender={user.gender} />
                     }
-                    <IconButton className={classes.editProfile} onClick={() => { document.getElementById(`edit-image-user`).click() }}>
+                    <IconButton className={classes.editProfile} onClick={() => { document.getElementById(`edit-image-user`)?.click() }}>
                         <EditIcon className={classes.editProfileIcon} style={{ fontSize: 21 }} />
                     </IconButton>
                     <input
@@ -158,3 +156,5 @@ export default function AccountBanner() {
         </div>
     )
 }
+
+export default AccountBanner;
