@@ -15,12 +15,15 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
+    margin-top: 90px;
+
 }
 .mainContent{
     width: calc(100% - 350px) ;
     margin-left: 24px;
     margin-right: 24px;
     display: flex;
+    margin-right: calc(300px + 24px);
     flex-direction: column;
 }
 @media(max-width:1155px){
