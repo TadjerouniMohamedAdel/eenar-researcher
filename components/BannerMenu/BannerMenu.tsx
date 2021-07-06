@@ -1,9 +1,10 @@
+import React from 'react'
 import classes from './BannerMenu.module.css'
-import PropTypes from 'prop-types';
+import { BannerMenuProps } from '../../utils/types/types';
 
 
 
-export default function BannerMenu({ title, description, imgSrc }) {
+const  BannerMenu:React.FC<BannerMenuProps>=({ title, description, imgSrc })=> {
     return (
         <div className={classes.bannerMenu}>
             <div className={classes.bannerImgContainer}>
@@ -18,8 +19,4 @@ export default function BannerMenu({ title, description, imgSrc }) {
         </div>
     )
 }
-BannerMenu.propTypes = {
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    imgSrc: PropTypes.string.isRequired
-}
+export default BannerMenu;

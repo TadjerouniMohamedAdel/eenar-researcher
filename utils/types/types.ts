@@ -67,7 +67,12 @@ export type GroupBannerProps = {
     openDeleteGroup:(open:boolean)=>void,
 }
 
-
 export type GroupCardProps = {
     group:Group
+}
+
+export type BannerMenuProps={
+    title:string,
+    description:string,
+    imgSrc:string
 }
