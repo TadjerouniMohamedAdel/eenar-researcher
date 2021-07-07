@@ -4,13 +4,14 @@ import LastArticles from '../../components/LastArticles/LastArticles'
 import LearnNow from '../../components/LearnNow/LearnNow'
 import MyGroups from '../../components/MyGroups/MyGroups'
 import MyNetwork from '../../components/MyNetwork/MyNetwork'
+import { dataarticles } from '../../utils/fixtures/DevData'
 import { MultiSectionLayoutProps } from '../../utils/types/types'
 import classes from './MultiSectionLayout.module.css'
 
 
 
 const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = true, hasTwoSection = false, children, specificSections=null })=> {
-
+  const lastArticles = dataarticles
   return (
     <div className={classes.resumeContainer}>
       {
@@ -37,7 +38,7 @@ const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = tru
         hasSection &&
         <div className={classes.sideSection}>
           <LearnNow />
-          <LastArticles />
+          <LastArticles articles={lastArticles}/>
           <MyGroups />
           <MyNetwork />
         </div>

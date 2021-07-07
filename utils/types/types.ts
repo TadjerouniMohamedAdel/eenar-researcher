@@ -46,6 +46,11 @@ export type Group={
     webSite:string|null    
 }
 
+export type ArticleType={
+    id:number,
+    title:string,
+    publishedDate:string
+}
 
 //components props types
 
@@ -80,4 +85,8 @@ export type BannerMenuProps={
 
 export type AccountBannerProps = {
     user:UserResearcher
+}
+
+export type LastArticlesProps = {
+    articles:ArticleType[]
 }

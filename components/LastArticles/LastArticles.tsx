@@ -1,10 +1,10 @@
+import React from 'react'
 import { IconButton } from '@material-ui/core'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import { dataarticles } from '../../utils/fixtures/DevData';
+import { LastArticlesProps } from '../../utils/types/types';
 import classes from './LastArticles.module.css'
 
-export default function LastArticles() {
-    const articles = dataarticles
+const LastArticles:React.FC<LastArticlesProps>=({articles})=> {
     return (
         <div className={classes.articles}>
             <h2>
@@ -31,3 +31,4 @@ export default function LastArticles() {
         </div>
     )
 }
+export default LastArticles
