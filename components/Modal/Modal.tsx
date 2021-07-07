@@ -1,10 +1,9 @@
-import {useEffect} from 'react'
-import Link from 'next/link'
+import React,{useEffect} from 'react'
 import {motion, AnimatePresence} from 'framer-motion'
 import classes from './Modal.module.css'
 import { IconButton } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
-import PropTypes from 'prop-types';
+import { ModalProps } from '../../utils/types/types'
 
 
 const backdropVariants = {
@@ -16,15 +15,15 @@ const modalVariants = {
     hidden:{y:"-110vh",opacity:0},
     visible:{y:"90px",opacity:1,transition:{delay:0.5}}
 }
-export default function Modal({visible,setVisible,children}) {
+const Modal:React.FC<ModalProps> = ({visible,setVisible,children})=> {
    
     useEffect(() => {
        console.log("changed visible",visible)
        if(visible){
-            document.querySelector("main").classList.add("unsetTransform")
+            document.querySelector("main")?.classList.add("unsetTransform")
             document.body.classList.add("no-scroll")
        }else{
-            document.querySelector("main").classList.remove("unsetTransform")
+            document.querySelector("main")?.classList.remove("unsetTransform")
             document.body.classList.remove("no-scroll");
        }
     }, [visible])
@@ -43,7 +42,6 @@ export default function Modal({visible,setVisible,children}) {
                         className={classes.modal}
                         variants={modalVariants}
                         initial="hidden"
-                        visible="visible"
                     >
                         <div className={classes.closeSection}>
                             <IconButton className={classes.closeButton} onClick={()=>setVisible(false)}>
@@ -59,9 +57,4 @@ export default function Modal({visible,setVisible,children}) {
         </AnimatePresence>
     )
 }
-
-Modal.propTypes = {
-    visible:PropTypes.bool.isRequired,
-    setVisible:PropTypes.func.isRequired,
-    children:PropTypes.node.isRequired
-}
+export default Modal

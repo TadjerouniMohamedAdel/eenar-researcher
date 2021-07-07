@@ -90,3 +90,9 @@ export type AccountBannerProps = {
 export type LastArticlesProps = {
     articles:ArticleType[]
 }
+
+export type ModalProps={
+    visible:boolean,
+    setVisible:(visible:boolean)=>void,
+    children:React.ReactNode
+}
