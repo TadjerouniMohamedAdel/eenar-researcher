@@ -109,3 +109,7 @@ export type PaginationProps={
 export type BadgesCardProps ={
     badges:NotDefineYet[]
 }
+
+export type MyHeadProps = {
+    title:string,
+}
