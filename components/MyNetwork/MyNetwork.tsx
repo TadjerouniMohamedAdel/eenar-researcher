@@ -1,11 +1,13 @@
+import React from 'react'
 import { Button, IconButton } from '@material-ui/core'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import classes from './MyNetwork.module.css'
-import { datausers } from '../../utils/fixtures/DevData';
-export default function MyNetwork() {
-    const users = datausers
+import { MyNetworkProps } from '../../utils/types/types';
+
+
+const  MyNetwork:React.FC<MyNetworkProps> = ({users})=> {
     return (
         <div className={classes.myNetwork}>
             <h2>
@@ -52,3 +54,5 @@ export default function MyNetwork() {
         </div>
     )
 }
+
+export default MyNetwork;

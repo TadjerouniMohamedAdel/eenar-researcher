@@ -113,3 +113,7 @@ export type BadgesCardProps ={
 export type MyHeadProps = {
     title:string,
 }
+
+export type MyNetworkProps = {
+    users:NotDefineYet[]
+}
