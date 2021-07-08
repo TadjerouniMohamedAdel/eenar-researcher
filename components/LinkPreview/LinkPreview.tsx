@@ -1,19 +1,7 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
 import classes from './LinkPreview.module.css'
-import axios from 'axios'
-export default function LinkPreview({link}) {
-    const [data,setData] = useState(null)
-    const [isLoading,setIsLoading] = useState(true)
-    useEffect(() => {
-        // axios({
-        //     url:"https://fierce-anchorage-09030.herokuapp.com/",
-        //     method:"POST",
-        //     data:{link}
-        // })
-        //     .then(res=>console.log(res))
-        //     .catch(err=>console.log(err))
-    }, [])
-
+const LinkPreview:React.FC = ()=> {
+    
     return (
         <div className={classes.linkPreviewCard}>
             <div className={classes.linkPreviewImage}></div>
@@ -27,3 +15,4 @@ export default function LinkPreview({link}) {
         </div>
     )
 }
+export default LinkPreview;
