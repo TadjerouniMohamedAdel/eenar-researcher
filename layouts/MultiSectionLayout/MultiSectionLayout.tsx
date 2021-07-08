@@ -24,7 +24,7 @@ const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = tru
                 </Fragment>
               ))
             }
-            <BadgesCard />
+            <BadgesCard badges={[]} />
             <MyNetwork />
           </div>
 

@@ -105,3 +105,7 @@ export type PaginationProps={
     active:number,
     limit:number
 }
+
+export type BadgesCardProps ={
+    badges:NotDefineYet[]
+}
