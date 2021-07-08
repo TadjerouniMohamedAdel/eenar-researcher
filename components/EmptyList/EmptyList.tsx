@@ -2,10 +2,10 @@ import React,{useEffect} from 'react'
 import classes from './EmptyList.module.css'
 import lottie from 'lottie-web'
 
-export default function EmptyList() {
+const  EmptyList:React.FC=()=> {
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById("anim-empty"), // the dom element that will contain the animation
+            container: document.getElementById("anim-empty")!, // the dom element that will contain the animation
             renderer: 'svg',
             loop: true,
             autoplay: true,
@@ -24,3 +24,5 @@ export default function EmptyList() {
         </div>
     )
 }
+
+export default EmptyList;
