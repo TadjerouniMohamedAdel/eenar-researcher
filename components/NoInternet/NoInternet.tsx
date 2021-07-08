@@ -2,14 +2,14 @@ import React,{ useEffect } from 'react'
 import lottie from 'lottie-web'
 import classes from './NoInternet.module.css'
 
-export default function NoInternet(props) {
+const NoInternet:React.FC=() =>{
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById("anim-no-internet"), // the dom element that will contain the animation
+            container: document.getElementById("anim-no-internet")!, // the dom element that will contain the animation
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: '/animations/no-internet-connextion.json' // the path to the animation json
+            path: '/animations/no-internet-connection.json' // the path to the animation json
           });
         
       }, [])
@@ -23,3 +23,4 @@ export default function NoInternet(props) {
         </div>
     )
 }
+export default NoInternet
