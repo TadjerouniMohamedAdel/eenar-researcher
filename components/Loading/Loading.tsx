@@ -1,10 +1,12 @@
-import {useEffect} from 'react'
+import React,{useEffect} from 'react'
 import classes from './Loading.module.css'
 import lottie from 'lottie-web'
-export default function Laoding() {
+
+
+const Loading:React.FC=()=> {
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById("anim"), // the dom element that will contain the animation
+            container: document.getElementById("anim")!, // the dom element that will contain the animation
             renderer: 'svg',
             loop: true,
             autoplay: true,
@@ -13,7 +15,7 @@ export default function Laoding() {
         
       }, [])
     return (
-        <div className={classes.laodingContainer}>
+        <div className={classes.LoadingContainer}>
             <div id="anim"></div>   
             <h1>منتدى كوالالمبور
                 <br/>
@@ -23,3 +25,5 @@ export default function Laoding() {
         </div>
     )
 }
+
+export default Loading;
