@@ -1,3 +1,4 @@
+import React from 'react'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import classes from './Pagination.module.css'

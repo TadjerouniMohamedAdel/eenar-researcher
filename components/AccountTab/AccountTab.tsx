@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -43,19 +43,19 @@ const tabs = [
         to:"network"
     },
 ]
-export default function AccountTab() {
+const AccountTab:React.FC=()=> {
     const router = useRouter()
-    const index = tabs.findIndex(item=>item.to === router.pathname.split("/researcher/account/")[1])
+    const index = tabs.findIndex(item=>item.to === router?.pathname.split("/researcher/account/")[1])
     const [value, setValue] = useState(index >=0?index:0);
     
     
-    const handleChange = (event, newValue) => {
+    const handleChange = (event:React.ChangeEvent<{}>, newValue:number) => {
         setValue(newValue);
       };
     
     
     /** Go to tab menu */
-    const redirectTab = (to)=>{
+    const redirectTab = (to:string)=>{
         router.push(`/researcher/account/${to}`)
     }
 
@@ -82,3 +82,5 @@ export default function AccountTab() {
     </Paper>
     )
 }
+
+export default AccountTab
