@@ -2,11 +2,11 @@ import React,{ useEffect } from 'react'
 import lottie from 'lottie-web'
 import classes from './Error500.module.css'
 
-export default function Error500(props) {
+const Error500:React.FC=()=> {
     const id =Math.random();
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById(`anim-500-${id}`), // the dom element that will contain the animation
+            container: document.getElementById(`anim-500-${id}`)!, // the dom element that will contain the animation
             renderer: 'svg',
             loop: false,
             autoplay: true,
@@ -27,3 +27,4 @@ export default function Error500(props) {
         </div>
     )
 }
+export default Error500
