@@ -96,3 +96,12 @@ export type ModalProps={
     setVisible:(visible:boolean)=>void,
     children:React.ReactNode
 }
+
+export type PaginationProps={
+    onNext:()=>void,
+    onPrev:()=>void,
+    onNum:(page:number)=>void,
+    pages:number,
+    active:number,
+    limit:number
+}
