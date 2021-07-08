@@ -5,12 +5,6 @@ import { IconButton, Menu, MenuItem, TextField } from '@material-ui/core';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
-import { motion, AnimatePresence } from 'framer-motion'
-import TranslateOutlinedIcon from '@material-ui/icons/TranslateOutlined';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
-import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import axios from 'axios';
 
@@ -18,14 +12,14 @@ const dropdownVariant = {
     hidden: { y: -20, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.05 } }
 }
-export default function Navbar() {
+const Navbar:React.FC = ()=> {
     const router = useRouter();
     const { locale } = router;
-    const { i18n } = useTranslation();
 
-    const [anchorEl, setAnchorEl] = useState(null);
+    
+    const [anchorEl, setAnchorEl] = useState<Element|null>(null);
 
-    const changeLocale = (locale) => {
+    const changeLocale = (locale:string) => {
         document.body.dir = locale == "ar" ? "rtl" : "ltr"
         console.log("asPath", router.asPath)
         router.push(router.asPath, router.asPath, { locale })
@@ -109,3 +103,4 @@ export default function Navbar() {
         </nav>
     )
 }
+export default Navbar

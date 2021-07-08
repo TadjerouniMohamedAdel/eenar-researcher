@@ -27,7 +27,7 @@ const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = tru
               ))
             }
             <BadgesCard badges={[]} />
-            <MyNetwork />
+            <MyNetwork users={users}/>
           </div>
 
         )
@@ -42,7 +42,7 @@ const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = tru
           <LearnNow />
           <LastArticles articles={lastArticles}/>
           <MyGroups />
-          <MyNetwork users={users}/>
+          <MyNetwork users={users} />
         </div>
 
       }
