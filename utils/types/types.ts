@@ -117,3 +117,7 @@ export type MyHeadProps = {
 export type MyNetworkProps = {
     users:NotDefineYet[]
 }
+
+export type SidebarProps = {
+    user:UserResearcher
+}

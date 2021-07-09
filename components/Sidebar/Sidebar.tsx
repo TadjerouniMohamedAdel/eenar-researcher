@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import classes from './Sidebar.module.css'
 import HomeIcon from '@material-ui/icons/Home';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
@@ -9,12 +9,12 @@ import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceW
 import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import { useRouter } from 'next/router'
 import { Link } from '@material-ui/core'
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'next-i18next'
+import {  SidebarProps } from '../../utils/types/types';
 
 
 
-const Rectangles = function ({gender,img}) {
+const Rectangles:React.FC<{gender:string,img:string}> =  ({gender,img})=> {
 
     return (
         <div className={classes.Rectangle5}>
@@ -26,7 +26,7 @@ const Rectangles = function ({gender,img}) {
 }
 
 
-export default function Sidebar() {
+const Sidebar:React.FC<SidebarProps> = ({user})=> {
     const { t } = useTranslation('sidebar')
     const links = [
         {
@@ -72,7 +72,7 @@ export default function Sidebar() {
     let tab = [...links]
     tab.shift()
     const [activeIndex, setActiveIndex] = useState(tab.findIndex(item => router.pathname.includes(item.to)) + 1)
-    const user = useSelector((state) => state.user)
+
 
     return (
         <div className={classes.sidebar}>
@@ -110,3 +110,4 @@ export default function Sidebar() {
         </div>
     )
 }
+export default Sidebar;
