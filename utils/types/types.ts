@@ -60,9 +60,8 @@ export type AboutMeProps = {
 
 export type MultiSectionLayoutProps = {
     hasSection?:boolean,
-    hasTwoSection?:boolean,
     children: React.ReactNode,
-    specificSections ?: React.ReactNode[]
+    specificSideSections?:React.ReactNode[]
 }
 
 export type GroupBannerProps = {
