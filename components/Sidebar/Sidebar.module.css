@@ -169,7 +169,7 @@
 }
 .sidebar .sidebarLinks .sidebarLinksItem .linkName{
     
-    height: 18px;
+    /* height: 18px; */
     margin-right: 20px;
     font-family: var(--primary-font);
     font-size: 14px;
@@ -205,5 +205,18 @@
 @media(max-width:1155px){
     .sidebar{
         display: none;
+    }
+}
+@media(max-height:920px){
+    .sidebar .sidebarLinks{
+        margin-top: 5px;
+    }
+    .sidebar .profileOverviews .profileOverviewsItem{
+        margin-bottom: 10px;
+    }
+    .sidebar .sidebarLinks .sidebarLinksItem{
+        height: 43px;
+        margin-top: 10px;
+        font-size: 12px;
     }
 }
