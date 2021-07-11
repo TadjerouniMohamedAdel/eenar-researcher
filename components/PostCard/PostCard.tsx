@@ -1,11 +1,12 @@
+import React from 'react'
 import { IconButton } from '@material-ui/core'
 import GetAppSharpIcon from '@material-ui/icons/GetAppSharp';
 import classes from './PostCard.module.css'
 import Link from 'next/link'
-import PropTypes from 'prop-types'
+import { PostCardProps } from '../../utils/types/types';
 
 
-export default function PostCard({ post }) {
+const PostCard:React.FC<PostCardProps>=({ post })=> {
     return (
         <Link href={`/researcher/researchs/${post.id}`}>
             <div className={classes.postCard}>
@@ -38,6 +39,4 @@ export default function PostCard({ post }) {
         </Link>
     )
 }
-PostCard.propTypes = {
-    post:PropTypes.object.isRequired
-}
+export default PostCard

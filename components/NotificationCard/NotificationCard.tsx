@@ -1,10 +1,12 @@
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classes from './NotificationCard.module.css'
 import { faCommentDots, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import { faTimes, faHeart, faThumbsUp as faLike } from '@fortawesome/free-solid-svg-icons'
 import { IconButton } from '@material-ui/core'
+import { NotificationCardProps } from '../../utils/types/types'
 
-export default function NotificationCard({ notification }) {
+const NotificationCard:React.FC<NotificationCardProps> = ({ notification })=> {
     return (
         <div className={classes.notificationCardContainer}>
             <div className={classes.notificationContent}>
@@ -35,3 +37,4 @@ export default function NotificationCard({ notification }) {
         </div>
     )
 }
+export default NotificationCard

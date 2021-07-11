@@ -52,6 +52,45 @@ export type ArticleType={
     publishedDate:string
 }
 
+export type Notification = {
+    id:number,
+    sender:string,
+    action:string,
+    from:string
+}
+
+export type ResearchPost = {
+    id:string,
+    researcherId:string,
+    primaryAuthor:string,
+    secondaryAuthors:string[],
+    publishedDate: string,
+    englishTitle:string,
+    publishedBy: string,
+    link: string,
+    arabicDescription: string,
+    arabicTitle:string,
+    englishDescription:string,
+    file:string,
+    keyword:string[],
+    createdAt: string,
+    updatedAt: string|null,
+    postStatus: string|null
+       
+}
+
+export type RegistrationChoice = {
+    img:string,
+    title:string,
+    description:string,
+    type:string,
+    buttonLabel:string,
+    link:string
+}
+
+
+
+
 //components props types
 
 export type AboutMeProps = {
@@ -119,4 +158,15 @@ export type MyNetworkProps = {
 
 export type SidebarProps = {
     user:UserResearcher
+}
+
+export type NotificationCardProps = {
+    notification:Notification
+}
+
+export type PostCardProps = {
+    post:ResearchPost
+}
+export type RegistrationChoiceProps = {
+    choice:RegistrationChoice
 }

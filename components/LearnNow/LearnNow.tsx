@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import classes from './LearnNow.module.css'
 
-export default function LearnNow() {
+const LearnNow:React.FC= () => {
     return (
         <div className={classes.learnNow}>
             <div className={classes.learnNowTitle}>
@@ -18,3 +18,5 @@ export default function LearnNow() {
         </div>
     )
 }
+
+export default LearnNow

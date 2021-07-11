@@ -6,7 +6,6 @@
     min-height: 100vh;
     background-color: #f6f6f9;
 }
-
 .registrationContainer .registrationHeader{
     display: flex;
     flex-direction: row;

@@ -1,12 +1,12 @@
-import { useEffect } from 'react'
+import React,{ useEffect } from 'react'
 import { Button, Paper } from '@material-ui/core'
 import classes from '../../styles/Registration.module.css'
 import { useRouter } from 'next/router'
 import lottie from 'lottie-web'
 import Link from 'next/link'
-import PropTypes from 'prop-types'
+import { RegistrationChoiceProps } from '../../utils/types/types'
 
-export default function RegistrationChoice({ choice }) {
+const  RegistrationChoice:React.FC<RegistrationChoiceProps> = ({ choice })=> {
     const router = useRouter()
 
     const handleClickChoice = () => {
@@ -16,7 +16,7 @@ export default function RegistrationChoice({ choice }) {
 
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById(`anim-${choice.type}`), // the dom element that will contain the animation
+            container: document.getElementById(`anim-${choice.type}`)!, // the dom element that will contain the animation
             renderer: 'svg',
             loop: true,
             autoplay: true,
@@ -47,6 +47,4 @@ export default function RegistrationChoice({ choice }) {
     )
 }
 
-RegistrationChoice.propTypes = {
-    choice:PropTypes.object.isRequired
-}
+export default RegistrationChoice

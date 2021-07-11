@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import classes from './PostWriter.module.css'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -11,9 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHashtag, faNewspaper, faPager } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function PostWriter() {
+const PostWriter:React.FC = ()=> {
     const [postType, setPostType] = useState(0);
-    const changePostType = (event, newValue) => {
+    const changePostType = (event:React.ChangeEvent<{}>, newValue:number) => {
         setPostType(newValue);
       };
 
@@ -65,3 +65,4 @@ export default function PostWriter() {
         </div>
     )
 }
+export default PostWriter
