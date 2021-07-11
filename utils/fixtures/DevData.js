@@ -951,3 +951,19 @@ export const datahonors = [
       views:70,
     },
   ]
+
+  export const filedata = [
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+
+  ]
