@@ -87,7 +87,7 @@ export default function post({research}) {
     <ResearcherLayout>
       <MyHead title={`${research.arabicTitle}   - منشوراتي`} />
           <MultiSectionLayout
-            hasTwoSection={false}
+            
             >
               {research ?   <ResearchView  research={research}/> :
                   (

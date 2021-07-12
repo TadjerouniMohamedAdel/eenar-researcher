@@ -49,7 +49,7 @@ export default function researchServiceItem() {
                     fields={serviceRequestFields}
                 />
             </Modal>
-            <MultiSectionLayout hasTwoSection={false}>
+            <MultiSectionLayout >
                 <div className={classes.serviceViewContainer}>
                     <h1 >الخدمات البحثية</h1>
                     <div className={classes.serviceView}>

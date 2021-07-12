@@ -138,7 +138,7 @@ export default function index() {
                 />
             </Modal>
             <MultiSectionLayout
-                hasTwoSection={false}
+                
                 hasSection={false}
             >
                    

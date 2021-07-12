@@ -35,27 +35,25 @@ import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSect
 import AboutMe from "../../../../components/AboutMe/AboutMe";
 import { useSelector } from "react-redux";
 import { GetStaticProps } from 'next'
-import { NotDefineYet } from "../../../../utils/types/types";
+import { RootState } from "../../../../redux/store2";
 
 
 
 export const getStaticProps: GetStaticProps = async (context) => ({
   props: {
-    ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
+    ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
   },
 })
 
 
-const ResearcherAccountResumePage:React.FC=()=> {
-  const user = useSelector((state:NotDefineYet) => state.user)
+const ResearcherAccountResumePage: React.FC = () => {
+  const user = useSelector((state: RootState) => state.user)
 
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - السيرة الذاتية" />
-      <MultiSectionLayout
-          hasTwoSection={false}
-      >
-        <AboutMe user={user}/>
+      <MultiSectionLayout>
+        <AboutMe user={user} />
         <ResumeMainCollection
           icon={<SchoolOutlinedIcon />}
           label="المؤهلات الاكاديمية"

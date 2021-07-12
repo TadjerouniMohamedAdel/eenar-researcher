@@ -50,11 +50,5 @@ export default {
 
 
 //👇 We create a “template” of how args map to rendering
-const Template: Story<LastArticlesProps> = (args) => (
-    <div style={{ padding: 20, backgroundColor: "#f8f8fb", display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <div style={{ width: "30%" }}>
-            <LastArticles articles={args.articles} />
-        
-    
-)
+const Template: Story<LastArticlesProps> = (args) => (<LastArticles articles={args.articles} />)
 export const FirstStory = Template.bind({});

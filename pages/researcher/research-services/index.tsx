@@ -44,7 +44,7 @@ const ResercherResearchServicePage:React.FC=()=> {
         />
         <h1>مجمع الأبحاث</h1>
         <MultiSectionLayout
-          hasTwoSection={false}
+          
         >
           <div id="scrollableDivResearchs">
             <InfiniteScroll

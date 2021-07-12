@@ -57,7 +57,7 @@ export default function project({research}) {
     <ResearcherLayout>
       <MyHead title={`${research.arabicTitle}  - مشاريعي`} />
         <MultiSectionLayout
-          hasTwoSection={false}>
+          >
             {research ?   <ResearchView  research={research}/> :
                   (
                     <div className={classes.notFound}>

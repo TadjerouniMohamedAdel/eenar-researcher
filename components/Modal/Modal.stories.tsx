@@ -22,7 +22,7 @@ export default {
             name:"setVisible"
         },
         children:{
-            defaultValue:(<div><h1>hello world</h1>),
+            defaultValue:(<div><h1>hello world</h1></div>),
             description:"The modal body content ",
             name:"children"
         }

@@ -72,7 +72,7 @@ export default function index() {
         />
         <h1>مجمع الأبحاث</h1>
         <MultiSectionLayout
-          hasTwoSection={false}
+          
         >
 
 

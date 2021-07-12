@@ -57,7 +57,7 @@ export default function research({research}) {
     <ResearcherLayout>
       
         <MultiSectionLayout
-          hasTwoSection={false}
+          
         >
 
               {research ?   (
