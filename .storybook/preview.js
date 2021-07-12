@@ -3,6 +3,8 @@ import React from 'react';
 import { createStore } from 'redux';
 import reducer from '../redux/reducers/index'
 import { Provider } from 'react-redux';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
 
 
 export const parameters = {
@@ -21,9 +23,11 @@ const store = createStore(
 export const decorators = [
   (Story) => (
     <Provider store={store}>
-      <div style={{padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}>
-        <Story />
-      </div>
+      <I18nextProvider i18n={i18n}>
+        <div style={{position:"relative",padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <Story />
+        </div>
+      </I18nextProvider>
     </Provider>
   ),
 ];

@@ -60,7 +60,10 @@ module.exports = {
         }
       ]
     });
-
+    newConfig.resolve.alias = {
+      ...newConfig.resolve.alias,
+      'next-i18next': 'react-i18next'
+    }
     return newConfig;
   }
 };
