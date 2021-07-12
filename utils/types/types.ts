@@ -88,6 +88,18 @@ export type RegistrationChoice = {
     link:string
 }
 
+export type ScoreResearcher = {
+    title: string,
+    unit: string,
+    value: number,
+    color: string,
+    description:string,
+    offset: {
+      increase: boolean,
+      value:number
+    }|undefined
+  }
+
 
 
 
@@ -169,4 +181,12 @@ export type PostCardProps = {
 }
 export type RegistrationChoiceProps = {
     choice:RegistrationChoice
+}
+
+export type ScoreStatCardProps = {
+    score:ScoreResearcher
+}
+
+export type WorkInProgressProps = {
+    menu:string
 }

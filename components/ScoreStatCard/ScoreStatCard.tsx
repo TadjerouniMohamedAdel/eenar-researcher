@@ -1,3 +1,4 @@
+import React from 'react'
 import classes from './ScoreStatCard.module.css'
 import FileIcon from '@material-ui/icons/DescriptionOutlined';
 import CommentsIcon from '@material-ui/icons/QuestionAnswerOutlined';
@@ -11,9 +12,12 @@ import DownLoadIcon from '@material-ui/icons/CloudDownloadSharp';
 import AddCircle from '@material-ui/icons/AddCircleOutlineOutlined';
 import SubCircle from '@material-ui/icons/RemoveCircleOutlineOutlined';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-export default function ScoreStatCard({ score }) {
+import { ScoreStatCardProps } from '../../utils/types/types';
 
-const renderIcon = (title)=>{
+
+const ScoreStatCard:React.FC<ScoreStatCardProps> = ({ score }) =>{
+
+const renderIcon = (title:string)=>{
     switch (title) {
         case "المنشورات":
             return <FileIcon  className={classes.scoreIcon} />
@@ -63,7 +67,9 @@ const renderIcon = (title)=>{
                     {score.description}
                 </p>
             </div>
-            <img src={`/images/${score.color}-chart.png`} alt="" srcset=""/>
+            <img src={`/images/${score.color}-chart.png`} alt="" />
         </div>
     )
 }
+
+export default ScoreStatCard;

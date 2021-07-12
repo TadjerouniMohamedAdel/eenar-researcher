@@ -45,7 +45,10 @@ module.exports = {
     // Then we tell webpack what to do with CSS modules
     newConfig.module.rules.push({
       test: /\.module\.css$/,
-      include: path.resolve(__dirname, '../components'),
+      include: [
+        path.resolve(__dirname, '../components'),
+        path.resolve(__dirname,'../styles')
+      ],
       use: [
         'style-loader',
         {

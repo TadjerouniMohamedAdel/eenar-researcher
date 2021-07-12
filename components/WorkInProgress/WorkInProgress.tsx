@@ -1,11 +1,12 @@
 import React,{useEffect} from 'react'
 import classes from './WorkInProgress.module.css'
 import lottie from 'lottie-web'
+import { WorkInProgressProps } from '../../utils/types/types'
 
-export default function WorkInProgress(props) {
+export const WorkInProgress:React.FC<WorkInProgressProps> = ({menu})=> {
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById("anim-teamwork"), // the dom element that will contain the animation
+            container: document.getElementById("anim-teamwork")!, // the dom element that will contain the animation
             renderer: 'svg',
             loop: true,
             autoplay: true,
@@ -19,10 +20,11 @@ export default function WorkInProgress(props) {
             <div id="anim-teamwork"></div>
             </div>
             <h2>
-                {`${props.menu}  قيد الإنجاز`}
+                {`${menu}  قيد الإنجاز`}
 
                 
             </h2>
         </div>
     )
 }
+export default WorkInProgress
