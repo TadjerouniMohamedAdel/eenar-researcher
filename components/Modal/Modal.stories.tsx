@@ -22,7 +22,7 @@ export default {
             name:"setVisible"
         },
         children:{
-            defaultValue:(<div><h1>hello world</h1></div>),
+            defaultValue:(<div><h1>hello world</h1>),
             description:"The modal body content ",
             name:"children"
         }
@@ -32,6 +32,6 @@ export default {
   
 
 //👇 We create a “template” of how args map to rendering
-const Template:Story<ModalProps> = (args) => <div style={{padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}><Modal visible={args.visible} setVisible={()=>args.setVisible(args.visible)}>{args.children}</Modal></div>;
+const Template:Story<ModalProps> = (args) => <Modal visible={args.visible} setVisible={()=>args.setVisible(args.visible)}>{args.children}</Modal>;
 
 export const FirstStory = Template.bind({});

@@ -30,5 +30,5 @@ export default {
   
 
 //👇 We create a “template” of how args map to rendering
-const Template:Story<RegistrationChoiceProps> = (args) => <div style={{padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}><RegistrationChoice choice={args.choice}/></div>;
+const Template:Story<RegistrationChoiceProps> = (args) => <RegistrationChoice choice={args.choice}/>;
 export const FirstStory = Template.bind({});

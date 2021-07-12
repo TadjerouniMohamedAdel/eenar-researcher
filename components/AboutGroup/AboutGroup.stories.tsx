@@ -24,6 +24,6 @@ export default {
   
 
 //👇 We create a “template” of how args map to rendering
-const Template:Story<GroupCardProps> = (args) => <div style={{padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}><AboutGroup {...args}/></div>;
+const Template:Story<GroupCardProps> = (args) => <AboutGroup {...args}/>;
 
 export const FirstStory = Template.bind({});

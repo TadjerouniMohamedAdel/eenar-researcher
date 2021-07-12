@@ -23,5 +23,5 @@ export default {
   
 
 //👇 We create a “template” of how args map to rendering
-const Template:Story<WorkInProgressProps> = (args) => <div style={{padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}><WorkInProgress menu={args.menu}/></div>;
+const Template:Story<WorkInProgressProps> = (args) => <WorkInProgress menu={args.menu}/>;
 export const FirstStory = Template.bind({});

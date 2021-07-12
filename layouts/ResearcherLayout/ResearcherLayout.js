@@ -4,6 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import classes from './ResearcherLayout.module.css'
 import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
+import { useUser } from '../../utils/hooks/useUser'
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const animLayout= {
@@ -13,6 +14,7 @@ const animLayout= {
   
 export default function ResearcherLayout(props) {
     const user = useSelector((state) => state.user)
+    useUser({redirectTo:"/login",redirectIfFound:null})
     return (
         <div className={classes.mainLayoutContainer}>
         <Navbar />

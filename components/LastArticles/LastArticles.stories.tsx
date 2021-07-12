@@ -54,7 +54,7 @@ const Template: Story<LastArticlesProps> = (args) => (
     <div style={{ padding: 20, backgroundColor: "#f8f8fb", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <div style={{ width: "30%" }}>
             <LastArticles articles={args.articles} />
-        </div>
-    </div>
+        
+    
 )
 export const FirstStory = Template.bind({});

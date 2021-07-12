@@ -29,5 +29,5 @@ export default {
   
 
 //👇 We create a “template” of how args map to rendering
-const Template:Story<NotificationCardProps> = (args) => <div style={{padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}><NotificationCard notification={args.notification}/></div>;
+const Template:Story<NotificationCardProps> = (args) => <NotificationCard notification={args.notification}/>;
 export const FirstStory = Template.bind({});

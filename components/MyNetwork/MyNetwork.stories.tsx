@@ -25,5 +25,5 @@ export default {
   
 
 //👇 We create a “template” of how args map to rendering
-const Template:Story<MyNetworkProps> = (args) => <div style={{padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}><MyNetwork {...args}/></div>;
+const Template:Story<MyNetworkProps> = (args) => <MyNetwork {...args}/>;
 export const FirstStory = Template.bind({});
