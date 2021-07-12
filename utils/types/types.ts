@@ -91,13 +91,13 @@ export type RegistrationChoice = {
 export type ScoreResearcher = {
     title: string,
     unit: string,
-    value: number,
+    value: number|string,
     color: string,
     description:string,
-    offset: {
+    offset?: {
       increase: boolean,
       value:number
-    }|undefined
+    }
   }
 
 
