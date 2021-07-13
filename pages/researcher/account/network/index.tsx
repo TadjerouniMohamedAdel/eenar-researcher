@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React,{ useState, useEffect } from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
 import MyHead from '../../../../components/MyHead/MyHead'
 import AddIcon from "@material-ui/icons/Add";
@@ -39,11 +39,14 @@ import { motion,AnimatePresence } from 'framer-motion'
 import EmptyList from '../../../../components/EmptyList/EmptyList';
 import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnreachable';
 import Error500 from '../../../../components/Error500/Error500';
+import { GetStaticProps } from 'next';
+import { RootState } from '../../../../redux/store2';
+import { Group, NotDefineYet } from '../../../../utils/types/types';
 
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
   },
 })
 
@@ -55,8 +58,8 @@ const animLayout= {
 
   };
   
-export default function index() {
-  const user = useSelector((state) => state.user)
+const ResearcherAccountNetworkPage:React.FC = ()=> {
+  const user = useSelector((state:RootState) => state.user)
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [articles, setArticles] = useState(dataarticles);
@@ -65,8 +68,8 @@ export default function index() {
   const [addVisible, setAddVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
   const [search, setSearch] = useState("")
-  const [groups, setGroups] = useState([])
-  const { isLoading, data,isError,error } = useGetList("groups", `/groups/all`, limit, offset, search, user.researchers.id)
+  const [groups, setGroups] = useState<Group[]>([])
+  const { isLoading, data,error } = useGetList<{groups:Group[],maxPages:number}>("groups", `/groups/all`, limit, offset, search, user.researchers.id)
   const { mutate: addElement, status: addElementStatus } = useAddElement("groups", `/groups/add`, limit, offset, search, user.researchers.id)
   const [page, setPage] = useState(1)
 
@@ -97,11 +100,11 @@ export default function index() {
     setPage(offset / limit + 1)
   }, [offset]);
 
-  const handleAddItem = (data) => {
+  const handleAddItem = (data:NotDefineYet) => {
     data.createdBy = user.id
     addElement(data)
   }
-
+  console.log("error",{...error})
 
   return (
     <ResearcherAccountLayout>
@@ -155,27 +158,24 @@ export default function index() {
           ) : (
             <motion.div key="item-list"  className={classes.scrollableDivResearchs} variants={animLayout} exit="exit" initial="initial" animate="animate">
               {
-                isError ?(
-                  error.response && error.response.status===500?(
+                error ?
+                (
+                  error?.response && error?.response.status===500?(
                       <Error500 />
                   ):(
-                      
                           <ErrorUnreachable />
-                      
-
                   )
-
               
           ):
                 isLoading ? (
                   <>
                     {
-                      new Array(limit).fill().map((el, index) => (
+                      new Array(limit).fill("").map((el, index) => (
                         <GroupCardListSkeleton key={el} />
                       ))
                     }
                   </>
-                ) :isLoading === false && data.groups.length == 0 ? (
+                ) :isLoading === false && data?.groups.length == 0 ? (
                   <EmptyList />
               ) :
                   (
@@ -216,3 +216,4 @@ export default function index() {
     </ResearcherAccountLayout>
   )
 }
+export default  ResearcherAccountNetworkPage
