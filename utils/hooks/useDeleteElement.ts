@@ -3,11 +3,17 @@ import axios from 'axios'
 import { useMutation,useQueryClient } from 'react-query'
 
 
-export default function useDeleteElement(key,route,limit=10,offset=0,search="",researcherId="") {
+export default function useDeleteElement<T>(key:string,route:string|null,limit=10,offset=0,search="",researcherId="") {
     const queryClient = useQueryClient()
 
     return useMutation(
-            (values)=>axios.delete(`/api${route}`,values,{withCredentials:true}).then((res)=>res.data),
+            (values:T)=>axios({
+                method:"delete",
+                url:`/api${route}`,
+                data:values,
+                withCredentials:true,
+
+            }).then((res)=>res.data),
             {
                 onSuccess:()=>{
                     queryClient.invalidateQueries([key,limit,offset,search])
