@@ -17,9 +17,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useUser } from '../../utils/hooks/useUser'
 import { GetStaticProps } from 'next'
+import { NotDefineYet } from '../../utils/types/types'
 
 
-const  Alert:React.FC<{severity:Color|undefined,children:React.ReactNode[]}> = (props)=> {
+const  Alert:React.FC<{severity:Color|undefined,children:React.ReactNode[]|string}> = (props)=> {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
@@ -39,7 +40,7 @@ const LoginPage:React.FC= ()=> {
     const dispatch = useDispatch()
 
 
-    const handleSubmit = (data:any) => {
+    const handleSubmit = (data:NotDefineYet) => {
         setIsLoading(true)
         console.log(data)
         axios({

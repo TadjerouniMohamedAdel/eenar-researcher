@@ -1,3 +1,4 @@
+import React from 'react'
 import RegistrationChoice from '../../components/Registration/RegistrationChoice'
 import RegistartionLayout from '../../layouts/Registration/RegistrationLayout'
 const choices = [
@@ -19,7 +20,7 @@ const choices = [
     }
 ]
 
-export default function registration() {
+const RegistrationPage:React.FC=()=> {
     return (
         <RegistartionLayout>
             {
@@ -30,3 +31,4 @@ export default function registration() {
         </RegistartionLayout>
     )
 }
+export default RegistrationPage;

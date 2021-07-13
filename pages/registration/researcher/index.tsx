@@ -6,24 +6,25 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
-import MuiAlert from '@material-ui/lab/Alert';
+import MuiAlert, { Color } from '@material-ui/lab/Alert';
 import { researcherRegistrationValidation1, researcherRegistrationValidation2, researcherRegistrationValidation3 } from '../../../utils/Validation/ValidationObjects'
 import axios from 'axios'
+import { NotDefineYet } from '../../../utils/types/types'
 
-function Alert(props) {
+const  Alert:React.FC<{severity:Color|undefined,children:React.ReactNode[]|string}> = (props)=> {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-export default function Registration() {
+const  RegistrationResearcherPage:React.FC=()=> {
     const [step, setStep] = useState(0)
     const [showAlertSuccess, setShowAlertSuccess] = useState(false)
     const [user, setUser] = useState({type: "researcher", firstname: "", gender: "", lastname: "", center: "", address: "", job: "", region: "", city: "", email: '', password: "", retypedPassword: "", isAgree: false })
     const [isLoading, setIsLoading] = useState(false)
-    const [errorRegistration, setErrorRegistration] = useState(null)
+    const [errorRegistration, setErrorRegistration] = useState<boolean|null>(null)
     const router = useRouter()
 
     /** Submit Function for forms */
-    const handleSubmit = (data) => {
+    const handleSubmit = (data:NotDefineYet) => {
 
         if (step < 2) {
             setUser({ ...user, ...data })
@@ -67,7 +68,7 @@ export default function Registration() {
     });
 
     const formik3 = useFormik({
-        initialValues: { email: '', password: "", retypedPassword: "", isAgree: false },
+        initialValues: { job:'',email: '', password: "", retypedPassword: "", isAgree: false },
         onSubmit: handleSubmit,
         validateOnChange: false,
         validationSchema: researcherRegistrationValidation3,
@@ -314,3 +315,4 @@ export default function Registration() {
         </RegistartionLayout>
     )
 }
+export default RegistrationResearcherPage

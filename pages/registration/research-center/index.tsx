@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button, Checkbox, CircularProgress, FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup, TextField } from '@material-ui/core'
 import { useState } from 'react'
 import RegistartionLayout from '../../../layouts/Registration/RegistrationLayout'
@@ -5,25 +6,25 @@ import classes from '../../../styles/Registration.module.css'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
 import { centerRegistrationStep1, centerRegistrationStep2 } from '../../../utils/Validation/ValidationObjects'
-import MuiAlert from '@material-ui/lab/Alert';
+import MuiAlert, { Color } from '@material-ui/lab/Alert';
 import axios from 'axios'
+import { NotDefineYet } from '../../../utils/types/types'
 
-function Alert(props) {
+const Alert:React.FC<{severity:Color|undefined,children:React.ReactNode[]|string}> = (props)=> {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
-export default function index() {
+const  RegistrationCenterPage:React.FC=()=> {
     const [step, setStep] = useState(0)
     const [centerUser, setCenterUser] = useState({ gender: "", type: "center", center: '', region: "", city: "", address: "", class: '', job: "", firstname: "", lastname: "", email: "", password: "", retypedPassword: "" })
     const [isLoading, setIsLoading] = useState(false)
-    const [errorRegistration, setErrorRegistration] = useState(null)
+    const [errorRegistration, setErrorRegistration] = useState<boolean|null >(null)
     const [showAlertSuccess, setShowAlertSuccess] = useState(false)
     const router = useRouter()
 
     let data = {}
 
     /** submit function for forms */
-    const handleSubmit = (data) => {
+    const handleSubmit = (data:NotDefineYet) => {
 
         if (step < 1) {
             setCenterUser({ ...centerUser, ...data })
@@ -61,7 +62,7 @@ export default function index() {
 
 
     const formik2 = useFormik({
-        initialValues: { firstname: "", lastname: "", email: "", password: "", retypedPassword: "" },
+        initialValues: { firstname: "", lastname: "", email: "", password: "", gender:"",retypedPassword: "" },
         onSubmit: handleSubmit,
         validateOnChange: false,
         validationSchema: centerRegistrationStep2,
@@ -274,3 +275,4 @@ export default function index() {
         </RegistartionLayout>
     )
 }
+export default RegistrationCenterPage
