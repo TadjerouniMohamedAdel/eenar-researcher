@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import { Button, Checkbox, CircularProgress, Paper, TextField } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle, faFacebookSquare, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -9,36 +9,37 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
 import { loginSchema } from '../../utils/Validation/ValidationObjects';
-import MuiAlert from '@material-ui/lab/Alert';
+import MuiAlert, { Color } from '@material-ui/lab/Alert';
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useUser } from '../../utils/hooks/useUser'
+import { GetStaticProps } from 'next'
 
 
-function Alert(props) {
+const  Alert:React.FC<{severity:Color|undefined,children:React.ReactNode[]}> = (props)=> {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
     props: {
-        ...await serverSideTranslations(locale, ["login"]),
+        ...await serverSideTranslations(locale||"ar", ["login"]),
     },
 })
 
 
-export default function Login() {
+const LoginPage:React.FC= ()=> {
     const [isLoading, setIsLoading] = useState(false)
-    const [errorLogin, setErrorLogin] = useState(false)
+    const [errorLogin, setErrorLogin] = useState<boolean|null>(false)
     const router = useRouter()
     const { t } = useTranslation('login')
     useUser({redirectTo:null,redirectIfFound:"/researcher/"})
     const dispatch = useDispatch()
 
 
-    const handleSubmit = (data) => {
+    const handleSubmit = (data:any) => {
         setIsLoading(true)
         console.log(data)
         axios({
@@ -155,3 +156,5 @@ export default function Login() {
         </LoginLayout>
     )
 }
+
+export default LoginPage;
