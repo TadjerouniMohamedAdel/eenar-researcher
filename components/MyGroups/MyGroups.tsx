@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import { Button, IconButton, Tab, Tabs } from '@material-ui/core'
 import classes from './MyGroups.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import useGetList from '../../utils/hooks/useGetList';
+import { Group } from '../../utils/types/types';
 
-export default function MyGroups() {
+const MyGroups:React.FC = ()=> {
     const [value, setValue] = useState(0)
-    const { isLoading, data, isError, error } = useGetList("groups", `/groups/all`, 5, 0, null, null)
+    const { isLoading, data, error } = useGetList<{groups:Group[],maxPages:number}>("groups", `/groups/all`, 5, 0, null, null)
     /** switch group tab */
-    const handleChange = (e, value) => {
+    const handleChange = (e:React.ChangeEvent<{}>, value:number) => {
         setValue(value)
     }
     return (
@@ -34,7 +35,7 @@ export default function MyGroups() {
             </Tabs>
             <div className={classes.groupList}>
                 {
-                    !isLoading && data.groups.map((group, index) => (
+                    !isLoading && data?.groups.map((group, index) => (
                         <div key={`group-${group.id}`} className={classes.groupItem}>
                             <div className={classes.collectionRectangle}>
                                 {group.image && <img src={group.image} alt={`group-${group.title}`} />}
@@ -56,3 +57,4 @@ export default function MyGroups() {
         </div>
     )
 }
+export default MyGroups
