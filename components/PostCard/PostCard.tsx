@@ -6,11 +6,12 @@ import Link from 'next/link'
 import { PostCardProps } from '../../utils/types/types';
 
 
-const PostCard:React.FC<PostCardProps>=({ post })=> {
+const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <Link href={`/researcher/researchs/${post.id}`}>
             <div className={classes.postCard}>
                 <div className={classes.postImg}>
+                    <img src="/images/post-placeholder.jpg" alt="" />
                 </div>
                 <div className={classes.postContent}>
                     <div className={classes.postInfo}>
@@ -20,21 +21,23 @@ const PostCard:React.FC<PostCardProps>=({ post })=> {
                             {post.arabicDescription.substring(0, 200)}...
                         </p>
                     </div>
-                    <div className={classes.postFooter}>
-                        <div className={classes.postAuthor}>
-                            <div className={classes.postAuthorImg}></div>
-                            <h5>{post.primaryAuthor}</h5>
-                        </div>
-                        <div className={classes.postDownload}>
-                            <a href={post.file} target="_blank" style={{ zIndex: 100000 }} onClick={(e) => e.stopPropagation()}>
-                                <IconButton onClick={() => { }}>
-                                    <GetAppSharpIcon />
-                                </IconButton>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
+                <div className={classes.postFooter}>
+                    <div className={classes.postAuthor}>
+                        <div className={classes.postAuthorImg}>
+                            <img src="/images/male-placeholder.jpg" alt="" />
+                        </div>
+                        <h5>{post.primaryAuthor}</h5>
+                    </div>
+                    <div className={classes.postDownload}>
+                        <a href={post.file} target="_blank" style={{ zIndex: 100000 }} onClick={(e) => e.stopPropagation()}>
+                            <IconButton onClick={() => { }}>
+                                <GetAppSharpIcon />
+                            </IconButton>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </Link>
     )
