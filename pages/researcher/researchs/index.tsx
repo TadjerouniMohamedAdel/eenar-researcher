@@ -1,22 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import React,{ useState, useEffect } from "react";
 import BannerMenu from "../../../components/BannerMenu/BannerMenu";
-import LastArticles from "../../../components/LastArticles/LastArticles";
-import LearnNow from "../../../components/LearnNow/LearnNow";
-import MyGroups from "../../../components/MyGroups/MyGroups";
 import MyHead from "../../../components/MyHead/MyHead";
 import ResearcherLayout from "../../../layouts/ResearcherLayout/ResearcherLayout";
 import classes from "../../../styles/Researchs.module.css";
-import { dataarticles, datagroups } from "../../../utils/fixtures/DevData";
-import SearchIcon from "@material-ui/icons/Search";
-import AddIcon from "@material-ui/icons/Add";
-import axios from 'axios'
+
 import {
-  Button,
-  FormControl,
-  IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
 } from "@material-ui/core";
 import PostCard from "../../../components/PostCard/PostCard";
@@ -29,25 +17,26 @@ import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSection
 import EmptyList from "../../../components/EmptyList/EmptyList";
 import ErrorUnreachable from "../../../components/ErrorUnreachable/ErrorUnreachable";
 import Error500 from "../../../components/Error500/Error500";
+import { GetStaticProps } from "next";
+import { RootState } from "../../../redux/store2";
+import { ResearchPost } from "../../../utils/types/types";
 
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
   },
 })
 
-export default function index() {
-  const user = useSelector((state) => state.user)
-  const [articles, setArticles] = useState(dataarticles);
-  const [groups, setGroups] = useState(datagroups);
-  const [posts, setPosts] = useState([])
+const  ResearcherResearchsPage:React.FC = ()=>{
+  const user = useSelector((state:RootState) => state.user)
+  const [posts, setPosts] = useState<ResearchPost[]>([])
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [research, setResearch] = useState("")
   const [hasMore, setHasMore] = useState(true)
 
-  const { data, isLoading ,isError,error } = useGetList("posts", "/researcher/post/research/all", limit, offset, research, user.researchers.id)
+  const { data, isLoading,error } = useGetList<{posts:ResearchPost[],maxPages:number}>("posts", "/researcher/post/research/all", limit, offset, research, user.researchers.id)
 
   useEffect(() => {
     if (data) {
@@ -107,7 +96,7 @@ export default function index() {
               </div> */}
           </div>
           {
-                    isError ?(
+                    error ?(
                       error.response && error.response.status===500?(
                           <Error500 />
                       ):(
@@ -143,3 +132,4 @@ export default function index() {
     </ResearcherLayout>
   );
 }
+export default ResearcherResearchsPage

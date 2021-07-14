@@ -4,13 +4,14 @@ import WorkInProgress from '../../components/WorkInProgress/WorkInProgress'
 import ResearcherLayout from '../../layouts/ResearcherLayout/ResearcherLayout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-export const getStaticProps = async ({ locale }) => ({
+import { GetStaticProps } from 'next'
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
     props: {
-      ...await serverSideTranslations(locale, ["sidebar"]),
+      ...await serverSideTranslations(locale||"ar", ["sidebar"]),
     },
   })
 
-export default function ReseacherDashboard() {
+const ReseacherMainPage:React.FC=()=> {
     return (
         <ResearcherLayout>
             <MyHead title="الواجهة الرئيسية" />
@@ -18,3 +19,4 @@ export default function ReseacherDashboard() {
         </ResearcherLayout>
     )
 }
+export default ReseacherMainPage

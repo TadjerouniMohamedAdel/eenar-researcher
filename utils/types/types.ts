@@ -98,7 +98,20 @@ export type ScoreResearcher = {
       increase: boolean,
       value:number
     }
-  }
+}
+
+export type Book = {
+    id:string,
+    title:string,
+    author:string,
+    file:string,
+    cover:string,
+    publishedDate:string,
+    publishingHouse:string,
+    overview:string,
+    secondaryAuthors?:string[],
+    keyword?:string[],
+}
 
 
 

@@ -1,9 +1,8 @@
-import {useState ,useEffect} from 'react'
+import React,{useState ,useEffect} from 'react'
 import BannerMenu from '../../../components/BannerMenu/BannerMenu'
 import MyHead from '../../../components/MyHead/MyHead'
 import ResearcherLayout from '../../../layouts/ResearcherLayout/ResearcherLayout'
-import { Button, FormControl, IconButton, InputLabel, Select,TextField } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { TextField } from '@material-ui/core';
 import classes from '../../../styles/Library.module.css'
 import Pagination from '../../../components/Pagination/Pagination'
 import Link from 'next/link'
@@ -15,20 +14,22 @@ import Error500 from '../../../components/Error500/Error500';
 import ErrorUnreachable from '../../../components/ErrorUnreachable/ErrorUnreachable';
 import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
+import { GetStaticProps } from 'next';
+import { Book } from '../../../utils/types/types';
 
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
     props: {
-      ...await serverSideTranslations(locale, ["sidebar"]),
+      ...await serverSideTranslations(locale||"ar", ["sidebar"]),
     },
   })
 
-export default function index() {
+const ResearcherLibraryPage:React.FC = ()=> {
     const [offset,setOffset] = useState(0)
     const [limit,setLimit] = useState(10)
     const [page,setPage] = useState(1)
     const [research,setResearch] = useState("")
-    const {isLoading,data,isError,error} = useGetList("books","/researcher/library/book/research",limit,offset,research)
+    const {isLoading,data,error} = useGetList<{books:Book[],maxPages:number}>("books","/researcher/library/book/research",limit,offset,research)
 
     useEffect(()=>{
         setPage(offset/limit+1)
@@ -77,7 +78,7 @@ export default function index() {
                 <div className={classes.bookList}>
 
                     {
-                        isError ?(
+                        error ?(
                                 error.response && error.response.status===500?(
                                     <Error500 />
                                 ):(
@@ -105,12 +106,12 @@ export default function index() {
                             
                         ) 
                         
-                        :data.books.length == 0 ?
+                        :data?.books.length == 0 ?
                             (
                                     <EmptyList />
                             )
-                        :data.books.map((book,index)=>(
-                            <Link href={{pathname:"/researcher/library/[id]",query:{id:book.id}}} key={`book-link-${index}`} className={classes.bookLink}>
+                        :data?.books.map((book,index)=>(
+                            <Link href={{pathname:"/researcher/library/[id]",query:{id:book.id}}} key={`book-link-${index}`}>
                                 <div>
                                     <div className={classes.bookItem} key={`book-${index}`}>
                                         <div className={classes.bookCover}>
@@ -152,3 +153,4 @@ export default function index() {
         </ResearcherLayout>
     )
 }
+export default ResearcherLibraryPage
