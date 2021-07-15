@@ -38,8 +38,8 @@ export type Group={
     title:string,
     slogan:string,
     privacy:string,
-    createdBy:number,
-    image:string,
+    createdBy:string,
+    image:string|null,
     description:string,
     createdAt:string,
     updatedAt:string,
@@ -204,7 +204,7 @@ export type WorkInProgressProps = {
     menu:string
 }
 
-export type MyGroupProps = {
+export type MyGroupsProps = {
     groups:Group[]|undefined,
     isLoading:boolean|null
 }

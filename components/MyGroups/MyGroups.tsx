@@ -3,10 +3,10 @@ import { Button, IconButton, Tab, Tabs } from '@material-ui/core'
 import classes from './MyGroups.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import { MyGroupProps } from '../../utils/types/types';
+import { MyGroupsProps } from '../../utils/types/types';
 import { Skeleton } from '@material-ui/lab';
 
-const MyGroups: React.FC<MyGroupProps> = ({ isLoading, groups }) => {
+const MyGroups: React.FC<MyGroupsProps> = ({ isLoading, groups }) => {
     const [value, setValue] = useState(0)
 
     /** switch group tab */
@@ -35,7 +35,7 @@ const MyGroups: React.FC<MyGroupProps> = ({ isLoading, groups }) => {
             </Tabs>
             <div className={classes.groupList}>
                 {
-                    isLoading ? new Array(4).fill("").map((el, index) => (
+                    isLoading==true ? new Array(4).fill("").map((el, index) => (
                         <div key={`group-skeleton-${index}`} className={classes.groupItem}>
                             <Skeleton variant="circle" className={classes.collectionRectangle} />
                             <div className={classes.groupDescription}>
@@ -45,10 +45,10 @@ const MyGroups: React.FC<MyGroupProps> = ({ isLoading, groups }) => {
                             <Skeleton variant="rect" className={classes.groupButton} style={{backgroundColor:"rgba(0, 0, 0, 0.11)"}} />
                         </div>
                     )) :
-                        !isLoading && groups?.map((group, index) => (
+                        groups?.map((group, index) => (
                             <div key={`group-${group.id}`} className={classes.groupItem}>
                                 <div className={classes.collectionRectangle}>
-                                    {group.image && <img src={group.image} alt={`group-${group.title}`} />}
+                                    <img src={group.image||"/images/group-placeholder.jpg"} alt={`group-${group.title}`} />
                                 </div>
                                 <div className={classes.groupDescription}>
                                     <h4>{group.title}</h4>
