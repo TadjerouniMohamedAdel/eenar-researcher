@@ -1,15 +1,16 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 import { Button, IconButton, Tab, Tabs } from '@material-ui/core'
 import classes from './MyGroups.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import {  MyGroupProps } from '../../utils/types/types';
+import { MyGroupProps } from '../../utils/types/types';
+import { Skeleton } from '@material-ui/lab';
 
-const MyGroups:React.FC<MyGroupProps> = ({isLoading,groups})=> {
+const MyGroups: React.FC<MyGroupProps> = ({ isLoading, groups }) => {
     const [value, setValue] = useState(0)
-    
+
     /** switch group tab */
-    const handleChange = (e:React.ChangeEvent<{}>, value:number) => {
+    const handleChange = (e: React.ChangeEvent<{}>, value: number) => {
         setValue(value)
     }
     return (
@@ -34,23 +35,33 @@ const MyGroups:React.FC<MyGroupProps> = ({isLoading,groups})=> {
             </Tabs>
             <div className={classes.groupList}>
                 {
-                    !isLoading && groups?.map((group, index) => (
-                        <div key={`group-${group.id}`} className={classes.groupItem}>
-                            <div className={classes.collectionRectangle}>
-                                {group.image && <img src={group.image} alt={`group-${group.title}`} />}
-                            </div>
+                    isLoading ? new Array(4).fill("").map((el, index) => (
+                        <div key={`group-skeleton-${index}`} className={classes.groupItem}>
+                            <Skeleton variant="circle" className={classes.collectionRectangle} />
                             <div className={classes.groupDescription}>
-                                <h4>{group.title}</h4>
-                                <span>
-
-                                    {`عضو 0`}
-                                </span>
+                                <Skeleton variant="text" style={{margin:5}}/>
+                                <Skeleton variant="text" style={{margin:5}}/>
                             </div>
-                            <Button className={classes.groupButton} onClick={() => { }}>
-                                <GroupAddOutlinedIcon />
-                            </Button>
+                            <Skeleton variant="rect" className={classes.groupButton} style={{backgroundColor:"rgba(0, 0, 0, 0.11)"}} />
                         </div>
-                    ))
+                    )) :
+                        !isLoading && groups?.map((group, index) => (
+                            <div key={`group-${group.id}`} className={classes.groupItem}>
+                                <div className={classes.collectionRectangle}>
+                                    {group.image && <img src={group.image} alt={`group-${group.title}`} />}
+                                </div>
+                                <div className={classes.groupDescription}>
+                                    <h4>{group.title}</h4>
+                                    <span>
+
+                                        {`عضو 0`}
+                                    </span>
+                                </div>
+                                <Button className={classes.groupButton} onClick={() => { }}>
+                                    <GroupAddOutlinedIcon />
+                                </Button>
+                            </div>
+                        ))
                 }
             </div>
         </div>
