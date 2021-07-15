@@ -6,12 +6,14 @@ import MyNetwork from '../../components/MyNetwork/MyNetwork'
 import { dataarticles, datausers } from '../../utils/fixtures/DevData'
 import { MultiSectionLayoutProps } from '../../utils/types/types'
 import classes from './MultiSectionLayout.module.css'
-
+import useGetList from '../../utils/hooks/useGetList';
+import { Group } from '../../utils/types/types';
 
 
 const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = true, children,specificSideSections=null })=> {
   const lastArticles = dataarticles
   const users = datausers
+  const { isLoading, data, error } = useGetList<{groups:Group[],maxPages:number}>("groups", `/groups/all`, 5, 0, null, null)
 
   return (
     <div className={classes.resumeContainer}>
@@ -30,7 +32,7 @@ const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = tru
             }
           <LearnNow />
           <LastArticles articles={lastArticles}/>
-          <MyGroups />
+          <MyGroups isLoading={isLoading} groups={data?.groups} />
           <MyNetwork users={users} />
         </div>
       }

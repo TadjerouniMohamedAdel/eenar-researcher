@@ -3,12 +3,11 @@ import { Button, IconButton, Tab, Tabs } from '@material-ui/core'
 import classes from './MyGroups.module.css'
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import useGetList from '../../utils/hooks/useGetList';
-import { Group } from '../../utils/types/types';
+import {  MyGroupProps } from '../../utils/types/types';
 
-const MyGroups:React.FC = ()=> {
+const MyGroups:React.FC<MyGroupProps> = ({isLoading,groups})=> {
     const [value, setValue] = useState(0)
-    const { isLoading, data, error } = useGetList<{groups:Group[],maxPages:number}>("groups", `/groups/all`, 5, 0, null, null)
+    
     /** switch group tab */
     const handleChange = (e:React.ChangeEvent<{}>, value:number) => {
         setValue(value)
@@ -35,7 +34,7 @@ const MyGroups:React.FC = ()=> {
             </Tabs>
             <div className={classes.groupList}>
                 {
-                    !isLoading && data?.groups.map((group, index) => (
+                    !isLoading && groups?.map((group, index) => (
                         <div key={`group-${group.id}`} className={classes.groupItem}>
                             <div className={classes.collectionRectangle}>
                                 {group.image && <img src={group.image} alt={`group-${group.title}`} />}

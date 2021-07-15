@@ -203,3 +203,8 @@ export type ScoreStatCardProps = {
 export type WorkInProgressProps = {
     menu:string
 }
+
+export type MyGroupProps = {
+    groups:Group[]|undefined,
+    isLoading:boolean|null
+}
