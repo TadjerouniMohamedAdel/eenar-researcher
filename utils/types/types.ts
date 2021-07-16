@@ -208,3 +208,7 @@ export type MyGroupsProps = {
     groups:Group[]|undefined,
     isLoading:boolean|null
 }
+
+export type LayoutProps = {
+    children:React.ReactNode[]
+}

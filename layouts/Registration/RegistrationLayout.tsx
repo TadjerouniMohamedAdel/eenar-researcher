@@ -1,8 +1,9 @@
 import React from 'react'
 import MyHead from '../../components/MyHead/MyHead'
 import classes from '../../styles/Registration.module.css'
+import { LayoutProps } from '../../utils/types/types'
 
-export default function RegistartionLayout(props) {
+const RegistartionLayout:React.FC<LayoutProps>= ({children})=> {
     return (
         <div className={classes.registrationContainer}>
             <MyHead title="التسجيل في المنصة" />
@@ -16,8 +17,10 @@ export default function RegistartionLayout(props) {
                 <h1>التسجيل في المنصة</h1>
             </div>
             <div className={classes.registrationContent}>
-                {props.children}
+                {children}
             </div>
         </div>
     )
 }
+
+export default RegistartionLayout;

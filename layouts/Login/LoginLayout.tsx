@@ -3,8 +3,9 @@ import MyHead from '../../components/MyHead/MyHead'
 import classes from '../../styles/Login.module.css'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { LayoutProps } from '../../utils/types/types'
 
-export default function LoginLayout(props) {
+const LoginLayout:React.FC<LayoutProps> = ({children})=> {
 	const { t } = useTranslation('login')
 	const router = useRouter()
 	return (
@@ -12,7 +13,7 @@ export default function LoginLayout(props) {
 			<MyHead title={t("title")} />
 			<div className={`${classes.arch} ${router.locale!=="ar" && classes.archLeft}`}></div>
 			<div className={classes.loginRow}>
-				{props.children}
+				{children}
 				<div className={classes.loginPresentation}>
 					<img src="/images/logoAdminWhite.png"  />
 					<h2>{t("welcome")}</h2>
@@ -25,3 +26,4 @@ export default function LoginLayout(props) {
 		</div>
 	)
 }
+export default LoginLayout;
