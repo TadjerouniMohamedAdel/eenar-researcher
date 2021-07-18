@@ -51,8 +51,8 @@
     color: #afb0c0;
 }
 .crudElement .step.done{
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: var(--active-color);
+    border-color: var(--active-color);
 }
 
 .crudElement .step.done span{
@@ -65,7 +65,7 @@
 .crudElement .stepConjection{
     flex: 1;
     height: 0;
-    border: solid 1px var(--primary-color);
+    border: solid 1px var(--active-color);
   }
 .crudElement .divider{
     width: 100%;
@@ -318,4 +318,14 @@
 .moreCollectionIcon{
     color: #3e3f5e;
     font-size: 13px;
+}
+.crudElement div[class*="MuiChip-outlined"]{
+    background-color: var(--new-primary-color) !important;
+    border: 1px solid transparent !important;
+    background-color: var(--new-primary-color) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+}
+.crudElement div[class*="MuiChip-outlined"] >svg{
+    color: #fff;
 }

@@ -19,8 +19,17 @@
     height: 184px;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    background-color: var(--primary-color);
     margin-bottom: 16px;
+    position: relative;
+}
+.serviceCard .serviceImg img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 .serviceCard .serviceContent{
     width: 100%;

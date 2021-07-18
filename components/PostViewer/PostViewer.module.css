@@ -1,23 +1,43 @@
 .rectangle{
     width: 44px;
     height: 44px;
-    border-radius: 8px;
-    background-color: #118ab2;   
+    border-radius: 50%;
+    position: relative;
+}
+.rectangle img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 .memberCircleWhite{
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    z-index: 2;
     background-color: #ffffff;
 }
 .memberCircleBlue{
-    width: 19px;
-    height: 19px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color:var(--primary-color);
+    position: relative;
+}
+.memberCircleBlue img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
 }
 .postViewer{
     width: 100%;
@@ -50,7 +70,7 @@
     border-radius: 8px;
     box-shadow: 3px 5.2px 20px 0 rgba(94, 92, 154, 0.1);
     background-color: #ffffff;
-    color: var(--active-color);
+    color: var(--new-secondary-color);
     top: -35px;
     left: 10px;
 }
@@ -68,13 +88,14 @@
     width: 44px;
     height: 44px;
     position: relative;
-    border-radius: 8px;
+    border-radius: 50%;
 }
 .postViewer .postHeader .postAuthor .postAuthorImages img{
     position: absolute;
-    top: 0;
+    top: -5px;
     left: 0;
     width: 100%;
+    border-radius: inherit;
     height: 100%;
     object-fit: cover;
 }
@@ -95,8 +116,10 @@
 .postViewer .postHeader .postAuthor .postAuthorInfo span{
     font-family: var(--primary-font);
     font-size: 12px;
+    display: inline-block;
     font-weight: normal;
     font-stretch: normal;
+    margin-top: 9px;
     font-style: normal;
     line-height: 1.33;
     letter-spacing: normal;
@@ -138,7 +161,7 @@
     align-items: center;
     margin: 0 12px;
     border-radius: 12px;
-    background-color: #44344f;
+    background-color: var(--badge-color);
     padding: 5.6px 11.5px 3.4px 14.5px;
     font-family: var(--primary-font);
     font-size: 10px;
@@ -164,20 +187,41 @@
 .postViewer .postContent .postContentImages .fullImg{
     width: 90%;
     margin: 6px;
+    position: relative;
     height: 350px;
     border-radius: 12.3px;
     background-color: var(--primary-color);
+}
+.postViewer .postContent .postContentImages .fullImg img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 .postViewer .postContent .postContentImages .bigImg{
     width: 45%;
     margin: 6px;
+    position: relative;
     height: 350px;
     border-radius: 12.3px;
     background-color: var(--primary-color);
 }
+.postViewer .postContent .postContentImages .bigImg img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
 .postViewer .postContent .postContentImages .smallImg{
     width: 30%;
     height: 250px;
+    position: relative;
     margin: 6px;
     display: flex;
     justify-content: center;
@@ -185,13 +229,30 @@
     border-radius: 12px;
     background-color: var(--primary-color);
 }
-.postViewer .postContent .postContentImages .smallImg.lastImg{
-    background-color: var(--active-color);
+.postViewer .postContent .postContentImages .smallImg img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 .postViewer .postContent .postContentImages .smallImg .otherImgNumber{
     font-family: var(--primary-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #06d69ed3;
     font-size: 27px;
-    font-weight: normal;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: 1;
@@ -298,8 +359,8 @@
     margin-right: 30px;
 }
 .postViewer .postStats .reactionStats .members > *{
-    margin-left: -4px;
-    margin-right: -4px;
+    margin-left: -2px;
+    margin-right: -2px;
 }
 
 .postViewer .postStats .reactionStats .shareCommentStat{
@@ -378,7 +439,10 @@
     color: #3e3f5e;
 }
 .postViewer .postActions .postActionItem:hover > span .buttonIcon{
-    color:var(--active-color)
+    color:var(--new-secondary-color)
+}
+.postViewer .postActions .likeButton:hover > span .buttonIcon{
+    color:#0879eb
 }
 .postViewer .postActions .postActionActive{
     border-radius: 8px;
@@ -397,7 +461,7 @@
     color: #3e3f5e;
 }
 .postViewer .postActions .postActionActive > span .buttonIcon{
-    color:var(--active-color)
+    color:var(--new-secondary-color)
 }
 .likeButton:hover + .reactionList,.reactionList:hover{
     display: flex;
@@ -449,8 +513,18 @@
 .postViewer .postComments .commentItem .rectangle{
     width: 44px;
     height: 44px;
-    border-radius: 8px;
-    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+}
+
+.postViewer .postComments .commentItem .rectangle img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 
 .postViewer .postComments .commentItem .commentInfo{
@@ -483,6 +557,7 @@
 .postViewer .postComments .commentItem .commentInfo .commentActions .likeComment{
     margin-left: 22px !important;
     margin-right: 22px !important;
+
 }
 .postViewer .postComments .commentItem .commentInfo .commentActions .likeComment > span{
     font-family: var(--primary-font);
@@ -545,14 +620,9 @@
     text-align: center;
     color: #3e3f5e;
 }
-.postViewer .postComments .loadMoreComment .loadMoreButton .moreCommentIcon{
-    color: var(--active-color);
-    font-size: 16px;
-    margin-right: 2px;
-    margin-left: 2px;
-}
+
 .postViewer .postComments .loadMoreComment .loadMoreButton .moreCommentNumber{
-    color:var(--active-color)
+    color:var(--primary-color)
 }
 
 .postViewer .postComments .writeCommnt{

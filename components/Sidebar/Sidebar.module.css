@@ -1,16 +1,30 @@
 .sidebar {
     width: 300px;
-    min-height: 100vh;
     height: auto;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
     background-color: #ffffff;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
+    position: fixed;
+    right: 40px;
+    z-index: 100;
+    padding-bottom: 25px;
 }
 .sidebar .bondeau {
     width: 300px;
     height: 77px;
+    border-radius: 8px;
     background-color: #073b4c;
+    position: relative;
+}
+.sidebar .bondeau img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .Rectangle5 {
     width: 130px;
@@ -18,18 +32,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
+    padding: 0;
+    border-radius: 50%;
     margin-bottom: 10px;
     background-color: #ffffff;
 }
 .Rectangle4{
-    width: 112px;
-    height: 112px;
+    width: 125px;
+    height: 125px;
    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
+    padding: 0;
+    border-radius: 50%;
     background-color: #118ab2;
+    position: relative;
+}
+.Rectangle4 img{
+    position: absolute;
+    top: 50.2%;
+    left: 50.35%;
+    width: 97%;
+    height: 97%;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    object-fit: cover;
+
 }
 .Rectangle3{
     width: 104px;
@@ -77,22 +106,13 @@
     text-align: center;
     color: #afb0c0;
 }
-.sidebar .profileBadges{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top:25px;
-}
-.sidebar .profileBadges .profileBadgesItem{
-    margin:5px;
-} 
+ 
 
 .sidebar .profileOverviews{
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 .sidebar .profileOverviews .profileOverviewsItem{
     display: flex;
@@ -127,7 +147,7 @@
     flex-direction: column;
     width:100%;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 .sidebar .sidebarLinks .sidebarLinksItem{
     width: 90%;
@@ -135,6 +155,7 @@
     cursor: pointer;
     text-decoration: none;
     height: 48px;
+    border-radius: 10px;
     margin-top: 16px;
     align-items: center;
     justify-content: flex-start;
@@ -148,7 +169,7 @@
 }
 .sidebar .sidebarLinks .sidebarLinksItem .linkName{
     
-    height: 18px;
+    /* height: 18px; */
     margin-right: 20px;
     font-family: var(--primary-font);
     font-size: 14px;
@@ -162,10 +183,10 @@
     color: #afb0c0;
 }
 .sidebar .sidebarLinks .sidebarLinksItem.active {
-    box-shadow: 3px 5.2px 20px 0 rgba(62, 255, 205, 0.3);
-    background-color: #06d6a0;
     transition: 0.5s;
     border-radius: 10px;
+    box-shadow: 0 6px 12px 0 rgba(10, 102, 194, 0.16);
+    background-image: linear-gradient(to bottom, #df8121, #bf6202 119%);
 }
 .sidebar .sidebarLinks .sidebarLinksItem.active .linkName{
         font-family: var(--primary-font);
@@ -185,4 +206,31 @@
     .sidebar{
         display: none;
     }
+}
+@media(max-height:920px){
+    .sidebar .profile .profileTitle{
+        font-size: 15px;
+    }
+.sidebar .profile .profileJob {
+    font-size: 10px;
+    
+}
+    .sidebar .sidebarLinks{
+        margin-top: 5px;
+    }
+    .sidebar .profileOverviews .profileOverviewsItem{
+        margin-bottom: 10px;
+    }
+    .sidebar .sidebarLinks .sidebarLinksItem{
+        height: 35px;
+        margin-top: 10px;
+        font-size: 11px;
+    }
+    .sidebar .profileOverviews .profileOverviewsItem .profileOverviewsItemValue{
+        font-size: 12.9px;
+        
+    }
+    .sidebar .profileOverviews .profileOverviewsItem .profileOverviewsItemName{
+        font-size: 9px;
+           }
 }

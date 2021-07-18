@@ -54,7 +54,18 @@
     width: 100%;
     height: 502px;
     background-color: var(--secondary-color);
+    position: relative;
 }
+.serviceViewContainer .serviceView .serviceViewImage img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
 .serviceViewContainer .serviceView .serviceViewContent{
     width: 80%;
     position: relative;
@@ -100,6 +111,18 @@
     width: 100%;
     background-color: var(--primary-color);
     height: 320px;
+    position: relative;
+    border-radius: inherit;
+}
+.serviceViewContainer .serviceView .serviceViewContent .serviceViewImage2 .serviceViewImageSrc img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+
 }
 .serviceViewContainer .serviceView .serviceViewContent .serviceViewImage2 h6{
     font-family: var(--primary-font);
@@ -126,7 +149,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: var(--badge-color);
     font-family: var(--primary-font);
     font-size: 10px;
     font-weight: bold;

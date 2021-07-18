@@ -1,24 +1,30 @@
-@import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
-*{
-    margin: 0;
-    padding: 0;
+@font-face {
+    font-family: 'BCArabic';
+    src: url('../public/fonts/bc-arabic-regular.ttf'); /* IE9 Compat Modes */
 }
-.MuiFormLabel-root{
-    font-family: var(--primary-font) !important;
+table.docblock-argstable,.css-14m39zm{
+    direction: ltr !important;
 }
-input{
-    font-family: var(--primary-font) !important;
+.css-14m39zm{
+    direction: ltr !important;
 }
-a{
-    text-decoration: none !important;
-    color: unset !important;
+.sbdocs-title{
+    direction: ltr !important;
 }
+.css-ywd5pw{
+    direction: ltr !important;   
+}
+
 :root {
+    
     /* colors */
     --primary-color: #118ab2; 
+    --new-primary-color:#df8111;
     --secondary-color:#073b4c;
+    --new-secondary-color:#fdc42d;
     --active-color:#06d6a0;
     --danger-color:#ef476f;
+    --badge-color:#c66909;
     
     /* buttons */
     --button-1:var(--primary-color);
@@ -26,10 +32,36 @@ a{
     --button-3:var(--secondary-color);
 
     /* fonts */
-    --primary-font: 'Noto Kufi Arabic'
-  }
+    --primary-font: 'BCArabic';
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.MuiFormLabel-root{
+    font-family: var(--primary-font) !important;
+}
+
+
+input{
+    font-family: var(--primary-font) !important;
+}
+
+
+a{
+    text-decoration: none !important;
+    color: unset !important;
+}
+
+
 .MuiTab-textColorSecondary.Mui-selected{
-    color: var(--active-color) !important;
+    color: var(--new-primary-color) !important;
+}
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorSecondary.Mui-selected.MuiTab-labelIcon .MuiTab-wrapper span{
+    color: var(--new-primary-color) !important;
 }
 .Mui-selected{
     color: var(--active-color) !important;
@@ -131,3 +163,6 @@ a{
 #post-menu .MuiMenu-paper .MuiMenuItem-root:hover{
     color: var(--active-color);
 } 
+.MuiLinearProgress-barColorPrimary{
+    background-image: linear-gradient(to left, #118ab2, #06d6a0) !important;
+}

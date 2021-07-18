@@ -9,7 +9,9 @@
     "start": "next start",
     "build-docker": "docker build -t next-app .",
     "build-docker-multistage": "docker build --target production -t next-app -f ./Dockerfile.multistage .",
-    "run-docker": "docker run --rm -it -p 3000:3000 next-app"
+    "run-docker": "docker run --rm -it -p 3000:3000 next-app",
+    "storybook": "start-storybook -s ./public -p 9001",
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -20,12 +22,14 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@pxblue/storybook-rtl-addon": "^1.0.1",
     "@react-pdf/renderer": "^1.6.13",
     "axios": "^0.21.1",
     "compressorjs": "^1.0.7",
     "date-fns": "^2.21.3",
     "formik": "^2.2.6",
     "framer-motion": "^3.2.2-rc.1",
+    "i18next": "^20.3.2",
     "iso-639-1": "^2.1.9",
     "jss-rtl": "^0.3.0",
     "lottie-web": "^5.7.7",
@@ -35,6 +39,7 @@
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-i18next": "^11.11.1",
     "react-id-swiper": "^4.0.0",
     "react-infinite-scroll-component": "^6.0.0",
     "react-player": "^2.9.0",
@@ -44,8 +49,22 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
+    "storybook-addon-next-router": "^2.0.4",
     "swiper": "^6.4.14",
     "swr": "^0.4.1",
     "yup": "^0.32.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.3.0",
+    "@storybook/addon-essentials": "^6.3.0",
+    "@storybook/addon-links": "^6.3.0",
+    "@storybook/react": "^6.3.0",
+    "@types/node": "^15.12.5",
+    "@types/react-redux": "^7.1.16",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "style-loader": "2.0.0",
+    "typescript": "^4.3.4"
   }
 }

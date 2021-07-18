@@ -1,0 +1,129 @@
+.fileCard {
+    height: auto;
+    margin: 16px 0 0;
+    padding: 21.5px 26px 32px 27px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.fileCard h2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #3e3f5e;   
+}
+.fileCard .fileCardTabs{
+    margin-bottom: 16px;
+}
+.fileCard .fileCardTabs div[class*="MuiTabs-flexContainer"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fileCard .fileCardTabs button{
+    min-width: 100px;
+    color:#afb0c0;
+    opacity: 0.6;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    display: flex;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: normal;
+    text-align: right;
+    color: #afb0c0;
+}
+.fileCard span[class*="MuiTabs-indicator"]{
+  height: 2px !important;
+  background-color: var(--new-secondary-color) !important;
+}
+.tabDivider{
+    width: 1px;
+    height: 20px;
+    /* margin: 0 4px 10px 30px; */
+    background-color: #eaeaf5;
+}
+
+.fileTabItem > span {
+    display: flex !important;
+    flex-direction: row !important;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.4;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+
+.fileCard .fileCardTabs button[class*="Mui-selected"]{
+    color: #3e3f5e !important;
+    opacity: 1 !important;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.4;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3e3f5e;
+}
+.fileCardTabItemIcon{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.fileCardContent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.fileCardContent .fileItem{
+    width: 56px;
+    height: 54px;
+    border-radius: 12px;
+    position: relative;
+    margin-top: 8px;
+}
+.fileCardContent .fileItem img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+.lastFile{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: var(--primary-font);
+    background:#06d69ee3;
+    font-size: 12px;
+    font-weight: bolder !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}

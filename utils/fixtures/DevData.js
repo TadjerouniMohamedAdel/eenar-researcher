@@ -15,6 +15,60 @@ export const  dataprofile = {
   nationality:"الجزائر"
 }
 
+export const generalScoreStats = [
+  {
+    title: "المنشورات",
+    unit: "%",
+    value: 80,
+    color: "orange-2",
+    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
+    offset: {
+      increase: true,
+      value: 8.2
+    }
+  },
+  {
+    title: "النقاشات",
+    unit: "",
+    value: "4:39",
+    color: "orange",
+    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
+    offset: {
+      increase: false,
+      value: 2.4
+    }
+  },
+  {
+    title: "القراءات",
+    unit: "",
+    value: 262,
+    color: "green",
+    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
+    offset: {
+      increase: true,
+      value: 3.6
+    }
+  },
+  {
+    title: "التحميلات",
+    unit: "",
+    value: 71,
+    color: "blue",
+    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
+  },
+  {
+    title: "التوصيات",
+    unit: "%",
+    value: 80,
+    color: "black",
+    description: "لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على",
+    offset: {
+      increase: true,
+      value: 8.2
+    }
+  }
+]
+
 export const databadges = [
     // {
     //   imageSrc: "/images/01.png",
@@ -72,32 +126,37 @@ export const databadges = [
 export const datausers = [
     {
       id:1,
-      fullName: "بلال بوعيشة",
+      fullName: "لخضر بودينة",
+      image:"/images/user-placeholder1.jpeg",
       commonFrinedsNumber: 2,
       invitationStatus: "sent",
     },
     {
       id:2,
-      fullName: "بلال بوعيشة",
-      commonFrinedsNumber: 0,
+      fullName: "نصردين والي",
+      image:"/images/user-placeholder2.jpeg",
+      commonFrinedsNumber: 132,
       invitationStatus: "notSent",
     },
     {
       id:3,
-      fullName: "بلال بوعيشة",
+      fullName: "لخضر بن زاهية",
+      image:"/images/user-placeholder3.jpeg",
       commonFrinedsNumber: 5,
       invitationStatus: "sent",
     },
     {
       id:4,
-      fullName: "بلال بوعيشة",
+      fullName: "هشام بعلي",
+      image:"/images/user-placeholder4.jpeg",
       commonFrinedsNumber: 2,
       invitationStatus: "accepted",
     },
     {
       id:5,
-      fullName: "بلال بوعيشة",
-      commonFrinedsNumber: 2,
+      fullName: "أنس مايستر",
+      image:"/images/user-placeholder5.png",
+      commonFrinedsNumber: 21,
       invitationStatus: "sent",
     },
   ];
@@ -408,7 +467,8 @@ export const datahonors = [
 
   export const datamessages = [
     {
-      "sender": "زوبير ولقبو",
+      "sender": "لخضر بودينة",
+      image:"/images/user-placeholder1.jpeg",
       "active":true,
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
@@ -448,7 +508,8 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "بلال بوعيشة",
+      "sender":"نصردين والي",
+      image:"/images/user-placeholder2.jpeg",
       "active":false,
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
@@ -488,7 +549,8 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "إلياس بوجلطية",
+      "sender": "لخضر بن زاهية",
+      image:"/images/user-placeholder3.jpeg",
       "active":false,
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
@@ -528,8 +590,9 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "جلال الدين شعبان",
+      sender: "هشام بعلي",
       "active":true,
+      image:"/images/user-placeholder4.jpeg",
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
       messages : [
@@ -568,8 +631,9 @@ export const datahonors = [
   ]
     },
     {
-      "sender": "أسامة الديزاينر",
+      "sender": "أنس مايستر",
       "active":false,
+      image:"/images/user-placeholder5.png",
       "from": "منذ 29 دقيقة",
       "lastMessage": "جيد جدا، سنقوم بعقد اجتماع معهم في المكان..",
       messages : [
@@ -607,4 +671,299 @@ export const datahonors = [
     },
   ]
     },
+  ]
+
+  export const summarizeScoreStats = [
+    {
+      label: "الزيارات",
+      value: 1.067,
+      unit: ""
+    },
+    {
+      label: "المشاهدات",
+      value: 298,
+      unit: ""
+    },
+    {
+      label: "معدل الزيارات",
+      value: 34.4,
+      unit: ""
+    },
+    {
+      label: "معدل المشاهدات",
+      value: 9.6,
+      unit: ""
+    },
+    {
+      label: "الزيارات / جويلية 2020",
+      value: 26.3,
+      unit: "%",
+      offset:{increase:true}
+
+    },
+    {
+      label: "المشاهدات / جويلية 2020",
+      value: 4.9,
+      unit: "%",
+      offset:{increase:false}
+    },
+  ]
+  
+
+  export const monthChartStat = [
+    {
+      name: '01',
+      "الزيارات": 4000,
+      "المشاهدات": 2400,
+      amt: 2400,
+    },
+    {
+      name: '02',
+      "الزيارات": 3000,
+      "المشاهدات": 1398,
+      amt: 2210,
+    },
+    {
+      name: '03',
+      "الزيارات": 2000,
+      "المشاهدات": 9800,
+      amt: 2290,
+    },
+    {
+      name: '04',
+      "الزيارات": 2780,
+      "المشاهدات": 3908,
+      amt: 2000,
+    },
+    {
+      name: '05',
+      "الزيارات": 1890,
+      "المشاهدات": 4800,
+      amt: 2181,
+    },
+    {
+      name: '06',
+      "الزيارات": 2390,
+      "المشاهدات": 3800,
+      amt: 2500,
+    },
+    {
+      name: '07',
+      "الزيارات": 3490,
+      "المشاهدات": 4300,
+      amt: 2100,
+    },
+    {
+      name: '08',
+      "الزيارات": 2780,
+      "المشاهدات": 3908,
+      amt: 2000,
+    },
+    {
+      name: '09',
+      "الزيارات": 1890,
+      "المشاهدات": 4800,
+      amt: 2181,
+    },
+    {
+      name: '10',
+      "الزيارات": 2390,
+      "المشاهدات": 3800,
+      amt: 2500,
+    },
+    {
+      name: '11',
+      "الزيارات": 3490,
+      "المشاهدات": 4300,
+      amt: 2100,
+    },
+    {
+      name: '12',
+      "الزيارات": 2780,
+      "المشاهدات": 3908,
+      amt: 2000,
+    },
+    {
+      name: '13',
+      "الزيارات": 1890,
+      "المشاهدات": 4800,
+      amt: 2181,
+    },
+    {
+      name: '14',
+      "الزيارات": 2390,
+      "المشاهدات": 3800,
+      amt: 2500,
+    },
+    {
+      name: '15',
+      "الزيارات": 3490,
+      "المشاهدات": 4300,
+      amt: 2100,
+    },
+    {
+      name: '16',
+      "الزيارات": 4000,
+      "المشاهدات": 2400,
+      amt: 2400,
+    },
+    {
+      name: '17',
+      "الزيارات": 3000,
+      "المشاهدات": 1398,
+      amt: 2210,
+    },
+    {
+      name: '18',
+      "الزيارات": 2000,
+      "المشاهدات": 9800,
+      amt: 2290,
+    },
+    {
+      name: '19',
+      "الزيارات": 2780,
+      "المشاهدات": 3908,
+      amt: 2000,
+    },
+    {
+      name: '20',
+      "الزيارات": 1890,
+      "المشاهدات": 4800,
+      amt: 2181,
+    },
+    {
+      name: '21',
+      "الزيارات": 2390,
+      "المشاهدات": 3800,
+      amt: 2500,
+    },
+    {
+      name: '22',
+      "الزيارات": 3490,
+      "المشاهدات": 4300,
+      amt: 2100,
+    },
+    {
+      name: '23',
+      "الزيارات": 2780,
+      "المشاهدات": 3908,
+      amt: 2000,
+    },
+    {
+      name: '24',
+      "الزيارات": 1890,
+      "المشاهدات": 4800,
+      amt: 2181,
+    },
+    {
+      name: '25',
+      "الزيارات": 2390,
+      "المشاهدات": 3800,
+      amt: 2500,
+    },
+    {
+      name: '26',
+      "الزيارات": 3490,
+      "المشاهدات": 4300,
+      amt: 2100,
+    },
+    {
+      name: '27',
+      "الزيارات": 2780,
+      "المشاهدات": 3908,
+      amt: 2000,
+    },
+    {
+      name: '28',
+      "الزيارات": 1890,
+      "المشاهدات": 4800,
+      amt: 2181,
+    },
+    {
+      name: '29',
+      "الزيارات": 2390,
+      "المشاهدات": 3800,
+      amt: 2500,
+    },
+    {
+      name: '30',
+      "الزيارات": 3490,
+      "المشاهدات": 4300,
+      amt: 2100,
+    },
+    {
+      name: '31',
+      "الزيارات": 3490,
+      "المشاهدات": 4300,
+      amt: 2100,
+    },
+  ];
+
+  export const friendsActivity = [
+    {
+      friend:"لخضر بودينة",
+      image:"/images/user-placeholder1.jpeg",
+      from:"02/12/2012",
+      reactions:169,
+      comments:710,
+      shares:109,
+      responses:223,
+      views:89,
+    },
+    {
+      friend:"نصردين والي",
+      from:"20/07/2020",
+      image:"/images/user-placeholder2.jpeg",
+      reactions:3569,
+      comments:250,
+      shares:119,
+      responses:523,
+      views:52,
+    },
+    {
+      friend:"لخضر بن زاهية",
+      from:"22/11/2018",
+      image:"/images/user-placeholder3.jpeg",
+      reactions:1669,
+      comments:150,
+      shares:122,
+      responses:131,
+      views:30,
+    },
+    {
+      friend:"هشام بعلي",
+      from:"30/06/2010",
+      image:"/images/user-placeholder4.jpeg",
+      reactions:159,
+      comments:7,
+      shares:1,
+      responses:19,
+      views:20,
+    },
+    {
+      friend:"أنس مايستر",
+      from:"20/07/2020",
+      image:"/images/user-placeholder5.png",
+      reactions:1569,
+      comments:750,
+      shares:109,
+      responses:223,
+      views:70,
+    },
+  ]
+
+  export const filedata = [
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+    "/images/service-placeholder.jpg",
+    "/images/article-placeholder.jpg",
+    "/images/learnmore-placeholder.jpg",
+
   ]

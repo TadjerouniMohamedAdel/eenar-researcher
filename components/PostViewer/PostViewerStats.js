@@ -40,9 +40,11 @@ const ReactionList = ({ list , title,icon }) => (
     </div>
 )
 export default function PostViewerStats() {
-    const MemberCircle = () => (
+    const MemberCircle = ({img}) => (
         <div className={classes.memberCircleWhite}>
-            <div className={classes.memberCircleBlue}></div>
+            <div className={classes.memberCircleBlue}>
+                <img src={img} alt="" />
+            </div>
         </div>
     )
 
@@ -78,11 +80,11 @@ export default function PostViewerStats() {
                 </div>
                 <span className={classes.reactionNumber}>123</span>
                 <div className={classes.members}>
-                    <MemberCircle />
-                    <MemberCircle />
-                    <MemberCircle />
-                    <MemberCircle />
-                    <MemberCircle />
+                    <MemberCircle  img="/images/user-placeholder1.jpeg"/>
+                    <MemberCircle img="/images/user-placeholder2.jpeg"/>
+                    <MemberCircle img="/images/user-placeholder3.jpeg"/>
+                    <MemberCircle img="/images/user-placeholder4.jpeg"/>
+                    <MemberCircle img="/images/user-placeholder5.png"/>
                 </div>
             </div>
             <div className={classes.shareCommentStat}>

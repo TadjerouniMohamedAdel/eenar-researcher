@@ -5,12 +5,13 @@ import { create } from 'jss';
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
-import { useStore } from '../redux/store'
+// import { useStore } from '../redux/store'
+import { store } from '../redux/store2'
 import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 import { appWithTranslation } from 'next-i18next'
-import Laoding from '../components/Loading/Laoding';
+import Loading from '../components/Loading/Loading';
 import { AnimatePresence } from 'framer-motion';
 import {
   QueryClient,
@@ -35,7 +36,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps, router }) {
   const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-  const store = useStore(pageProps.initialReduxState)
+  // const store = useStore(pageProps.initialReduxState)
   const persistor = persistStore(store, {}, function () {
     persistor.persist()
   })
@@ -50,7 +51,7 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={<Laoding />} persistor={persistor}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <StylesProvider jss={jss}>
           <ThemeProvider theme={theme}>
             <CssBaseline />

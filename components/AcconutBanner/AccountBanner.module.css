@@ -5,27 +5,47 @@
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-  }
-  .accountBanner .bondeau{
+    position: relative;
+}
+  
+.accountBanner .bondeau{
     height: 304px;
+    width: 100%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     background-color: #073b4c;
+    position: relative;
+}
+.accountBanner .bondeau img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;    
 }
 .accountBanner .accountBannerContent{
    display: flex;
    flex-direction: row;
-   justify-content: space-around;
+   justify-content: space-between;
    flex-wrap: wrap;
+   padding-left: 33px;
+   padding-right: 33px;
    align-items: center;
    height: calc(100% - 304px);
 }
 .accountBanner .accountBannerOverview{
     display: flex;
     flex-direction: row;
+    align-items: center;
     flex-wrap: wrap;
     position: relative;
     top:-10px
+}
+.accountBanner .accountBannerOverview >div{
+    display: flex;
 }
 .accountBanner .accountBannerOverview .overviewItem{
     display: flex;
@@ -35,6 +55,8 @@
 }
 .accountBanner .accountBannerOverview .overviewItem .overviewValue{
     font-family: var(--primary-font);
+    width: 26px;
+    height: 16px;
     font-size: 22px;
     font-weight: bold;
     font-stretch: normal;
@@ -43,6 +65,15 @@
     letter-spacing: normal;
     text-align: center;
     color: #3e3f5e;
+    position: relative;
+}
+.accountBanner .accountBannerOverview .overviewItem .overviewValue img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .accountBanner .accountBannerOverview .overviewItem .overviewName{
     font-family: var(--primary-font);
@@ -54,8 +85,9 @@
     letter-spacing: normal;
     text-align: center;
     color: #afb0c0;
+    margin-top: 20px;
 }
-.accountBanner .accountBannerOverview .dividerOverview{
+.accountBanner .accountBannerOverview .dividerOveriew{
     width: 1px;
     height: 20px;
     background-color: #eaeaf5;
@@ -72,8 +104,8 @@
     background-color: #118ab2;
 }
 .accountBanner .Rectangle11 {
-    width: 120px;
-    height: 119px;
+    width: 140px;
+    height: 149px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,27 +114,37 @@
     background-color: #ffffff;
 }
 .accountBanner .Path2980 {
-    width: 128px;
-    height: 128px;
+    width: 170px;
+    height: 170px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px 4px 4px;
-    border-radius: 6px;
+    border-radius: 50%;
+    position: relative;
     background-color: #118ab2;
 }
+.accountBanner .Path2980 img{
+    position: absolute;
+    width: 97%;
+    height: 97%;
+    top: 50%;
+    left: 50%;
+    border-radius: inherit;
+    transform: translate(-50%,-50%);      
+}
 .accountBanner .Rectangle9 {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 50%;
     background-color: #ffffff;
 }
 .accountBanner .bannerProfile{
     position: relative;
-    margin-top:-190px;
+    margin-top:-120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,7 +172,7 @@
     align-items: center;
     position: relative;
     top: -23px;
-    left:-80px;
+    left:-70px;
     z-index: 10;
 }
 
@@ -146,26 +188,39 @@
     text-align: center;
     color: #afb0c0;
 }
-.accountBanner  .bannerSocialNetworks{
+.accountBanner  .badges{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     list-style: none;
     flex-wrap: wrap;
 }
+.accountBanner  .badges li{
+    position: relative;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    width: 36px;
+    height: 39px;
+}
+.accountBanner  .badges li img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+
+}
 .accountBanner  .bannerSocialNetworks li{
     cursor: pointer;
 }
-.accountBanner .bannerLinks{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    position: relative;
-    top:-70px;
-}
-.accountBanner .bannerLinks .linkEditAccount{
+
+.accountBanner  .linkEditAccount{
     width: 180px;
     height: 48px;
+    top: 32px;
+    left: 32px;
+    position: absolute;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -175,8 +230,9 @@
     margin-left:  12px;
     box-shadow: 3px 5.2px 10px 0 rgba(62, 255, 205, 0.3);
     background-color: var(--active-color);
+
 }
-.accountBanner .bannerLinks .linkEditAccount span{
+.accountBanner  .linkEditAccount span{
   font-family: var(--primary-font);
   font-size: 13.9px;
   font-weight: bold;
@@ -248,7 +304,6 @@
         margin:10px
     }
     .accountBanner .accountBannerOverview .overviewItem .overviewValue{
-        
         font-size: 18px;
     }
     .accountBanner .accountBannerOverview .overviewItem .overviewName{

@@ -30,10 +30,10 @@ export default function PostViewerHeader() {
         <div className={classes.postHeader}>
             <div className={classes.postAuthor}>
                 <div className={classes.postAuthorImages}>
-                    <div className={classes.rectangle}></div>
+                        <img src="/images/user-placeholder6.webp" alt="" />
                 </div>
                 <div className={classes.postAuthorInfo}>
-                    <h2>معاذ محساس</h2>
+                    <h2>إلياس بوجلطية</h2>
                     <span>5 ساعات</span>
                 </div>
             </div>

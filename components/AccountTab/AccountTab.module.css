@@ -27,10 +27,8 @@
     text-align: center;
     color: #afb0c0;
 }
- .accountTabs .MuiTab-textColorSecondary.Mui-selected{
-    color: var(--active-color);
-}
  .accountTabs span[class*="PrivateTabIndicator-colorSecondary"]{
-    background-color: var(--active-color) !important;
+    box-shadow: 0 6px 12px 0 rgba(10, 102, 194, 0.16);
+    background-image: linear-gradient(to bottom, #df8121, #bf6202 119%);
     height: 3.5px !important;
 }

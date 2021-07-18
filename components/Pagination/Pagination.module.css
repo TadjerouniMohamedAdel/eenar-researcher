@@ -7,6 +7,7 @@
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
     background-color: #ffffff;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
  .paginationCustom .paginationButton{
@@ -25,7 +26,7 @@
     color: #afb0c0;
 }
  .paginationCustom .paginationButton.activeButton{
-    color: var(--primary-color);
+    color: var(--new-primary-color);
 }
  .paginationCustom .dividerPagination{
     width: 1px;

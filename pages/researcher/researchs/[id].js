@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   let paths = []
   await  axios({
               method: "get",
-              url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/all`,
+              url: `/api/researcher/post/all`,
               withCredentials:true
       })
       .then((response) => {
@@ -36,7 +36,7 @@ export async function getStaticProps(context) {
   console.log(context)
   await axios({
         method: "get",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params.id}`,
+        url: `/api/researcher/postByid?id=${context.params.id}`,
         withCredentials:true
       })
         .then((response) => {
@@ -57,7 +57,7 @@ export default function research({research}) {
     <ResearcherLayout>
       
         <MultiSectionLayout
-          hasTwoSection={false}
+          
         >
 
               {research ?   (

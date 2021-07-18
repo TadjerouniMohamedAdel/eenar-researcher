@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    z-index: 20;
+    z-index: 200;
     overflow: auto;
   }
 .backdrop  .modal{
@@ -24,12 +24,18 @@
 .backdrop .closeSection .closeButton{
   width: 28px;
   height: 28px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: relative;
+  z-index: 10;
+  top: -20px;
+  left: -17px;
   margin: 5px;
   /* margin: 0 4px 118px 0; */
   padding: 9px 9px 9px 9px;
  
 }
 .backdrop .closeSection .closeButton .closeButtonIcon{
-  font-size: 25px;
+  font-size: 18px;
   color: #afb0c0;  
 }

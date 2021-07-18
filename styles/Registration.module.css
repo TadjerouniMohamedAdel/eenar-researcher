@@ -6,7 +6,6 @@
     min-height: 100vh;
     background-color: #f6f6f9;
 }
-
 .registrationContainer .registrationHeader{
     display: flex;
     flex-direction: row;
@@ -54,7 +53,7 @@
     flex-wrap: wrap;
 
 }
-.registrationContainer .registrationContent .registrationChoiceItem{
+ .registrationChoiceItem{
     width: 368px;
     height: 647px;
     cursor: pointer;
@@ -70,13 +69,13 @@
     align-items: center;
     transition: 0.5s;
 }
-.registrationContainer .registrationContent .registrationChoiceItem:hover{
+ .registrationChoiceItem:hover{
     transform: scale(1.03);
 }
-.registrationContainer .registrationContent .registrationChoiceItem .choiceImg{
+ .registrationChoiceItem .choiceImg{
     width: 90%;
 }
-.registrationContainer .registrationContent .registrationChoiceItem .choiceImg img{
+ .registrationChoiceItem .choiceImg img{
     position: relative;
     top: 0;
     left: 0;
@@ -84,7 +83,7 @@
     object-fit: contain;
     height: 100%;
 }
-.registrationContainer .registrationContent .registrationChoiceItem .choiceTitle{
+ .registrationChoiceItem .choiceTitle{
     height: 46px;
     font-family: var(--primary-font);
     font-size: 24px;
@@ -96,7 +95,7 @@
     text-align: right;
     color: #3e3f5e;
 }
-.registrationContainer .registrationContent .registrationChoiceItem .choiceDescription{
+ .registrationChoiceItem .choiceDescription{
     width: 332px;
     height: 82px;
     font-family: var(--primary-font);
@@ -109,13 +108,13 @@
     text-align: right;
     color: #9192a6;
 }
-.registrationContainer .registrationContent .registrationChoiceItem .hDivider{
+ .registrationChoiceItem .hDivider{
     width: 388px;
     height: 1px;
     margin: 24px 0px 0 0px;
     background-color: #eaeaf5;
 }
-.registrationContainer .registrationContent .registrationChoiceItem .choiceButton{
+ .registrationChoiceItem .choiceButton{
     width: 308px;
     height: 54px;
     display: flex;
@@ -126,10 +125,10 @@
     box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
     background-color: var(--button-3);
 }
-.registrationContainer .registrationContent .registrationChoiceItem .choiceButton.centerButton{
+ .registrationChoiceItem .choiceButton.centerButton{
     background-color: var(--button-2);
 }
-.registrationContainer .registrationContent .registrationChoiceItem .choiceButton span{
+ .registrationChoiceItem .choiceButton span{
     font-family: var(--primary-font);
     font-size: 16px;
     font-weight: bold;

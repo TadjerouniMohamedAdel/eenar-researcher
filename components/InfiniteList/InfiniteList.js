@@ -27,7 +27,7 @@ export default function InfiniteList() {
         hasPreviousPage,
         isFetchingNextPage,
         isFetchingPreviousPage,
-    } = useInfiniteQuery("groups_infinite", ({ pageParam = 1 }) => axios.get(`${process.env.NEXT_PUBLIC_API_URL}/groups/all?offset=${(pageParam-1)*limit}&limit=${limit}&title=${search}`,{withCredentials:true})
+    } = useInfiniteQuery("groups_infinite", ({ pageParam = 1 }) => axios.get(`/api/groups/all?offset=${(pageParam-1)*limit}&limit=${limit}&title=${search}`,{withCredentials:true})
         .then((response) => response.data), {
         getNextPageParam: (lastPage, allPages) =>{
             return lastPage.groups.length < limit? undefined :allPages.length+1
