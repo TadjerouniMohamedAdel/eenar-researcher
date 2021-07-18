@@ -210,5 +210,5 @@ export type MyGroupsProps = {
 }
 
 export type LayoutProps = {
-    children:React.ReactNode[]
+    children:React.ReactNode[]|React.ReactNode
 }
