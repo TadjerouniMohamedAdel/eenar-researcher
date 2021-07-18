@@ -1,7 +1,8 @@
 import { useEffect,useState } from 'react'
 import Router from 'next/router'
 import axios from 'axios'
-export function useUser({ redirectTo, redirectIfFound } = {}) {
+import { UseUserProps } from '../types/types'
+export const useUser=({ redirectTo, redirectIfFound }:UseUserProps) =>{
     const [isLoading,setIsLoading] = useState(true)
     const [user,setUser] = useState(null)
     const [error,setError] = useState(null)

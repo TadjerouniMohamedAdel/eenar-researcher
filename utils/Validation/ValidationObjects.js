@@ -275,7 +275,7 @@ export const researcherRegistrationValidation2 = Yup.object().shape({
 export const researcherRegistrationValidation3 = Yup.object().shape({
     job: Yup.string().required('يجب ملئ هذه المعلومة'),
     email: Yup.string().email("هذا البريد الإلكتروني غير صحيح").required('يجب ملئ هذه المعلومة'),
-    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\WD])(?=.{8,})/,'كلمة السر يجب أن تحتوي على الأقل 8 حروف منها رقم و حرف خاص	').required('يجب ملئ هذه المعلومة'),
+    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[0-9])(?=.{8,})/,'كلمة السر يجب أن تحتوي على الأقل 8 حروف منها رقم  	').required('يجب ملئ هذه المعلومة'),
     retypedPassword: Yup.string().oneOf([Yup.ref('password'), null], 'الكلمات السرية يجب ان تتطابق').required('يجب ملئ هذه المعلومة'),
     isAgree:Yup.bool().oneOf([true], 'يجب الموافقة على الشروط'),
 })
@@ -426,7 +426,7 @@ export const centerRegistrationStep2 = Yup.object().shape({
     email: Yup.string().email("هذا البريد الإلكتروني غير صحيح").required('يجب ملئ هذه المعلومة'),
     gender: Yup.string().oneOf(["male","female"]).required('يجب ملئ هذه المعلومة'),
     lastname: Yup.string().required('يجب ملئ هذه المعلومة'),
-    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\WD])(?=.{8,})/,'كلمة السر يجب أن تحتوي على الأقل 8 حروف منها رقم و حرف خاص	').required('يجب ملئ هذه المعلومة'),
+    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[0-9])(?=.{8,})/,'كلمة السر يجب أن تحتوي على الأقل 8 حروف منها رقم   	').required('يجب ملئ هذه المعلومة'),
     retypedPassword: Yup.string().oneOf([Yup.ref('password'), null], 'الكلمات السرية يجب ان تتطابق').required('يجب ملئ هذه المعلومة'),
 })
 export const groupSchema =  Yup.object().shape({
