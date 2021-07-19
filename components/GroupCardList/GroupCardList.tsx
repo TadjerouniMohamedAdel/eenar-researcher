@@ -22,7 +22,7 @@ const GroupCardList: React.FC<GroupCardProps> = ({ group }) => {
 
             <div className={classes.card}>
                 <div className={classes.groupInfo}>
-                    <div className={classes.groupImage}><img src={group.image} /></div>
+                    <div className={classes.groupImage}><img src={group.image|| '/images/group-placeholder.jpg'} /></div>
                     <div className={classes.info}>
                         <h2>{group.title}</h2>
                         <h3>{group.slogan}</h3>

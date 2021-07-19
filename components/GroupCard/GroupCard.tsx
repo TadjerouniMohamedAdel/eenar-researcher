@@ -39,7 +39,7 @@ const GroupCard: React.FC<GroupCardProps> = ({ group }) => {
 
                     <div className={classes.circleWhite}>
                         <div className={classes.circleBlue}>
-                            <img src={group.image} alt="" />
+                            <img src={group.image || '/images/group-placeholder.jpg'} alt="" />
                         </div>
                     </div>
                 </div>
