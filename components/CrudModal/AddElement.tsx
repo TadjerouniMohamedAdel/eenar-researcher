@@ -8,15 +8,15 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
+import { AddElementProps, NotDefineYet } from '../../utils/types/types';
 
 
-
-export default function AddElement({ fields, handleSubmit, validationSchema, title }) {
+const AddElement:React.FC<AddElementProps> = ({ fields, handleSubmit, validationSchema, title })=> {
     const [isLoading, setIsLoading] = useState(false)
-    let values = {}
+    let values:NotDefineYet = {}
     fields.map((el, index) => { values[el.name] = el.defaultValue })
 
-    const submit = (data) => {
+    const submit = (data:NotDefineYet) => {
         setIsLoading(true)
         handleSubmit(data)
     }
@@ -50,14 +50,13 @@ export default function AddElement({ fields, handleSubmit, validationSchema, tit
                                         style={{ marginTop: 28, borderRadius: 12 }}
                                         multiple
                                         autoSelect
-                                        key={`crud-add-element-${index}-${step}`}
+                                        key={`crud-add-element-${index}`}
                                         onChange={(e, values) => {
                                             formik.values[field.name] = values
                                         }}
                                         freeSolo
-                                        name={field.name}
                                         defaultValue={values}
-                                        id={`crud-add-element-${index}-${step}`}
+                                        id={`crud-add-element-${index}`}
                                         options={[]}
                                         renderTags={(value, getTagProps) =>
                                             value.map((option, index) => (
@@ -89,12 +88,11 @@ export default function AddElement({ fields, handleSubmit, validationSchema, tit
                                             name={field.name}
                                             onChange={formik.handleChange}
                                             label={field.name}
-                                            error={formik.errors[field.name]}
-                                            helperText={formik.errors[field.name]}
+                                            error={Boolean(formik.errors[field.name])}
 
                                         >
                                             {
-                                                field.choices.map((choice, index) => (
+                                                field.choices?.map((choice, index) => (
                                                     <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
                                                 ))
                                             }
@@ -156,11 +154,4 @@ export default function AddElement({ fields, handleSubmit, validationSchema, tit
 
     )
 }
-
-
-AddElement.propTypes = {
-    title:PropTypes.string.isRequired,
-    handleSubmit:PropTypes.func.isRequired, 
-    fields:PropTypes.array.isRequired,
-    validationSchema:PropTypes.object.isRequired, 
-}
+export default AddElement
