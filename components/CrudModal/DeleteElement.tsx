@@ -4,7 +4,8 @@ import { Button, CircularProgress } from '@material-ui/core'
 import PropTypes from 'prop-types';
 import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
-export default function DeleteElement({item,title,handleSubmit}) {
+import { DeleteElementProps } from '../../utils/types/types';
+const DeleteElement:React.FC<DeleteElementProps> = ({item,title,handleSubmit})=> {
     const [isLoading,setIsLoading] = useState(false)
     return (
         <div className={classes.crudElement}>
@@ -49,8 +50,4 @@ export default function DeleteElement({item,title,handleSubmit}) {
     )
 }
 
-DeleteElement.propTypes = {
-    item:PropTypes.object,
-    title:PropTypes.string.isRequired,
-    handleSubmit:PropTypes.func.isRequired
-}
+export default DeleteElement

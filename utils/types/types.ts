@@ -113,6 +113,15 @@ export type Book = {
     keyword?: string[],
 }
 
+export type Field = {
+    name:string,
+    label:string,
+    type:string,
+    className:string,
+    defaultValue:any,
+    props?:NotDefineYet
+    choices?:{label:string,value:string}[]
+}
 
 
 
@@ -211,6 +220,25 @@ export type MyGroupsProps = {
 
 export type LayoutProps = {
     children: React.ReactNode[] | React.ReactNode
+}
+
+export interface CrudProps {
+    handleSubmit:(data:NotDefineYet)=>void
+    validationSchema:NotDefineYet,
+    title:string
+}
+
+export interface AddElementProps extends CrudProps {
+    fields:Field[],
+   
+}
+
+export interface EditElementProps extends AddElementProps{
+    item:any
+}
+
+export interface DeleteElementProps extends CrudProps{
+    item:any
 }
 
 //hooks type

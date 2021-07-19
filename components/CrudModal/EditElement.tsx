@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import React,{useState} from 'react'
 import { TextField,Button, Select, MenuItem, FormControl, InputLabel, CircularProgress, Checkbox } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
@@ -7,10 +7,11 @@ import Autocomplete from "@material-ui/lab/Autocomplete"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
+import { NotDefineYet,EditElementProps } from '../../utils/types/types';
 
-export default function EditElement({item,fields,handleSubmit,validationSchema,title}) {
+const EditElement:React.FC<EditElementProps> = ({item,fields,handleSubmit,validationSchema,title}) => {
     const [isLoading,setIsLoading] = useState(false)
-    const submit = (data)=>{
+    const submit = (data:NotDefineYet)=>{
         setIsLoading(true)
         handleSubmit(data)
     }
@@ -45,14 +46,13 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                             style={{marginTop:28,borderRadius:12}}
                                             multiple
                                             autoSelect
-                                            key={`crud-add-element-${index}-${step}`}
+                                            key={`crud-add-element-${index}`}
                                             onChange={(e,values)=>{
                                                 formik.values[field.name] = values
                                             }}
                                             freeSolo
-                                            name={field.name}
                                             defaultValue={values?values:[]}
-                                            id={`crud-add-element-${index}-${step}`}
+                                            id={`crud-add-element-${index}`}
                                             options={[]}
                                             renderTags={(value, getTagProps) =>
                                                 value.map((option, index) => (
@@ -86,7 +86,7 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
                                             label={field.name}
                                         >
                                             {
-                                                field.choices.map((choice,index)=>(
+                                                field.choices?.map((choice,index)=>(
                                                     <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
                                                 ))
                                             }
@@ -148,9 +148,4 @@ export default function EditElement({item,fields,handleSubmit,validationSchema,t
     )
 }
 
-EditElement.propTypes = {
-    title:PropTypes.string.isRequired,
-    handleSubmit:PropTypes.func.isRequired, 
-    fields:PropTypes.array.isRequired,
-    validationSchema:PropTypes.object.isRequired, 
-}
+export default EditElement
