@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
   console.log(context)
   await axios({
     method: "get",
-    url: `/api/groups?id=${context.params.id}`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params.id}`,
     withCredentials:true
   })
     .then((response) => {
