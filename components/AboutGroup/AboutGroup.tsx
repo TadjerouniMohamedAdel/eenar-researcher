@@ -6,7 +6,12 @@ import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
 import { GroupCardProps } from '../../utils/types/types';
 
+
+/**
+    Section card to show group's general info .
+**/
 const AboutGroup:React.FC<GroupCardProps>=({group})=> {
+
     return (
         <div className={classes.aboutGroup}>
             <h2>

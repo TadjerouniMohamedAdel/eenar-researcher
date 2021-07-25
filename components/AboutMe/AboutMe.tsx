@@ -67,7 +67,16 @@ const MyDocument = ({ user }:NotDefineYet) => (
     </Page>
   </Document>
 );
+/**
+    Section card to show current user's infomation: 
 
+    - Description : few word about the researcher
+    - Inscription date: account creation date
+    - Address
+    - Center: the company of the researcher
+    - Job Name
+    - website: link of the researcher's website
+**/
 const  AboutMe:React.FC<AboutMeProps>=({user})=> {
   const [editVisible, setEditVisible] = useState(false)
   const dispatch = useDispatch()
