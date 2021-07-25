@@ -13,31 +13,9 @@ import axios from 'axios'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
-export async function getStaticPaths() {
-    let paths = []
-    await  axios({
-                method: "get",
-                url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book`,
-                withCredentials:true
-        })
-        .then((response) => {
-           paths = response.data.map((item)=>{
-                return {
-                    params:{id:item.id.toString()}
-                }
-            })
-        })
-        .catch((error) => console.log(error));
-    
-    
-      return {
-        paths,
-        fallback: 'blocking' // See the "fallback" section below
-      };
-  }
+
   
-  
-  export async function getStaticProps(context) {
+  export async function getServerSideProps(context) {
     let book =null
     console.log(context)
     await axios({
@@ -54,7 +32,6 @@ export async function getStaticPaths() {
         book,
         ...await serverSideTranslations(context.locale, ["sidebar"]),
       },
-      revalidate: 1, 
     }
   }
 
