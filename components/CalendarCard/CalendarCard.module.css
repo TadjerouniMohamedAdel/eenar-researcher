@@ -1,0 +1,55 @@
+.calendarCard{
+    height: auto;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+}
+.calendar{
+    border: 0px;
+    width: auto; 
+    font-family: var(--primary-font);
+
+}
+.calendar button[class*="react-calendar__month-view__days__day"]{
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    margin-top: 10px;
+    text-align: center;
+    color: #3e3f5e;
+}
+.calendar div[class*="react-calendar__month-view__weekdays__weekday"] > abbr{
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    text-decoration: unset;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+    text-align: center;
+    color: #9192a6;
+}
+.calendar button[class*="react-calendar__tile react-calendar__tile--now"]{
+    background: inherit;
+}
+.calendar button[class*="react-calendar__tile react-calendar__tile--now"]>abbr{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #de8021;
+    width: 25.6px;
+    height: 25.6px;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}

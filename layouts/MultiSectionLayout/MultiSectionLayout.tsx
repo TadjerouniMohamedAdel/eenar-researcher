@@ -8,6 +8,7 @@ import { MultiSectionLayoutProps } from '../../utils/types/types'
 import classes from './MultiSectionLayout.module.css'
 import useGetList from '../../utils/hooks/useGetList';
 import { Group } from '../../utils/types/types';
+import CalendarCard from '../../components/CalendarCard/CalendarCard'
 
 
 const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = true, children,specificSideSections=null })=> {
@@ -31,6 +32,7 @@ const MultiSectionLayout:React.FC<MultiSectionLayoutProps> = ({ hasSection = tru
               ))
             }
           <LearnNow />
+          <CalendarCard />
           <LastArticles articles={lastArticles}/>
           <MyGroups isLoading={isLoading} groups={data?.groups} />
           <MyNetwork users={users} />
