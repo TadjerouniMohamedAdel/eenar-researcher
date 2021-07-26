@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { TextField, Button, FormControl, Select, MenuItem, InputLabel, Checkbox } from '@material-ui/core'
 import classes from './CrudModal.module.css'
 import { useFormik } from 'formik';
@@ -9,14 +9,14 @@ import { Hidden } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
+import { MultiStepsAddElementProps, NotDefineYet } from '../../utils/types/types';
 
-
-export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
+const  MultiStepsAddElement:React.FC<MultiStepsAddElementProps> = ({ steps, handleSubmit, title })=> {
     const [isLoading, setIsLoading] = useState(false)
     const [step, setStep] = useState(0)
     const [dataToSend, setDataToSend] = useState({})
 
-    const submit = (data) => {
+    const submit = (data:any) => {
         if (step !== steps.length - 1) {
             setDataToSend({ ...dataToSend, ...data })
             setStep(step + 1)
@@ -26,9 +26,9 @@ export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
             handleSubmit({ ...dataToSend, ...data })
         }
     }
-    let formiks = []
+    let formiks:NotDefineYet = []
     steps.map((formStep, index) => {
-        let values = {}
+        let values:any = {}
         formStep.fields.map((el, index) => { values[el.name] = el.defaultValue })
         formiks.push(
             useFormik({
@@ -81,7 +81,6 @@ export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
                                             formiks[step].values[field.name] = values
                                         }}
                                         freeSolo
-                                        name={field.name}
                                         defaultValue={values}
                                         id={`crud-add-element-${index}-${step}`}
                                         options={[]}
@@ -115,11 +114,10 @@ export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
                                             onChange={formiks[step].handleChange}
                                             label={field.name}
                                             error={formiks[step].errors[field.name]}
-                                            helperText={formiks[step].errors[field.name]}
 
                                         >
                                             {
-                                                field.choices.map((choice, index) => (
+                                                field.choices?.map((choice, index) => (
                                                     <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
                                                 ))
                                             }
@@ -138,7 +136,7 @@ export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
                                             type={field.type}
                                             hidden={true}
                                             {...field.props}
-                                            onChange={(event) => { formiks[step].setFieldValue("file", event.currentTarget.files[0]); }}
+                                            onChange={(event) => {event.currentTarget.files &&  formiks[step].setFieldValue("file", event.currentTarget.files[0]); }}
                                             id={`crud-add-element-${index}-${field.name}`}
                                             label={field.label}
                                             error={formiks[step].errors[field.name]}
@@ -154,7 +152,7 @@ export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
                                             InputProps={{
                                                 readOnly: true,
                                             }}
-                                            onClick={() => { document.getElementById(`crud-add-element-${index}-${field.name}`).click() }}
+                                            onClick={() => { document.getElementById(`crud-add-element-${index}-${field.name}`)?.click() }}
                                             value={formiks[step].values[field.name]?.name}
                                             label={field.label}
                                             error={formiks[step].errors[field.name]}
@@ -220,9 +218,4 @@ export default function MultiStepsAddElement({ steps, handleSubmit, title }) {
 
     )
 }
-
-MultiStepsAddElement.propTypes={
-    title:PropTypes.string.isRequired,
-    handleSubmit:PropTypes.func.isRequired,
-    steps:PropTypes.array.isRequired
-}
+export default MultiStepsAddElement

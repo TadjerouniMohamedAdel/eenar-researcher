@@ -8,12 +8,13 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
+import { MultiStepsEditElementProps, NotDefineYet } from '../../utils/types/types';
 
-export default function MultiStepsEditElement({ item, steps, handleSubmit, title }) {
+const  MultiStepsEditElement:React.FC<MultiStepsEditElementProps> = ({ item, steps, handleSubmit, title })=> {
     const [isLoading, setIsLoading] = useState(false)
     const [step, setStep] = useState(0)
     const [dataToSend, setDataToSend] = useState({})
-    const submit = (data) => {
+    const submit = (data:any) => {
         if (step !== steps.length - 1) {
             setDataToSend({ ...dataToSend, ...data })
             setStep(step + 1)
@@ -23,9 +24,9 @@ export default function MultiStepsEditElement({ item, steps, handleSubmit, title
             handleSubmit({ ...dataToSend, ...data })
         }
     }
-    let formiks = []
+    let formiks:NotDefineYet = []
     steps.map((formStep, index) => {
-        let values = { id: item.id }
+        let values:any = { id: item.id }
         formStep.fields.map((el, index) => { values[el.name] = item[el.name] })
         formiks.push(
             useFormik({
@@ -77,7 +78,6 @@ export default function MultiStepsEditElement({ item, steps, handleSubmit, title
                                             formiks[step].values[field.name] = values
                                         }}
                                         freeSolo
-                                        name={field.name}
                                         defaultValue={values ? values : []}
                                         id={`crud-edit-element-${index}-${step}`}
                                         options={[]}
@@ -106,11 +106,10 @@ export default function MultiStepsEditElement({ item, steps, handleSubmit, title
                                             onChange={formiks[step].handleChange}
                                             label={field.name}
                                             error={formiks[step].errors[field.name]}
-                                            helperText={formiks[step].errors[field.name]}
 
                                         >
                                             {
-                                                field.choices.map((choice, index) => (
+                                                field.choices?.map((choice, index) => (
                                                     <MenuItem key={`${field.name}-choice-${index}`} value={choice.value}>{choice.label}</MenuItem>
                                                 ))
                                             }
@@ -128,7 +127,7 @@ export default function MultiStepsEditElement({ item, steps, handleSubmit, title
                                             name={field.name}
                                             type={field.type}
                                             {...field.props}
-                                            onChange={(event) => { formiks[step].setFieldValue("file", event.currentTarget.files[0]); }}
+                                            onChange={(event) => {event.currentTarget.files && formiks[step].setFieldValue("file", event.currentTarget.files[0]); }}
                                             id={`crud-edit-element-${index}-${field.name}`}
                                             label={field.label}
                                             error={formiks[step].errors[field.name]}
@@ -141,7 +140,7 @@ export default function MultiStepsEditElement({ item, steps, handleSubmit, title
                                             type="text"
                                             {...field.props}
                                             placeholder={"الملف لا يتعدى 25 ميغابايت / الصيغ المقبولة: pdf, docs"}
-                                            onClick={() => { document.getElementById(`crud-edit-element-${index}-${field.name}`).click() }}
+                                            onClick={() => { document.getElementById(`crud-edit-element-${index}-${field.name}`)?.click() }}
                                             value={formiks[step].values[field.name]?.name ?? formiks[step].values[field.name]}
                                             label={field.label}
                                             error={formiks[step].errors[field.name]}
@@ -210,8 +209,4 @@ export default function MultiStepsEditElement({ item, steps, handleSubmit, title
     )
 }
 
-MultiStepsEditElement.propTypes={
-    title:PropTypes.string.isRequired,
-    handleSubmit:PropTypes.func.isRequired,
-    steps:PropTypes.array.isRequired
-}
+export default MultiStepsEditElement

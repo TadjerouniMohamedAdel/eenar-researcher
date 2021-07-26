@@ -241,6 +241,16 @@ export interface DeleteElementProps extends CrudProps{
     item:any
 }
 
+export interface MultiStepsAddElementProps {
+    steps:[{fields:Field[],validationSchema:NotDefineYet}],
+    handleSubmit:(data:NotDefineYet)=>void,
+    title:string    
+}
+
+export interface MultiStepsEditElementProps  extends MultiStepsAddElementProps {
+    item:any
+}
+
 //hooks type
 export type UseUserProps = { 
     redirectTo: string | null, 
