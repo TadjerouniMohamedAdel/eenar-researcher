@@ -223,12 +223,12 @@ export type LayoutProps = {
 }
 
 export interface CrudProps {
-    handleSubmit:(data:NotDefineYet)=>void
-    validationSchema:NotDefineYet,
     title:string
+    handleSubmit:(data:NotDefineYet)=>void
 }
 
 export interface AddElementProps extends CrudProps {
+    validationSchema:NotDefineYet,
     fields:Field[],
    
 }
@@ -242,7 +242,7 @@ export interface DeleteElementProps extends CrudProps{
 }
 
 export interface MultiStepsAddElementProps {
-    steps:[{fields:Field[],validationSchema:NotDefineYet}],
+    steps:{fields:Field[],validationSchema:NotDefineYet}[],
     handleSubmit:(data:NotDefineYet)=>void,
     title:string    
 }
