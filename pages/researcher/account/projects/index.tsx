@@ -129,7 +129,7 @@ const  ResearcherAccountProjectsPage:React.FC = ()=> {
             </Modal>
             <Modal visible={editVisible} setVisible={setEditVisible}>
                 <MultiStepsEditElement
-                    item={selectedItem}
+                    item={{...selectedItem,startDate:selectedItem?.startDate!=null?selectedItem?.startDate:undefined,endDate:selectedItem?.endDate!=null?selectedItem?.endDate:undefined}}
                     handleSubmit={handleEditItem}
                     title="مشروع"
                     steps={[{ fields: projectStep1, validationSchema: projectSchemaStep1 }, { fields: projectStep2, validationSchema: projectSchemaStep2 }, { fields: projectStep3, validationSchema: projectSchemaStep3 }, { fields: projectStep4, validationSchema: projectSchemaStep4 }]}
