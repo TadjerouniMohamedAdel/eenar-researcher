@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import ResearcherAccountLayout from "../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout";
 import { datagroups, dataarticles } from "../../../../utils/fixtures/DevData";
@@ -56,6 +56,7 @@ import Error500 from "../../../../components/Error500/Error500";
 import { GetStaticProps } from "next";
 import { RootState } from "../../../../redux/store2";
 import { NotDefineYet, ResearchPost } from "../../../../utils/types/types";
+import ResearcherAccountResumePage from "../resume";
 
 
 export const getStaticProps:GetStaticProps = async ({ locale }) => ({
@@ -66,7 +67,7 @@ export const getStaticProps:GetStaticProps = async ({ locale }) => ({
 
 
 
-export default function index() {
+const ResearcherAccountPostPage:React.FC = () => {
   const user = useSelector((state:RootState) => state.user)
   const [articles, setArticles] = useState(dataarticles);
   const [groups, setGroups] = useState(datagroups);
@@ -286,7 +287,7 @@ export default function index() {
                   <>
                     {
 
-                      new Array(limit).map((el, index) => (
+                      new Array(limit).fill("").map((el, index) => (
                         <TableRow key={index} style={{ height: 80 }}>
                           <TableCell className={classes.cellBody} align="center">
                             <Skeleton animation="wave" variant="rect" />
@@ -406,3 +407,4 @@ export default function index() {
     </ResearcherAccountLayout>
   );
 }
+export default ResearcherAccountPostPage

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React,{ useState, useEffect } from 'react'
 import ResearcherAccountLayout from '../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout'
 import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 import MyHead from '../../../../components/MyHead/MyHead'
@@ -35,36 +35,43 @@ import ErrorUnreachable from '../../../../components/ErrorUnreachable/ErrorUnrea
 import Error500 from '../../../../components/Error500/Error500'
 import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
+import { GetStaticProps } from 'next'
+import { RootState } from '../../../../redux/store2'
+import { NotDefineYet, ResearchProject } from '../../../../utils/types/types'
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
     props: {
-        ...await serverSideTranslations(locale, ["sidebar"]),
+        ...await serverSideTranslations(locale||"ar", ["sidebar"]),
     },
 })
-export default function index() {
-    const user = useSelector((state) => state.user)
+const  ResearcherAccountProjectsPage:React.FC = ()=> {
+    const user = useSelector((state:RootState) => state.user)
     const [addVisible, setAddVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
     const [deleteVisible, setDeleteVisible] = useState(false)
     const [articles, setArticles] = useState(dataarticles)
     const [groups, setGroups] = useState(datagroups)
-    const [selectedItem, setSelectedItem] = useState(null)
+    const [selectedItem, setSelectedItem] = useState<ResearchProject|null>(null)
     const [projects, setProjects] = useState([])
     const [offset, setOffset] = useState(0)
     const [limit, setLimit] = useState(10)
     const [pages, setPages] = useState(0)
     const [page, setPage] = useState(1)
     const [research, setResearch] = useState("")
-    const { isLoading, data ,isError,error } = useGetList("researchproject", "/researcher/researchproject/research", limit, offset, research, user.researchers.id)
-    const { mutate: addProject, status: addProjectStatus } = useAddElement("researchproject", "/researcher/researchproject/add", limit, offset, research, user.researchers.id)
-    const { mutate: editProject, status: editProjectStatus } = useEditElement("researchproject", "/researcher/researchproject/edit", limit, offset, research, user.researchers.id)
+    const { isLoading, data ,error } = useGetList<{projects:ResearchProject[],maxPages:number}>("researchproject", "/researcher/researchproject/research", limit, offset, research, user.researchers.id)
+    const { mutate: addProject, status: addProjectStatus } = useAddElement<ResearchProject>("researchproject", "/researcher/researchproject/add", limit, offset, research, user.researchers.id)
+    const { mutate: editProject, status: editProjectStatus } = useEditElement<ResearchProject>("researchproject", "/researcher/researchproject/edit", limit, offset, research, user.researchers.id)
     const { mutate: deleteProject, status: deleteProjectStatus } = useDeleteElement("researchproject", `/researcher/researchproject/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
 
 
     useEffect(() => {
         setPage(offset / limit + 1)
     }, [offset]);
+    
 
+    useEffect(()=>{
+            console.log(selectedItem)
+    },[selectedItem])
 
     useEffect(() => {
         if (addProjectStatus === "success") {
@@ -88,25 +95,23 @@ export default function index() {
         setOffset(0)
     }
 
-    const handleDeleteItem = (item) => {
+    const handleDeleteItem = (item:NotDefineYet) => {
         item.researcherId = user.researchers.id
         deleteProject(item)
     }
-    const handleAddItem = (item) => {
-        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+    const handleAddItem = (item:NotDefineYet) => {
         item.researcherId = user.researchers.id
         if (item.startDate == "") item.startDate = null
         if (item.endDate == "") item.endDate = null
         addProject(item)
     }
-    const handleEditItem = (item) => {
-        const user = JSON.parse(JSON.parse(localStorage.getItem('persist:primary')).user)
+    const handleEditItem = (item:NotDefineYet) => {
         item.researcherId = user.researchers.id
         if (item.startDate == "") item.startDate = null
         if (item.endDate == "") item.endDate = null
         editProject(item)
     }
-    const getStatus = (item) => {
+    const getStatus = (item:NotDefineYet) => {
         if (item.supervisor == null || item.supervisor == "") return "بحث عن مشرف"
         if (item.startDate == null || item.startDate == "") return "قيد التحضير"
         if (item.endDate == null || item.endDate == "") return "معلق"
@@ -170,7 +175,7 @@ export default function index() {
 
                 </div>
                 {
-                    isError ?(
+                    error ?(
                         error.response && error.response.status===500?(
                             <Error500 />
                         ):(
@@ -182,7 +187,7 @@ export default function index() {
 
                     
                 ):
-                    isLoading === false && data.projects.length == 0 ? (
+                    isLoading === false && data?.projects.length == 0 ? (
                         <EmptyList />
                     ) : (
                         <div className={classes.tableContainer}>
@@ -202,7 +207,7 @@ export default function index() {
                                         <>
                                             {
 
-                                                new Array(limit).fill().map((el, index) => (
+                                                new Array(limit).fill("").map((el, index) => (
                                                     <TableRow key={index} style={{ height: 80 }}>
                                                         <TableCell className={classes.cellBody} align="center">
                                                             <Skeleton animation="wave" variant="rect" />
@@ -231,7 +236,7 @@ export default function index() {
                                         </>
                                     ) : (
                                         <>
-                                            {data.projects.map((row, index) => (
+                                            {data?.projects.map((row, index) => (
                                                 <TableRow key={index}>
                                                     <TableCell className={classes.cellBody} align="center">
                                                         {row.startDate ? format(new Date(row.startDate),"dd MMMM yyyy",{locale:arLocale }) : ""}</TableCell>
@@ -281,3 +286,4 @@ export default function index() {
         </ResearcherAccountLayout>
     )
 }
+export default ResearcherAccountProjectsPage;
