@@ -5,14 +5,17 @@ import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLay
 import ResearchView from "../../../../components/ResearchView/ResearchView";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSectionLayout";
+import { GetServerSideProps } from "next";
+import { ResearchPost } from "../../../../utils/types/types";
 
 
-export async function getServerSideProps(context) {
+export const getServerSideProps:GetServerSideProps = async (context)=> {
   let research =null
-  console.log(context)
+  axios.defaults.headers = context.req.headers
+  console.log(axios.defaults.headers)
   await axios({
         method: "get",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/researchprojectById?id=${context.params.id}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params?.id}`,
         withCredentials:true
       })
         .then((response) => {
@@ -22,26 +25,32 @@ export async function getServerSideProps(context) {
   return {
     props: {
       research,
-      ...await serverSideTranslations(context.locale, ["sidebar"]),
+      ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
     },
   }
 }
 
-export default function project({research}) {
+const ResearcherAccountPostItemPage:React.FC<{research:ResearchPost}> = ({research})=> {
+  console.log("research",research)
   return (
     <ResearcherLayout>
-      <MyHead title={`${research.arabicTitle}  - مشاريعي`} />
-        <MultiSectionLayout
-          >
-            {research ?   <ResearchView  research={research}/> :
+      <MyHead title={`${research.arabicTitle}   - منشوراتي`} />
+
+          <MultiSectionLayout
+            
+            >
+              {research ?   <ResearchView  research={research}/> :
                   (
                     <div className={classes.notFound}>
                       <img src="/images/404.png" alt="" />
-                      <h1>هذا المشروع غير موجود</h1>
+                      <h1>هذا المنشور غير موجود</h1>
                     </div>
-              )}              
+              )}
           </MultiSectionLayout>
+              
         
     </ResearcherLayout>
   );
 }
+
+export default ResearcherAccountPostItemPage;

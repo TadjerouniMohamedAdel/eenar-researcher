@@ -15,6 +15,8 @@ import { useMutation, useQueryClient } from 'react-query'
 import DeleteElement from '../../../components/CrudModal/DeleteElement';
 import { useRouter } from 'next/router'
 import MultiSectionLayout from '../../../layouts/MultiSectionLayout/MultiSectionLayout';
+import { GetServerSideProps } from 'next';
+import { Group } from '../../../utils/types/types';
 const posts = [
   {
     images: [],
@@ -35,12 +37,12 @@ const posts = [
 ]
 
 
-export async function getServerSideProps(context) {
+export const getServerSideProps:GetServerSideProps = async (context)=> {
   let group = null
   console.log(context)
   await axios({
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params.id}`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params?.id}`,
     withCredentials:true
   })
     .then((response) => {
@@ -50,18 +52,18 @@ export async function getServerSideProps(context) {
   return {
     props: {
       group,
-      ...await serverSideTranslations(context.locale, ["sidebar"]),
+      ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
     },
   }
 }
-export default function GroupItem({ group: groupProp }) {
+const  ResearcherAccountGroupItemPage:React.FC<{group:Group}> = ({ group: groupProp })=> {
   const router = useRouter()
   const queryClient = useQueryClient()
   const [group, setGroup] = useState(groupProp)
   const [editVisible, setEditVisible] = useState(false)
   const [deleteVisible, setDeleteVisible] = useState(false)
   const { data, mutate: editGroup, status: editGroupStatus } = useMutation(
-    (values) => axios.put(`/api/groups/edit`, values).then((res) => res.data),
+    (values:Group) => axios.put(`/api/groups/edit`, values).then((res) => res.data),
     {
       onSuccess: () => {
         queryClient.removeQueries(["groups"])
@@ -70,7 +72,7 @@ export default function GroupItem({ group: groupProp }) {
 
   )
   const { mutate: deleteGroup, status: deleteGroupStatus } = useMutation(
-    (values) => axios.delete(`/api/groups/delete?id=${group.id}`, values).then((res) => res.data),
+    () => axios.delete(`/api/groups/delete?id=${group.id}`).then((res) => res.data),
     {
       onSuccess: () => {
         queryClient.removeQueries(["groups"])
@@ -79,7 +81,7 @@ export default function GroupItem({ group: groupProp }) {
 
   )
 
-  const handleEditItem = (data) => {
+  const handleEditItem = (data:Group) => {
     console.log("edit group", data)
     editGroup(data)
   }
@@ -117,14 +119,12 @@ export default function GroupItem({ group: groupProp }) {
           <DeleteElement
             item={group}
             title="مجموعة"
-            validationSchema={groupSchema}
-            fields={groupFields}
             handleSubmit={handleDeleteItem}
           />
         </Modal>
         <MultiSectionLayout
-          specificSections={[<AboutGroup group={group}/>]}
         >
+          <AboutGroup group={group}/>
           <PostWriter />
           <PostViewer post={posts[0]} />
           <PostViewer post={posts[1]} />
@@ -133,3 +133,4 @@ export default function GroupItem({ group: groupProp }) {
     </ResearcherLayout>
   )
 }
+export default ResearcherAccountGroupItemPage
