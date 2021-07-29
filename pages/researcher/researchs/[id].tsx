@@ -12,9 +12,8 @@ import { ResearchPost } from "../../../utils/types/types";
 
 
 export const getServerSideProps:GetServerSideProps = async (context)=> {
-
   let research =null
-  console.log(context)
+  axios.defaults.headers = context.req.headers
   await axios({
         method: "get",
         url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params?.id}`,

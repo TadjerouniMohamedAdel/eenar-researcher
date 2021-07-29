@@ -19,6 +19,7 @@ import { Book } from '../../../utils/types/types';
   
 export const getServerSideProps:GetServerSideProps = async (context)=> {
     let book =null
+    axios.defaults.headers = context.req.headers
     console.log(context)
     await axios({
           method: "get",

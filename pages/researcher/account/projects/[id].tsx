@@ -11,6 +11,7 @@ import { ResearchProject } from "../../../../utils/types/types";
 
 export const getServerSideProps:GetServerSideProps = async (context)=> {
   let research =null
+  axios.defaults.headers = context.req.headers
   console.log(context)
   await axios({
         method: "get",
