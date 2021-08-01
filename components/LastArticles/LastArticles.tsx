@@ -4,7 +4,11 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import { LastArticlesProps } from '../../utils/types/types';
 import classes from './LastArticles.module.css'
 
-const LastArticles:React.FC<LastArticlesProps>=({articles})=> {
+/**
+    Section card to dispaly the  5 last articles
+ **/
+
+const LastArticles: React.FC<LastArticlesProps> = ({ articles }) => {
     return (
         <div className={classes.articles}>
             <h2>

@@ -6,6 +6,15 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import { MyGroupsProps } from '../../utils/types/types';
 import { Skeleton } from '@material-ui/lab';
 
+/**
+    Section Card to dispaly list of the lasts current'user groups filtered with  3 filter
+    
+    - Recent
+    - Active
+    - Popular
+    
+    also the ability to add member to those group
+**/
 const MyGroups: React.FC<MyGroupsProps> = ({ isLoading, groups }) => {
     const [value, setValue] = useState(0)
 
@@ -13,6 +22,7 @@ const MyGroups: React.FC<MyGroupsProps> = ({ isLoading, groups }) => {
     const handleChange = (e: React.ChangeEvent<{}>, value: number) => {
         setValue(value)
     }
+    
     return (
         <div className={classes.myGroups}>
             <h2>
@@ -35,20 +45,20 @@ const MyGroups: React.FC<MyGroupsProps> = ({ isLoading, groups }) => {
             </Tabs>
             <div className={classes.groupList}>
                 {
-                    isLoading==true ? new Array(4).fill("").map((el, index) => (
+                    isLoading == true ? new Array(4).fill("").map((el, index) => (
                         <div key={`group-skeleton-${index}`} className={classes.groupItem}>
                             <Skeleton variant="circle" className={classes.collectionRectangle} />
                             <div className={classes.groupDescription}>
-                                <Skeleton variant="text" style={{margin:5}}/>
-                                <Skeleton variant="text" style={{margin:5}}/>
+                                <Skeleton variant="text" style={{ margin: 5 }} />
+                                <Skeleton variant="text" style={{ margin: 5 }} />
                             </div>
-                            <Skeleton variant="rect" className={classes.groupButton} style={{backgroundColor:"rgba(0, 0, 0, 0.11)"}} />
+                            <Skeleton variant="rect" className={classes.groupButton} style={{ backgroundColor: "rgba(0, 0, 0, 0.11)" }} />
                         </div>
                     )) :
                         groups?.map((group, index) => (
                             <div key={`group-${group.id}`} className={classes.groupItem}>
                                 <div className={classes.collectionRectangle}>
-                                    <img src={group.image||"/images/group-placeholder.jpg"} alt={`group-${group.title}`} />
+                                    <img src={group.image || "/images/group-placeholder.jpg"} alt={`group-${group.title}`} />
                                 </div>
                                 <div className={classes.groupDescription}>
                                     <h4>{group.title}</h4>
