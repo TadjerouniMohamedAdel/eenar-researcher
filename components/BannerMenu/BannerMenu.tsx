@@ -3,8 +3,10 @@ import classes from './BannerMenu.module.css'
 import { BannerMenuProps } from '../../utils/types/types';
 
 
-
-const  BannerMenu:React.FC<BannerMenuProps>=({ title, description, imgSrc })=> {
+/**
+    Banner Card to show the current page and small description of the content page 
+**/
+const BannerMenu: React.FC<BannerMenuProps> = ({ title, description, imgSrc }) => {
     return (
         <div className={classes.bannerMenu}>
             <div className={classes.bannerImgContainer}>

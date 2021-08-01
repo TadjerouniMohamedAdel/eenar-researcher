@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from './GroupBanner.module.css'
 import PublicIcon from '@material-ui/icons/Public';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -12,20 +12,38 @@ import Compressor from 'compressorjs'
 import { Skeleton } from '@material-ui/lab';
 import { GroupBannerProps, NotDefineYet } from '../../utils/types/types';
 
-const Rectangles:React.FC<{img:string|null|undefined}> = ({ img }) => (
-    <div className={classes.rectangleWhite}>
-        <div className={classes.rectangleBlue}>
-            <img src={img ? img : "/images/group-placeholder.jpg"} alt="" />
-        </div>
-    </div>
-)
+/**
+    Banner to show group's infomation: 
 
-const GroupBanner:React.FC<GroupBannerProps>=({ group, openEditGroup, editGroup, editGroupStatus, openDeleteGroup })=> {
+    - GroupTitle: The title of the group
+    - GroupSlogan: small description about the group
+    - GrouplImage : Image of the current group
+    - Privacy: the privacy of the group (public or private)
+    - BannerImage date: Image of the current group's banner
+    - Overviews: Stats about group's member activity (views,posts,friends) and his location 
+    
+    Also it gives access to  different actions:
+    
+    - adding a member
+    - edit the group info
+    - delete the group 
+**/
+
+
+const GroupBanner: React.FC<GroupBannerProps> = ({ group, openEditGroup, editGroup, editGroupStatus, openDeleteGroup }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isLoadingImage, setIsLoadingImage] = useState(false)
     const open = Boolean(anchorEl);
 
-    const handleClick = (event:NotDefineYet) => {
+    const Rectangles: React.FC<{ img: string | null | undefined }> = ({ img }) => (
+        <div className={classes.rectangleWhite}>
+            <div className={classes.rectangleBlue}>
+                <img src={img ? img : "/images/group-placeholder.jpg"} alt="" />
+            </div>
+        </div>
+    )
+
+    const handleClick = (event: NotDefineYet) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -33,12 +51,13 @@ const GroupBanner:React.FC<GroupBannerProps>=({ group, openEditGroup, editGroup,
         setAnchorEl(null);
     };
 
+
     useEffect(() => {
         editGroupStatus === "success" && setIsLoadingImage(false)
     }, [editGroupStatus])
 
     /** edit image group     */
-    const editGroupImage = (e:NotDefineYet) => {
+    const editGroupImage = (e: NotDefineYet) => {
         setIsLoadingImage(true)
         let file = e.currentTarget.files[0]
         new Compressor(file, {
@@ -101,7 +120,7 @@ const GroupBanner:React.FC<GroupBannerProps>=({ group, openEditGroup, editGroup,
                             <Rectangles img={group.image} />
                         )
                 }
-                <IconButton className={classes.editGroupImage} onClick={() => {  document.getElementById(`edit-image-group`)!.click() }}>
+                <IconButton className={classes.editGroupImage} onClick={() => { document.getElementById(`edit-image-group`)!.click() }}>
                     <EditIcon style={{ fontSize: 21 }} />
                 </IconButton>
                 <input

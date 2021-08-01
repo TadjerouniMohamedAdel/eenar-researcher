@@ -1,33 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Calendar from 'react-calendar';
 import "react-calendar/dist/Calendar.css";
+import { eventsdata } from '../../utils/fixtures/DevData';
 import classes from './CalendarCard.module.css'
+
+/** 
+    Section card to show a month calendar witch contains all researcher's events and the actions to edit delete or create a new event
+ **/
+
 const CalendarCard: React.FC = () => {
     const [values, setValues] = useState<Date[]>([])
     const clickDay = (value: Date) => setValues([...values, value])
-
-
-
-
-    const events = [
-        {
-            day: "الاثنين 13",
-            subEvents: [
-                {
-                    time: "8:30",
-                    timeType: "صباحا",
-                    title: "الإفطار مع نيكو",
-                    description: "مرحبا جميل! أنا أقوم بإنشاء هذا الحدث لدعوتك لتناول الإفطار قبل العمل. قابلني في الكافتيريا."
-                },
-                {
-                    time: "10:00",
-                    timeType: "مساءا",
-                    title: "مشاهدة الحفلة",
-                    description: "أكبر حفلة لشاشات اليوتيوب! تعال وانضم إلينا في منطقة العزيز."
-                },
-            ]
-        },
-    ]
 
     return (
         <div className={classes.calendarCard}>
@@ -41,7 +24,7 @@ const CalendarCard: React.FC = () => {
             />
             <div className={classes.events}>
                 {
-                    events.map((event, index) => (
+                    eventsdata.map((event, index) => (
                         <div className={classes.event} key={`event-${index}`}>
                             <h4>{event.day}</h4>
                             <div className={classes.subEvents}>

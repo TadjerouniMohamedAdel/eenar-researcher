@@ -7,6 +7,23 @@ import { IconButton } from '@material-ui/core';
 import Link from 'next/link'
 import { GroupCardProps } from '../../utils/types/types';
 
+
+/**
+    Section card to represent a group by displaying the folowing informations:
+
+    - GroupTitle: The title of the group
+    - GroupSlogan: small description about the group 
+    - GrouplImage : Image of the current group
+    - Privacy: the privacy of the group (public or private)
+    - Overviews: Stats about group's member activity (views,posts,friends) and his location 
+    - Friends number: The number of researchers friends members of the group
+    
+    If you click on the card it'll redirect you to the group page
+
+    If you click on the green button of the component it will send your request to join the group
+ 
+**/
+
 const GroupCardList: React.FC<GroupCardProps> = ({ group }) => {
     const MemberCircle: React.FC<{ img: string, last?: boolean }> = ({ img, last }) => (
         <div className={classes.memberCircleWhite}>
@@ -22,7 +39,7 @@ const GroupCardList: React.FC<GroupCardProps> = ({ group }) => {
 
             <div className={classes.card}>
                 <div className={classes.groupInfo}>
-                    <div className={classes.groupImage}><img src={group.image|| '/images/group-placeholder.jpg'} /></div>
+                    <div className={classes.groupImage}><img src={group.image || '/images/group-placeholder.jpg'} /></div>
                     <div className={classes.info}>
                         <h2>{group.title}</h2>
                         <h3>{group.slogan}</h3>
