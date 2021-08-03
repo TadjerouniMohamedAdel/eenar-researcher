@@ -153,11 +153,7 @@ export type AboutMeProps = {
     user: UserResearcher,
 }
 
-export type MultiSectionLayoutProps = {
-    hasSection?: boolean,
-    children: React.ReactNode,
-    specificSideSections?: React.ReactNode[]
-}
+
 
 export type GroupBannerProps = {
     group: Group,
@@ -240,10 +236,14 @@ export type MyGroupsProps = {
     isLoading: boolean | null
 }
 
-export type LayoutProps = {
+export interface LayoutProps  {
     children: React.ReactNode[] | React.ReactNode
 }
 
+export interface MultiSectionLayoutProps extends LayoutProps {
+    hasSection?: boolean,
+    specificSideSections?: React.ReactNode[]
+}
 export interface CrudProps {
     title:string
     handleSubmit:(data:NotDefineYet)=>void
