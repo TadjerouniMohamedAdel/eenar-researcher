@@ -10,6 +10,9 @@ import useGetList from '../../utils/hooks/useGetList';
 import { Group } from '../../utils/types/types';
 import CalendarCard from '../../components/CalendarCard/CalendarCard'
 
+/**
+  The layout of some pages witch contain some of ads and utility section
+**/
 
 const MultiSectionLayout: React.FC<MultiSectionLayoutProps> = ({ hasSection = true, children, specificSideSections = null }) => {
   const lastArticles = dataarticles
