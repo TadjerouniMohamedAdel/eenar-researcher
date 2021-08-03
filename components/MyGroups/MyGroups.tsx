@@ -7,7 +7,7 @@ import { MyGroupsProps } from '../../utils/types/types';
 import { Skeleton } from '@material-ui/lab';
 
 /**
-    Section Card to dispaly list of the lasts current'user groups filtered with  3 filter
+    Section Card to display list of the lasts current'user groups filtered with  3 filter
     
     - Recent
     - Active
@@ -22,7 +22,7 @@ const MyGroups: React.FC<MyGroupsProps> = ({ isLoading, groups }) => {
     const handleChange = (e: React.ChangeEvent<{}>, value: number) => {
         setValue(value)
     }
-    
+
     return (
         <div className={classes.myGroups}>
             <h2>

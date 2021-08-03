@@ -8,28 +8,36 @@ import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneO
 import { useRouter } from 'next/router'
 import axios from 'axios';
 
-const dropdownVariant = {
-    hidden: { y: -20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.05 } }
-}
-const Navbar:React.FC = ()=> {
+
+/**
+    The top navigation of the platform, it gives acces of bunch of links and actions
+
+    - Links: aboutas , services , mahatir award 
+    - Actions: global search , change language , notifcations , settings
+
+ **/
+
+const Navbar: React.FC = () => {
     const router = useRouter();
     const { locale } = router;
+    const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 
-    
-    const [anchorEl, setAnchorEl] = useState<Element|null>(null);
 
-    const changeLocale = (locale:string) => {
+    const changeLocale = (locale: string) => {
         document.body.dir = locale == "ar" ? "rtl" : "ltr"
         console.log("asPath", router.asPath)
         router.push(router.asPath, router.asPath, { locale })
     }
-    const logout = ()=>{
-        axios.post("/api/auth/logout",{})
-            .then(()=>{
+
+
+    const logout = () => {
+        axios.post("/api/auth/logout", {})
+            .then(() => {
                 router.push("/login")
             })
     }
+
+
     return (
         <nav className={classes.navbar}>
             <div className={classes.navbarLogo} onClick={() => { router.push("/researcher") }}>

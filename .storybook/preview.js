@@ -24,7 +24,7 @@ export const decorators = [
   (Story) => (
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
-        <div style={{position:"relative",padding:20,backgroundColor:"#f8f8fb",display:"flex",justifyContent:"center",alignItems:"center"}}>
+        <div style={{ minHeight: 100, transform: "scale(1)", position: "relative", padding: 20, backgroundColor: "#f8f8fb", display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Story />
         </div>
       </I18nextProvider>

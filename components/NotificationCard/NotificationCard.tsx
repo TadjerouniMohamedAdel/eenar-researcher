@@ -6,20 +6,31 @@ import { faTimes, faHeart, faThumbsUp as faLike } from '@fortawesome/free-solid-
 import { IconButton } from '@material-ui/core'
 import { NotificationCardProps } from '../../utils/types/types'
 
-const NotificationCard:React.FC<NotificationCardProps> = ({ notification })=> {
+/**
+    Section card to represent a notification by displaying
+
+    - The notification sender
+    - The reaction
+    - The time of the notification
+    - The link of current user's post 
+ 
+**/
+
+
+const NotificationCard: React.FC<NotificationCardProps> = ({ notification }) => {
     return (
         <div className={classes.notificationCardContainer}>
             <div className={classes.notificationContent}>
                 <div className={classes.notificationUserImage}></div>
                 <div className={classes.notificationInfo}>
                     <p>{notification.sender}
-                    &nbsp;
+                        &nbsp;
                         {notification.action === "comment" ? "علّق" : "تفاعل بـ"}
                         &nbsp;
                         {notification.action !== "comment" && <div className={classes.notificationReaction}><FontAwesomeIcon icon={notification.action === "like" ? faLike : faHeart} className={classes.notificationReactionIcon} />&nbsp;</div>}
-                        على 
+                        على
                         <span>
-                             منشورك
+                            منشورك
                         </span>
                     </p>
                     <span>{notification.from}</span>
