@@ -7,7 +7,7 @@ import { IconButton } from '@material-ui/core'
 import { NotificationCardProps } from '../../utils/types/types'
 
 /**
-    Section card to represent a notification by displaying
+    Card section to represent a notification by displaying
 
     - The notification sender
     - The reaction

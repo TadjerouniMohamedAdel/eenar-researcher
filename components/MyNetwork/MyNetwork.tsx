@@ -7,7 +7,7 @@ import classes from './MyNetwork.module.css'
 import { MyNetworkProps } from '../../utils/types/types';
 
 /**
-    Section Card to display list friendship suggest
+    Card section to display list friendship suggest
 **/
 const MyNetwork: React.FC<MyNetworkProps> = ({ users }) => {
     return (

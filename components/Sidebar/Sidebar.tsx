@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 import classes from './Sidebar.module.css'
 import HomeIcon from '@material-ui/icons/Home';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
@@ -10,23 +10,20 @@ import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import { useRouter } from 'next/router'
 import { Link } from '@material-ui/core'
 import { useTranslation } from 'next-i18next'
-import {  SidebarProps } from '../../utils/types/types';
+import { SidebarProps } from '../../utils/types/types';
 
 
 
-const Rectangles:React.FC<{gender:string,img:string}> =  ({gender,img})=> {
+/**
+    Side navigation of the platform , it's mainly contain : 
 
-    return (
-        <div className={classes.Rectangle5}>
-            <div className={classes.Rectangle4}>
-                <img src={img!==""&& img!=null?img:`/images/${gender}-placeholder.jpg`} alt="" />
-            </div>
-        </div>
-    )
-}
+    - Links to navigate between the main pages
+    - The current user's info (picture , banner , full name , job name)
+    - Stats about the current user's activity (views,posts,friends)
+**/
 
 
-const Sidebar:React.FC<SidebarProps> = ({user})=> {
+const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     const { t } = useTranslation('sidebar')
     const links = [
         {
@@ -73,6 +70,17 @@ const Sidebar:React.FC<SidebarProps> = ({user})=> {
     tab.shift()
     const [activeIndex, setActiveIndex] = useState(tab.findIndex(item => router.pathname.includes(item.to)) + 1)
 
+    const Rectangles: React.FC<{ gender: string, img: string }> = ({ gender, img }) => {
+
+        return (
+            <div className={classes.Rectangle5}>
+                <div className={classes.Rectangle4}>
+                    <img src={img !== "" && img != null ? img : `/images/${gender}-placeholder.jpg`} alt="" />
+                </div>
+            </div>
+        )
+    }
+
 
     return (
         <div className={classes.sidebar}>
@@ -80,8 +88,8 @@ const Sidebar:React.FC<SidebarProps> = ({user})=> {
                 <img src="/images/account-banner-placeholder.webp" alt="" />
             </div>
             <div className={classes.profile}>
-                        <Rectangles  img={user.image} gender={user.gender}/>
-                
+                <Rectangles img={user.image} gender={user.gender} />
+
                 <h2 className={classes.profileTitle}>{user.lastname} {user.firstname}</h2>
                 <span className={classes.profileJob}>{user.job}</span>
             </div>

@@ -4,7 +4,7 @@ import { BadgesCardProps } from '../../utils/types/types';
 import classes from './BadgesCard.module.css'
 
 /**
-  Section card to show researcher's earned badges 
+  Card section to show researcher's earned badges 
 **/
 
 const BadgesCard: React.FC<BadgesCardProps> = ({ badges }) => {

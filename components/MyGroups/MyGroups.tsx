@@ -7,7 +7,7 @@ import { MyGroupsProps } from '../../utils/types/types';
 import { Skeleton } from '@material-ui/lab';
 
 /**
-    Section Card to display list of the lasts current'user groups filtered with  3 filter
+    Card section to display list of the lasts current'user groups filtered with  3 filter
     
     - Recent
     - Active

@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Paper } from '@material-ui/core'
 import classes from '../../styles/Registration.module.css'
 import { useRouter } from 'next/router'
@@ -6,7 +6,17 @@ import lottie from 'lottie-web'
 import Link from 'next/link'
 import { RegistrationChoiceProps } from '../../utils/types/types'
 
-const  RegistrationChoice:React.FC<RegistrationChoiceProps> = ({ choice })=> {
+/**
+    Card section to represent a choice of  account type in the registration by displaying:
+
+    - Title
+    - Description
+
+    If you click on the card or on the bottom button it'll redirect to the choice registration page
+**/
+
+
+const RegistrationChoice: React.FC<RegistrationChoiceProps> = ({ choice }) => {
     const router = useRouter()
 
     const handleClickChoice = () => {

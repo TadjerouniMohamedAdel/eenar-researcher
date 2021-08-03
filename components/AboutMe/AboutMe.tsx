@@ -22,7 +22,7 @@ import MyDocument from './MyDocument';
 
 
 /**
-    Section card to show current user's infomation: 
+    Card section to show current user's infomation: 
 
     - Description : few word about the researcher
     - Inscription date: account creation date

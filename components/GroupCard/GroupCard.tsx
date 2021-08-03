@@ -8,7 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { GroupCardProps } from '../../utils/types/types';
 
 /**
-    Section card to represent a group by displaying the folowing informations:
+    Card section to represent a group by displaying the folowing informations:
 
     - GroupTitle: The title of the group
     - GroupSlogan: small description about the group 
@@ -19,7 +19,7 @@ import { GroupCardProps } from '../../utils/types/types';
     - Friends number: The number of researchers friends members of the group
  
 
-    If you click on the card it'll redirect you to the group page
+    If you click on the card it'll redirect to the group page
 
     If you click on the bottom button of the component it will send your request to join the group
  

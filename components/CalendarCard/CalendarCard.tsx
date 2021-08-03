@@ -5,7 +5,7 @@ import { eventsdata } from '../../utils/fixtures/DevData';
 import classes from './CalendarCard.module.css'
 
 /** 
-    Section card to show a month calendar witch contains all researcher's events and the actions to edit delete or create a new event
+    Card section to show a month calendar witch contains all researcher's events and the actions to edit delete or create a new event
  **/
 
 const CalendarCard: React.FC = () => {

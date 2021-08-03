@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './LinkPreview.module.css'
 
 /**
-    Section card to dispay link's preview data such:
+    Card section to dispay link's preview data such:
 
     - image
     - title

@@ -5,7 +5,7 @@ import { LastArticlesProps } from '../../utils/types/types';
 import classes from './LastArticles.module.css'
 
 /**
-    Section card to display the  5 last articles
+    Card section to display the  5 last articles
  **/
 
 const LastArticles: React.FC<LastArticlesProps> = ({ articles }) => {

@@ -9,7 +9,7 @@ import { GroupCardProps } from '../../utils/types/types';
 
 
 /**
-    Section card to represent a group by displaying the folowing informations:
+    Card section to represent a group by displaying the folowing informations:
 
     - GroupTitle: The title of the group
     - GroupSlogan: small description about the group 
@@ -18,7 +18,7 @@ import { GroupCardProps } from '../../utils/types/types';
     - Overviews: Stats about group's member activity (views,posts,friends) and his location 
     - Friends number: The number of researchers friends members of the group
     
-    If you click on the card it'll redirect you to the group page
+    If you click on the card it'll redirect to the group page
 
     If you click on the green button of the component it will send your request to join the group
  

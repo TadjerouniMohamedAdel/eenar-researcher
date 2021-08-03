@@ -9,7 +9,7 @@ import { filedata } from '../../utils/fixtures/DevData';
 
 
 /**
-    Section card to show the files shared on group
+    Card section to show the files shared on group
  **/
 
 const FileCard: React.FC = () => {

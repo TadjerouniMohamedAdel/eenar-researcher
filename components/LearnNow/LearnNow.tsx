@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core'
 import classes from './LearnNow.module.css'
 
 /**
-    Section card to dispay an ad
+    Card section to dispay an ad
  **/
 
 const LearnNow:React.FC= () => {
