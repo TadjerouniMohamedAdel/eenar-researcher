@@ -8,7 +8,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Hidden } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
-import PropTypes from 'prop-types';
 import { MultiStepsAddElementProps, NotDefineYet } from '../../utils/types/types';
 
 const  MultiStepsAddElement:React.FC<MultiStepsAddElementProps> = ({ steps, handleSubmit, title })=> {

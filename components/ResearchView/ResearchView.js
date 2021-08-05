@@ -4,7 +4,7 @@ import classes from './ResearchView.module.css'
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { format } from 'date-fns'
 import arLocale from 'date-fns/locale/ar-DZ'
-import PropTypes from 'prop-types'
+
 export default function ResearchView({ research }) {
     const Circles = () => (
         <div className={classes.circleWhite}>
@@ -112,8 +112,4 @@ export default function ResearchView({ research }) {
             </div>
         </div>
     )
-}
-
-ResearchView.propTypes = {
-    research: PropTypes.object.isRequired
 }

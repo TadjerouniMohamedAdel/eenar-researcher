@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import classes from './CrudModal.module.css'
 import { Button, CircularProgress } from '@material-ui/core'
-import PropTypes from 'prop-types';
 import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
 import { DeleteElementProps } from '../../utils/types/types';

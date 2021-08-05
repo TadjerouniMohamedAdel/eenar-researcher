@@ -7,7 +7,6 @@ import Chip from "@material-ui/core/Chip";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
-import PropTypes from 'prop-types';
 import { AddElementProps, NotDefineYet } from '../../utils/types/types';
 
 
