@@ -29,7 +29,7 @@ const backdropVariants = {
     hidden: { opacity: 0 },
 }
 
-export default function ResumeSuccessItem({ collectionName, label, last, fields, validationSchema }) {
+export default function ResumeSuccessItem({ collectionName, label, last=undefined, fields, validationSchema }) {
     const user = useSelector((state) => state.user)
     const [isExpanded, setIsExpanded] = useState(false)
     const [addVisible, setAddVisible] = useState(false)

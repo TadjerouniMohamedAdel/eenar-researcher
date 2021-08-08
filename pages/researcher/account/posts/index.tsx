@@ -1,13 +1,8 @@
 import React,{ useState, useEffect } from "react";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import ResearcherAccountLayout from "../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout";
-import { datagroups, dataarticles } from "../../../../utils/fixtures/DevData";
 import MyHead from "../../../../components/MyHead/MyHead";
 import classes from "../../../../styles/MyPosts.module.css";
-import LearnNow from "../../../../components/LearnNow/LearnNow";
-import LastArticles from "../../../../components/LastArticles/LastArticles";
-import MyGroups from "../../../../components/MyGroups/MyGroups";
-import SearchIcon from "@material-ui/icons/Search";
 import {
   Button,
   FormControl,
@@ -56,7 +51,6 @@ import Error500 from "../../../../components/Error500/Error500";
 import { GetStaticProps } from "next";
 import { RootState } from "../../../../redux/store2";
 import { NotDefineYet, ResearchPost } from "../../../../utils/types/types";
-import ResearcherAccountResumePage from "../resume";
 
 
 export const getStaticProps:GetStaticProps = async ({ locale }) => ({
@@ -65,12 +59,8 @@ export const getStaticProps:GetStaticProps = async ({ locale }) => ({
   },
 })
 
-
-
 const ResearcherAccountPostPage:React.FC = () => {
   const user = useSelector((state:RootState) => state.user)
-  const [articles, setArticles] = useState(dataarticles);
-  const [groups, setGroups] = useState(datagroups);
   const [addVisible, setAddVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);

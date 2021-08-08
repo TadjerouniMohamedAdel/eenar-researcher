@@ -56,19 +56,14 @@ a{
     color: unset !important;
 }
 
-
 .MuiTab-textColorSecondary.Mui-selected{
     color: var(--new-primary-color) !important;
 }
+
 .MuiButtonBase-root.MuiTab-root.MuiTab-textColorSecondary.Mui-selected.MuiTab-labelIcon .MuiTab-wrapper span{
     color: var(--new-primary-color) !important;
 }
-.Mui-selected{
-    color: var(--active-color) !important;
-}
-.MuiTabs-indicator{
-    background-color: var(--active-color) !important;
-}
+
 .MuiTabs-flexContainer{
     justify-content: space-between;
 }

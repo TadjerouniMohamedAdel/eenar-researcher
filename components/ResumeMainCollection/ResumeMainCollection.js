@@ -20,7 +20,7 @@ import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEdit, faTrashAlt as faTrashAlt2} from '@fortawesome/free-regular-svg-icons';
-export default function ResumeMainCollection({ collectionName, validationSchema, fields, children, label, icon }) {
+export default function ResumeMainCollection({ collectionName=undefined, validationSchema=undefined, fields=undefined, children=undefined, label, icon=undefined }) {
     const user = useSelector((state) => state.user)
     const [addVisible, setAddVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)

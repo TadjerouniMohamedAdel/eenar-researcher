@@ -59,7 +59,7 @@
     font-size: 12px;
 
 }
-.postWriter span[class*="PrivateTabIndicator-colorSecondary"]{
+.postWriter  *[class*="MuiTabs-indicator"]{
     box-shadow: 0 6px 12px 0 rgba(10, 102, 194, 0.16);
     background-color: var(--new-secondary-color) !important;
     height: 3.5px !important;
