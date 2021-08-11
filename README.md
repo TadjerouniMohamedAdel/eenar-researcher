@@ -110,8 +110,8 @@ This project has been developed mainly with:
 ## Organization
 <h4><a href="">Cleverzone.io</a></h4>
 <p>
-    <img src="public/images/readme/cleverzone.png" style="float:left" width=80>
     EffectiveDigital SolutionsWe are a team of young and talented 
     professionals who are passionate about creating a better life for you.
      We develop digital products in different sectors delivering excellent customer journeys for you. WHAT WE DO?Turning problems into ExperiencesTechnologyWe strive to ...
+    <img src="public/images/readme/cleverzone.png" style="float:left" width=80>
 </p>
