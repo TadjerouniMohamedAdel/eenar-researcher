@@ -84,7 +84,7 @@ $ yarn run-docker
 <br/><br/>
 
 ## Documentation
-to access to the documantation:
+you can access to the documentation with:
 
 ```bash
 #lunch the application's documentation on localhost:9001
@@ -110,8 +110,8 @@ This project has been developed mainly with:
 ## Organization
 <h4><a href="">Cleverzone.io</a></h4>
 <p>
-    EffectiveDigital SolutionsWe are a team of young and talented 
     <img src="public/images/readme/cleverzone.png" style="float:left" width=80>
+    EffectiveDigital SolutionsWe are a team of young and talented 
     professionals who are passionate about creating a better life for you.
      We develop digital products in different sectors delivering excellent customer journeys for you. WHAT WE DO?Turning problems into ExperiencesTechnologyWe strive to ...
 </p>
