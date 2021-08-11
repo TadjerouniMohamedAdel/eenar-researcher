@@ -5,38 +5,44 @@ import CommentsIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import { faAward } from '@fortawesome/free-solid-svg-icons'
 import BookIcon from '@material-ui/icons/ImportContactsOutlined';
 import DownLoadIcon from '@material-ui/icons/CloudDownloadSharp';
-// offset:{
-//     increase:true,
-//     value:8.2
-//   }
 import AddCircle from '@material-ui/icons/AddCircleOutlineOutlined';
 import SubCircle from '@material-ui/icons/RemoveCircleOutlineOutlined';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ScoreStatCardProps } from '../../utils/types/types';
 
 
-const ScoreStatCard:React.FC<ScoreStatCardProps> = ({ score }) =>{
+/**
+    Card section for displaying stat item by showing the following informations:
 
-const renderIcon = (title:string)=>{
-    switch (title) {
-        case "المنشورات":
-            return <FileIcon  className={classes.scoreIcon} />
-            break;
-        case "النقاشات":
-            return <CommentsIcon  className={classes.scoreIcon} />
-            break
-        case "القراءات":
-            return <BookIcon  className={classes.scoreIcon} />
-            break
-        case "التحميلات":
-            return <DownLoadIcon className={classes.scoreIcon} /> 
-            break
-        case "التوصيات":
-            return <FontAwesomeIcon icon={faAward} className={classes.scoreIcon} />
-        default:
-            break;
+    - Subject: The name of the stat subject
+    - Value: The current value of the stat
+    - Unit: The value's unit
+    - Description: small paragraph about the stat subject
+    - Discrepancy (optional): the difference between the current value and the previos
+**/
+
+const ScoreStatCard: React.FC<ScoreStatCardProps> = ({ score }) => {
+
+    const renderIcon = (title: string) => {
+        switch (title) {
+            case "المنشورات":
+                return <FileIcon className={classes.scoreIcon} />
+                break;
+            case "النقاشات":
+                return <CommentsIcon className={classes.scoreIcon} />
+                break
+            case "القراءات":
+                return <BookIcon className={classes.scoreIcon} />
+                break
+            case "التحميلات":
+                return <DownLoadIcon className={classes.scoreIcon} />
+                break
+            case "التوصيات":
+                return <FontAwesomeIcon icon={faAward} className={classes.scoreIcon} />
+            default:
+                break;
+        }
     }
-}
 
     return (
         <div className={classes.scoreCard}>

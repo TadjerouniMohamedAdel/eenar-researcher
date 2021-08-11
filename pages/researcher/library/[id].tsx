@@ -11,38 +11,19 @@ import SwiperCore, { Lazy, Navigation, Autoplay } from 'swiper'
 SwiperCore.use([Lazy, Navigation, Autoplay])
 import axios from 'axios'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { GetServerSideProps } from 'next';
+import { Book } from '../../../utils/types/types';
 
 
-export async function getStaticPaths() {
-    let paths = []
-    await  axios({
-                method: "get",
-                url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/book`,
-                withCredentials:true
-        })
-        .then((response) => {
-           paths = response.data.map((item)=>{
-                return {
-                    params:{id:item.id.toString()}
-                }
-            })
-        })
-        .catch((error) => console.log(error));
-    
-    
-      return {
-        paths,
-        fallback: 'blocking' // See the "fallback" section below
-      };
-  }
+
   
-  
-  export async function getStaticProps(context) {
+export const getServerSideProps:GetServerSideProps = async (context)=> {
     let book =null
+    axios.defaults.headers = context.req.headers
     console.log(context)
     await axios({
           method: "get",
-          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${context.params.id}`,
+          url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/library/bookbyid?id=${context.params?.id}`,
           withCredentials:true
         })
           .then((response) => {
@@ -52,30 +33,26 @@ export async function getStaticPaths() {
     return {
       props: {
         book,
-        ...await serverSideTranslations(context.locale, ["sidebar"]),
+        ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
       },
-      revalidate: 1, 
     }
   }
 
 
 
-export default function bookItemPage({book}) {
+const ResearcherLibraryBookPage:React.FC<{book:Book}> = ({book})=> {
         const params = {
-          slidesPerView: 'auto',
           autoplay: {
             delay: 2500,
             disableOnInteraction: false
           },
        }   
        const params2 = {
-        slidesPerView: 'auto',
         autoplay: {
           delay: 2700,
           disableOnInteraction: false
         },
-     }   
-
+     } 
 
         
     return (
@@ -132,16 +109,16 @@ export default function bookItemPage({book}) {
                             </IconButton>
                         </h3>
                         <div className={classes.list}>
-                            <Swiper {...params}>
+                            <Swiper {...params}  slidesPerView="auto">
 
-                                <img src={book.img} alt="" />
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
+                                <img src={""} alt="" />
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
                             </Swiper>                                
                         </div>
                     </div>
@@ -153,15 +130,15 @@ export default function bookItemPage({book}) {
                             </IconButton>
                         </h3>
                         <div className={classes.list}>
-                            <Swiper {...params2}>
-                                <img src={book.img} alt="" />
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
-                                <img src={book.img} alt=""/>
+                            <Swiper {...params2} slidesPerView="auto">
+                                <img src={""} alt="" />
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
+                                <img src={""} alt=""/>
                             </Swiper>
                         </div>
                     </div>
@@ -176,3 +153,4 @@ export default function bookItemPage({book}) {
        </ResearcherLayout>
     )
 }
+export default ResearcherLibraryBookPage;

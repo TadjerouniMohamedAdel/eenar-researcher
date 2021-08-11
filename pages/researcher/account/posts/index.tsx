@@ -1,13 +1,8 @@
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import ResearcherAccountLayout from "../../../../layouts/ResearcherAccountLayout/ResearcherAccountLayout";
-import { datagroups, dataarticles } from "../../../../utils/fixtures/DevData";
 import MyHead from "../../../../components/MyHead/MyHead";
 import classes from "../../../../styles/MyPosts.module.css";
-import LearnNow from "../../../../components/LearnNow/LearnNow";
-import LastArticles from "../../../../components/LastArticles/LastArticles";
-import MyGroups from "../../../../components/MyGroups/MyGroups";
-import SearchIcon from "@material-ui/icons/Search";
 import {
   Button,
   FormControl,
@@ -53,33 +48,32 @@ import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSect
 import EmptyList from "../../../../components/EmptyList/EmptyList";
 import ErrorUnreachable from "../../../../components/ErrorUnreachable/ErrorUnreachable";
 import Error500 from "../../../../components/Error500/Error500";
+import { GetStaticProps } from "next";
+import { RootState } from "../../../../redux/store2";
+import { NotDefineYet, ResearchPost } from "../../../../utils/types/types";
 
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps:GetStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ["sidebar"]),
+    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
   },
 })
 
-
-
-export default function index() {
-  const user = useSelector((state) => state.user)
-  const [articles, setArticles] = useState(dataarticles);
-  const [groups, setGroups] = useState(datagroups);
+const ResearcherAccountPostPage:React.FC = () => {
+  const user = useSelector((state:RootState) => state.user)
   const [addVisible, setAddVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<ResearchPost|null>(null);
   // const [isLoading, setIsLoading] = useState(true);
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const [page, setPage] = useState(1)
   const [research, setResearch] = useState("")
   const [showAddAlert, setShowAddAlert] = useState(false)
-  const { isLoading, data,isError,error } = useGetList("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
-  const { mutate: addPost, status: addPostStatus } = useAddElement("posts", "/researcher/post/add", limit, offset, research, user.researchers.id)
-  const { mutate: editPost, status: editPostStatus } = useEditElement("posts", "/researcher/post/edit", limit, offset, research, user.researchers.id)
+  const { isLoading, data,error } = useGetList<{posts:ResearchPost[],maxPages:number}>("posts", "/researcher/post/research", limit, offset, research, user.researchers.id)
+  const { mutate: addPost, status: addPostStatus } = useAddElement<ResearchPost>("posts", "/researcher/post/add", limit, offset, research, user.researchers.id)
+  const { mutate: editPost, status: editPostStatus } = useEditElement<ResearchPost>("posts", "/researcher/post/edit", limit, offset, research, user.researchers.id)
   const { mutate: deletePost, status: deletePostStatus } = useDeleteElement("posts", `/researcher/post/delete?id=${selectedItem?.id}`, limit, offset, research, user.researchers.id)
 
   useEffect(() => {
@@ -114,38 +108,36 @@ export default function index() {
 
 
 
-  const handleDeleteItem = (item) => {
+  const handleDeleteItem = (item:NotDefineYet) => {
     item.researcherId = user.researchers.id;
     deletePost(item)
   };
 
 
-  const handleAddItem = (item) => {
+  const handleAddItem = (item:NotDefineYet) => {
     item.researcherId = user.researchers.id;
     let data = new FormData();
     for (const key in item) {
-      data.append([key], item[key]);
+      data.append(key, item[key]);
     }
     addPost(data)
   };
 
 
 
-  const handleEditItem = (item) => {
-    const user = JSON.parse(
-      JSON.parse(localStorage.getItem("persist:primary")).user
-    );
+  const handleEditItem = (item:NotDefineYet) => {
+    
     item.researcherId = user.researchers.id;
     console.log("edit post", item);
     let data = new FormData();
     for (const key in item) {
-      data.append([key], item[key]);
+      data.append(key, item[key]);
     }
     editPost(data)
   };
 
 
-  const renderStatusBadge = (postStatus) => {
+  const renderStatusBadge = (postStatus:NotDefineYet) => {
     if (!postStatus) return (<Chip className={classes.pendingBadge} variant="outlined" label="قيد الإنتظار" />)
     switch (postStatus.status) {
       case "assigned":
@@ -231,7 +223,7 @@ export default function index() {
           </div>
         </div>
         {
-          isError ?(
+          error ?(
             error.response && error.response.status===500?(
                 <Error500 />
             ):(
@@ -244,13 +236,13 @@ export default function index() {
         
     )
           : 
-        isLoading === false && data.posts.length == 0 ? (
+        isLoading === false && data?.posts.length == 0 ? (
           <EmptyList />
         ) : (
           <div className={classes.tableContainer}>
             {
               showAddAlert && (
-                <Alert variant="filled" severity="info" classes={classes.addAlert} onClose={() => setShowAddAlert(false)}>
+                <Alert variant="filled" severity="info"  onClose={() => setShowAddAlert(false)}>
                   تم إضافة المنشور، سيتم دراسته لتحقق من صحته
                 </Alert>
 
@@ -285,7 +277,7 @@ export default function index() {
                   <>
                     {
 
-                      new Array(limit).fill().map((el, index) => (
+                      new Array(limit).fill("").map((el, index) => (
                         <TableRow key={index} style={{ height: 80 }}>
                           <TableCell className={classes.cellBody} align="center">
                             <Skeleton animation="wave" variant="rect" />
@@ -315,8 +307,8 @@ export default function index() {
                   </>
                 ) : (
                   <>
-                    {data.posts.map((row, index) => (
-                      <TableRow key={index} style={{ height: 20 }} key={`row-${index}`}>
+                    {data?.posts.map((row, index) => (
+                      <TableRow  style={{ height: 20 }} key={`row-${index}`}>
                         <TableCell
                           className={classes.cellBody}
                           align="center"
@@ -405,3 +397,4 @@ export default function index() {
     </ResearcherAccountLayout>
   );
 }
+export default ResearcherAccountPostPage

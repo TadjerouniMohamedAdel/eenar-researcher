@@ -1,0 +1,148 @@
+.calendarCard{
+    height: auto;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #ffffff;
+}
+.calendarCard .calendar{
+    border: 0px;
+    width: auto; 
+    font-family: var(--primary-font);
+
+}
+.calendarCard .calendar button[class*="react-calendar__month-view__days__day"]{
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    margin-top: 10px;
+    text-align: center;
+    color: #3e3f5e;
+}
+.calendarCard .calendar div[class*="react-calendar__month-view__weekdays__weekday"] > abbr{
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    text-decoration: unset;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+    text-align: center;
+    color: #9192a6;
+}
+.calendarCard .calendar button[class*="react-calendar__navigation__label"]{
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: normal;
+    color: #3e3f5e;
+}
+.calendarCard .calendar button[class*="react-calendar__tile react-calendar__tile--now"]{
+    background: inherit;
+}
+.calendarCard .calendar button[class*="react-calendar__tile react-calendar__tile--now"]>abbr{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #de8021;
+    width: 25.6px;
+    height: 25.6px;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.calendarCard .events{
+    margin-top: 32px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendarCard .events .event{
+    width: 100%;
+    font-family: var(--primary-font);
+}
+.calendarCard .events .event h4{
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #3e3f5e;
+    margin-bottom: 30px;
+}
+.subEvents{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.subEvent{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 68px;
+    position: relative;
+}
+.subEvent >div{
+    display: flex;
+    flex-direction: column;
+}
+.subEvent >div:nth-child(1){
+    font-size: 12px;
+    flex: 1;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: right;
+    position: relative;
+    color: #3e3f5e;
+}   
+.subEvent >div:nth-child(1)::after{
+    content: '';
+    position: absolute;
+    top: 0px;
+    width: 8px;
+  height: 8px;
+  border: solid 2px #118ab2;
+    left:30%;
+    border-radius: 50%;    
+}
+.subEvent >div:nth-child(2){
+    flex: 3;
+}
+.subEvent >div:nth-child(2) h5{
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.subEvent >div:nth-child(2) p{
+    font-size: 10px;
+    margin-top: 2px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}

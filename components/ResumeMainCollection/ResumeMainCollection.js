@@ -14,14 +14,13 @@ import { useSelector } from 'react-redux'
 import useAddElement from '../../utils/hooks/useAddElement';
 import useEditElement from '../../utils/hooks/useEditElement';
 import useDeleteElement from '../../utils/hooks/useDeleteElement';
-import PropTypes from 'prop-types'
 import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable';
 import Error500 from '../Error500/Error500';
 import { format} from 'date-fns'
 import arLocale  from 'date-fns/locale/ar-DZ'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEdit, faTrashAlt as faTrashAlt2} from '@fortawesome/free-regular-svg-icons';
-export default function ResumeMainCollection({ collectionName, validationSchema, fields, children, label, icon }) {
+export default function ResumeMainCollection({ collectionName=undefined, validationSchema=undefined, fields=undefined, children=undefined, label, icon=undefined }) {
     const user = useSelector((state) => state.user)
     const [addVisible, setAddVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
@@ -190,14 +189,4 @@ export default function ResumeMainCollection({ collectionName, validationSchema,
             }
         </div>
     )
-}
-
-ResumeMainCollection.propTypes = {
-    collectionName:PropTypes.string,
-    validationSchema:PropTypes.object,
-    fields:PropTypes.array,
-    children:PropTypes.node,
-    label:PropTypes.string,
-    icon:PropTypes.node
-
 }

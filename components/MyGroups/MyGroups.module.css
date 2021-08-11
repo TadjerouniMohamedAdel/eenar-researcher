@@ -102,3 +102,11 @@
     height: 100%;
     object-fit: cover;
 }
+.myGroups  *[class*="MuiTabs-indicator"]{
+    box-shadow: 0 6px 12px 0 rgba(10, 102, 194, 0.16);
+    height: 3.5px !important;
+    background-color: var(--new-secondary-color) !important;
+}
+.myGroups button[class*="Mui-selected"] span{
+    color: var(--new-secondary-color) !important;
+}

@@ -5,38 +5,18 @@ import MyHead from "../../../components/MyHead/MyHead";
 import ResearchView from "../../../components/ResearchView/ResearchView";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSectionLayout";
+import { GetServerSideProps } from "next";
+import { ResearchPost } from "../../../utils/types/types";
 
 
-export async function getStaticPaths() {
-  let paths = []
-  await  axios({
-              method: "get",
-              url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/all`,
-              withCredentials:true
-      })
-      .then((response) => {
-         paths = response.data.map((item)=>{
-              return {
-                  params:{id:item.id.toString()}
-              }
-          })
-      })
-      .catch((error) => console.log(error));
-  
-  
-    return {
-      paths,
-      fallback: 'blocking' // See the "fallback" section below
-    };
-}
 
 
-export async function getStaticProps(context) {
+export const getServerSideProps:GetServerSideProps = async (context)=> {
   let research =null
-  console.log(context)
+  axios.defaults.headers = context.req.headers
   await axios({
         method: "get",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params.id}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params?.id}`,
         withCredentials:true
       })
         .then((response) => {
@@ -46,19 +26,15 @@ export async function getStaticProps(context) {
   return {
     props: {
       research,
-      ...await serverSideTranslations(context.locale, ["sidebar"]),
+      ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
     },
-    revalidate: 1, 
   }
 }
-
-export default function research({research}) {
+const  ResearcherResearchsItemPage:React.FC<{research:ResearchPost}> = ({research})=> {
   return (
     <ResearcherLayout>
       
-        <MultiSectionLayout
-          
-        >
+        <MultiSectionLayout>
 
               {research ?   (
 
@@ -79,3 +55,4 @@ export default function research({research}) {
     </ResearcherLayout>
   );
 }
+export default ResearcherResearchsItemPage;

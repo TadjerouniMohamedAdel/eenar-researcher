@@ -17,7 +17,6 @@ import useEditElement from '../../utils/hooks/useEditElement'
 import useGetList from '../../utils/hooks/useGetList';
 import useDeleteElement from '../../utils/hooks/useDeleteElement'
 import { useSelector } from 'react-redux'
-import PropTypes from 'prop-types'
 import ErrorUnreachable from '../ErrorUnreachable/ErrorUnreachable'
 import Error500 from '../Error500/Error500'
 import { format } from 'date-fns'
@@ -30,7 +29,7 @@ const backdropVariants = {
     hidden: { opacity: 0 },
 }
 
-export default function ResumeSuccessItem({ collectionName, label, last, fields, validationSchema }) {
+export default function ResumeSuccessItem({ collectionName, label, last=undefined, fields, validationSchema }) {
     const user = useSelector((state) => state.user)
     const [isExpanded, setIsExpanded] = useState(false)
     const [addVisible, setAddVisible] = useState(false)
@@ -202,12 +201,4 @@ export default function ResumeSuccessItem({ collectionName, label, last, fields,
             </div>
         </AnimatePresence>
     )
-}
-
-ResumeSuccessItem.propTypes = {
-    collectionName: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    last: PropTypes.bool,
-    fields: PropTypes.array,
-    validationSchema: PropTypes.object
 }

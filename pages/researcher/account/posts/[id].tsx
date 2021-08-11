@@ -5,37 +5,17 @@ import ResearcherLayout from "../../../../layouts/ResearcherLayout/ResearcherLay
 import ResearchView from "../../../../components/ResearchView/ResearchView";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSectionLayout";
+import { GetServerSideProps } from "next";
+import { ResearchPost } from "../../../../utils/types/types";
 
 
-export async function getStaticPaths() {
-  let paths = []
-  await  axios({
-              method: "get",
-              url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/post/all`,
-              withCredentials:true,
-      })
-      .then((response) => {
-         paths = response.data.map((item)=>{
-              return {
-                  params:{id:item.id.toString()}
-              }
-          })
-      })
-      .catch((error) => console.log(error));
-  
-  
-    return {
-      paths,
-      fallback: 'blocking' // See the "fallback" section below
-    };
-}
-
-
-export async function getStaticProps(context) {
+export const getServerSideProps:GetServerSideProps = async (context)=> {
   let research =null
+  axios.defaults.headers = context.req.headers
+  console.log(axios.defaults.headers)
   await axios({
         method: "get",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params.id}`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params?.id}`,
         withCredentials:true
       })
         .then((response) => {
@@ -45,17 +25,17 @@ export async function getStaticProps(context) {
   return {
     props: {
       research,
-      ...await serverSideTranslations(context.locale, ["sidebar"]),
+      ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
     },
-    revalidate: 1, 
   }
 }
 
-export default function post({research}) {
+const ResearcherAccountPostItemPage:React.FC<{research:ResearchPost}> = ({research})=> {
   console.log("research",research)
   return (
     <ResearcherLayout>
       <MyHead title={`${research.arabicTitle}   - منشوراتي`} />
+
           <MultiSectionLayout
             
             >
@@ -72,3 +52,5 @@ export default function post({research}) {
     </ResearcherLayout>
   );
 }
+
+export default ResearcherAccountPostItemPage;

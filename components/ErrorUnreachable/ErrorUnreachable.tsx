@@ -2,6 +2,10 @@ import React,{ useEffect } from 'react'
 import lottie from 'lottie-web'
 import classes from './ErrorUnreachable.module.css'
 
+/**
+    Animated illustration for adress unreachable 
+ **/
+
 const ErrorUnreachable:React.FC = ()=> {
     const id =Math.random();
     useEffect(() => {

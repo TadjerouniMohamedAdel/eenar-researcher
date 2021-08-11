@@ -5,6 +5,18 @@ import classes from './PostCard.module.css'
 import Link from 'next/link'
 import { PostCardProps } from '../../utils/types/types';
 
+/**
+    Card section to represent research post by displaying
+
+    - The post image
+    - the post title
+    - Short paragraph from the post description
+    - The author of the post
+
+    If you click on the card it'll redirect to the post page detail
+
+    If you click on the download button it'll open a new tab with post's file
+**/
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (

@@ -79,6 +79,28 @@ export type ResearchPost = {
 
 }
 
+export type ResearchProject = {
+    id:string,
+    researcherId: string,
+    primaryAuthor: string,
+    secondaryAuthors: string[],
+    arabicDescription: string,
+    arabicTitle: string,
+    startDate:string|null,
+    endDate:string|null,
+    englishTitle: string,
+    englishDescription: string,
+    file: string,
+    keyword: string[],
+    supervisor:string|null,
+    center:string,
+    justifications:string,
+    goals:string,
+    previousStudies:string,
+    methodology:string,
+    materials:string,
+    steps:string
+}
 export type RegistrationChoice = {
     img: string,
     title: string,
@@ -131,11 +153,7 @@ export type AboutMeProps = {
     user: UserResearcher,
 }
 
-export type MultiSectionLayoutProps = {
-    hasSection?: boolean,
-    children: React.ReactNode,
-    specificSideSections?: React.ReactNode[]
-}
+
 
 export type GroupBannerProps = {
     group: Group,
@@ -218,17 +236,21 @@ export type MyGroupsProps = {
     isLoading: boolean | null
 }
 
-export type LayoutProps = {
+export interface LayoutProps  {
     children: React.ReactNode[] | React.ReactNode
 }
 
+export interface MultiSectionLayoutProps extends LayoutProps {
+    hasSection?: boolean,
+    specificSideSections?: React.ReactNode[]
+}
 export interface CrudProps {
-    handleSubmit:(data:NotDefineYet)=>void
-    validationSchema:NotDefineYet,
     title:string
+    handleSubmit:(data:NotDefineYet)=>void
 }
 
 export interface AddElementProps extends CrudProps {
+    validationSchema:NotDefineYet,
     fields:Field[],
    
 }
@@ -238,6 +260,16 @@ export interface EditElementProps extends AddElementProps{
 }
 
 export interface DeleteElementProps extends CrudProps{
+    item:any
+}
+
+export interface MultiStepsAddElementProps {
+    steps:{fields:Field[],validationSchema:NotDefineYet}[],
+    handleSubmit:(data:NotDefineYet)=>void,
+    title:string    
+}
+
+export interface MultiStepsEditElementProps  extends MultiStepsAddElementProps {
     item:any
 }
 

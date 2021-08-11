@@ -18,6 +18,7 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       include: [
         path.resolve(__dirname, '../components'),
+        path.resolve(__dirname, '../layouts'),
         path.resolve(__dirname, '../stories')
       ],
       use: [
@@ -46,6 +47,7 @@ module.exports = {
     newConfig.module.rules.push({
       test: /\.module\.css$/,
       include: [
+        path.resolve(__dirname, '../layouts'),
         path.resolve(__dirname, '../components'),
         path.resolve(__dirname,'../styles')
       ],

@@ -6,8 +6,10 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import classes from './MyNetwork.module.css'
 import { MyNetworkProps } from '../../utils/types/types';
 
-
-const  MyNetwork:React.FC<MyNetworkProps> = ({users})=> {
+/**
+    Card section to display list friendship suggest
+**/
+const MyNetwork: React.FC<MyNetworkProps> = ({ users }) => {
     return (
         <div className={classes.myNetwork}>
             <h2>

@@ -967,3 +967,26 @@ export const datahonors = [
     "/images/learnmore-placeholder.jpg",
 
   ]
+export const overviewsdata = [
+    { name: "المنشورات", value: "0" }, { name: "الأصدقاء", value: "0" }, { name: "الزيارات", value: "0" }
+]
+
+export const eventsdata = [
+  {
+      day: "الاثنين 13",
+      subEvents: [
+          {
+              time: "8:30",
+              timeType: "صباحا",
+              title: "الإفطار مع نيكو",
+              description: "مرحبا جميل! أنا أقوم بإنشاء هذا الحدث لدعوتك لتناول الإفطار قبل العمل. قابلني في الكافتيريا."
+          },
+          {
+              time: "10:00",
+              timeType: "مساءا",
+              title: "مشاهدة الحفلة",
+              description: "أكبر حفلة لشاشات اليوتيوب! تعال وانضم إلينا في منطقة العزيز."
+          },
+      ]
+  },
+]

@@ -1,9 +1,9 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 import { Button, IconButton } from '@material-ui/core'
 import classes from './AccountBanner.module.css'
 import Modal from '../Modal/Modal'
 import { profileFields1, profileFields2, profileFields3 } from '../../utils/form/Fields'
-import {  useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { profileSchema1, profileSchema2, profileSchema3 } from '../../utils/Validation/ValidationObjects'
 import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator'
@@ -12,27 +12,36 @@ import EditIcon from '@material-ui/icons/Edit';
 import Compressor from 'compressorjs'
 import { Skeleton } from '@material-ui/lab'
 import { NotDefineYet, AccountBannerProps } from '../../utils/types/types'
+import { overviewsdata } from '../../utils/fixtures/DevData'
 
-const overviews = [
-    { name: "المنشورات", value: "0" }, { name: "الأصدقاء", value: "0" }, { name: "الزيارات", value: "0" }
-]
+/**
+    Banner to show current user's infomation: 
 
-const Rectongles:React.FC<{img:string,gender:string}> = ({img,gender}) => (
-    <div className={classes.Rectangle9}>
-        <div className={classes.Path2980}>
-            <img src={img !== "" && img != null ? img : `/images/${gender}-placeholder.jpg`} alt="" />
-        </div>
-    </div>
-)
+    - ProfielImage : Image of the current user
+    - BannerImage date: Image of the current user's banner
+    - Overviews: Stats about user's activity (views,posts,friends) and his location 
+    - badges: List researcher's earned badges
+    - Job Name
 
-const AccountBanner:React.FC<AccountBannerProps>=({user})=> {
+    Also it gives access to  edit profile action
+**/
+
+const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
     const [editVisible, setEditVisible] = useState(false)
     const [isLoadingImage, setIsLoadingImage] = useState(false)
     const dispatch = useDispatch()
 
+    const Rectongles: React.FC<{ img: string, gender: string }> = ({ img, gender }) => (
+        <div className={classes.Rectangle9}>
+            <div className={classes.Path2980}>
+                <img src={img !== "" && img != null ? img : `/images/${gender}-placeholder.jpg`} alt="" />
+            </div>
+        </div>
+    )
+
 
     /** edit profile user info */
-    const handleEditSubmit = (data:NotDefineYet) => {
+    const handleEditSubmit = (data: NotDefineYet) => {
         data.researchers = { ...data.researchers, birthday: data.birthday }
         console.log("edit profil", data)
         axios({
@@ -50,7 +59,7 @@ const AccountBanner:React.FC<AccountBannerProps>=({user})=> {
 
 
     /** edit image user */
-    const editProfileImage = (e:NotDefineYet) => {
+    const editProfileImage = (e: NotDefineYet) => {
         setIsLoadingImage(true)
         let file = e.currentTarget.files[0]
         new Compressor(file, {
@@ -110,7 +119,7 @@ const AccountBanner:React.FC<AccountBannerProps>=({user})=> {
                         </div>
                     </div>
                     {
-                        overviews.map((overview, indx) => (
+                        overviewsdata.map((overview, indx) => (
                             <div key={indx}>
                                 <div className={classes.dividerOveriew}></div>
                                 <div className={classes.overviewItem} key={indx}>
@@ -126,7 +135,7 @@ const AccountBanner:React.FC<AccountBannerProps>=({user})=> {
                         isLoadingImage ? (
                             <Skeleton variant="rect" className={classes.Rectangle9} />
 
-                        ): <Rectongles img={user.image} gender={user.gender} />
+                        ) : <Rectongles img={user.image} gender={user.gender} />
                     }
                     <IconButton className={classes.editProfile} onClick={() => { document.getElementById(`edit-image-user`)?.click() }}>
                         <EditIcon className={classes.editProfileIcon} style={{ fontSize: 21 }} />

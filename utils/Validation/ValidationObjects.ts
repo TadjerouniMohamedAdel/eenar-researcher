@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { NotDefineYet } from '../types/types';
 const countryList = [
 	"Afghanistan",
 	"Albania",
@@ -306,21 +307,21 @@ export const educationSchema = Yup.object().shape({
     university: Yup.string().required('يجب ملئ هذه المعلومة'),
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.date().nullable().when("startDate",(startDate, educationSchema) => startDate && educationSchema.min(startDate))
+    endDate: Yup.date().nullable().when("startDate",(startDate:NotDefineYet, educationSchema:NotDefineYet) => startDate && educationSchema.min(startDate))
 })
 
 export const experienceSchema = Yup.object().shape({
     company: Yup.string().required('يجب ملئ هذه المعلومة'),
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.date().nullable().when("startDate",(startDate, experienceSchema) => startDate && experienceSchema.min(startDate))
+    endDate: Yup.date().nullable().when("startDate",(startDate:NotDefineYet, experienceSchema:NotDefineYet) => startDate && experienceSchema.min(startDate))
 })
 
 export const certificationSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     provider: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.date().when("startDate",(startDate, certificationSchema) => startDate && certificationSchema.min(startDate)).required('يجب ملئ هذه المعلومة')
+    endDate: Yup.date().when("startDate",(startDate:NotDefineYet, certificationSchema:NotDefineYet) => startDate && certificationSchema.min(startDate)).required('يجب ملئ هذه المعلومة')
 })
 
 export const VolunteeringSchema = Yup.object().shape({
@@ -328,7 +329,7 @@ export const VolunteeringSchema = Yup.object().shape({
     role: Yup.string().required('يجب ملئ هذه المعلومة'),
     description: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.date().nullable().when("startDate",(startDate, VolunteeringSchema) => startDate && VolunteeringSchema.min(startDate))
+    endDate: Yup.date().nullable().when("startDate",(startDate:NotDefineYet, VolunteeringSchema:NotDefineYet) => startDate && VolunteeringSchema.min(startDate))
 })
 
 export const languageSchema =  Yup.object().shape({
@@ -342,14 +343,14 @@ export const activitySchema = Yup.object().shape({
     role: Yup.string().required('يجب ملئ هذه المعلومة'),
     location: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.date().nullable().when("startDate",(startDate, activitySchema) => startDate && activitySchema.min(startDate))
+    endDate: Yup.date().nullable().when("startDate",(startDate:NotDefineYet, activitySchema:NotDefineYet) => startDate && activitySchema.min(startDate))
 })
 
 export const patentSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
 	center: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.date().when("startDate",(startDate, patentSchema) => startDate && patentSchema.min(startDate)).required('يجب ملئ هذه المعلومة'),
+    endDate: Yup.date().when("startDate",(startDate:NotDefineYet, patentSchema:NotDefineYet) => startDate && patentSchema.min(startDate)).required('يجب ملئ هذه المعلومة'),
     status: Yup.string().required('يجب ملئ هذه المعلومة'),
     code:   Yup.string().required('يجب ملئ هذه المعلومة'),
     description: Yup.string().required('يجب ملئ هذه المعلومة'),
@@ -364,7 +365,7 @@ export const honorSchema = Yup.object().shape({
 export const projectSchema = Yup.object().shape({
     title: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date().required('يجب ملئ هذه المعلومة'),
-    endDate: Yup.date().nullable().when("startDate",(startDate, projectSchema) => startDate && projectSchema.min(startDate)),
+    endDate: Yup.date().nullable().when("startDate",(startDate:NotDefineYet, projectSchema:NotDefineYet) => startDate && projectSchema.min(startDate)),
     description: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
 
@@ -396,7 +397,7 @@ export const projectSchemaStep2 = Yup.object().shape({
     arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
     englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
     startDate: Yup.date(),
-    endDate: Yup.date().when("startDate",(startDate, projectSchemaStep2) => startDate && projectSchemaStep2.min(startDate))
+    endDate: Yup.date().when("startDate",(startDate:NotDefineYet, projectSchemaStep2:NotDefineYet) => startDate && projectSchemaStep2.min(startDate))
 })
 
 export const projectSchemaStep3 = Yup.object().shape({

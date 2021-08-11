@@ -67,7 +67,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: 0.5s;
+    transition: 0.5s !important;
 }
  .registrationChoiceItem:hover{
     transform: scale(1.03);
