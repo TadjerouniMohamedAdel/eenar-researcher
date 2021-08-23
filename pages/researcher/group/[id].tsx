@@ -38,12 +38,14 @@ const posts = [
 
 
 export const getServerSideProps:GetServerSideProps = async (context)=> {
-  axios.defaults.headers = context.req.headers
   let group = null
   await axios({
     method: "get",
     url: `${process.env.NEXT_PUBLIC_API_URL}/groups?id=${context.params?.id}`,
-    withCredentials:true
+    withCredentials:true,
+    headers:{
+      Cookie: context.req.headers.cookie
+    } 
   })
     .then((response) => {
       group = response.data
