@@ -140,6 +140,16 @@ a{
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.12);
     background-color: #ffffff;
 }
+
+#user-settings-menu .MuiMenu-paper{
+    width: 190px;
+    margin: 7px 0 0;
+    padding:2px 9px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-left: 55px;
+    margin-top: 44px;    
+}
 #post-menu .MuiMenu-paper .MuiMenuItem-root{
     font-family: var(--primary-font);
     font-size: 10px !important;

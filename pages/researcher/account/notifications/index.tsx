@@ -63,7 +63,7 @@ const ResearcherAccountCenterPage:React.FC=()=> {
                 <BannerMenu
                     title="مركز الحساب"
                     description="معلومات الحساب، رسائل، إشعارات والكثير.."
-                    imgSrc="/images/account-center.png"
+                    imgSrc="/images/notifications.png"
                 />
                 <div className={classes.main}>
                     <div className={classes.menus}>

@@ -23,7 +23,7 @@ const ResearcherLayout: React.FC<LayoutProps> = ({ children }) => {
 
     return (
         <div className={classes.mainLayoutContainer}>
-            <Navbar />
+            <Navbar user={user}/>
             <div className={classes.mainLayoutBaseContent}>
                 <Sidebar user={user} />
                 <motion.main className={classes.mainContent} variants={animLayout} exit="initial" initial="initial" animate="animate">
