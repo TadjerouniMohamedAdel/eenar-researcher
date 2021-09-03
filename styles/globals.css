@@ -1,7 +1,4 @@
-@font-face {
-    font-family: 'BCArabic';
-    src: url('../public/fonts/bc-arabic-regular.ttf'); /* IE9 Compat Modes */
-}
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
 table.docblock-argstable,.css-14m39zm{
     direction: ltr !important;
 }
@@ -32,7 +29,7 @@ table.docblock-argstable,.css-14m39zm{
     --button-3:var(--secondary-color);
 
     /* fonts */
-    --primary-font: 'BCArabic';
+    --primary-font: 'Almarai', sans-serif;
 }
 
 *{
