@@ -27,6 +27,7 @@
     "@types/react-calendar": "^3.4.2",
     "axios": "^0.21.1",
     "compressorjs": "^1.0.7",
+    "country-state-city": "^3.0.1",
     "date-fns": "^2.21.3",
     "formik": "^2.2.6",
     "framer-motion": "^3.2.2-rc.1",

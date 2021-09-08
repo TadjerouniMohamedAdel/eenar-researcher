@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
-import { Button, IconButton } from '@material-ui/core'
+import { Button, CircularProgress, Collapse, FormControl, FormHelperText, FormLabel, IconButton, MenuItem } from '@material-ui/core'
 import classes from './AccountBanner.module.css'
-import Modal from '../Modal/Modal'
-import { profileFields1, profileFields2, profileFields3 } from '../../utils/form/Fields'
 import { useDispatch } from 'react-redux'
-import { profileSchema1, profileSchema2, profileSchema3 } from '../../utils/Validation/ValidationObjects'
+import { profileInfoSchema } from '../../utils/Validation/ValidationObjects'
 import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator'
-import MultiStepsEditElement from '../CrudModal/MultiStepsEditElement'
-import EditIcon from '@material-ui/icons/Edit';
 import Compressor from 'compressorjs'
-import { Skeleton } from '@material-ui/lab'
+import { Alert, Skeleton } from '@material-ui/lab'
 import { NotDefineYet, AccountBannerProps } from '../../utils/types/types'
 import { overviewsdata } from '../../utils/fixtures/DevData'
+import { TextField } from '@material-ui/core'
+import { useFormik } from 'formik'
+import { RadioGroup } from '@material-ui/core'
+import { FormControlLabel } from '@material-ui/core'
+import { Radio } from '@material-ui/core'
+import { InputLabel } from '@material-ui/core'
+import { Select } from '@material-ui/core'
+import { Country, State, City }  from 'country-state-city';
 
 /**
     Banner to show current user's infomation: 
@@ -26,10 +30,15 @@ import { overviewsdata } from '../../utils/fixtures/DevData'
     Also it gives access to  edit profile action
 **/
 
-const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
-    const [editVisible, setEditVisible] = useState(false)
+const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
     const [isLoadingImage, setIsLoadingImage] = useState(false)
+    const [newProfileImage, setNewProfileImage] = useState<null|string|ArrayBuffer>(null)
+    const [newProfileBanner, setNewProfileBanner] = useState<null|string|ArrayBuffer>(null)
     const dispatch = useDispatch()
+    const countryList = Country.getAllCountries()
+    const [isLoadingSubmit,setIsLoadingSubmit] = useState(false)
+    const [isSuccess,setIsSuccess] = useState(false)
+    const [isError,setIsError] = useState(false)
 
     const Rectongles: React.FC<{ img: string, gender: string }> = ({ img, gender }) => (
         <div className={classes.Rectangle9}>
@@ -42,7 +51,10 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
 
     /** edit profile user info */
     const handleEditSubmit = (data: NotDefineYet) => {
+        setIsLoadingSubmit(true)
         data.researchers = { ...data.researchers, birthday: data.birthday }
+        if(newProfileImage!==""&& newProfileImage!==null) data = {...data,image:newProfileImage}
+        if(newProfileBanner!==""&& newProfileBanner!==null) data = {...data,imageBanner:newProfileBanner}
         console.log("edit profil", data)
         axios({
             method: 'put',
@@ -50,13 +62,30 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
             data
         }).then(response => {
             console.log("respnse", response.data)
+            document.getElementById("account-banner")?.scrollIntoView({ block: "start", behavior: 'smooth' })
             dispatch(setUser(response.data))
-            setEditVisible(false)
+            setIsSuccess(true)
+            setTimeout(() => {
+                setIsSuccess(false)
+            }, 5000);
         }).catch(error => {
             console.log(error)
+            setIsError(true)
+            setTimeout(() => {
+                setIsError(false)
+            }, 5000);
+        })
+        .finally(()=>{
+            setIsLoadingSubmit(false)
         })
     }
 
+    const formik = useFormik({
+        initialValues: { ...user, birthday: user.researchers.birthday },
+        onSubmit: handleEditSubmit,
+        validateOnChange: false,
+        validationSchema: profileInfoSchema,
+    });
 
     /** edit image user */
     const editProfileImage = (e: NotDefineYet) => {
@@ -72,19 +101,8 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
                 reader.readAsDataURL(result)
                 reader.onloadend = function () {
                     const base64data = reader.result
-                    axios({
-                        method: 'put',
-                        url: `/api/user/edit`,
-                        data: { ...user, image: base64data }
-                    }).then(response => {
-                        console.log("respnse", response.data)
-                        dispatch(setUser(response.data))
-                        setEditVisible(false)
-                        setIsLoadingImage(false)
-                    }).catch(error => {
-                        console.log(error)
-                        setIsLoadingImage(false)
-                    })
+                    setNewProfileImage(base64data)
+                    setIsLoadingImage(false)
                 }
             },
             error(err) {
@@ -94,21 +112,40 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
         })
     }
 
+    /** edit banner user */
+    const editProfileBanner = (e: NotDefineYet) => {
+        let file = e.currentTarget.files[0]
+        new Compressor(file, {
+            quality: 0.8,
+            width: 1000,
+            convertSize: 50000,
+            success(result) {
+                const reader = new FileReader()
+                reader.readAsDataURL(result)
+                reader.onloadend = function () {
+                    const base64data = reader.result
+                    setNewProfileBanner(base64data)
+                }
+            },
+            error(err) {
+                console.log(err.message)
+            }
+        })
+    }
+
     return (
-        <div className={classes.accountBanner}>
-            <Modal
-                visible={editVisible}
-                setVisible={setEditVisible}
-            >
-                <MultiStepsEditElement
-                    item={{ ...user, birthday: user.researchers.birthday }}
-                    title="الحساب"
-                    handleSubmit={handleEditSubmit}
-                    steps={[{ fields: profileFields1, validationSchema: profileSchema1 }, { fields: profileFields2, validationSchema: profileSchema2 }, { fields: profileFields3, validationSchema: profileSchema3 }]}
-                />
-            </Modal>
+        <div className={classes.accountBanner} id="account-banner">
             <div className={classes.bondeau}>
-                <img src="/images/account-banner-placeholder.webp" alt="" />
+                <img src={`${newProfileBanner || user.imageBanner || "/images/account-banner-placeholder.webp"}`} alt="" />
+                {
+                    editable && (
+                        <Button type="button" className={classes.editBannerImage} onClick={() => {document.getElementById(`edit-banner-user`)?.click() }}>
+                            <i className={`ri-camera-line`}></i>
+                            <span>غير غلاف الملف</span>
+                        </Button>
+
+                    )
+                }
             </div>
             <div className={classes.accountBannerContent}>
                 <div className={classes.accountBannerOverview}>
@@ -135,11 +172,15 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
                         isLoadingImage ? (
                             <Skeleton variant="rect" className={classes.Rectangle9} />
 
-                        ) : <Rectongles img={user.image} gender={user.gender} />
+                        ) : <Rectongles img={`${newProfileImage ?? user.image}`} gender={user.gender} />
                     }
-                    <IconButton className={classes.editProfile} onClick={() => { document.getElementById(`edit-image-user`)?.click() }}>
-                        <EditIcon className={classes.editProfileIcon} style={{ fontSize: 21 }} />
-                    </IconButton>
+                    {
+                        editable && (
+                            <IconButton className={classes.editProfileImage} onClick={() => { document.getElementById(`edit-image-user`)?.click() }}>
+                                <i className={`ri-camera-line ${classes.editProfileIcon}`} style={{ fontSize: 21 }}></i>
+                            </IconButton>
+                        )
+                    }
                     <input
                         type="file"
                         accept="image/x-png,image/gif,image/jpeg,image/webp"
@@ -147,6 +188,14 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
                         id="edit-image-user"
                         hidden
                         onChange={editProfileImage}
+                    />
+                    <input
+                        type="file"
+                        accept="image/x-png,image/gif,image/jpeg,image/webp"
+                        name="image"
+                        id="edit-banner-user"
+                        hidden
+                        onChange={editProfileBanner}
                     />
                     <span className={classes.profileName}>{`${user.lastname} ${user.firstname}`}</span>
                     <span className={classes.profileJob}>{user.job}</span>
@@ -159,9 +208,170 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user }) => {
                     </ul>
                 </div>
             </div>
-            <Button className={classes.linkEditAccount} onClick={() => setEditVisible(true)}>
-                <span>تعديل الحساب</span>
-            </Button>
+            {
+                editable && (
+                    <div className={classes.editProfileInfo}>
+                        <h1>تعديل الملف الشخصي</h1>
+                        <Collapse in={isSuccess} className={classes.alertContainer}>
+                            <Alert severity="success" color="success" onClose={()=>setIsSuccess(false)} className={classes.successAlert}>
+                                    تعديل الملف الشخصي تم بنجاح 
+                            </Alert>
+                        </Collapse>
+                        <Collapse in={isError} className={classes.alertContainer}>
+                            <Alert severity="error" color="success" onClose={()=>setIsError(false)} className={classes.successAlert}>
+                                    لم  يتم تعديل الملف الشخصي
+                            </Alert>
+                        </Collapse>
+                        
+                        
+                        <form className={classes.editProfileInfoForm} onSubmit={formik.handleSubmit}>
+                            <TextField
+                                label="الإسم"
+                                variant="outlined"
+                                className={classes.editProfileInput}
+                                name="firstname"
+                                value={formik.values.firstname}
+                                type="text"
+                                onChange={formik.handleChange}
+                                error={Boolean(formik.errors.firstname)}
+                                helperText={formik.errors.firstname}
+                            />
+                            <TextField
+                                label="اللقب"
+                                variant="outlined"
+                                className={classes.editProfileInput}
+                                name="lastname"
+                                value={formik.values.lastname}
+                                type="text"
+                                onChange={formik.handleChange}
+                                error={Boolean(formik.errors.lastname)}
+                                helperText={formik.errors.lastname}
+                            />
+                            <TextField
+                                label="الجامعة / المؤسسة"
+                                variant="outlined"
+                                className={classes.editProfileInput}
+                                name="center"
+                                value={formik.values.center}
+                                type="text"
+                                onChange={formik.handleChange}
+                                error={Boolean(formik.errors.center)}
+                                helperText={formik.errors.center}
+                            />
+                            <TextField
+                                label="الوظيفة"
+                                variant="outlined"
+                                className={`input-align-right ${classes.editProfileInput}`}
+                                name="job"
+                                value={formik.values.job}
+                                InputLabelProps={{ shrink: true }}
+                                onChange={formik.handleChange}
+                                error={Boolean(formik.errors.job)}
+                                helperText={formik.errors.job}
+                            />
+                            <TextField
+                                label="التاريخ الميلاد"
+                                variant="outlined"
+                                className={`input-align-right ${classes.editProfileInput}`}
+                                name="birthday"
+                                value={formik.values["birthday"]?formik.values["birthday"].split("T")[0]:formik.values["birthday"]}
+                                type="date"
+                                InputLabelProps={{ shrink: true }}
+                                onChange={formik.handleChange}
+                                error={Boolean(formik.errors.birthday)}
+                                helperText={formik.errors.birthday}
+                            />
+                            <FormControl variant="outlined" className={classes.editProfileInput}>
+                                <InputLabel id="demo-simple-select-outlined-label">الجنس</InputLabel>
+                                <Select
+                                    value={formik.values.gender}
+                                    name="gender"
+                                    onChange={formik.handleChange}
+                                    label="الجنس"
+                                    error={Boolean(formik.errors.gender)}
+
+                                >
+                                            <MenuItem  value={"female"}>إمرأة</MenuItem>
+                                            <MenuItem  value={"male"}>رجل</MenuItem>
+                                        
+                                    
+                                </Select>
+                            </FormControl>
+                            <FormControl variant="outlined" className={classes.editProfileInput}>
+                                <InputLabel id="demo-simple-select-outlined-label">البلد</InputLabel>
+                                <Select
+                                    value={formik.values.country}
+                                    name="country"
+                                    onChange={formik.handleChange}
+                                    label="البلد"
+                                    error={Boolean(formik.errors.country)}
+                                >
+                                    {
+                                        countryList.map((country,index)=>(
+                                            <MenuItem key={`country-choice-${index}`} value={country.isoCode}>{country.name}</MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </FormControl>
+                            <FormControl variant="outlined" className={classes.editProfileInput}>
+                                <InputLabel id="demo-simple-select-outlined-label">إقليم</InputLabel>
+                                <Select
+                                    value={formik.values.region}
+                                    name="region"
+                                    onChange={formik.handleChange}
+                                    label="إقليم"
+                                    error={Boolean(formik.errors.region)}
+
+                                >
+                                    {
+                                        State.getStatesOfCountry(formik.values.country).map((state,index)=>(
+                                            <MenuItem key={`state-choice-${index}`} value={state.isoCode}>{state.name}</MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                                
+                            </FormControl>
+                            
+                            <FormControl variant="outlined" className={classes.editProfileInput}>
+                                <InputLabel id="demo-simple-select-outlined-label">مدينة</InputLabel>
+                                <Select
+                                    value={formik.values.city}
+                                    name="city"
+                                    onChange={formik.handleChange}
+                                    label="مدينة"
+                                    error={Boolean(formik.errors.city)}
+
+                                >
+                                     {
+                                        City.getCitiesOfState(formik.values.country,formik.values.region).map((city,index)=>(
+                                            <MenuItem key={`city-choice-${index}`} value={city.name}>{city.name}</MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </FormControl>
+                            <TextField
+                                label="العنوان"
+                                variant="outlined"
+                                className={classes.editProfileInput}
+                                name="address"
+                                value={formik.values.address}
+                                type="text"
+                                onChange={formik.handleChange}
+                                error={Boolean(formik.errors.address)}
+                                helperText={formik.errors.address}
+                            />
+                            <div className={classes.formSubmit}>
+                                <Button type="submit" className={classes.submitButton} disabled={isLoadingSubmit}>
+                                    {isLoadingSubmit && <CircularProgress style={{ color: "#fff", width: 19, height: 19, position:"relative",left:10}}/> }
+                                    تأكيد
+                                </Button>
+                            </div>
+                        </form>
+
+                    </div>
+                )
+            }
+
         </div>
     )
 }

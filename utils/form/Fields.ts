@@ -280,7 +280,7 @@ export const profileFields2 = [
 	{ name: "country", label: "البلد", type: "select", choices: countryListAllIsoData, defaultValue: "", className: "" },
 	{ name: "address", label: "العنوان", type: "text", defaultValue: "", className: "" }
 ]
-countryListAllIsoData
+
 
 export const profileFields3 = [
 	{ name: "linkedinLink", label: "رابط لينكدين", type: "text", defaultValue: "", className: "" },

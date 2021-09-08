@@ -13,7 +13,7 @@ const ResearcherAccountLayout: React.FC<LayoutProps> = ({ children }) => {
     const user = useSelector((state: RootState) => state.user)
     return (
         <ResearcherLayout>
-            <AccountBanner user={user} />
+            <AccountBanner user={user} editable={false}/>
             <AccountTab />
             {children}
         </ResearcherLayout>
