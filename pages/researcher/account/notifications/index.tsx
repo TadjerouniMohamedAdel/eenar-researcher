@@ -8,12 +8,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus, faUsers, faCog } from '@fortawesome/free-solid-svg-icons'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { IconButton } from "@material-ui/core";
-import { GetStaticProps } from "next";
-export const getStaticProps:GetStaticProps = async ({ locale }) => ({
-    props: {
-        ...await serverSideTranslations(locale||"ar", ["sidebar"]),
-    },
-})
+import { GetServerSideProps, GetStaticProps } from "next";
+import axios from 'axios'
+
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    try {
+        await axios({
+            method: "get",
+            url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+            withCredentials: true,
+            headers: { Cookie: context.req.headers.cookie }
+        })
+        return {
+            
+            props: {
+                ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+            }
+        }
+    } catch (error) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false
+            },
+            props: {
+                ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+            }
+        }
+    }
+}
 
 const notifications = [
     {
