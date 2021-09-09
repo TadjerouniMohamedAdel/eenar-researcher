@@ -9,6 +9,30 @@ import { centerRegistrationStep1, centerRegistrationStep2 } from '../../../utils
 import MuiAlert, { Color } from '@material-ui/lab/Alert';
 import axios from 'axios'
 import { NotDefineYet } from '../../../utils/types/types'
+import { GetServerSideProps } from 'next'
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    try {
+        await axios({
+            method: "get",
+            url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+            withCredentials: true,
+            headers: { Cookie: context.req.headers.cookie }
+        })
+        return {
+            redirect: {
+                destination: "/researcher/",
+                permanent: false
+            }
+        }
+    } catch (error) {
+        return {
+            props: {}
+        }
+    }
+
+}
+
 
 const Alert:React.FC<{severity:Color|undefined,children:React.ReactNode[]|string}> = (props)=> {
     return <MuiAlert elevation={6} variant="filled" {...props} />;

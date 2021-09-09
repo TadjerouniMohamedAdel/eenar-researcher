@@ -1,6 +1,9 @@
+import { GetServerSideProps } from 'next'
 import React from 'react'
 import RegistrationChoice from '../../components/Registration/RegistrationChoice'
 import RegistartionLayout from '../../layouts/Registration/RegistrationLayout'
+import axios from 'axios'
+
 const choices = [
     {
         "img": '/animations/researcher.json',
@@ -20,6 +23,27 @@ const choices = [
     }
 ]
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    try {
+        await axios({
+            method: "get",
+            url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+            withCredentials: true,
+            headers: { Cookie: context.req.headers.cookie }
+        })
+        return {
+            redirect: {
+                destination: "/researcher/",
+                permanent: false
+            }
+        }
+    } catch (error) {
+        return {
+            props: {}
+        }
+    }
+
+}
 const RegistrationPage:React.FC=()=> {
     return (
         <RegistartionLayout>
