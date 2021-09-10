@@ -17,16 +17,38 @@ import MultiSectionLayout from "../../../layouts/MultiSectionLayout/MultiSection
 import EmptyList from "../../../components/EmptyList/EmptyList";
 import ErrorUnreachable from "../../../components/ErrorUnreachable/ErrorUnreachable";
 import Error500 from "../../../components/Error500/Error500";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { RootState } from "../../../redux/store2";
 import { ResearchPost } from "../../../utils/types/types";
+import  axios  from "axios"
 
 
-export const getStaticProps:GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
-  },
-})
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+      await axios({
+          method: "get",
+          url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+          withCredentials: true,
+          headers: { Cookie: context.req.headers.cookie }
+      })
+      return {
+          
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  } catch (error) {
+      return {
+          redirect: {
+              destination: "/login",
+              permanent: false
+          },
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  }
+}
 
 const  ResearcherResearchsPage:React.FC = ()=>{
   const user = useSelector((state:RootState) => state.user)

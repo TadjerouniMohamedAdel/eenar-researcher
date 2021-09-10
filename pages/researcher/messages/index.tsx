@@ -12,8 +12,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faImage } from '@fortawesome/free-solid-svg-icons'
 import { datamessages } from '../../../utils/fixtures/DevData'
-import { GetStaticProps } from 'next'
-
+import { GetServerSideProps, GetStaticProps } from 'next'
+import axios from 'axios'
 const easing = [0.6, -0.05, 0.01, 0.99];
 const animLayout = {
   initial: { opacity: 0, transition: { duration: 0.6, delay: 0 } },
@@ -23,11 +23,32 @@ const animLayout = {
 const lastMessages = datamessages
 
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale || "ar", ["sidebar"]),
-  },
-})
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+      await axios({
+          method: "get",
+          url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+          withCredentials: true,
+          headers: { Cookie: context.req.headers.cookie }
+      })
+      return {
+          
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  } catch (error) {
+      return {
+          redirect: {
+              destination: "/login",
+              permanent: false
+          },
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  }
+}
 const ResearcherAccountMessagesPage: React.FC = () => {
   const [active, setActive] = useState(3)
   return (
