@@ -325,6 +325,11 @@
         height: 40px;
         border-width: 0px;
 }
+.accountBanner .editProfileInfo .editProfileInfoForm .editProfileInput div[class*="MuiSelect-select"]{
+    width: 727.8px;
+    height: 40px;
+    border-width: 0px;
+}
 .accountBanner .editProfileInfo .editProfileInfoForm .formSubmit{
     width: 100%;
     display: flex;

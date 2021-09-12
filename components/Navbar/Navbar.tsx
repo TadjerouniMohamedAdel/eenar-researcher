@@ -94,7 +94,7 @@ const Navbar: React.FC<SidebarProps> = ({ user }) => {
                            <i className={`ri-settings-3-line`}></i>
                             <span> تعديل الملف الشخصي</span>                           
                         </MenuItem>
-                        <MenuItem className={classes.menuItemSettings}>
+                        <MenuItem className={classes.menuItemSettings}  onClick={()=>router.push("/researcher/account/edit-credentials")}>
                            <i className={`ri-user-settings-line`}></i>
                             <span> اعدادات الحساب</span>                           
                         </MenuItem>

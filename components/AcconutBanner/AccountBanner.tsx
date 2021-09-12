@@ -218,7 +218,7 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                             </Alert>
                         </Collapse>
                         <Collapse in={isError} className={classes.alertContainer}>
-                            <Alert severity="error" color="success" onClose={()=>setIsError(false)} className={classes.successAlert}>
+                            <Alert severity="error" color="error" onClose={()=>setIsError(false)} className={classes.successAlert}>
                                     لم  يتم تعديل الملف الشخصي
                             </Alert>
                         </Collapse>

@@ -46,6 +46,14 @@ export const profileInfoSchema = Yup.object().shape({
 	gender: Yup.string().oneOf(["male","female"]).required('يجب ملئ هذه المعلومة'),
 	center: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
+export const profileCredentialsSchema = Yup.object().shape({
+    email: Yup.string().email("هذا البريد الإلكتروني غير صحيح"),
+    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[0-9])(?=.{8,})/,'كلمة السر يجب أن تحتوي على الأقل 8 حروف منها رقم  	'),
+    newPassword: Yup.string().matches(/^(?=.*[a-z])(?=.*[0-9])(?=.{8,})/,'كلمة السر يجب أن تحتوي على الأقل 8 حروف منها رقم  	'),
+    newRetypedPassword:Yup.string().oneOf([Yup.ref('newPassword'), null], 'الكلمات السرية يجب ان تتطابق').required('يجب ملئ هذه المعلومة'),
+    idn:Yup.string(),
+    defaultLanguage:Yup.string().oneOf(["ar","fr","en"]).required('يجب ملئ هذه المعلومة')
+})
 
 
 export const educationSchema = Yup.object().shape({
