@@ -10,7 +10,7 @@ export default function useDeleteElement<T>(key:string,route:string|null,limit:n
             (values:T)=>axios({
                 method:"delete",
                 url:`/api${route}`,
-                data:values,
+                // data:values,
                 withCredentials:true,
 
             }).then((res)=>res.data),

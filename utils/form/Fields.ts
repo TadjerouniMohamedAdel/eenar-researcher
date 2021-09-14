@@ -374,40 +374,47 @@ export const postStep2 = [
 ]
 
 export const postStep3 = [
-	{ name: "image", label: "صورة توضيحية", type: "file", props: { accept: "application/pdf", InputLabelProps: { shrink: true } }, defaultValue: null, className: "fileInput" },
+	{ name: "image", label: "صورة توضيحية", type: "image", props: { accept: "application/pdf", InputLabelProps: { shrink: true } }, defaultValue: null, className: "fileInput" },
 	{ name: "publishedBy", label: "الناشر", type: "text", defaultValue: "", className: "" },
+	{ name: "publishedDate", label: "تاريخ النشر", type: "date", props: { InputLabelProps: { shrink: true } }, defaultValue: "", className: "" },
 	{ name: "linkDOI", label: "رابط DOI", type: "text", defaultValue: "", className: "" },
 	{ name: "ISSN", label: "رابط ISSN", type: "text", defaultValue: "", className: "" },
 	{ name: "file", label: "رابط ملف المشروع", type: "file", props: { accept: "application/pdf", InputLabelProps: { shrink: true } }, defaultValue: null, className: "fileInput" },
 ]
 
-export const projectStep1 = [
-	{ name: "primaryAuthor", label: "المؤلف الرئيسي", type: "text", defaultValue: "", className: "" },
-	{ name: "secondaryAuthors", label: "المؤلفون المشاركون", type: "array", defaultValue: [], className: "" },
-	{ name: "arabicTitle", label: "عنوان المنشور بالعربية", type: "text", defaultValue: "", className: "" },
-	{ name: "englishTitle", label: "عنوان المنشور بالإنجليزية", type: "text", defaultValue: "", className: "" },
-	{ name: "supervisor", label: "المشرف", type: "text", defaultValue: "", className: "" },
-	{ name: "center", label: "الجامعة / المؤسسة", type: "text", defaultValue: "", className: "" },
-]
 
-export const projectStep2 = [
-	{ name: "arabicDescription", label: "الملخص بالعربية", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-	{ name: "englishDescription", label: "الملخص بالإنجليزية", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+export const projectStep1 = [
+	{ name: "image", label: "صورة توضيحية", type: "image", props: { isBase64:true,accept: "application/pdf", InputLabelProps: { shrink: true } }, defaultValue: null, className: "fileInput" },
 	{ name: "startDate", label: "تاريخ البدأ", type: "date", props: { InputLabelProps: { shrink: true } }, defaultValue: "", className: "" },
 	{ name: "endDate", label: "تاريخ الانتهاء", type: "date", props: { InputLabelProps: { shrink: true } }, defaultValue: "", className: "" },
+	{ name: "link", label: "رابط ملف المشروع", type: "text", defaultValue: "", className: "" },
+	
 ]
+
+
+
+
+export const projectStep2 = [
+	{ name: "supervisorArabicName", label: "المشرف", type: "text", defaultValue: "", className: "" },
+	{ name: "authorArabicNames", label: "الباحثون المشاركون", type: "array", defaultValue: [], className: "" },
+	{ name: "arabicTitle", label: "عنوان المنشور بالعربية", type: "text", defaultValue: "", className: "" },
+	{ name: "arabicDescription", label: "الملخص بالعربية", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+	{ name: "centerArabicName", label: "الجامعة / المؤسسة", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+	{ name: "arabicKeyword", label: "الكلمات المفتاحية", type: "array", defaultValue: [], className: "" },
+]
+
+
+
 export const projectStep3 = [
-	{ name: "justifications", label: "المبررات", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-	{ name: "goals", label: "الأهداف", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-	{ name: "previousStudies", label: "الدراسات السابقة للمشروع", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-
+	{ name: "supervisor", label: "اسم المشرف بالانجليزية", type: "text", defaultValue: "", className: "" },
+	{ name: "authorNames", label: "الباحثون المشاركون بالانجليزية", type: "array", defaultValue: [], className: "" },
+	{ name: "englishTitle", label: "عنوان المنشور بالإنجليزية", type: "text", defaultValue: "", className: "" },
+	{ name: "englishDescription", label: "الملخص بالإنجليزية", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+	{ name: "center", label: "الجامعة / المؤسسة", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+	{ name: "keywords", label: "الكلمات المفتاحية بالانجليزية", type: "array", defaultValue: [], className: "" },
 ]
 
-export const projectStep4 = [
-	{ name: "methodology", label: "منهج البحث ووسائله", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-	{ name: "materials", label: "المراجع والمصادر", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-	{ name: "steps", label: "مراحل البحث", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-]
+
 
 export const groupFields = [
 	{ name: "title", label: "عنوان المجموعة", type: "text", defaultValue: "", className: "" },
@@ -415,6 +422,7 @@ export const groupFields = [
 	{ name: "privacy", label: "خصوصية", type: "select", choices: [{ label: "عام", value: "public" }, { label: "سري", value: "private" }], defaultValue: "", className: "" },
 	{ name: "website", label: "الموقع", type: "text", defaultValue: "", className: "" },
 	{ name: "description", label: "وصف", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+
 ]
 
 export const serviceRequestFields = [

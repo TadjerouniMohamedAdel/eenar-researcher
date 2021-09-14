@@ -17,8 +17,8 @@ import DeleteElement from '../../../../components/CrudModal/DeleteElement';
 import MultiStepsEditElement from '../../../../components/CrudModal/MultiStepsEditElement';
 import MultiStepsAddElement from '../../../../components/CrudModal/MultiStepsAddElement';
 import classes from '../../../../styles/MyProjects.module.css'
-import { projectSchemaStep1, projectSchemaStep2, projectSchemaStep3, projectSchemaStep4 } from '../../../../utils/Validation/ValidationObjects'
-import { projectStep1, projectStep2, projectStep3, projectStep4 } from '../../../../utils/form/Fields'
+import { projectSchemaStep1, projectSchemaStep2, projectSchemaStep3 } from '../../../../utils/Validation/ValidationObjects'
+import { projectStep1, projectStep2, projectStep3 } from '../../../../utils/form/Fields'
 import axios from 'axios'
 import Pagination from '../../../../components/Pagination/Pagination'
 import Link from 'next/link'
@@ -146,7 +146,7 @@ const  ResearcherAccountProjectsPage:React.FC = ()=> {
                 <MultiStepsAddElement
                     title="مشروع"
                     handleSubmit={handleAddItem}
-                    steps={[{ fields: projectStep1, validationSchema: projectSchemaStep1 }, { fields: projectStep2, validationSchema: projectSchemaStep2 }, { fields: projectStep3, validationSchema: projectSchemaStep3 }, { fields: projectStep4, validationSchema: projectSchemaStep4 }]}
+                    steps={[{ fields: projectStep1, validationSchema: projectSchemaStep1 }, { fields: projectStep2, validationSchema: projectSchemaStep2 }, { fields: projectStep3, validationSchema: projectSchemaStep3 }]}
                 />
             </Modal>
             <Modal visible={editVisible} setVisible={setEditVisible}>
@@ -154,7 +154,7 @@ const  ResearcherAccountProjectsPage:React.FC = ()=> {
                     item={{...selectedItem,startDate:selectedItem?.startDate!=null?selectedItem?.startDate:undefined,endDate:selectedItem?.endDate!=null?selectedItem?.endDate:undefined}}
                     handleSubmit={handleEditItem}
                     title="مشروع"
-                    steps={[{ fields: projectStep1, validationSchema: projectSchemaStep1 }, { fields: projectStep2, validationSchema: projectSchemaStep2 }, { fields: projectStep3, validationSchema: projectSchemaStep3 }, { fields: projectStep4, validationSchema: projectSchemaStep4 }]}
+                    steps={[{ fields: projectStep1, validationSchema: projectSchemaStep1 }, { fields: projectStep2, validationSchema: projectSchemaStep2 }, { fields: projectStep3, validationSchema: projectSchemaStep3 }]}
                 />
             </Modal>
             <Modal visible={deleteVisible} setVisible={setDeleteVisible}>

@@ -23,7 +23,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <Link href={`/researcher/researchs/${post.id}`}>
             <div className={classes.postCard}>
                 <div className={classes.postImg}>
-                    <img src="/images/post-placeholder.jpg" alt="" />
+                    <img src={post.image || "/images/post-placeholder.jpg"} alt="" />
                 </div>
                 <div className={classes.postContent}>
                     <div className={classes.postInfo}>
@@ -39,7 +39,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                         <div className={classes.postAuthorImg}>
                             <img src="/images/male-placeholder.jpg" alt="" />
                         </div>
-                        <h5>{post.primaryAuthor}</h5>
+                        <h5>{post.authorArabicNames[0]}</h5>
                     </div>
                     <div className={classes.postDownload}>
                         <a href={post.file} target="_blank" style={{ zIndex: 100000 }} onClick={(e) => e.stopPropagation()}>

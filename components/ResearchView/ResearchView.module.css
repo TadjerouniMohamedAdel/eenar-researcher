@@ -1,16 +1,4 @@
-.circleWhite{
-    width: 132px;
-    height: 132px;
-    padding: 11px 11px 11px 11px;
-    border-radius: 66px;
-    background-color: #ffffff;
-}
-.circleWhite .circleBlue{
-    width: 110px;
-    height: 110px;
-    border-radius: 55px;
-    background-color:var(--primary-color)
-}
+
 .researchView{
     display: flex;
     flex-direction: column;
@@ -18,17 +6,10 @@
     height: auto;
     align-items: center;
 }
-.researchView .researchImageSkeleton{
-    width: 100%;
-    height: 502px;
-    padding: 253px 80px 92px 104px;
-    border-radius: 8px;
-    background-color: #073b4cb6;
-}
+
 .researchView .researchImage{
-    width: 100%;
+    width: 100%;    
     height: 502px;
-    /* padding: 253px 80px 92px 104px; */
     border-radius: 8px;
     background-color: var(--secondary-color);
     position: relative;
@@ -40,261 +21,195 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: inherit;
+    border-radius: inherit !important ;
 }
 
 .researchView .researchBody{
-    position: relative;
-    top: -250px;
     height: auto;
-    width: 89%;
+    margin-top: 2px;
+    min-height: auto;
+    width: 100%;
     border-radius: 8px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    padding: 11px 8px;
+    padding-bottom: 50px;
 }
-.researchView .researchBodySkeleton{
-    position: relative;
-    top: -250px;
-    height: 1000px;
-    width: 89%;
-    border-radius: 8px;
-    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-}
-.researchView .researchBody .researchHeader{
-    margin-top: -20px;
-    display: flex;
+.researchView .researchBody .researchBodyHeader{
     width: 100%;
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
 }
-.researchView .researchBody .researchHeader .researchAuthor{
-    display: flex;
-    align-items: center;
-    margin-left: 48px;
-    margin-right: 48px;
-}
-.researchView .researchBody .researchHeader .researchAuthor .researchAuthorImage{
-    position: relative;
-    top:-40px
-}
-.researchView .researchBody .researchHeader .researchAuthor .researchAuthorInfo >h2{
-  font-family: var(--primary-font);
-  font-size: 23.9px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-align: right;
-  color: #3e3f5e;
-  margin-bottom: 6px;
-}
-.researchView .researchBody .researchHeader .researchAuthor .researchAuthorInfo{
-    margin-left: 16px;
-    margin-right: 16px;
-}
-.researchView .researchBody .researchHeader .researchAuthor .researchAuthorInfo >span{
-  font-family: var(--primary-font);
-  font-size: 11.9px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.67;
-  letter-spacing: normal;
-  text-align: right;
-  color: #afb0c0;
-}
-.researchView .researchBody .researchHeader .researchDownload{
-    margin-right: 28px;
-    margin-left: 28px;
-}
-.researchView .researchBody .researchHeader .researchDownload .downloadLabel{
-    font-family: var(--primary-font);
-    font-size: 15.9px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
-    text-align: center;
-    color: #3e3f5e;
-}
-.researchView .researchBody .researchHeader .researchDownload .downloadIcon{
-    color: #3e3f5e;
-    font-size: 22px;
-}
-.researchView .researchBody .researchHeaderDivider{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    top: -10px;
-}
-.researchView .researchBody .researchHeaderDivider .line{
-    height: 2px;
-    flex:2;
-    background:  #afb0c0;
-}
-.researchView .researchBody .researchHeaderDivider .date{
-    font-family: var(--primary-font);
-    height: 19px;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.42;
-    letter-spacing: normal;
-    text-align: left;
-    color: #afb0c0
-}
-.researchView .researchBody .researchContent{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-   align-items: center;
-}
-.researchView .researchBody .researchContent >h1{
-    width: 80%;
+.researchView .researchBody .researchBodyHeader h1{
     font-family: var(--primary-font);
     font-size: 40px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
-    margin-top: 18px;
-    margin-bottom: 28px;
-    line-height: 1.35;
+    line-height: 1.2;
+    margin-bottom: 25px;
     letter-spacing: normal;
     text-align: right;
-    color: #3e3f5e;       
+    color: #3e3f5e;
+}
+.researchView .researchBody .researchBodyHeader .researchBodyHeaderAction{
+    padding-left: 22px;
+    padding-right: 22px;
 }
 
-.researchView .researchBody .researchContent > p {
-    width: 74%;
-    height: auto;
-    margin: 28px 0 16px;
-    padding-right: 16px;
-    padding-left: 16px;
-    padding-top: 13px;
-    overflow-wrap: break-word !important;
-    padding-bottom: 13px;
-    border-radius: 8px;
-    background-color: #f7f7fa;   
-    font-family: var(--primary-font);
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 2;
-    letter-spacing: normal;
-    color: #3e3f5e;
+.researchView .researchBody .researchBodyHeader .researchBodyHeaderAction .deleteIcon{
+    color: #bf2700;
 }
-.researchView .researchBody .researchContent .researchRest{
-    width: 74%;
-    height: auto;
+.researchView .researchBody .researchBodyContent{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.researchView .researchBody .researchBodyContent .secondaryInfo{
+    display: block;
     font-family: var(--primary-font);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: normal;
     font-stretch: normal;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     font-style: normal;
-    line-height: 2;
     letter-spacing: normal;
     text-align: right;
+    color: #afb0c0;
+    margin-bottom: 6px;
+}
+.researchView .researchBody .researchBodyContent .authors{
+    margin-top: 20px;
+}
+.researchView .researchBody .researchBodyContent .authors h2{
+    font-family: var(--primary-font);
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: right;
+    margin-bottom: 4px;
     color: #3e3f5e;
 }
-.researchView .researchBody .researchContent .researchRest >p{
-    margin-bottom: 20px;
-    overflow-wrap: break-word !important;
-}
-.researchView .researchBody .researchContent .researchRest .researchImg{
-    margin-top: 32px;
-    width: 100%;
-    height: 320px;
-    background-color: #118ab2;
-    position: relative;
-}
-.researchView .researchBody .researchContent .researchRest .researchImg img{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    border-radius: inherit;
-}
-.researchView .researchBody .researchContent .researchRest .researchImgLegend{
+.researchView .researchBody .researchBodyContent .authors  .author{
+    display: block;
     font-family: var(--primary-font);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.99;
+    line-height: 1.18;
+    letter-spacing: normal;
+    text-align: right;
+    margin-top: 7px;
+    color: #3e3f5e;
+}
+
+.researchView .researchBody .researchBodyContent .links{
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+.researchView .researchBody .researchBodyContent .links  .downloadLink{
+    width: 160px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #d27515;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.65;
     letter-spacing: normal;
     text-align: center;
-    color: #9192a6;
-    margin-top: 8px;
-    margin-bottom: 47px;    
+    color: #fff !important;  
 }
-
-.researchView .researchBody .researchContent .researchRest .researchKeywords{
-    display: flex;
-    justify-content: center;
-    margin-top: 28px;
+.researchView .researchBody .researchBodyContent .links  .downloadLink i{
+    font-size: 18px;
+    position: relative;
+    left: 10px;
 }
-.researchView .researchBody .researchContent .researchRest .researchKeywords .researchKeyword{
-    min-width: 60px;
-    height: 24px;
-    margin: 0 12px 0 0;
-    border-radius: 12px;
+.researchView .researchBody .researchBodyContent .links  .gotToLink{
+    width: 160px;
+    height: 40px;
+    border: solid 1px #d27515;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--badge-color);
+    border-radius: 8px;
     font-family: var(--primary-font);
-    font-size: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.65;
+    letter-spacing: normal;
+    text-align: center;
+    color: #d27515 !important;
+}
+.researchView .researchBody .researchBodyContent .links  .gotToLink i{
+    font-size: 18px;
+    position: relative;
+    left: 10px;
+}
+.summarize{
+    margin-top: 45px;
+}
+.summarize h2{
+    font-family: var(--primary-font);
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+.summarize p{
+    margin-top: 7px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3e3f5e;
+}
+
+.keywords{
+    display: flex;
+    margin-top: 20px;
+    padding-right: 50px;
+}
+.keyword{
+    width: auto;
+    height: 24px;
+    margin: 5px;
+    padding: 5px 17px;
+    border: solid 1px #005697;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    font-family: var(--primary-font);
+    font-size: 12px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: 3;
-    padding-left: 10px;
-    padding-right: 10px;
     letter-spacing: -0.1px;
-    color: #ffffff;
-}
-.researchView .researchBody  .researchFooter{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 28px;
-    margin-bottom: 48px;
-}
-.researchView .researchBody  .researchFooter .downloadResearch{
-    width: 204px;
-    margin-left: 24px;
-    margin-right: 24px;
-    height: 40px;
-    padding: 7px 48px 6px;
-    border-radius: 8px;
-    box-shadow: 3px 5.2px 10px 0 rgba(6, 214, 160, 0.3);
-    background-color: var(--active-color);
-    color: #fff;
-    font-family: var(--primary-font);
-    font-size: 13.9px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
-    text-align: center;
-    color: #ffffff;
+    text-align: left;
+    color: #005697;
 }

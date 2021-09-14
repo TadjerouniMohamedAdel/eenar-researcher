@@ -9,6 +9,7 @@ import { Hidden } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { MultiStepsAddElementProps, NotDefineYet } from '../../utils/types/types';
+import FileUploader from '../FileUploader/FileUploader';
 
 const  MultiStepsAddElement:React.FC<MultiStepsAddElementProps> = ({ steps, handleSubmit, title })=> {
     const [isLoading, setIsLoading] = useState(false)
@@ -172,6 +173,16 @@ const  MultiStepsAddElement:React.FC<MultiStepsAddElementProps> = ({ steps, hand
                                         />
                                         <span>{field.label}</span>
                                     </div>
+                                )
+                                break;
+                            case "image":
+                                return(
+                                     <FileUploader 
+                                            name={field.name}
+                                            {...field.props}
+                                            label="اسحب وأفلت بعض الصورة هنا ، أو انقر لتحديد الصورة"
+                                            updateValue={formiks[step].setFieldValue}
+                                        /> 
                                 )
                                 break;
                             default:

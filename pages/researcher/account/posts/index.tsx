@@ -138,6 +138,7 @@ const ResearcherAccountPostPage:React.FC = () => {
 
   const handleAddItem = (item:NotDefineYet) => {
     item.researcherId = user.researchers.id;
+    console.log(item)
     let data = new FormData();
     for (const key in item) {
       data.append(key, item[key]);
