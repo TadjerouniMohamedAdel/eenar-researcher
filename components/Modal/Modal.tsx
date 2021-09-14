@@ -49,7 +49,7 @@ const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
                     >
                         <div className={classes.closeSection}>
                             <IconButton className={classes.closeButton} onClick={() => setVisible(false)}>
-                                <CloseIcon className={classes.closeButtonIcon} />
+                                <i className={`ri-close-line ${classes.closeButtonIcon}`} />
                             </IconButton>
                         </div>
                         <>

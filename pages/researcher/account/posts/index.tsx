@@ -23,10 +23,11 @@ import { Skeleton } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
 import Modal from "../../../../components/Modal/Modal";
 import MultiStepsAddElement from "../../../../components/CrudModal/MultiStepsAddElement";
-import { postStep1, postStep2 } from "../.././../../utils/form/Fields";
+import { postStep1, postStep2, postStep3 } from "../.././../../utils/form/Fields";
 import {
   postSchemaStep1,
   postSchemaStep2,
+  postSchemaStep3,
 } from "../.././../../utils/Validation/ValidationObjects";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -186,6 +187,7 @@ const ResearcherAccountPostPage:React.FC = () => {
           steps={[
             { fields: postStep1, validationSchema: postSchemaStep1 },
             { fields: postStep2, validationSchema: postSchemaStep2 },
+            { fields: postStep3, validationSchema: postSchemaStep3 },
           ]}
         />
       </Modal>
@@ -197,6 +199,7 @@ const ResearcherAccountPostPage:React.FC = () => {
           steps={[
             { fields: postStep1, validationSchema: postSchemaStep1 },
             { fields: postStep2, validationSchema: postSchemaStep2 },
+            { fields: postStep3, validationSchema: postSchemaStep3 },
           ]}
         />
       </Modal>

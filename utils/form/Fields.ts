@@ -359,20 +359,26 @@ export const projectFields = [
 ]
 
 export const postStep1 = [
-	{ name: "primaryAuthor", label: "المؤلف الرئيسي", type: "text", defaultValue: "", className: "" },
-	{ name: "secondaryAuthors", label: "المؤلفون المشاركون", type: "array", defaultValue: [], className: "" },
 	{ name: "arabicTitle", label: "عنوان المنشور بالعربية", type: "text", defaultValue: "", className: "" },
-	{ name: "englishTitle", label: "عنوان المنشور بالإنجليزية", type: "text", defaultValue: "", className: "" },
-	{ name: "publishedBy", label: "الناشر", type: "text", defaultValue: "", className: "" },
-	{ name: "link", label: "رابط DOI ISSN", type: "text", defaultValue: "", className: "" },
+	{ name: "authorArabicNames", label: "الباحثون المشاركون", type: "array", defaultValue: [], className: "" },
+	{ name: "arabicDescription", label: "الملخص بالعربية", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+	{ name: "arabicKeyword", label: "الكلمات المفتاحية", type: "array", defaultValue: [], className: "" },
 ]
 
+
 export const postStep2 = [
-	{ name: "arabicDescription", label: "الملخص بالعربية", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
+	{ name: "englishTitle", label: "عنوان المنشور بالإنجليزية", type: "text", defaultValue: "", className: "" },
+	{ name: "authorNames", label: "الباحثون المشاركون بالانجليزية", type: "array", defaultValue: [], className: "" },
 	{ name: "englishDescription", label: "الملخص بالإنجليزية", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
-	{ name: "publishedDate", label: "تاريخ النشر", type: "date", props: { InputLabelProps: { shrink: true } }, defaultValue: "", className: "" },
-	{ name: "file", label: "تحميل ملف المقال", type: "file", props: { accept: "application/pdf", InputLabelProps: { shrink: true } }, defaultValue: null, className: "fileInput" },
-	{ name: "keywords", label: "الكلمات المفتاحية", type: "array", defaultValue: [], className: "" },
+	{ name: "keywords", label: "الكلمات المفتاحية بالانجليزية", type: "array", defaultValue: [], className: "" },
+]
+
+export const postStep3 = [
+	{ name: "image", label: "صورة توضيحية", type: "file", props: { accept: "application/pdf", InputLabelProps: { shrink: true } }, defaultValue: null, className: "fileInput" },
+	{ name: "publishedBy", label: "الناشر", type: "text", defaultValue: "", className: "" },
+	{ name: "linkDOI", label: "رابط DOI", type: "text", defaultValue: "", className: "" },
+	{ name: "ISSN", label: "رابط ISSN", type: "text", defaultValue: "", className: "" },
+	{ name: "file", label: "رابط ملف المشروع", type: "file", props: { accept: "application/pdf", InputLabelProps: { shrink: true } }, defaultValue: null, className: "fileInput" },
 ]
 
 export const projectStep1 = [

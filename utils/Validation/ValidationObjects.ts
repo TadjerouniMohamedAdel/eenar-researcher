@@ -123,20 +123,27 @@ export const projectSchema = Yup.object().shape({
 })
 
 export const postSchemaStep1 = Yup.object().shape({
-    primaryAuthor: Yup.string().required('يجب ملئ هذه المعلومة'),
-    // secondaryAuthors: Yup.string().required('يجب ملئ هذه المعلومة'),
     arabicTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
-    englishTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
-    publishedBy: Yup.string().required('يجب ملئ هذه المعلومة'),
-    link: Yup.string().required('يجب ملئ هذه المعلومة'),
-})
-export const postSchemaStep2 = Yup.object().shape({
+    authorsArabicNames: Yup.string().required('يجب ملئ هذه المعلومة'),
     arabicDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
-    englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
-    publishedDate: Yup.string().required('يجب ملئ هذه المعلومة'),
-    file: Yup.mixed().required('يجب ملئ هذه المعلومة'),
-    // keywords: Yup.string().required('يجب ملئ هذه المعلومة'),
+    arabicKeyword: Yup.string().required('يجب ملئ هذه المعلومة'),
 })
+
+export const postSchemaStep2 = Yup.object().shape({
+    englishTitle: Yup.string().required('يجب ملئ هذه المعلومة'),
+    authorNames: Yup.string().required('يجب ملئ هذه المعلومة'),
+    englishDescription: Yup.string().required('يجب ملئ هذه المعلومة'),
+    keywords: Yup.string().required('يجب ملئ هذه المعلومة'),
+})
+
+export const postSchemaStep3 = Yup.object().shape({
+    publishedBy: Yup.string().required('يجب ملئ هذه المعلومة'),
+    linkDOI: Yup.string().required('يجب ملئ هذه المعلومة'),
+    ISSN: Yup.string().required('يجب ملئ هذه المعلومة'),
+    image: Yup.mixed().required('يجب ملئ هذه المعلومة'),
+    file: Yup.mixed().required('يجب ملئ هذه المعلومة'),
+})
+
 
 export const projectSchemaStep1 = Yup.object().shape({
     primaryAuthor: Yup.string().required('يجب ملئ هذه المعلومة'),
