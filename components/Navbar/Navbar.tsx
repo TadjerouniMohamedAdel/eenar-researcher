@@ -1,12 +1,11 @@
-import { useState } from 'react'
+import React,{ useState,useRef } from 'react'
 import classes from './Navbar.module.css'
 import SearchIcon from '@material-ui/icons/Search';
-import { IconButton, Menu, MenuItem, TextField } from '@material-ui/core';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
-import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+import { IconButton, Menu, Paper, TextField ,MenuItem ,MenuList } from '@material-ui/core';
 import { useRouter } from 'next/router'
 import axios from 'axios';
+import { SidebarProps } from '../../utils/types/types';
+import Fade from '@material-ui/core/Fade';
 
 
 /**
@@ -17,12 +16,14 @@ import axios from 'axios';
 
  **/
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<SidebarProps> = ({ user }) => {
     const router = useRouter();
     const { locale } = router;
-    const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
 
 
+    // change the locale of the app
     const changeLocale = (locale: string) => {
         document.body.dir = locale == "ar" ? "rtl" : "ltr"
         console.log("asPath", router.asPath)
@@ -30,83 +31,79 @@ const Navbar: React.FC = () => {
     }
 
 
+    // logout user
     const logout = () => {
         axios.post("/api/auth/logout", {})
             .then(() => {
+                closeSettingsMenu()
                 router.push("/login")
+                
             })
     }
 
+    // open settings menu
+    const openSettingsMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+
+    // close settings menu
+    const closeSettingsMenu = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <nav className={classes.navbar}>
             <div className={classes.navbarLogo} onClick={() => { router.push("/researcher") }}>
                 <img src="/images/logoAdminWhite.png" height={60} />
-                <h1>منتدى كوالالمبور  <br />شبكة الباحثين</h1>
+                <h1><b>منتدى كوالالمبور </b> <br />شبكة الباحثين</h1>
             </div>
             <ul className={classes.aboutUs}>
                 <li><a href="https://kl-forum.org/ar/nrict" target="_blank">من نحن؟</a></li>
-                <li><a href="">خدماتنا</a></li>
+                <li><a href="javascript:void(0);">خدماتنا</a></li>
                 <li><a href="https://kl-forum.org/ar/kl1" target="_blank">جائزة مهاتير</a></li>
             </ul>
             <div className={classes.searchBarSection}>
-                <TextField
+                <input
                     placeholder="إبحث هنا عن أشخاص أو مجموعات"
                     className={classes.searchInput}
-                    variant="outlined"
-                    InputProps={{
-                        endAdornment: <SearchIcon className={classes.searchIconNavbar} />,
-                    }}
                 />
+                <i className={`ri-search-line ${classes.searchIconNavbar}`}></i>
             </div>
             <div className={classes.navbarActions} style={{ marginLeft: 28 }}>
-                <div className={classes.navbarDivider}></div>
-                <div>
-                    <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} aria-controls="fade-menu">
-                        <div className={classes.languageSwitcher}>
-                            <img src={locale === "ar" ? "/images/arabic-flag.svg" : locale === "en" ? "/images/usa-flag.png" : "/images/french-flag.webp"} alt="" />
-                        </div>
-                    </IconButton>
+                <IconButton onClick={() => { router.push("/researcher/messages") }}>
+                    <i className={`ri-question-answer-line ${classes.actionIcon}`}></i>
+                </IconButton>
+                <IconButton onClick={() => { router.push("/researcher/account/notifications") }}>
+                    <i className={`ri-notification-2-line ${classes.actionIcon}`}></i>
+                </IconButton>
+                <IconButton className={classes.blueCircle}  onClick={openSettingsMenu}>
+                    <img src={user.image} alt="" />
+                </IconButton>
+                <Paper className={classes.paper}>
                     <Menu
-                        id="fade-menu"
                         anchorEl={anchorEl}
                         keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={() => setAnchorEl(null)}
-                        style={{ marginTop: 50 }}
+                        open={open}
+                        id="user-settings-menu"
+                        onClose={closeSettingsMenu}
+                        TransitionComponent={Fade}
+                        className={classes.menuSettings}
                     >
-                        <MenuItem onClick={() => changeLocale("ar")}>
-                            <div className={classes.choiceLanguage}>
-                                <img src="/images/arabic-flag.svg" alt="" />
-                                العربية
-                            </div>
+                        <MenuItem className={classes.menuItemSettings} onClick={()=>router.push("/researcher/account/edit-account")}>
+                           <i className={`ri-settings-3-line`}></i>
+                            <span> تعديل الملف الشخصي</span>                           
                         </MenuItem>
-                        <MenuItem onClick={() => changeLocale("en")}>
-                            <div className={classes.choiceLanguage}>
-                                <img src="/images/usa-flag.png" alt="" />
-                                English
-                            </div>
+                        <MenuItem className={classes.menuItemSettings}  onClick={()=>router.push("/researcher/account/edit-credentials")}>
+                           <i className={`ri-user-settings-line`}></i>
+                            <span> اعدادات الحساب</span>                           
                         </MenuItem>
-                        <MenuItem onClick={() => changeLocale("fr")}>
-                            <div className={classes.choiceLanguage}>
-                                <img src="/images/french-flag.webp" alt="" />
-                                Français
-                            </div>
+                        <MenuItem className={classes.menuItemSettings} onClick={logout}>
+                           <i className={`ri-logout-box-r-line`}></i>
+                            <span> تسجيل الخروج</span>                           
                         </MenuItem>
                     </Menu>
-                </div>
-                <IconButton onClick={() => { }}>
-                    <QuestionAnswerOutlinedIcon className={classes.actionIcon} />
-                </IconButton>
-                <IconButton onClick={() => { }}>
-                    <NotificationsNoneOutlinedIcon className={classes.actionIcon} />
-                </IconButton>
-                <div className={classes.navbarDivider}></div>
-                <div className={classes.myDropDown}>
-                    <IconButton className={classes.dropButton} onClick={logout}>
-                        <SettingsOutlinedIcon className={classes.actionIcon} />
-                    </IconButton>
-                </div>
+                </Paper>
             </div>
         </nav>
     )

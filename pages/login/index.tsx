@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Checkbox, CircularProgress, Paper, TextField } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle, faFacebookSquare, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -15,32 +15,50 @@ import axios from 'axios'
 import { setUser } from '../../redux/actions/actionCreator';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { useUser } from '../../utils/hooks/useUser'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { NotDefineYet } from '../../utils/types/types'
 
-
-const  Alert:React.FC<{severity:Color|undefined,children:React.ReactNode[]|string}> = (props)=> {
+const Alert: React.FC<{ severity: Color | undefined, children: React.ReactNode[] | string }> = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    try {
+        await axios({
+            method: "get",
+            url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+            withCredentials: true,
+            headers: { Cookie: context.req.headers.cookie }
+        })
+        return {
+            redirect: {
+                destination: "/researcher/",
+                permanent: false
+            },
+            props: {
+                ...await serverSideTranslations(context.locale || "ar", ["login"]),
+            }
+        }
+    } catch (error) {
+        return {
+            props: {
+                ...await serverSideTranslations(context.locale || "ar", ["login"]),
+            }
+        }
+    }
 
-export const getStaticProps:GetStaticProps = async ({ locale }) => ({
-    props: {
-        ...await serverSideTranslations(locale||"ar", ["login"]),
-    },
-})
+}
 
 
-const LoginPage:React.FC= ()=> {
+
+const LoginPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false)
-    const [errorLogin, setErrorLogin] = useState<boolean|null>(false)
+    const [errorLogin, setErrorLogin] = useState<boolean | null>(false)
     const router = useRouter()
     const { t } = useTranslation('login')
-    useUser({redirectTo:null,redirectIfFound:"/researcher/"})
     const dispatch = useDispatch()
 
 
-    const handleSubmit = (data:NotDefineYet) => {
+    const handleSubmit = (data: NotDefineYet) => {
         setIsLoading(true)
         console.log(data)
         axios({

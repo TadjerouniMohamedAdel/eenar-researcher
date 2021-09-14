@@ -13,6 +13,24 @@ import { ResearchPost } from "../../../utils/types/types";
 
 export const getServerSideProps:GetServerSideProps = async (context)=> {
   let research =null
+  try {
+    await axios({
+        method: "get",
+        url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+        withCredentials: true,
+        headers: { Cookie: context.req.headers.cookie }
+    })
+    } catch (error) {
+    return {
+        redirect: {
+            destination: "/login",
+            permanent: false
+        },
+        props: {
+            ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+        }
+    }
+}
   await axios({
         method: "get",
         url: `${process.env.NEXT_PUBLIC_API_URL}/researcher/postByid?id=${context.params?.id}`,

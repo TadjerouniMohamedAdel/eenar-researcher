@@ -28,14 +28,11 @@
   background-color: #fff;
   position: relative;
   z-index: 10;
-  top: -20px;
-  left: -17px;
   margin: 5px;
-  /* margin: 0 4px 118px 0; */
   padding: 9px 9px 9px 9px;
  
 }
 .backdrop .closeSection .closeButton .closeButtonIcon{
-  font-size: 18px;
+  font-size: 20px;
   color: #afb0c0;  
 }

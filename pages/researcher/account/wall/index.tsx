@@ -5,7 +5,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import PostWriter from '../../../../components/PostWriter/PostWriter'
 import PostViewer from '../../../../components/PostViewer/PostViewer'
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
+import axios from 'axios'
 
 const posts = [
   {
@@ -26,11 +27,33 @@ const posts = [
 
 ]
 
-export const getStaticProps:GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
-  },
-})
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+      await axios({
+          method: "get",
+          url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+          withCredentials: true,
+          headers: { Cookie: context.req.headers.cookie }
+      })
+      return {
+          
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  } catch (error) {
+      return {
+          redirect: {
+              destination: "/login",
+              permanent: false
+          },
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  }
+
+}
 
 const ResearcherAccountWallPage:React.FC=()=> {
   return (

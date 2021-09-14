@@ -13,13 +13,11 @@ import 'nprogress/nprogress.css'; //styles of nprogress
 import { appWithTranslation } from 'next-i18next'
 import Loading from '../components/Loading/Loading';
 import { AnimatePresence } from 'framer-motion';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from 'react-query'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { Hydrate } from 'react-query/hydration'
 import { useRef } from 'react'
+import 'remixicon/fonts/remixicon.css'
 
 
 
@@ -56,10 +54,10 @@ function MyApp({ Component, pageProps, router }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <AnimatePresence exitBeforeEnter>
-              <QueryClientProvider  client={queryClientRef.current}>
-              <Hydrate state={pageProps.dehydratedState}>
-                <Component {...pageProps} key={router.route} />
-              </Hydrate>
+              <QueryClientProvider client={queryClientRef.current}>
+                <Hydrate state={pageProps.dehydratedState}>
+                  <Component {...pageProps} key={router.route} />
+                </Hydrate>
                 <ReactQueryDevtools initialIsOpen={false} />
               </QueryClientProvider>
             </AnimatePresence>

@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: 15px;
     padding-bottom: 40px;
 }
 .crudElement h1{
@@ -12,7 +12,7 @@
     font-family: var(--primary-font);
     font-size: 16px;
     font-weight: bold;
-    width: calc(100% - 60px);
+    width: calc(90% - 60px);
     font-stretch: normal;
     font-style: normal;
     line-height: 1;
@@ -27,7 +27,7 @@
     display: flex;
     flex-direction: flex-end;
     align-items: center;
-    width: 70%;
+    width: 40%;
 }
 .crudElement .step{
     width: 24px;
@@ -100,7 +100,7 @@
     margin-top: 28px !important;
     margin: 11px 0 0;
     padding: 10.4px 19.4px 10.6px 308.6px;
-    border: solid 1px #dedeea;
+    border: solid 1px #afb0c0;
     background-color: #ffffff;
 }
 .formCheckbox{

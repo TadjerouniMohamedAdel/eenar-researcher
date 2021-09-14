@@ -8,6 +8,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { MultiStepsEditElementProps, NotDefineYet } from '../../utils/types/types';
+import FileUploader from '../FileUploader/FileUploader';
 
 const  MultiStepsEditElement:React.FC<MultiStepsEditElementProps> = ({ item, steps, handleSubmit, title })=> {
     const [isLoading, setIsLoading] = useState(false)
@@ -67,6 +68,7 @@ const  MultiStepsEditElement:React.FC<MultiStepsEditElementProps> = ({ item, ste
                     steps[step].fields.map((field, index) => {
                         switch (field.type) {
                             case "array":
+                                console.log("label",field.name)
                                 let values = formiks[step].values[field.name]
                                 return (
                                     <Autocomplete
@@ -160,6 +162,17 @@ const  MultiStepsEditElement:React.FC<MultiStepsEditElementProps> = ({ item, ste
                                         />
                                         <span>{field.label}</span>
                                     </div>
+                                )
+                                break;
+                                case "image":
+                                return(
+                                     <FileUploader 
+                                            name={field.name}
+                                            {...field.props}
+                                            label="اسحب وأفلت بعض الصورة هنا ، أو انقر لتحديد الصورة"
+                                            updateValue={formiks[step].setFieldValue}
+                                            defaultValue={formiks[step].values[field.name]}
+                                        /> 
                                 )
                                 break;
                             default:

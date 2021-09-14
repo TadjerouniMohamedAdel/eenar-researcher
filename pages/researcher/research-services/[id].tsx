@@ -9,26 +9,35 @@ import classes from '../../../styles/Services.module.css'
 import { serviceRequestFields } from '../../../utils/form/Fields';
 import { serviceRequestSchema } from '../../../utils/Validation/ValidationObjects';
 import MyHead from '../../../components/MyHead/MyHead';
-import {GetStaticProps,GetStaticPaths} from 'next'
+import {GetStaticProps,GetStaticPaths, GetServerSideProps} from 'next'
 import { NotDefineYet } from '../../../utils/types/types';
+import axios from 'axios'
 
-export const  getStaticPaths:GetStaticPaths= async () =>{
-    let paths : NotDefineYet[]=[]
-
-
-    return {
-        paths,
-        fallback: 'blocking' // See the "fallback" section below
-    };
-}
-
-
-export const getStaticProps:GetStaticProps = async (context)=> {
-
-    return {
-        props: {
-            ...await serverSideTranslations(context.locale||"ar", ["sidebar"]),
-        },
+export const getServerSideProps:GetServerSideProps = async (context)=> {
+    let group = null
+      try {
+        await axios({
+            method: "get",
+            url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+            withCredentials: true,
+            headers: { Cookie: context.req.headers.cookie }
+        })
+        return {
+            props: {
+                ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+            }
+        }
+    
+        } catch (error) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false
+            },
+            props: {
+                ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+            }
+        }
     }
 }
 export default function researchServiceItem() {

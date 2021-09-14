@@ -11,12 +11,15 @@ export type UserResearcher = {
     gender: string,
     center: string,
     job: string,
+    country:string,
     region: string,
     city: string,
     status: string,
     address: string,
-    hello: string,
     image: string,
+    idn:string,
+    defaultLanguage:string,
+    imageBanner:string
     createdAt: string,
     updatedAt: string,
     researchers: {
@@ -64,9 +67,11 @@ export type ResearchPost = {
     researcherId: string,
     primaryAuthor: string,
     secondaryAuthors: string[],
+    authorArabicNames:string[],
     publishedDate: string,
     englishTitle: string,
     publishedBy: string,
+    image:string,
     link: string,
     arabicDescription: string,
     arabicTitle: string,
@@ -174,7 +179,8 @@ export type BannerMenuProps = {
 }
 
 export type AccountBannerProps = {
-    user: UserResearcher
+    user: UserResearcher,
+    editable:boolean
 }
 
 export type LastArticlesProps = {

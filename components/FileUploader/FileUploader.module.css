@@ -1,0 +1,79 @@
+.dropFile{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px #dedeea;
+    border-radius: 8px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.dropFile .inputLabel{
+    width: auto;
+    padding-left: 10px;
+    padding-right: 5px;
+    background: white;
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: right;
+    color: #afb0c0;
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    z-index: 20;
+}
+
+.dropFile p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dropFile p i{
+    font-size: 22px;
+    color: #05cf9b;
+}
+.dropFile p span{
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: right;
+    color: #afb0c0;
+}
+
+.preview{
+    width: 100%;
+    display: flex;
+    height: auto;
+    justify-content: center;
+}
+.preview div{
+    width: 200px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.preview div img{
+    border-radius: 8px;
+}
+.preview div span{
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: 2px;
+    color: #afb0c0;   
+}

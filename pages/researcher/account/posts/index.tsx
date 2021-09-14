@@ -23,10 +23,11 @@ import { Skeleton } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
 import Modal from "../../../../components/Modal/Modal";
 import MultiStepsAddElement from "../../../../components/CrudModal/MultiStepsAddElement";
-import { postStep1, postStep2 } from "../.././../../utils/form/Fields";
+import { postStep1, postStep2, postStep3 } from "../.././../../utils/form/Fields";
 import {
   postSchemaStep1,
   postSchemaStep2,
+  postSchemaStep3,
 } from "../.././../../utils/Validation/ValidationObjects";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -48,17 +49,38 @@ import MultiSectionLayout from "../../../../layouts/MultiSectionLayout/MultiSect
 import EmptyList from "../../../../components/EmptyList/EmptyList";
 import ErrorUnreachable from "../../../../components/ErrorUnreachable/ErrorUnreachable";
 import Error500 from "../../../../components/Error500/Error500";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { RootState } from "../../../../redux/store2";
 import { NotDefineYet, ResearchPost } from "../../../../utils/types/types";
+import axios from  'axios'
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+      await axios({
+          method: "get",
+          url: `${process.env.NEXT_PUBLIC_API_URL}/user/user`,
+          withCredentials: true,
+          headers: { Cookie: context.req.headers.cookie }
+      })
+      return {
+          
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  } catch (error) {
+      return {
+          redirect: {
+              destination: "/login",
+              permanent: false
+          },
+          props: {
+              ...await serverSideTranslations(context.locale || "ar", ["sidebar"]),
+          }
+      }
+  }
 
-export const getStaticProps:GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale||"ar", ["sidebar"]),
-  },
-})
-
+}
 const ResearcherAccountPostPage:React.FC = () => {
   const user = useSelector((state:RootState) => state.user)
   const [addVisible, setAddVisible] = useState(false);
@@ -116,6 +138,7 @@ const ResearcherAccountPostPage:React.FC = () => {
 
   const handleAddItem = (item:NotDefineYet) => {
     item.researcherId = user.researchers.id;
+    console.log(item)
     let data = new FormData();
     for (const key in item) {
       data.append(key, item[key]);
@@ -165,6 +188,7 @@ const ResearcherAccountPostPage:React.FC = () => {
           steps={[
             { fields: postStep1, validationSchema: postSchemaStep1 },
             { fields: postStep2, validationSchema: postSchemaStep2 },
+            { fields: postStep3, validationSchema: postSchemaStep3 },
           ]}
         />
       </Modal>
@@ -176,6 +200,7 @@ const ResearcherAccountPostPage:React.FC = () => {
           steps={[
             { fields: postStep1, validationSchema: postSchemaStep1 },
             { fields: postStep2, validationSchema: postSchemaStep2 },
+            { fields: postStep3, validationSchema: postSchemaStep3 },
           ]}
         />
       </Modal>

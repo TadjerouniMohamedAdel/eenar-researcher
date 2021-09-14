@@ -85,7 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     return (
         <div className={classes.sidebar}>
             <div className={classes.bondeau}>
-                <img src="/images/account-banner-placeholder.webp" alt="" />
+                <img src={user.imageBanner || "/images/account-banner-placeholder.webp"} alt="" />
             </div>
             <div className={classes.profile}>
                 <Rectangles img={user.image} gender={user.gender} />

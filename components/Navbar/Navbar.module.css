@@ -10,17 +10,18 @@
     left: 0;
     z-index: 100;
     width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
 
 }
 .navbar .navbarLogo{
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-right: 20px;
-    margin-left: 20px;
+   
 }
 .navbar .navbarLogo h1{
-    font-family: var(--new-primary-font);
+    font-family: var(--primary-font);
     font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
@@ -28,7 +29,10 @@
     line-height: 1.19;
     letter-spacing: normal;
     text-align: right;
+    margin-right:18px;
     color: #ffffff;
+    position: relative;
+    top: 4px;
 }
 .navbar .aboutUs{
     display: flex;
@@ -39,7 +43,7 @@
 .navbar .aboutUs li a{
   height: 22px;
   margin-left: 31px;
-  font-family: var(--new-primary-font);
+  font-family: var(--primary-font);
   font-size: 12px;
   font-weight: bold;
   font-stretch: normal;
@@ -52,32 +56,40 @@
 }
 .navbar .searchBarSection{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 280px;
+    background-color: #fff;
+    height: 40px;
+    border-radius: 8px;
+    padding-left: 23px;
+    padding-right: 23px;
+    
 }
 .navbar .searchBarSection .searchInput{
-    width: 416px;
-    background-color: #fff;
-    border-radius: 8px;
     border-color: transparent ;
 }
-.navbar .searchBarSection .MuiInputBase-root{
-    border-radius: 8px;
-    border-color: transparent;
-}
-.navbar .searchBarSection .searchIconNavbar{
+.navbar .searchBarSection  .searchIconNavbar{
     color: #909090;
     transform: rotateY(-180deg);
+    font-size: 24px;
 }
-.navbar .searchBarSection .Mui-focused fieldset{
-    border-color: transparent !important;
+.navbar .searchBarSection .searchInput:focus{
+    outline: none;
 }
-.navbar .searchBarSection:hover fieldset{
-    border-color: transparent !important;
+
+.navbar .searchBarSection .searchInput::placeholder{
+    opacity: 0.6;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: right;
+    color: #757575;
 }
-.navbar .searchBarSection .MuiFormLabel-root{
-    color: #757575 ;
-}
+
 .navbar .navbarActions{
     display: flex;
     align-items: center;
@@ -109,178 +121,46 @@
     padding: 2px;
     color: rgba(255, 255, 255, 0.9);
 }
-@media(max-width:1250px){
-    .navbar .searchBarSection .searchInput{
-        width: 340px;
-       
-    }
-}
-@media(max-width:1150px){
-    .navbar .searchBarSection .searchInput{
-        width: 290px;  
-    }
-    .navbar .navbarLogo h1{
-        font-size: 14px;
-    }
-    .navbar .aboutUs li a{
-        height: 22px;
-        margin-left: 21px;
-        font-family: var(--new-primary-font);
-        font-size: 11px;
-        font-weight: bold;
-        font-stretch: normal;
-        text-decoration: none;
-        font-style: normal;
-        line-height: 1.17;
-        letter-spacing: normal;
-        text-align: right;
-        color: #ffffff;
-    }
-    .navbar  .navbarDivider{
-        width: 1px;
-        height: 32px;
-        background-color: rgba(255, 255, 255, 0.29);
-        margin: 0 20px 0 20px;
-    }
-    .navbar .navbarActions .actionIcon{
-        font-size: 21px;
-        padding: 0px;
-        color: rgba(255, 255, 255, 0.9);
-    }      
-}
-@media(max-width:993px){
-    .navbar .navbarActions {
-            display: none;
-        
-    }
-    .navbar .searchBarSection {
-      order:2  
-    }
-    .navbar .navbarLogo{
-        order: 1;
-    }
-    .navbar .aboutUs{
-        order:3
-    }
-}
-@media(max-width:723px){
-    .navbar{
-        justify-content: flex-start;
-    }
-    .navbar .aboutUs{
-        display: none;
-    }
-    @media(max-width:1250px){
-        .navbar .searchBarSection{
-            width:70%;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-        .navbar .searchBarSection .searchInput{
-            width: 100%;
-           
-        }
-    }
-}
-
-
-.myDropDown .dropButton{
+.navbar .navbarActions .blueCircle{
+    width: 36px;
+    height: 36px;
+    padding: 2px;
+    margin-right: 10px;
+    border-radius: 50% !important;
+    border: solid 2px #0a66c2;
+    background-color: #fff;
     position: relative;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    overflow: hidden;
 }
-
-.myDropDown .dropButton img{
+.navbar .navbarActions .blueCircle img{
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-.myDropDown .dropDownMenu{
-    z-index: 20;
-    position: absolute;
-    top: 80px;
-    left: 25px;
-    padding: 10px 20px;
-    background-color: #fff;
-    width: 200px;
-    box-sizing: 0 5px 25px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    transition: 0.5s;
-}
-.myDropDown .dropDownMenu::before{
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 25px;
-    width:20px;
-    height: 20px;
-    background: #fff;
-    transform: rotate(45deg);
-}
-.myDropDown .dropDownMenu h3{
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-    padding: 20px 0;
-    font-weight: 500;
-    font-size: 18px;
-    color: #555;
-    line-height: 1.2em;
-}
-
-.myDropDown .dropDownMenu h3 span{
-    font-size: 14px;
-    color: #cecece;
-    font-weight: 400;
-}
-
-.myDropDown .dropDownMenu ul li{
-    list-style: none;
-    padding: 10px 0;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-.myDropDown .dropDownMenu ul li img {
-    max-width: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
-    opacity: 0.5;
-    transition: 0.5s;
-}
-
-.myDropDown .dropDownMenu ul li:hover img{
-    opacity: 1;
-}
-
-.myDropDown .dropDownMenu ul li a{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #555;
-    font-weight: 500;
-    transition: 0.5s;
-}
-
-.myDropDown .dropDownMenu ul li:hover a{
-    color: var(--active-color);
-}
-.choiceLanguage{
-    display: flex;
-    align-items: center;
-    width: 100px;
-}
-.choiceLanguage img{
-    margin-left: 5px;
-    margin: 5px;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+}
+
+
+
+.menuItemSettings{
+    display: flex !important;
+    font-family: var(--primary-font);
+    width: 100% !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    font-stretch: normal !important;
+    font-style: normal !important;
+    line-height: 1.6 !important;
+    letter-spacing: normal !important;
+    text-align: right !important;
+    color: #3e3f5e !important;
+}
+.menuItemSettings > span{
+    margin-left:20px;
+    margin-right:20px;
+}
+.menuItemSettings > i{
+    font-size: 20px;
+    font-weight: normal !important;
 }
