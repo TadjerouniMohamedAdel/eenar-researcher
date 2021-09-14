@@ -16,7 +16,7 @@ import { FormControlLabel } from '@material-ui/core'
 import { Radio } from '@material-ui/core'
 import { InputLabel } from '@material-ui/core'
 import { Select } from '@material-ui/core'
-import { Country, State, City }  from 'country-state-city';
+import { Country, State, City } from 'country-state-city';
 
 /**
     Banner to show current user's infomation: 
@@ -32,13 +32,13 @@ import { Country, State, City }  from 'country-state-city';
 
 const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
     const [isLoadingImage, setIsLoadingImage] = useState(false)
-    const [newProfileImage, setNewProfileImage] = useState<null|string|ArrayBuffer>(null)
-    const [newProfileBanner, setNewProfileBanner] = useState<null|string|ArrayBuffer>(null)
+    const [newProfileImage, setNewProfileImage] = useState<null | string | ArrayBuffer>(null)
+    const [newProfileBanner, setNewProfileBanner] = useState<null | string | ArrayBuffer>(null)
     const dispatch = useDispatch()
     const countryList = Country.getAllCountries()
-    const [isLoadingSubmit,setIsLoadingSubmit] = useState(false)
-    const [isSuccess,setIsSuccess] = useState(false)
-    const [isError,setIsError] = useState(false)
+    const [isLoadingSubmit, setIsLoadingSubmit] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
+    const [isError, setIsError] = useState(false)
 
     const Rectongles: React.FC<{ img: string, gender: string }> = ({ img, gender }) => (
         <div className={classes.Rectangle9}>
@@ -53,8 +53,8 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
     const handleEditSubmit = (data: NotDefineYet) => {
         setIsLoadingSubmit(true)
         data.researchers = { ...data.researchers, birthday: data.birthday }
-        if(newProfileImage!==""&& newProfileImage!==null) data = {...data,image:newProfileImage}
-        if(newProfileBanner!==""&& newProfileBanner!==null) data = {...data,imageBanner:newProfileBanner}
+        if (newProfileImage !== "" && newProfileImage !== null) data = { ...data, image: newProfileImage }
+        if (newProfileBanner !== "" && newProfileBanner !== null) data = { ...data, imageBanner: newProfileBanner }
         console.log("edit profil", data)
         axios({
             method: 'put',
@@ -75,13 +75,13 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                 setIsError(false)
             }, 5000);
         })
-        .finally(()=>{
-            setIsLoadingSubmit(false)
-        })
+            .finally(() => {
+                setIsLoadingSubmit(false)
+            })
     }
 
     const formik = useFormik({
-        initialValues: { ...user, birthday: user.researchers.birthday },
+        initialValues: { ...user, birthday: user.researchers.birthday,idn:user.idn|| "",defaultLanguage:user.defaultLanguage|| "ar" },
         onSubmit: handleEditSubmit,
         validateOnChange: false,
         validationSchema: profileInfoSchema,
@@ -139,7 +139,7 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                 <img src={`${newProfileBanner || user.imageBanner || "/images/account-banner-placeholder.webp"}`} alt="" />
                 {
                     editable && (
-                        <Button type="button" className={classes.editBannerImage} onClick={() => {document.getElementById(`edit-banner-user`)?.click() }}>
+                        <Button type="button" className={classes.editBannerImage} onClick={() => { document.getElementById(`edit-banner-user`)?.click() }}>
                             <i className={`ri-camera-line`}></i>
                             <span>غير غلاف الملف</span>
                         </Button>
@@ -213,17 +213,17 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                     <div className={classes.editProfileInfo}>
                         <h1>تعديل الملف الشخصي</h1>
                         <Collapse in={isSuccess} className={classes.alertContainer}>
-                            <Alert severity="success" color="success" onClose={()=>setIsSuccess(false)} className={classes.successAlert}>
-                                    تعديل الملف الشخصي تم بنجاح 
+                            <Alert severity="success" color="success" onClose={() => setIsSuccess(false)} className={classes.successAlert}>
+                                تعديل الملف الشخصي تم بنجاح
                             </Alert>
                         </Collapse>
                         <Collapse in={isError} className={classes.alertContainer}>
-                            <Alert severity="error" color="error" onClose={()=>setIsError(false)} className={classes.successAlert}>
-                                    لم  يتم تعديل الملف الشخصي
+                            <Alert severity="error" color="error" onClose={() => setIsError(false)} className={classes.successAlert}>
+                                لم  يتم تعديل الملف الشخصي
                             </Alert>
                         </Collapse>
-                        
-                        
+
+
                         <form className={classes.editProfileInfoForm} onSubmit={formik.handleSubmit}>
                             <TextField
                                 label="الإسم"
@@ -274,7 +274,7 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                                 variant="outlined"
                                 className={`input-align-right ${classes.editProfileInput}`}
                                 name="birthday"
-                                value={formik.values["birthday"]?formik.values["birthday"].split("T")[0]:formik.values["birthday"]}
+                                value={formik.values["birthday"] ? formik.values["birthday"].split("T")[0] : formik.values["birthday"]}
                                 type="date"
                                 InputLabelProps={{ shrink: true }}
                                 onChange={formik.handleChange}
@@ -291,10 +291,10 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                                     error={Boolean(formik.errors.gender)}
 
                                 >
-                                            <MenuItem  value={"female"}>إمرأة</MenuItem>
-                                            <MenuItem  value={"male"}>رجل</MenuItem>
-                                        
-                                    
+                                    <MenuItem value={"female"}>إمرأة</MenuItem>
+                                    <MenuItem value={"male"}>رجل</MenuItem>
+
+
                                 </Select>
                             </FormControl>
                             <FormControl variant="outlined" className={classes.editProfileInput}>
@@ -307,7 +307,7 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                                     error={Boolean(formik.errors.country)}
                                 >
                                     {
-                                        countryList.map((country,index)=>(
+                                        countryList.map((country, index) => (
                                             <MenuItem key={`country-choice-${index}`} value={country.isoCode}>{country.name}</MenuItem>
                                         ))
                                     }
@@ -324,14 +324,14 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
 
                                 >
                                     {
-                                        State.getStatesOfCountry(formik.values.country).map((state,index)=>(
+                                        State.getStatesOfCountry(formik.values.country).map((state, index) => (
                                             <MenuItem key={`state-choice-${index}`} value={state.isoCode}>{state.name}</MenuItem>
                                         ))
                                     }
                                 </Select>
-                                
+
                             </FormControl>
-                            
+
                             <FormControl variant="outlined" className={classes.editProfileInput}>
                                 <InputLabel id="demo-simple-select-outlined-label">مدينة</InputLabel>
                                 <Select
@@ -342,8 +342,8 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                                     error={Boolean(formik.errors.city)}
 
                                 >
-                                     {
-                                        City.getCitiesOfState(formik.values.country,formik.values.region).map((city,index)=>(
+                                    {
+                                        City.getCitiesOfState(formik.values.country, formik.values.region).map((city, index) => (
                                             <MenuItem key={`city-choice-${index}`} value={city.name}>{city.name}</MenuItem>
                                         ))
                                     }
@@ -360,9 +360,37 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
                                 error={Boolean(formik.errors.address)}
                                 helperText={formik.errors.address}
                             />
+                            <TextField
+                                label="رقم التعريف الدولي"
+                                variant="outlined"
+                                className={classes.editProfileInput}
+                                name="idn"
+                                value={formik.values.idn}
+                                type="text"
+                                onChange={formik.handleChange}
+                                error={Boolean(formik.errors.idn)}
+                                helperText={formik.errors.idn}
+                            />
+                            <FormControl variant="outlined" className={classes.editProfileInput}>
+                                <InputLabel id="demo-simple-select-outlined-label">لغة الواجهة</InputLabel>
+                                <Select
+                                    value={formik.values.defaultLanguage}
+                                    name="defaultLanguage"
+                                    onChange={formik.handleChange}
+                                    label="لغة الواجهة"
+                                    error={Boolean(formik.errors.defaultLanguage)}
+
+                                >
+                                    <MenuItem value={"ar"}>العربية</MenuItem>
+                                    <MenuItem value={"en"}>English</MenuItem>
+                                    <MenuItem value={"fr"}>Français</MenuItem>
+
+
+                                </Select>
+                            </FormControl>
                             <div className={classes.formSubmit}>
                                 <Button type="submit" className={classes.submitButton} disabled={isLoadingSubmit}>
-                                    {isLoadingSubmit && <CircularProgress style={{ color: "#fff", width: 19, height: 19, position:"relative",left:10}}/> }
+                                    {isLoadingSubmit && <CircularProgress style={{ color: "#fff", width: 19, height: 19, position: "relative", left: 10 }} />}
                                     تأكيد
                                 </Button>
                             </div>

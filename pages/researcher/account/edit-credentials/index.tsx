@@ -11,6 +11,9 @@ import { NotDefineYet } from '../../../../utils/types/types';
 import { useFormik } from 'formik';
 import { FormControl, MenuItem, TextField, Collapse, InputLabel, Select, Button, CircularProgress } from '@material-ui/core';
 import { Alert } from '@material-ui/lab'
+import { useDispatch } from 'react-redux'
+import { profileCredentialsSchema } from '../../../../utils/Validation/ValidationObjects';
+import { setUser } from '../../../../redux/actions/actionCreator';
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -44,22 +47,46 @@ const ResearcherAccountEditCredentialsPage: NextPage = () => {
     const [isLoadingSubmit, setIsLoadingSubmit] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
     const [isError, setIsError] = useState(false)
+    const dispatch = useDispatch()
 
     const handleSubmit = (data: NotDefineYet) => {
-
+        setIsLoadingSubmit(true)
+        console.log("submit data",data)
+        axios({
+            method: 'put',
+            url: `/api/user/password`,
+            data
+        }).then(response => {
+            console.log("respnse", response.data)
+            document.getElementById("scroll-to-me")?.scrollIntoView({ block: "start", behavior: 'smooth' })
+            dispatch(setUser(response.data))
+            setIsSuccess(true)
+            setTimeout(() => {
+                setIsSuccess(false)
+            }, 5000);
+        }).catch(error => {
+            console.log(error)
+            setIsError(true)
+            setTimeout(() => {
+                setIsError(false)
+            }, 5000);
+        })
+        .finally(()=>{
+            setIsLoadingSubmit(false)
+        })
     }
 
 
     const formik = useFormik({
-        initialValues: { ...user, password: "" },
+        initialValues: { oldPassword: "",newPassword:"",retypedNewPassword:"" },
         onSubmit: handleSubmit,
         validateOnChange: false,
-        // validationSchema: profileInfoSchema,
+        validationSchema: profileCredentialsSchema,
     });
     return (
         <ResearcherLayout>
             <MyHead title="الملف الشخصي  - اعدادات الحساب" />
-            <div className={classes.editCredentialsContainer}>
+            <div className={classes.editCredentialsContainer} id="scroll-to-me">
                 <h1>اعدادات الحساب</h1>
                 <Collapse in={isSuccess} className={classes.alertContainer}>
                     <Alert severity="success" color="success" onClose={() => setIsSuccess(false)} className={classes.successAlert}>
@@ -72,7 +99,7 @@ const ResearcherAccountEditCredentialsPage: NextPage = () => {
                     </Alert>
                 </Collapse>
                 <form onSubmit={formik.handleSubmit}>
-                    <TextField
+                    {/* <TextField
                         label="البريد الالكتروني"
                         variant="outlined"
                         className={classes.editCredentialsInput}
@@ -82,17 +109,17 @@ const ResearcherAccountEditCredentialsPage: NextPage = () => {
                         onChange={formik.handleChange}
                         error={Boolean(formik.errors.email)}
                         helperText={formik.errors.email}
-                    />
+                    /> */}
                     <TextField
                         label="كلمة المرور الحالية"
                         variant="outlined"
                         className={classes.editCredentialsInput}
-                        name="password"
-                        value={formik.values.password}
+                        name="oldPassword"
+                        value={formik.values.oldPassword}
                         type="password"
                         onChange={formik.handleChange}
-                        error={Boolean(formik.errors.password)}
-                        helperText={formik.errors.password}
+                        error={Boolean(formik.errors.oldPassword)}
+                        helperText={formik.errors.oldPassword}
                     />
                     <TextField
                         label="كلمة المرور الجديدة"
@@ -109,41 +136,14 @@ const ResearcherAccountEditCredentialsPage: NextPage = () => {
                         label="تأكيد كلمة المرور"
                         variant="outlined"
                         className={classes.editCredentialsInput}
-                        name="newRetypedPassword"
-                        value={formik.values.newRetypedPassword}
+                        name="retypedNewPassword"
+                        value={formik.values.retypedNewPassword}
                         type="password"
                         onChange={formik.handleChange}
-                        error={Boolean(formik.errors.newRetypedPassword)}
-                        helperText={formik.errors.newRetypedPassword}
+                        error={Boolean(formik.errors.retypedNewPassword)}
+                        helperText={formik.errors.retypedNewPassword}
                     />
-                    <TextField
-                        label="رقم التعريف الدولي"
-                        variant="outlined"
-                        className={classes.editCredentialsInput}
-                        name="idn"
-                        value={formik.values.idn}
-                        type="text"
-                        onChange={formik.handleChange}
-                        error={Boolean(formik.errors.idn)}
-                        helperText={formik.errors.idn}
-                    />
-                    <FormControl variant="outlined" className={classes.editCredentialsInput}>
-                        <InputLabel id="demo-simple-select-outlined-label">لغة الواجهة</InputLabel>
-                        <Select
-                            value={formik.values.city}
-                            name="city"
-                            onChange={formik.handleChange}
-                            label="لغة الواجهة"
-                            error={Boolean(formik.errors.city)}
-
-                        >
-                            <MenuItem value={"ar"}>العربية</MenuItem>
-                            <MenuItem value={"en"}>English</MenuItem>
-                            <MenuItem value={"fr"}>Français</MenuItem>
-
-
-                        </Select>
-                    </FormControl>
+                    
                     <div className={classes.formSubmit}>
                         <Button type="submit" className={classes.submitButton} disabled={isLoadingSubmit}>
                             {isLoadingSubmit && <CircularProgress style={{ color: "#fff", width: 19, height: 19, position: "relative", left: 10 }} />}

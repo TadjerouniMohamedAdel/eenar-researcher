@@ -17,6 +17,8 @@ export type UserResearcher = {
     status: string,
     address: string,
     image: string,
+    idn:string,
+    defaultLanguage:string,
     imageBanner:string
     createdAt: string,
     updatedAt: string,
