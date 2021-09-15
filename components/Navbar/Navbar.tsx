@@ -1,7 +1,7 @@
-import React,{ useState,useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import classes from './Navbar.module.css'
 import SearchIcon from '@material-ui/icons/Search';
-import { IconButton, Menu, Paper, TextField ,MenuItem ,MenuList } from '@material-ui/core';
+import { IconButton, Menu, Paper, TextField, MenuItem, MenuList } from '@material-ui/core';
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import { SidebarProps } from '../../utils/types/types';
@@ -37,15 +37,15 @@ const Navbar: React.FC<SidebarProps> = ({ user }) => {
             .then(() => {
                 closeSettingsMenu()
                 router.push("/login")
-                
+
             })
     }
 
     // open settings menu
     const openSettingsMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
-      };
-    
+    };
+
 
     // close settings menu
     const closeSettingsMenu = () => {
@@ -77,8 +77,8 @@ const Navbar: React.FC<SidebarProps> = ({ user }) => {
                 <IconButton onClick={() => { router.push("/researcher/account/notifications") }}>
                     <i className={`ri-notification-2-line ${classes.actionIcon}`}></i>
                 </IconButton>
-                <IconButton className={classes.blueCircle}  onClick={openSettingsMenu}>
-                    <img src={user.image} alt="" />
+                <IconButton className={classes.blueCircle} onClick={openSettingsMenu}>
+                    <img src={user.image !== "" && user.image != null ? user.image : `/images/${user.gender}-placeholder.jpg`} alt="" />
                 </IconButton>
                 <Paper className={classes.paper}>
                     <Menu
@@ -90,17 +90,17 @@ const Navbar: React.FC<SidebarProps> = ({ user }) => {
                         TransitionComponent={Fade}
                         className={classes.menuSettings}
                     >
-                        <MenuItem className={classes.menuItemSettings} onClick={()=>router.push("/researcher/account/edit-account")}>
-                           <i className={`ri-settings-3-line`}></i>
-                            <span> تعديل الملف الشخصي</span>                           
+                        <MenuItem className={classes.menuItemSettings} onClick={() => router.push("/researcher/account/edit-account")}>
+                            <i className={`ri-settings-3-line`}></i>
+                            <span> تعديل الملف الشخصي</span>
                         </MenuItem>
-                        <MenuItem className={classes.menuItemSettings}  onClick={()=>router.push("/researcher/account/edit-credentials")}>
-                           <i className={`ri-user-settings-line`}></i>
-                            <span> اعدادات الحساب</span>                           
+                        <MenuItem className={classes.menuItemSettings} onClick={() => router.push("/researcher/account/edit-credentials")}>
+                            <i className={`ri-user-settings-line`}></i>
+                            <span> اعدادات الحساب</span>
                         </MenuItem>
                         <MenuItem className={classes.menuItemSettings} onClick={logout}>
-                           <i className={`ri-logout-box-r-line`}></i>
-                            <span> تسجيل الخروج</span>                           
+                            <i className={`ri-logout-box-r-line`}></i>
+                            <span> تسجيل الخروج</span>
                         </MenuItem>
                     </Menu>
                 </Paper>

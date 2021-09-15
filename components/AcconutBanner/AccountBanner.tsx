@@ -43,7 +43,7 @@ const AccountBanner: React.FC<AccountBannerProps> = ({ user, editable }) => {
     const Rectongles: React.FC<{ img: string, gender: string }> = ({ img, gender }) => (
         <div className={classes.Rectangle9}>
             <div className={classes.Path2980}>
-                <img src={img !== "" && img != null ? img : `/images/${gender}-placeholder.jpg`} alt="" />
+                <img src={img !== "" && img !=="null" && img !== null ? img : `/images/${gender}-placeholder.jpg`} alt="" />
             </div>
         </div>
     )
