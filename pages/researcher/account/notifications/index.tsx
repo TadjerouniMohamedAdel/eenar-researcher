@@ -10,6 +10,7 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { IconButton } from "@material-ui/core";
 import { GetServerSideProps, GetStaticProps } from "next";
 import axios from 'axios'
+import WorkInProgress from "../../../../components/WorkInProgress/WorkInProgress";
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -83,7 +84,8 @@ const ResearcherAccountCenterPage:React.FC=()=> {
     return (
         <ResearcherLayout>
             <MyHead title="الإشعارات" />
-            <div className={classes.accountCenterContainer}>
+            <WorkInProgress menu="الإشعارات" />
+            {/* <div className={classes.accountCenterContainer}>
                 <BannerMenu
                     title="مركز الحساب"
                     description="معلومات الحساب، رسائل، إشعارات والكثير.."
@@ -151,7 +153,7 @@ const ResearcherAccountCenterPage:React.FC=()=> {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </ResearcherLayout>
     )
 }

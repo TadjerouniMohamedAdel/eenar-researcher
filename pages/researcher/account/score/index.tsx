@@ -53,8 +53,8 @@ const ResearcherAccountScorePage:React.FC = ()=> {
   return (
     <ResearcherAccountLayout>
       <MyHead title="الملف الشخصي  - الرصيد" />
-      {/* <WorkInProgress menu="الرصيد" /> */}
-      <div className={classes.scoreContainer}>
+      <WorkInProgress menu="الرصيد" />
+      {/* <div className={classes.scoreContainer}>
         <div className={classes.scoreGeneralStats}>
           {
             generalScoreStats.map((score, index) => (
@@ -100,16 +100,16 @@ const ResearcherAccountScorePage:React.FC = ()=> {
                 }}
               >
                 {/* <CartesianGrid x={4} width="10%" /> */}
-                <XAxis dataKey="name" tickLine={false} axisLine={false} />
+                {/* <XAxis dataKey="name" tickLine={false} axisLine={false} />
                 <YAxis orientation="right" tickLine={false} axisLine={false} tickMargin={40} tickCount={10} />
                 <Tooltip cursor={{ fill: 'transparent' }} />
                 <Bar dataKey="المشاهدات" background={{ fill: "#e8e8ef", radius: 4 }} radius={[0, 0, 4, 4]} stackId="a" fill="#118ab2" barSize={18} />
                 <Bar dataKey="الزيارات" stackId="a" fill="#3ad2fe" radius={[4, 4, 0, 0]} barSize={18} />
               </BarChart>
             </ResponsiveContainer>
-
-          </div>
-          <div className={classes.monthSummarize}>
+                
+          </div>  */}
+          {/* <div className={classes.monthSummarize}>
             <div key={`summarize-score-stats-noindex`} className={classes.monthSummarizeItem}>
               <PieChart width={150} height={150}>
                 <Pie
@@ -178,8 +178,8 @@ const ResearcherAccountScorePage:React.FC = ()=> {
                 <div className={classes.label}>قراءات</div>
               </div>
             </div>
-          </div>
-          <div className={classes.friendsActivity}>
+          </div> */}
+          {/* <div className={classes.friendsActivity}>
             <h2>
               أفضل نشاطات الأصدقاء
             </h2>
@@ -193,8 +193,8 @@ const ResearcherAccountScorePage:React.FC = ()=> {
                     <TableCell>الردود</TableCell>
                     <TableCell>مشاهدات المنشورات</TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody>
+                </TableHead> */}
+                {/* <TableBody>
                   {
                     friendsActivity.map((activity,index)=>(
                     <TableRow key={`activity-friend-${index}`}>
@@ -232,7 +232,7 @@ const ResearcherAccountScorePage:React.FC = ()=> {
               </Table>
           </div>
         </div>
-      </div>
+      </div> */}
     </ResearcherAccountLayout>
   )
 }

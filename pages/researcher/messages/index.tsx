@@ -54,8 +54,8 @@ const ResearcherAccountMessagesPage: React.FC = () => {
   return (
     <ResearcherLayout>
       <MyHead title="الرسائل" />
-      {/* <WorkInProgress menu="الرسائل"/> */}
-      <div className={classes.messagesContainer}>
+      <WorkInProgress menu="الرسائل"/>
+      {/* <div className={classes.messagesContainer}>
         <BannerMenu
           title="الرسائل"
           description="تفاعل بشكل أفضل مع زملائك الباحثين، أرسل ملفات، صور وروابط."
@@ -158,7 +158,7 @@ const ResearcherAccountMessagesPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </ResearcherLayout>
   )
 }

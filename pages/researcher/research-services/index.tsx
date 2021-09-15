@@ -15,6 +15,7 @@ import { serviceRequestSchema } from '../../../utils/Validation/ValidationObject
 import EmptyList from '../../../components/EmptyList/EmptyList'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import axios from 'axios'
+import WorkInProgress from '../../../components/WorkInProgress/WorkInProgress'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
@@ -49,7 +50,8 @@ const ResercherResearchServicePage:React.FC=()=> {
   return (
     <ResearcherLayout>
       <MyHead title="الخدمات البحثية" />
-      <Modal visible={addVisible} setVisible={setAddVisible}>
+      <WorkInProgress menu="الخدمات البحثية" />
+       {/* <Modal visible={addVisible} setVisible={setAddVisible}>
         <AddElement
           title="طلب خدمة"
           handleSubmit={() => { }}
@@ -91,7 +93,7 @@ const ResercherResearchServicePage:React.FC=()=> {
             </InfiniteScroll>
           </div>
         </MultiSectionLayout>
-      </div>
+      </div> */}
 
     </ResearcherLayout>
   )
