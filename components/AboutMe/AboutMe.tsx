@@ -36,7 +36,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ user }) => {
   const dispatch = useDispatch()
   /** edit aboutme info */
   const handleEditAboutme = (data: NotDefineYet) => {
-    data.researchers = { ...data.researchers, aboutMe: data.aboutMe }
+    data.researchers = { ...data.researchers, aboutMe: data.aboutMe,webSite:data.webSite }
     console.log("data to send aboutme", data)
     axios({
       method: 'put',
@@ -60,7 +60,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ user }) => {
         setVisible={setEditVisible}
       >
         <EditElement
-          item={{ ...user, aboutMe: user.researchers.aboutMe }}
+          item={{ ...user, aboutMe: user.researchers.aboutMe,website:user.researchers.webSite }}
           fields={aboutmeFields}
           validationSchema={aboutmeSchema}
           handleSubmit={handleEditAboutme}
@@ -93,7 +93,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ user }) => {
         <li><span className={classes.infoLabel}>المدينة</span><span className={classes.infoValue}>{user.region} {user.city}</span></li>
         <li><span className={classes.infoLabel}>المؤسسة</span><span className={classes.infoValue}>{user.center}</span></li>
         <li><span className={classes.infoLabel}>الوظيفة</span><span className={classes.infoValue}>{user.job}</span></li>
-        <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={user.researchers.website} target="_blank">{user.researchers.website}</a></span></li>
+        <li><span className={classes.infoLabel}>الموقع</span><span className={`${classes.infoValue} ${classes.website}`}><a href={user.researchers.webSite} target="_blank">{user.researchers.webSite}</a></span></li>
       </ul>
     </div>
   )

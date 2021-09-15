@@ -26,7 +26,7 @@ export type UserResearcher = {
         id: number,
         aboutMe: string,
         birthday: string
-        website: string | undefined,
+        webSite: string | undefined,
         createdAt: string,
         updatedAt: string,
         centers: NotDefineYet,

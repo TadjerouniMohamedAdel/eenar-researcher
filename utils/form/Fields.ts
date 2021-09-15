@@ -264,7 +264,7 @@ const countryListAllIsoData = [
 export const aboutmeFields = [
 	{ name: "city", label: "المدينة", type: "text", defaultValue: "", className: "" },
 	{ name: "center", label: "المؤسسة", type: "text", defaultValue: "", className: "" },
-	{ name: "website", label: "الموقع", type: "text", defaultValue: "", className: "" },
+	{ name: "webSite", label: "الموقع", type: "text", defaultValue: "", className: "" },
 	{ name: "aboutMe", label: "وصف", type: "text", defaultValue: "", className: "autoHeight", props: { multiline: true, rowMax: 4 } },
 ]
 
