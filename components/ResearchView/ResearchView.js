@@ -43,13 +43,18 @@ export default function ResearchView({ research }) {
                         }
                     </div>
                     <div className={classes.links}>
-                        <a href={research.file} target="_blank"  className={classes.downloadLink}>
-                            <i class="ri-download-2-fill"></i>
-                            <span>
-                                تحميل المقال    
-                            </span>
-                        </a>
-                        <a href="javascript:void(0);" className={classes.gotToLink}>
+                        {
+                            research.file && (
+                                <a href={research.file} target="_blank"  className={classes.downloadLink}>
+                                    <i class="ri-download-2-fill"></i>
+                                    <span>
+                                        تحميل المقال    
+                                    </span>
+                                </a>
+
+                            )
+                        }
+                        <a href={research.linkDOI || research.link} target="_blank" className={classes.gotToLink}>
                             <i class="ri-link"></i>
                             <span>
                                 فتح الرابط
