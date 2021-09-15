@@ -7,6 +7,7 @@ import PostViewer from '../../../../components/PostViewer/PostViewer'
 import MultiSectionLayout from '../../../../layouts/MultiSectionLayout/MultiSectionLayout'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import axios from 'axios'
+import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress'
 
 const posts = [
   {
@@ -61,11 +62,11 @@ const ResearcherAccountWallPage:React.FC=()=> {
       <MyHead title="الملف الشخصي  - الحائط" />
         <MultiSectionLayout
         >
-          <PostWriter />
+          {/* <PostWriter />
           <PostViewer post={posts[0]} />
           <PostViewer post={posts[1]} />
-          <PostViewer post={posts[2]} />
-
+          <PostViewer post={posts[2]} /> */}
+          <WorkInProgress menu="الحائط"/>
         </MultiSectionLayout>
       
     </ResearcherAccountLayout>

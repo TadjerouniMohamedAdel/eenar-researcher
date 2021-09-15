@@ -6,6 +6,8 @@ COPY . .
 
 RUN yarn install --frozen-lockfile
 
+RUN npx next telemetry disable
+
 RUN yarn build
 
 EXPOSE 3000

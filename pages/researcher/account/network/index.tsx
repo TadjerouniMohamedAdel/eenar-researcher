@@ -43,6 +43,7 @@ import { GetServerSideProps, GetStaticProps } from 'next';
 import { RootState } from '../../../../redux/store2';
 import { Group, NotDefineYet } from '../../../../utils/types/types';
 import axios from 'axios'
+import WorkInProgress from '../../../../components/WorkInProgress/WorkInProgress';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
@@ -142,8 +143,9 @@ const ResearcherAccountNetworkPage:React.FC = ()=> {
         
         hasSection={false}
       >
+        <WorkInProgress menu="شبكتي" />
 
-        <div className={classes.filterSection}>
+        {/* <div className={classes.filterSection}>
           <div className={classes.groupedActions}>
             <TextField
               variant="outlined"
@@ -232,7 +234,7 @@ const ResearcherAccountNetworkPage:React.FC = ()=> {
             </motion.div>
           )
         }
-        </AnimatePresence>
+        </AnimatePresence> */}
       </MultiSectionLayout>
     </ResearcherAccountLayout>
   )
