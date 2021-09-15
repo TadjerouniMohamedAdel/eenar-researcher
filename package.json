@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "build-docker": "docker build -t next-app .",
     "build-docker-multistage": "docker build --target production -t next-app -f ./Dockerfile.multistage .",
     "run-docker": "docker run --rm -it -p 3000:3000 next-app",
